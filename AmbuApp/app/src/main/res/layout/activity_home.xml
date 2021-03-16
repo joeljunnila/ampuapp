@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home"
+    android:orientation="vertical">
+
+    <include layout="@layout/menu_bar" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <Button
+        android:id="@+id/homeButton1"
+        style="@style/myButtonStyle"
+        android:text="@string/homeText1"
+        android:onClick="openActivity" />
+
+    <Button style="@style/myButtonStyle"
+        android:id="@+id/homeButton2"
+        android:text="@string/homeText2"
+        android:onClick="openActivity2" />
+
+    <Button style="@style/myButtonStyle"
+        android:id="@+id/homeButton3"
+        android:text="@string/homeText3"
+        android:onClick="openActivity" />
+
+    <Button style="@style/myButtonStyle"
+        android:id="@+id/homeButton4"
+        android:text="@string/homeText4"
+        android:onClick="openActivity" />
+</LinearLayout>
