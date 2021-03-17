@@ -10,7 +10,7 @@
     <include layout="@layout/menu_bar" />
 
     <TextView style="@style/myTextViewStyle"
-        android:id="@+id/textViewId"
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="530dp"
         android:text="one\ntwo\nthree" />

@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         button6 = (Button) findViewById(R.id.button6);
 
         Bundle extras = getIntent().getExtras();
-        if (extras != null) {
+        if(extras != null) {
             activityName = extras.getString("ActivityName");
         }
 
