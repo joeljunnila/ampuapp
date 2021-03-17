@@ -14,34 +14,39 @@
 
     <Space
     android:layout_width="match_parent"
-    android:layout_height="25dp" />
+    android:layout_height="10dp" />
 
     <Button
         android:id="@+id/onButton1"
         style="@style/myButtonStyle"
-        android:text="@string/synnytyksenAikanaText1"
+        android:layout_height="wrap_content"
         android:onClick="openAikana1"
-        />
+        android:text="@string/synnytyksenAikanaText1" />
 
     <Button
         style="@style/myButtonStyle"
         android:id="@+id/onButton2"
         android:text="@string/synnytyksenAikanaText2" />
+
     <Button
         style="@style/myButtonStyle"
         android:id="@+id/onButton3"
         android:text="@string/synnytyksenAikanaText3" />
+
     <Button
         style="@style/myButtonStyle"
         android:id="@+id/onButton4"
         android:text="@string/synnytyksenAikanaText4" />
+
     <Button
         style="@style/myButtonStyle"
         android:id="@+id/onButton5"
         android:text="@string/synnytyksenAikanaText5" />
+
     <Button
         style="@style/myButtonStyle"
         android:id="@+id/onButton6"
 
         android:text="@string/synnytyksenAikanaText6" />
+
 </LinearLayout>
