@@ -18,12 +18,6 @@
     <string name="synnytyksenAikanaText5">Synnytyksen aikana 5</string>
     <string name="synnytyksenAikanaText6">Synnytyksen aikana 6</string>
 
-    <string name="aikanaWall1">Synnyttäjä kokee voimakasta ponnistamisen tarvetta, kun kohdunsuu on täysin avautunut ja sikiön pää on laskeutunut synnytyskanavan alaosaan
-    Supistuksia tulee 1-2 minuutin välein ja ne kestävät yleensä minuutin ajan.</string>
-    <string name="aikanaWall2">Yleensä lapsen pää eli tarjoutuva osa painaa välilihaa, ja emättimen ulkosuu pullottaa  ja alkaa avautua jolloin lapsen pää saattaa näkyä
-    Kun synnytys on edennyt tähän vaiheeseen, niin sitä ei voi enää estää millään tavoin
-    Muista toimia rauhallisesti!
-    </string>
 
 
     <string-array name="navicon">
