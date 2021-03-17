@@ -25,4 +25,9 @@ public class Home extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         startActivity(intent);
     }
+    public void openActivity3(View view) {
+        Intent intent = new Intent(this, SynnytyksenAikana.class);
+        setResult(RESULT_OK, intent);
+        startActivity(intent);
+    }
 }

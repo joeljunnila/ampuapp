@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AmbuApp</string>
     <string name="homeText1">Valmistautuminen</string>
-    <string name="homeText2">Synnytysvaiheet</string>
+    <string name="homeText2">Synnytyksen aikana</string>
     <string name="homeText3">Tarkistus</string>
     <string name="homeText4">Erikoistilanteet</string>
 
@@ -10,6 +10,21 @@
     <string name="valmistautuminenText3">Miten toimitaan?</string>
 
     <string name="synnytyksenJalkeenText">Miten?</string>
+
+    <string name="synnytyksenAikanaText1">Synnytyksen aikana 1</string>
+    <string name="synnytyksenAikanaText2">Synnytyksen aikana 2</string>
+    <string name="synnytyksenAikanaText3">Synnytyksen aikana 3</string>
+    <string name="synnytyksenAikanaText4">Synnytyksen aikana 4</string>
+    <string name="synnytyksenAikanaText5">Synnytyksen aikana 5</string>
+    <string name="synnytyksenAikanaText6">Synnytyksen aikana 6</string>
+
+    <string name="aikanaWall1">Synnyttäjä kokee voimakasta ponnistamisen tarvetta, kun kohdunsuu on täysin avautunut ja sikiön pää on laskeutunut synnytyskanavan alaosaan
+    Supistuksia tulee 1-2 minuutin välein ja ne kestävät yleensä minuutin ajan</string>
+
+
+
+
+
 
     <string-array name="navicon">
         <item>Asetukset</item>

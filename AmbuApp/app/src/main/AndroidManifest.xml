@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AmbuApp">
-        <activity android:name=".SynnytyksenJalkeen"></activity>
+        <activity android:name=".Aikana1"></activity>
+        <activity android:name=".SynnytyksenAikana" />
+        <activity android:name=".SynnytyksenJalkeen" />
         <activity android:name=".Valmistautuminen" />
         <activity android:name=".Home">
             <intent-filter>
