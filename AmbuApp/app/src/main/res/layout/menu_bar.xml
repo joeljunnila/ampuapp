@@ -7,7 +7,7 @@
     android:background="@color/secondaryColor"
     android:padding="10dp">
 
-<ImageButton
+    <ImageButton
         android:id="@+id/imageButton"
         android:onClick="returnHome"
         android:layout_width="0dp"
