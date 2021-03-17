@@ -15,15 +15,18 @@
 
     <Button style="@style/myButtonStyle"
         android:id="@+id/valmistautuminenButton1"
-        android:text="@string/valmistautuminenText1" />
+        android:text="@string/valmistautuminenText1"
+        android:onClick="openActivity"/>
 
     <Button style="@style/myButtonStyle"
         android:id="@+id/valmistautuminenButton2"
-        android:text="@string/valmistautuminenText2" />
+        android:text="@string/valmistautuminenText2"
+        android:onClick="openActivity2"/>
 
     <Button style="@style/myButtonStyle"
         android:id="@+id/valmistautuminenButton3"
-        android:text="@string/valmistautuminenText3" />
+        android:text="@string/valmistautuminenText3"
+        android:onClick="openActivity3"/>
 
     <include layout="@layout/arrows" />
 </LinearLayout>
