@@ -12,6 +12,11 @@ public class TextViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_view);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String activityName = extras.getString("ActivityName");
+        }
     }
 
     public void returnHome(View view) {

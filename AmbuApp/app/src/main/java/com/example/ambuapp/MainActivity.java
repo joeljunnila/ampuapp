@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    String activityName;
+    String activityName = "Home";
 
     ImageButton homeButton;
     TextView title;
@@ -44,32 +44,14 @@ public class MainActivity extends AppCompatActivity {
         button5 = (Button) findViewById(R.id.button5);
         button6 = (Button) findViewById(R.id.button6);
 
-        button1.setVisibility(View.INVISIBLE);
-        //button2.setVisibility(View.INVISIBLE);
-        //button3.setVisibility(View.INVISIBLE);
-        //button4.setVisibility(View.INVISIBLE);
-        //button5.setVisibility(View.INVISIBLE);
-        button6.setVisibility(View.INVISIBLE);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            activityName = extras.getString("ActivityName");
+        }
 
-        button1.setText("1");
-        button2.setText("Valmistautuminen");
-        button3.setText("Synnytysvaiheet");
-        button4.setText("Tarkistus");
-        button5.setText("Erikoistilanteet");
-        button6.setText("6");
-
-        leftArrow = (ImageButton) findViewById(R.id.leftArrow);
-        rightArrow = (ImageButton) findViewById(R.id.rightArrow);
-
-        leftArrow.setVisibility(View.INVISIBLE);
-        rightArrow.setVisibility(View.INVISIBLE);
-
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                valmistautuminen();
-            }
-        });
+        if(activityName.equals("Home")) {
+            homePage();
+        }
 
         /*storageRef = FirebaseStorage.getInstance().getReference();
 
@@ -80,7 +62,30 @@ public class MainActivity extends AppCompatActivity {
         }*/
     }
 
-    public void valmistautuminen() {
+    public void homePage() {
+        button1.setVisibility(View.INVISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
+        button2.setText("Valmistautuminen");
+        button3.setText("Synnytysvaiheet");
+        button4.setText("Tarkistus");
+        button5.setText("Erikoistilanteet");
+
+        leftArrow = (ImageButton) findViewById(R.id.leftArrow);
+        rightArrow = (ImageButton) findViewById(R.id.rightArrow);
+
+        leftArrow.setVisibility(View.INVISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage();
+            }
+        });
+    }
+
+    public void valmistautuminenPage() {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -9,9 +9,8 @@
 
     <include layout="@layout/menu_bar" />
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/myTextViewStyle"
+    <TextView style="@style/myTextViewStyle"
+        android:id="@+id/textViewId"
         android:layout_width="match_parent"
         android:layout_height="530dp"
         android:text="one\ntwo\nthree" />
