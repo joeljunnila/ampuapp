@@ -2,6 +2,7 @@ package com.example.ambuapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -34,28 +35,38 @@ public class TextViewActivity extends AppCompatActivity {
         leftArrow = findViewById(R.id.leftArrow);
         TextToChange = findViewById(R.id.textView);
         homeButton = findViewById(R.id.imageButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnHome(v);
+            }
+        });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 modifier++;
                 TextToChange.setText(Texts[modifier]);
                 if (modifier == 9)
-                    rightArrow.setVisibility(View.INVISIBLE);
+                    returnHome(v);
                 leftArrow.setVisibility(View.VISIBLE);
             }
         });
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 modifier--;
                 TextToChange.setText(Texts[modifier]);
                 if (modifier == 0)
-                    leftArrow.setVisibility(View.INVISIBLE);
+                    returnHome(v);
                 rightArrow.setVisibility(View.VISIBLE);
 
             }
         });
+    }
+    public void returnHome(View v) {
+        Intent intent = new Intent(this, MenuView.class);
+        startActivity(intent);
     }
 }
