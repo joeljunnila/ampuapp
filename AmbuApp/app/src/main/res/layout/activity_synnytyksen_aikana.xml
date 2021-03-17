@@ -20,6 +20,7 @@
         android:id="@+id/onButton1"
         style="@style/myButtonStyle"
         android:text="@string/synnytyksenAikanaText1"
+        android:onClick="openAikana1"
         />
 
     <Button

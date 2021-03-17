@@ -2,7 +2,7 @@
     <string name="app_name">AmbuApp</string>
     <string name="homeText1">Valmistautuminen</string>
     <string name="homeText2">Synnytyksen aikana</string>
-    <string name="homeText3">Tarkistus</string>
+    <string name="homeText3">Synnytyksen jälkeen</string>
     <string name="homeText4">Erikoistilanteet</string>
 
     <string name="valmistautuminenText1">Valmistautuminen</string>
@@ -19,15 +19,16 @@
     <string name="synnytyksenAikanaText6">Synnytyksen aikana 6</string>
 
     <string name="aikanaWall1">Synnyttäjä kokee voimakasta ponnistamisen tarvetta, kun kohdunsuu on täysin avautunut ja sikiön pää on laskeutunut synnytyskanavan alaosaan
-    Supistuksia tulee 1-2 minuutin välein ja ne kestävät yleensä minuutin ajan</string>
-
-
-
-
+    Supistuksia tulee 1-2 minuutin välein ja ne kestävät yleensä minuutin ajan.</string>
+    <string name="aikanaWall2">Yleensä lapsen pää eli tarjoutuva osa painaa välilihaa, ja emättimen ulkosuu pullottaa  ja alkaa avautua jolloin lapsen pää saattaa näkyä
+    Kun synnytys on edennyt tähän vaiheeseen, niin sitä ei voi enää estää millään tavoin
+    Muista toimia rauhallisesti!
+    </string>
 
 
     <string-array name="navicon">
         <item>Asetukset</item>
         <item>About</item>
     </string-array>
+
 </resources>

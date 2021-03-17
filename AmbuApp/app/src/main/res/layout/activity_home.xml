@@ -27,7 +27,7 @@
     <Button style="@style/myButtonStyle"
         android:id="@+id/homeButton3"
         android:text="@string/homeText3"
-        android:onClick="openActivity" />
+        android:onClick="openActivity2" />
 
     <Button style="@style/myButtonStyle"
         android:id="@+id/homeButton4"

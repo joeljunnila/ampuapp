@@ -20,11 +20,11 @@
 
     <TextView
 
-        android:id="@+id/textViewSA1"
+        android:id="@+id/textViewSA2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="40px"
-        android:text="@string/aikanaWall1"
+        android:text="@string/aikanaWall2"
         android:textAlignment="center"
         android:textSize="23dp" />
     <include layout="@layout/arrows"/>

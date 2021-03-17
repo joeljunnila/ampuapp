@@ -8,10 +8,13 @@ import android.view.View;
 
 public class Home extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
     }
 
     public void openActivity(View view) {
