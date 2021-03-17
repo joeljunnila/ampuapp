@@ -36,32 +36,35 @@ public class Aikana1 extends AppCompatActivity {
                 TextToChange.setText(Texts[modifier]);
                 if (modifier == 2)
                     rightArrow.setVisibility(View.INVISIBLE);
-                else
+                    leftArrow.setVisibility(View.VISIBLE);
+
+            }
+
+
+
+        });
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modifier--;
+                TextToChange.setText(Texts[modifier]);
+                if (modifier == 0)
+                    leftArrow.setVisibility(View.INVISIBLE);
                     rightArrow.setVisibility(View.VISIBLE);
 
             }
-
-
         });
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                modifier--;
-                if (modifier == 0)
-                    leftArrow.setVisibility(View.INVISIBLE);
-                else
-                    leftArrow.setVisibility(View.VISIBLE);
 
 
 
-                TextToChange.setText(Texts[modifier]);
 
-            }
-        });
+
 
 
 
     }
+
 
 
 }
