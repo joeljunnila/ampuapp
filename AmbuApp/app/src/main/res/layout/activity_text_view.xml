@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TextView"
+    tools:context=".TextViewActivity"
     android:orientation="vertical">
 
     <include layout="@layout/menu_bar" />
 
-    <TextView style="@style/myTextViewStyle"
+    <TextView
         android:id="@+id/textView"
+        style="@style/myTextViewStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="530dp"
         android:text="one\ntwo\nthree" />
 
     <include layout="@layout/arrows" />
