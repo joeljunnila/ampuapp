@@ -57,8 +57,6 @@ public class KuvaTekstiActivity extends AppCompatActivity {
                 TextToChange.setText(Texts[modifier]);
                 if (modifier == 10)
                     takeMeHome();
-
-
             }
         });
 
@@ -69,8 +67,6 @@ public class KuvaTekstiActivity extends AppCompatActivity {
                 TextToChange.setText(Texts[modifier]);
                 if (modifier == 0)
                     takeMeHome();
-
-
             }
         });
 
