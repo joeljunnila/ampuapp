@@ -3,6 +3,7 @@ package com.example.ambuapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -25,7 +26,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     String activityName = "Home";
-    boolean firebase = false;
+
+    MyFirebase myFirebase;
+    Thread myFirebaseThread;
 
     ImageButton homeButton;
     TextView title;
@@ -41,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton leftArrow;
     ImageButton rightArrow;
 
-    StorageReference storageRef;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,12 +53,25 @@ public class MainActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.title);
         naviconButton = (ImageButton) findViewById(R.id.naviconButton);
 
+        naviconButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                settings();
+            }
+        });
+
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
         button4 = (Button) findViewById(R.id.button4);
         button5 = (Button) findViewById(R.id.button5);
         button6 = (Button) findViewById(R.id.button6);
+
+        leftArrow = (ImageButton) findViewById(R.id.leftArrow);
+        rightArrow = (ImageButton) findViewById(R.id.rightArrow);
+
+        leftArrow.setVisibility(View.INVISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
@@ -67,132 +81,9 @@ public class MainActivity extends AppCompatActivity {
         if(activityName.equals("Home")) {
             homePage();
         }
-
-        storageRef = FirebaseStorage.getInstance().getReference();
-        try {
-            updateImages();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void homePage() {
-        button1.setVisibility(View.INVISIBLE);
-        button6.setVisibility(View.INVISIBLE);
-
-        button2.setText("Valmistautuminen");
-        button3.setText("Synnytysvaiheet");
-        button4.setText("Tarkistus");
-        button5.setText("Erikoistilanteet");
-
-        leftArrow = (ImageButton) findViewById(R.id.leftArrow);
-        rightArrow = (ImageButton) findViewById(R.id.rightArrow);
-
-        leftArrow.setVisibility(View.INVISIBLE);
-        rightArrow.setVisibility(View.INVISIBLE);
-
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                valmistautuminenPage();
-            }
-        });
-    }
-
-    public void valmistautuminenPage() {
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                returnHome();
-            }
-        });
-        title.setText("Valmistautuminen");
-
-        button2.setVisibility(View.INVISIBLE);
-        button3.setText("Valmistautuminen");
-        button4.setText("Kohteessa vai matkaan?");
-        button5.setText("Miten toimitaan");
-        leftArrow.setVisibility(View.VISIBLE);
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                returnHome();
-            }
-        });
-    }
-
-    public void updateImages() throws IOException {
-        File ambuAppDir = new File(Environment.getExternalStorageDirectory(), "AmbuApp");
-        //File rootPath = new File(Environment.getDataDirectory(), "AmbuApp"); // internal storage
-
-        if(ambuAppDir.exists()) {
-            // delete all contents in the directory
-            String[] items = ambuAppDir.list();
-            for(int i=0; i<items.length; i++) {
-                new File(ambuAppDir, items[i]).delete();
-            }
-        } else {
-            if(!ambuAppDir.mkdir()) {
-                Log.d("test", "Cannot create directory, permission denied.");
-            }
-        }
-
-        ArrayList<StorageReference> imageRefs = new ArrayList<>();
-        imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
-        imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
-        imageRefs.add(storageRef.child("kuvat/ohje4.jpg"));
-
-        ArrayList<String> imageFileNames = new ArrayList<>();
-        imageFileNames.add("image1.jpg");
-        imageFileNames.add("image2.jpg");
-        imageFileNames.add("image3.jpg");
-
-        downloadFileFromFirebase(imageRefs.get(0), ambuAppDir, imageFileNames.get(0));
-
-        if(firebase) {
-            Log.d("test", "Firebase");
-        } else {
-            Log.d("test", "not Firebase");
-        }
-
-        /*for(int i=0; i<imageRefs.size(); i++) {
-            downloadFileFromFirebase(imageRefs.get(i), ambuAppDir, imageFileNames.get(i));
-        }*/
-    }
-
-    private Runnable asd = new Runnable() {
-        @Override
-        public void run() {
-            Log.d("test", "delay");
-            try {
-                wait(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    };
-
-    public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
-        File imageFile = new File(dir, name);
-        ref.getFile(imageFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(getApplicationContext(), "Updated succesfully!", Toast.LENGTH_LONG).show();
-                Log.d("test", "Succesfully connected to the Firebase");
-                firebase = true;
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(getApplicationContext(), "Update failed!", Toast.LENGTH_LONG).show();
-                Log.d("test", "Unexpected error");
-                firebase = false;
-            }
-        });
-    }
-
-    public void returnHome() {
         title.setText("AmbuApp");
         button1.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.VISIBLE);
@@ -206,8 +97,58 @@ public class MainActivity extends AppCompatActivity {
         button4.setText("Tarkistus");
         button5.setText("Erikoistilanteet");
 
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage();
+            }
+        });
+    }
+
+    public void settings() {
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.INVISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.INVISIBLE);
+        button5.setVisibility(View.INVISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
+        button3.setText("UPDATE");
+
         leftArrow.setVisibility(View.INVISIBLE);
         rightArrow.setVisibility(View.INVISIBLE);
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myFirebase = new MyFirebase();
+                myFirebaseThread = new Thread(myFirebase);
+                myFirebaseThread.start();
+            }
+        });
+    }
+
+    public void valmistautuminenPage() {
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+        title.setText("Valmistautuminen");
+
+        button2.setVisibility(View.INVISIBLE);
+        button3.setText("Valmistautuminen");
+        button4.setText("Kohteessa vai matkaan?");
+        button5.setText("Miten toimitaan");
+        leftArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
     }
 
     public void textViewActivity(View view) {
