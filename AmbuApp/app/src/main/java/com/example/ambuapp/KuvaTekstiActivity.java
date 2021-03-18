@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-public class Aikana1 extends AppCompatActivity {
+public class KuvaTekstiActivity extends AppCompatActivity {
 
     ImageButton rightArrow;
     ImageButton leftArrow;
