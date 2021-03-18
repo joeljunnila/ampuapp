@@ -53,11 +53,42 @@ public class TextViewActivity extends AppCompatActivity {
         leftArrow = findViewById(R.id.leftArrow);
         homeButton = findViewById(R.id.homeButton);
         textView = (TextView) findViewById(R.id.content);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            activityName = extras.getString("ActivityName");
+        }
+
+        if(activityName.equals("Valmistautuminen1")) {
+            valmistautuminenSetit();
+            modifier = 0;
+            textView.setText(valmistautuminen[0]);
+        }
+        else if(activityName.equals("Valmistautuminen2")) {
+            valmistautuminenSetit();
+            modifier = 1;
+            textView.setText(valmistautuminen[1]);
+        }
+        else if(activityName.equals("Valmistautuminen3")) {
+            valmistautuminenSetit();
+            modifier = 2;
+            textView.setText(valmistautuminen[2]);
+        }
+    }
+
+    public void returnHome(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+
+    public void valmistautuminenSetit() {
         textView.setText(valmistautuminen[modifier]);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activityName = "Home";
                 returnHome(v);
             }
         });
@@ -75,7 +106,6 @@ public class TextViewActivity extends AppCompatActivity {
                     rightArrow.setVisibility(View.VISIBLE);
                 }
 
-
             }
         });
         rightArrow.setOnClickListener(new View.OnClickListener() {
@@ -92,29 +122,5 @@ public class TextViewActivity extends AppCompatActivity {
                 }
             }
         });
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            activityName = extras.getString("ActivityName");
-        }
-
-        if(activityName.equals("Valmistautuminen1")) {
-            modifier = 0;
-            textView.setText(valmistautuminen[0]);
-        }
-        else if(activityName.equals("Valmistautuminen2")) {
-            modifier = 1;
-            textView.setText(valmistautuminen[1]);
-        }
-        else if(activityName.equals("Valmistautuminen3"))
-        {
-            modifier = 2;
-            textView.setText(valmistautuminen[2]);
-        }
-    }
-
-    public void returnHome(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
     }
 }
