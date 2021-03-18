@@ -99,10 +99,10 @@ public class MainActivity extends AppCompatActivity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Valmistautuminen1";
-                textViewActivity(v);
+                erikoistilanteetPage();
             }
         });
+
     }
 
     public void valmistautuminenPage() {
@@ -126,6 +126,52 @@ public class MainActivity extends AppCompatActivity {
                 homePage();
             }
         });
+    }
+
+    public void erikoistilanteetPage() {
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+        title.setText("Erikoistilanteet");
+
+        button2.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.INVISIBLE);
+        button3.setText("Perätila");
+        button4.setText("Hartiadystokia");
+        button5.setText("Napanuoran esiinluiskahdus");
+        leftArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen1";
+                textViewActivity(v);
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen1";
+                textViewActivity(v);
+            }
+        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen1";
+                textViewActivity(v);
+            }
+        });
+
     }
 
     public void settings() {
