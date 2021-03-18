@@ -29,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     ImageButton leftArrow;
     ImageButton rightArrow;
 
+    String buttonText1;
+    String buttonText2;
+    String buttonText3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +100,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aikanaActivity();
+            }
+        });
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -199,6 +209,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void textViewActivity(View view) {
         Intent intent = new Intent(this, TextViewActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+    public void aikanaActivity(){
+        Intent intent = new Intent(this, KuvaTekstiActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }

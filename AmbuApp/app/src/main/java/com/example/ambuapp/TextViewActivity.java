@@ -5,30 +5,88 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class TextViewActivity extends AppCompatActivity {
     TextView textView;
     String activityName;
+    ImageButton rightArrow;
+    ImageButton leftArrow;
+    ImageButton homeButton;
 
-    String[] valmistautuminen = {"Synnyttäjä kokee voimakasta ponnistamisen tarvetta, kun kohdunsuu on täysin avautunut ja sikiön pää on laskeutunut synnytyskanavan alaosaan\n" +
-            "Supistuksia tulee 1-2 minuutin välein ja ne kestävät yleensä minuutin ajan\n" +
-            "\n", "Yleensä lapsen pää eli tarjoutuva osa painaa välilihaa, ja emättimen ulkosuu pullottaa  ja alkaa avautua jolloin lapsen pää saattaa näkyä\n" +
-            "Kun synnytys on edennyt tähän vaiheeseen, niin sitä ei voi enää estää millään tavoin\n" +
-            "Muista toimia rauhallisesti!\n", "Välilihan repeäminen estetään tukemalla sitä toisen kämmenellä, peukalo ja etusormi kurovat välilihaan joustoa ",
-            "Samalla toisella kädellä kontrolloidaan pään syntymistä ","Kiiretilanteessa tukeminen on tärkeämpää kuin aseptiset toimenpiteet.    Pään synnyttyä,"+
-            "se tekee tavallisesti käännöksen niin, että kasvot näyttävät sivulle\n","Pään synnyttyä, hartiat voi auttaa ulos ilman supistusta tai vaihtoehtoisesti synnyttäjän ponnistaessa seuraavan supistuksen aikana ",
-            " Molemmilla käsillä otetaan lapsen pään sivuista kiinni ja painetaan päätä alaspäin, jolloin ylempi hartia syntyy","Seuraavaksi päätä kohotetaan ylöspäin kohti häpyliitosta alemman hartian synnyttämiseksi",
-            "Kun pää ja hartiat ovat syntyneet, molempien käsien etusormet viedään lapsen selän kautta kainaloihin ja lapsen vartalo syntyy hellästi nostamalla","Jos hartiat eivät synny helposti, asetetaan jokin koroke tai tyyny tai vastaava äidin pakaroiden alle"};
-
+    int modifier = 0;
+    String[] valmistautuminen = {"Synnytystehtävän (791 A-D) tulessa huomioi seuraavat asiat:  \n" +
+            "\n" +
+            "Kirjaa ylös synnyttäjän perustiedot (sairaudet, allergiat, monesko raskaus ja synnytys jne.) \n" +
+            "\n" +
+            "Raskausviikot, selvitä miten raskaus on edennyt ja onko sikiö perä- vai raivotarjonnassa \n" +
+            "\n" +
+            "Kohteeseen päästyäsi tarkista mikä on synnytyksen tilanne: \n" +
+            "Onko lapsivesi mennyt? Koska se on mennyt?\n" +
+            "\n" +
+            "Lapsiveden väri? Kirkas vai vihreä/kellertävää? Hajuton/pahanhajuista? \n" +
+            "\n" +
+            "Onko supistuksia? Milloin ne ovat alkaneet? Kuinka tiheään supistuksia tulee? Onko synnytys oikeasti käynnissä? ", "Hoidetaan kohteessa: \n" +
+            "Supistuksia on 1-2 minuutin välein säännöllisesti \n" +
+            "Synnyttäjällä on ponnistamisen pakko \n" +
+            "Sikiön pää näkyy \n" +
+            "  \n" +
+            "Milloin matkaan: \n" +
+            "Lapsivesi on mennyt, mutta ei ole supistuksia \n" +
+            "Supistukset tulevat epäsäännöllisesti \n" +
+            "Supistukset tulevat säännöllisesti 2-15 minuutin välein \n" +
+            "Synnyttäjä otetaan kyytiin ja lähdetään liikkeelle, tutkimukset yms. voi tehdä matkalla \n" +
+            "MUISTA ENNAKKOILMOITUS", "Miten toimitaan: \n" +
+            "Valmistaudu ottamalla synnytyssetit esille \n" +
+            "Paarien yläosa käännettään toisin päin. \n" +
+            "Synnyttäjä asetetaan vasemmalle kyljelleen \n" +
+            "Avaa i.v. -yhteys \n" +
+            "Seuraa supistusten väliä \n" +
+            "Jos synnyttäjällä tulee paineen tunne tai ponnistamisen pakko matkalla, pysäytä auto \n" +
+            "Lääkkeettömiä kivunlievitys keinoja voi kokeilla kuten hierontaa tai lämpöpussia kipukohtiin"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_view);
 
+        rightArrow = findViewById(R.id.rightArrow);
+        leftArrow = findViewById(R.id.leftArrow);
+        homeButton = findViewById(R.id.homeButton);
         textView = (TextView) findViewById(R.id.content);
+        textView.setText(valmistautuminen[modifier]);
 
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                returnHome(v);
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (modifier == 2) {
+                    returnHome(v);
+                }
+                modifier++;
+                textView.setText(valmistautuminen[modifier]);
+                leftArrow.setVisibility(View.VISIBLE);
+            }
+        });
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (modifier == 0) {
+                    returnHome(v);
+                }
+                modifier--;
+                textView.setText(valmistautuminen[modifier]);
+                rightArrow.setVisibility(View.VISIBLE);
+            }
+        });
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             activityName = extras.getString("ActivityName");
@@ -39,7 +97,7 @@ public class TextViewActivity extends AppCompatActivity {
         }
     }
 
-    public void returnHome(View view) {
+    public void returnHome(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
