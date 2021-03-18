@@ -15,7 +15,6 @@
         android:theme="@style/Theme.AmbuApp">
         <activity android:name=".TextViewActivity" />
         <activity android:name=".Aikana1" />
-        <activity android:name=".SynnytyksenAikana" />
         <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
