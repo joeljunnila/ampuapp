@@ -1,16 +1,31 @@
 package com.example.ambuapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     String activityName = "Home";
+    boolean firebase = false;
 
     ImageButton homeButton;
     TextView title;
@@ -26,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton leftArrow;
     ImageButton rightArrow;
 
-    //private StorageReference storageRef;
+    StorageReference storageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +68,12 @@ public class MainActivity extends AppCompatActivity {
             homePage();
         }
 
-        /*storageRef = FirebaseStorage.getInstance().getReference();
-
+        storageRef = FirebaseStorage.getInstance().getReference();
         try {
             updateImages();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     public void homePage() {
@@ -108,26 +122,75 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*public void updateImages() throws IOException {
-        StorageReference ohjeRef = storageRef.child("kuvat/ohje.jpg");
-        File localFile = File.createTempFile("images", "jpg");
+    public void updateImages() throws IOException {
+        File ambuAppDir = new File(Environment.getExternalStorageDirectory(), "AmbuApp");
+        //File rootPath = new File(Environment.getDataDirectory(), "AmbuApp"); // internal storage
 
-        ohjeRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+        if(ambuAppDir.exists()) {
+            // delete all contents in the directory
+            String[] items = ambuAppDir.list();
+            for(int i=0; i<items.length; i++) {
+                new File(ambuAppDir, items[i]).delete();
+            }
+        } else {
+            if(!ambuAppDir.mkdir()) {
+                Log.d("test", "Cannot create directory, permission denied.");
+            }
+        }
+
+        ArrayList<StorageReference> imageRefs = new ArrayList<>();
+        imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje4.jpg"));
+
+        ArrayList<String> imageFileNames = new ArrayList<>();
+        imageFileNames.add("image1.jpg");
+        imageFileNames.add("image2.jpg");
+        imageFileNames.add("image3.jpg");
+
+        downloadFileFromFirebase(imageRefs.get(0), ambuAppDir, imageFileNames.get(0));
+
+        if(firebase) {
+            Log.d("test", "Firebase");
+        } else {
+            Log.d("test", "not Firebase");
+        }
+
+        /*for(int i=0; i<imageRefs.size(); i++) {
+            downloadFileFromFirebase(imageRefs.get(i), ambuAppDir, imageFileNames.get(i));
+        }*/
+    }
+
+    private Runnable asd = new Runnable() {
+        @Override
+        public void run() {
+            Log.d("test", "delay");
+            try {
+                wait(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
+        File imageFile = new File(dir, name);
+        ref.getFile(imageFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                // Local temp file has been created
-                Toast.makeText(getApplicationContext(), "toimii", Toast.LENGTH_LONG).show();
-                System.out.println("toimii: " + localFile);
+                Toast.makeText(getApplicationContext(), "Updated succesfully!", Toast.LENGTH_LONG).show();
+                Log.d("test", "Succesfully connected to the Firebase");
+                firebase = true;
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-                Toast.makeText(getApplicationContext(), "kusi", Toast.LENGTH_LONG).show();
-                System.out.println("kusi");
+                Toast.makeText(getApplicationContext(), "Update failed!", Toast.LENGTH_LONG).show();
+                Log.d("test", "Unexpected error");
+                firebase = false;
             }
         });
-    }*/
+    }
 
     public void returnHome() {
         title.setText("AmbuApp");
