@@ -105,6 +105,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aikanaActivity();
+            }
+        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                erikoistilanteetPage();
+            }
+        });
+
     }
 
     public void valmistautuminenPage() {
@@ -226,6 +239,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void textViewActivity(View view) {
         Intent intent = new Intent(this, TextViewActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+    public void aikanaActivity(){
+        Intent intent = new Intent(this, KuvaTekstiActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }

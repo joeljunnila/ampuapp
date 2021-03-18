@@ -9,8 +9,9 @@ import android.widget.TextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-public class Aikana1 extends AppCompatActivity {
+public class KuvaTekstiActivity extends AppCompatActivity {
 
+    ImageButton homeButton;
     ImageButton rightArrow;
     ImageButton leftArrow;
     TextView TextToChange;
@@ -32,9 +33,17 @@ public class Aikana1 extends AppCompatActivity {
 
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
+        homeButton = findViewById(R.id.homeButton);
+
         TextToChange = findViewById(R.id.textViewSA1);
 
         TextToChange.setText(Texts[0]);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
