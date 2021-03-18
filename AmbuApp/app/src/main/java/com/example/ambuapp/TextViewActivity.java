@@ -17,14 +17,12 @@ public class TextViewActivity extends AppCompatActivity {
 
     int modifier = 0;
     String[] valmistautuminen = {"Synnytystehtävän (791 A-D) tulessa huomioi seuraavat asiat:  \n" +
-            "\n" +
             "Kirjaa ylös synnyttäjän perustiedot (sairaudet, allergiat, monesko raskaus ja synnytys jne.) \n" +
             "\n" +
             "Raskausviikot, selvitä miten raskaus on edennyt ja onko sikiö perä- vai raivotarjonnassa \n" +
             "\n" +
             "Kohteeseen päästyäsi tarkista mikä on synnytyksen tilanne: \n" +
             "Onko lapsivesi mennyt? Koska se on mennyt?\n" +
-            "\n" +
             "Lapsiveden väri? Kirkas vai vihreä/kellertävää? Hajuton/pahanhajuista? \n" +
             "\n" +
             "Onko supistuksia? Milloin ne ovat alkaneet? Kuinka tiheään supistuksia tulee? Onko synnytys oikeasti käynnissä? ", "Hoidetaan kohteessa: \n" +
@@ -64,27 +62,34 @@ public class TextViewActivity extends AppCompatActivity {
             }
         });
 
-        rightArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (modifier == 2) {
-                    returnHome(v);
-                }
-                modifier++;
-                textView.setText(valmistautuminen[modifier]);
-                leftArrow.setVisibility(View.VISIBLE);
-            }
-        });
-
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (modifier == 0) {
+                if (modifier <= 0) {
+                    activityName = "Valmistautuminen";
                     returnHome(v);
                 }
-                modifier--;
-                textView.setText(valmistautuminen[modifier]);
-                rightArrow.setVisibility(View.VISIBLE);
+                else {
+                    modifier--;
+                    textView.setText(valmistautuminen[modifier]);
+                    rightArrow.setVisibility(View.VISIBLE);
+                }
+
+
+            }
+        });
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (modifier >= 2) {
+                    activityName = "Home";
+                    returnHome(v);
+                }
+                else {
+                    modifier++;
+                    textView.setText(valmistautuminen[modifier]);
+                    leftArrow.setVisibility(View.VISIBLE);
+                }
             }
         });
         Bundle extras = getIntent().getExtras();
@@ -93,7 +98,17 @@ public class TextViewActivity extends AppCompatActivity {
         }
 
         if(activityName.equals("Valmistautuminen1")) {
+            modifier = 0;
+            textView.setText(valmistautuminen[0]);
+        }
+        else if(activityName.equals("Valmistautuminen2")) {
+            modifier = 1;
             textView.setText(valmistautuminen[1]);
+        }
+        else if(activityName.equals("Valmistautuminen3"))
+        {
+            modifier = 2;
+            textView.setText(valmistautuminen[2]);
         }
     }
 
