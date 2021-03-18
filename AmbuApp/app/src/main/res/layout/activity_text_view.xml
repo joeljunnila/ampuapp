@@ -4,31 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD:AmbuApp/app/src/main/res/layout/activity_text_view.xml
-    tools:context=".MenuView"
-=======
     tools:context=".TextViewActivity"
->>>>>>> 38315e8871f01d4509e2f9b6fb2e2e68b865d1ff:AmbuApp/app/src/main/res/layout/activity_synnytyksen_jalkeen.xml
     android:orientation="vertical">
 
     <include layout="@layout/menu_bar" />
 
-<<<<<<< HEAD:AmbuApp/app/src/main/res/layout/activity_text_view.xml
-    <TextView
-        style="@style/myTextViewStyle"
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-=======
     <TextView style="@style/myTextViewStyle"
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="530dp"
-        android:text="one\ntwo\nthree" />
->>>>>>> 38315e8871f01d4509e2f9b6fb2e2e68b865d1ff:AmbuApp/app/src/main/res/layout/activity_synnytyksen_jalkeen.xml
+        android:layout_height="wrap_content" />
 
     <include layout="@layout/arrows" />
-
-
 </LinearLayout>

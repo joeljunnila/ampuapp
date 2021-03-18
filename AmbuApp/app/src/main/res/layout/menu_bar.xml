@@ -7,14 +7,8 @@
     android:background="@color/secondaryColor"
     android:padding="10dp">
 
-<<<<<<< HEAD
-<ImageButton
-        android:id="@+id/imageButton"
-        android:onClick="returnPage"
-=======
     <ImageButton
         android:id="@+id/homeButton"
->>>>>>> 38315e8871f01d4509e2f9b6fb2e2e68b865d1ff
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
