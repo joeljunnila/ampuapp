@@ -16,15 +16,6 @@
         <activity android:name=".TextViewActivity" />
         <activity android:name=".MainActivity"/>
         <activity android:name=".Aikana1" />
-        <activity android:name=".SynnytyksenAikana" />
-        <activity android:name=".Home">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

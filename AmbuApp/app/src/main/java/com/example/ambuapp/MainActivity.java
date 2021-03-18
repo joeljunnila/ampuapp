@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     public void erikoistilanteetPage() {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
