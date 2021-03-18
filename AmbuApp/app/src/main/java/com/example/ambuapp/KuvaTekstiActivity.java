@@ -11,10 +11,15 @@ import android.widget.ImageView;
 
 public class KuvaTekstiActivity extends AppCompatActivity {
 
+    ImageButton homeButton;
     ImageButton rightArrow;
     ImageButton leftArrow;
+
     TextView TextToChange;
+
     int modifier = 0;
+
+    String activityName;
     String[] Texts = {"Synnyttäjä kokee voimakasta ponnistamisen tarvetta, kun kohdunsuu on täysin avautunut ja sikiön pää on laskeutunut synnytyskanavan alaosaan\n" +
             "Supistuksia tulee 1-2 minuutin välein ja ne kestävät yleensä minuutin ajan\n" +
             "\n", "Yleensä lapsen pää eli tarjoutuva osa painaa välilihaa, ja emättimen ulkosuu pullottaa  ja alkaa avautua jolloin lapsen pää saattaa näkyä\n" +
@@ -32,18 +37,26 @@ public class KuvaTekstiActivity extends AppCompatActivity {
 
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
+        homeButton = findViewById(R.id.homeButton);
+
         TextToChange = findViewById(R.id.textViewSA1);
 
         TextToChange.setText(Texts[0]);
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    takeMeHome();
+            }
+        });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 modifier++;
                 TextToChange.setText(Texts[modifier]);
-                if (modifier == 9)
-                    rightArrow.setVisibility(View.INVISIBLE);
-                    leftArrow.setVisibility(View.VISIBLE);
+                if (modifier == 10)
+                    takeMeHome();
             }
         });
 
@@ -53,10 +66,15 @@ public class KuvaTekstiActivity extends AppCompatActivity {
                 modifier--;
                 TextToChange.setText(Texts[modifier]);
                 if (modifier == 0)
-                    leftArrow.setVisibility(View.INVISIBLE);
-                    rightArrow.setVisibility(View.VISIBLE);
-
+                    takeMeHome();
             }
         });
+
+
+    }
+    public void takeMeHome(){
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
     }
 }
