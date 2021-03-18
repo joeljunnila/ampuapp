@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context=".Aikana1">
+    tools:context=".KuvaTekstiActivity">
 
     <include layout="@layout/menu_bar" />
 
