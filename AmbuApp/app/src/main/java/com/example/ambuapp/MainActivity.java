@@ -29,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     ImageButton leftArrow;
     ImageButton rightArrow;
 
+    String buttonText1;
+    String buttonText2;
+    String buttonText3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
