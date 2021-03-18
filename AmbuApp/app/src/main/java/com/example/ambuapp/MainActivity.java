@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                aikanaActivity();
+                aikanaActivity(v);
             }
         });
         button5.setOnClickListener(new View.OnClickListener() {
@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Valmistautuminen1";
+                activityName = "KuvaTekstiActivity";
                 textViewActivity(v);
             }
         });
@@ -237,14 +237,51 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void KuvaTekstiActivity(View view){
+        Intent intent = new Intent(this, KuvaTekstiActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+
+    }
+
     public void textViewActivity(View view) {
         Intent intent = new Intent(this, TextViewActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
-    public void aikanaActivity(){
-        Intent intent = new Intent(this, KuvaTekstiActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
+
+    public void aikanaActivity(View view){
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+
+
+        title.setText("Synnytyksen aikana");
+        button1.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.VISIBLE);
+        button1.setText("Synnytyksen aikana 1");
+        button2.setText("Synnytyksen aikana 2");
+        button3.setText("Synnytyksen aikana 3");
+        button4.setText("Synnytyksen aikana 4");
+        button5.setText("Synnytyksen aikana 5");
+        button6.setText("Synnytyksen aikana 6");
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KuvaTekstiActivity(v);
+            }
+        });
+        /*leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+        */
+
     }
 }
