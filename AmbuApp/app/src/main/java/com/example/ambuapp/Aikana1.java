@@ -34,6 +34,8 @@ public class Aikana1 extends AppCompatActivity {
         leftArrow = findViewById(R.id.leftArrow);
         TextToChange = findViewById(R.id.textViewSA1);
 
+        TextToChange.setText(Texts[0]);
+
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
