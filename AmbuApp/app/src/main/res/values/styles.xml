@@ -4,7 +4,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:padding">16dp</item>
+        <item name="android:padding">10dp</item>
         <item name="android:layout_marginLeft">30dp</item>
         <item name="android:layout_marginRight">30dp</item>
         <item name="android:layout_marginTop">15dp</item>
@@ -25,7 +25,11 @@
     <style name="myTextViewStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+<<<<<<< HEAD
         <item name="android:padding">30dp</item>
+=======
+        <item name="android:padding">20dp</item>
+>>>>>>> 38315e8871f01d4509e2f9b6fb2e2e68b865d1ff
         <item name="android:textSize">20sp</item>
     </style>
 </resources>

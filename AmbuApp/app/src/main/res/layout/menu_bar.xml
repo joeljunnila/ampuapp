@@ -7,9 +7,14 @@
     android:background="@color/secondaryColor"
     android:padding="10dp">
 
+<<<<<<< HEAD
 <ImageButton
         android:id="@+id/imageButton"
         android:onClick="returnPage"
+=======
+    <ImageButton
+        android:id="@+id/homeButton"
+>>>>>>> 38315e8871f01d4509e2f9b6fb2e2e68b865d1ff
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
@@ -19,6 +24,7 @@
         android:backgroundTint="@color/secondaryColor" />
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
@@ -30,7 +36,7 @@
         android:textStyle="bold" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/naviconButton"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_gravity="center_vertical"

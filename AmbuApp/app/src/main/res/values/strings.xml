@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">AmbuApp</string>
     <string name="homeText1">Valmistautuminen</string>
-    <string name="homeText2">Synnytysvaiheet</string>
-    <string name="homeText3">Tarkistus</string>
+    <string name="homeText2">Synnytyksen aikana</string>
+    <string name="homeText3">Synnytyksen jälkeen</string>
     <string name="homeText4">Erikoistilanteet</string>
 
     <string name="valmistautuminenText1">Valmistautuminen</string>
@@ -45,4 +45,19 @@ Onko supistuksia? Milloin ne ovat alkaneet? Kuinka tiheään supistuksia tulee? 
 
 
     <string name="synnytyksenJalkeenText">Miten?</string>
+
+    <string name="synnytyksenAikanaText1">Synnytyksen aikana 1</string>
+    <string name="synnytyksenAikanaText2">Synnytyksen aikana 2</string>
+    <string name="synnytyksenAikanaText3">Synnytyksen aikana 3</string>
+    <string name="synnytyksenAikanaText4">Synnytyksen aikana 4</string>
+    <string name="synnytyksenAikanaText5">Synnytyksen aikana 5</string>
+    <string name="synnytyksenAikanaText6">Synnytyksen aikana 6</string>
+
+
+
+    <string-array name="navicon">
+        <item>Asetukset</item>
+        <item>About</item>
+    </string-array>
+
 </resources>
