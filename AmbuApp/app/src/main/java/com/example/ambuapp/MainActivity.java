@@ -67,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
         if(activityName.equals("Home")) {
             homePage();
         }
+        else if (activityName.equals("Valmistautuminen")) {
+            valmistautuminenPage();
+        }
+
+
     }
 
     public void homePage() {
@@ -116,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenPage() {
+
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,11 +129,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         title.setText("Valmistautuminen");
-
+        button1.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.INVISIBLE);
         button3.setText("Valmistautuminen");
         button4.setText("Kohteessa vai matkaan?");
         button5.setText("Miten toimitaan");
+        button6.setVisibility(View.INVISIBLE);
         leftArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +143,29 @@ public class MainActivity extends AppCompatActivity {
                 homePage();
             }
         });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen1";
+                textViewActivity(v);
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen2";
+                textViewActivity(v);
+            }
+        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen3";
+                textViewActivity(v);
+            }
+        });
+
     }
 
     public void erikoistilanteetPage() {
