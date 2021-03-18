@@ -70,9 +70,6 @@ public class MainActivity extends AppCompatActivity {
         leftArrow = (ImageButton) findViewById(R.id.leftArrow);
         rightArrow = (ImageButton) findViewById(R.id.rightArrow);
 
-        leftArrow.setVisibility(View.INVISIBLE);
-        rightArrow.setVisibility(View.INVISIBLE);
-
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             activityName = extras.getString("ActivityName");
@@ -84,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void homePage() {
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //pass
+            }
+        });
+
         title.setText("AmbuApp");
         button1.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.VISIBLE);
@@ -97,33 +101,21 @@ public class MainActivity extends AppCompatActivity {
         button4.setText("Tarkistus");
         button5.setText("Erikoistilanteet");
 
+        leftArrow.setVisibility(View.INVISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 valmistautuminenPage();
             }
         });
-    }
 
-    public void settings() {
-        button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.INVISIBLE);
-        button3.setVisibility(View.VISIBLE);
-        button4.setVisibility(View.INVISIBLE);
-        button5.setVisibility(View.INVISIBLE);
-        button6.setVisibility(View.INVISIBLE);
-
-        button3.setText("UPDATE");
-
-        leftArrow.setVisibility(View.INVISIBLE);
-        rightArrow.setVisibility(View.INVISIBLE);
-
-        button3.setOnClickListener(new View.OnClickListener() {
+        button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myFirebase = new MyFirebase();
-                myFirebaseThread = new Thread(myFirebase);
-                myFirebaseThread.start();
+                activityName = "Valmistautuminen1";
+                textViewActivity(v);
             }
         });
     }
@@ -147,6 +139,29 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 homePage();
+            }
+        });
+    }
+
+    public void settings() {
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.INVISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.INVISIBLE);
+        button5.setVisibility(View.INVISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
+        button3.setText("UPDATE");
+
+        leftArrow.setVisibility(View.INVISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myFirebase = new MyFirebase();
+                myFirebaseThread = new Thread(myFirebase);
+                myFirebaseThread.start();
             }
         });
     }
