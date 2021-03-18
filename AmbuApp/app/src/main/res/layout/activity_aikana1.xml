@@ -16,7 +16,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="175dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/ohje" />
 
     <TextView
 
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:padding="40px"
-        android:text="@string/aikanaWall1"
+        android:text="default"
         android:textAlignment="center"
         android:textSize="23dp" />
     <include layout="@layout/arrows"/>
