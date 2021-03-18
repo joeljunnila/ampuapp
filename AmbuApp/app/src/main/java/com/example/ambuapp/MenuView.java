@@ -79,6 +79,13 @@ public class MenuView extends AppCompatActivity {
                 textViewActivity(v);
             }
         });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                textViewActivity(v);
+            }
+        });
     }
 
     public void returnHome() {
