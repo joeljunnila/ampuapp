@@ -9,20 +9,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import android.widget.Toast;
-
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
-
 public class MainActivity extends AppCompatActivity {
     String activityName = "Home";
 
@@ -42,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
     ImageButton leftArrow;
     ImageButton rightArrow;
+
+    String buttonText1;
+    String buttonText2;
+    String buttonText3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
