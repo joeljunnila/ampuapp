@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Synnytyksen aikana";
+                activityName = "KuvaTekstiActivity";
                 textViewActivity(v);
             }
         });
