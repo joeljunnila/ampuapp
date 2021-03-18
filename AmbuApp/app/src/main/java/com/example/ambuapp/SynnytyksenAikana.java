@@ -33,7 +33,7 @@ public class SynnytyksenAikana extends AppCompatActivity {
 
     }
     public void openAikana1(View view) {
-        Intent intent = new Intent(this, Aikana1.class);
+        Intent intent = new Intent(this, KuvaTekstiActivity.class);
         setResult(RESULT_OK, intent);
         startActivity(intent);
     }

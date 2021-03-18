@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -111,6 +112,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                aikanaActivity();
+            }
+        });
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +220,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void textViewActivity(View view) {
         Intent intent = new Intent(this, TextViewActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+    public void aikanaActivity(){
+        Intent intent = new Intent(this, KuvaTekstiActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
