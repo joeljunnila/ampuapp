@@ -19,11 +19,14 @@ import java.lang.StringBuilder;
 
 
 public class TextViewActivity extends AppCompatActivity {
+    ImageButton homeButton;
+    TextView title;
+    ImageButton naviconButton;
     TextView textView;
-    String activityName;
     ImageButton rightArrow;
     ImageButton leftArrow;
-    ImageButton homeButton;
+
+    String activityName;
     StringBuilder sb = new StringBuilder();
 
     int modifier = 0;
@@ -60,15 +63,19 @@ public class TextViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_view);
 
+        homeButton = findViewById(R.id.homeButton);
+        title = findViewById(R.id.title);
+        naviconButton = findViewById(R.id.naviconButton);
+        textView = findViewById(R.id.content);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
-        homeButton = findViewById(R.id.homeButton);
-        textView = (TextView) findViewById(R.id.content);
+
         textView.setText(valmistautuminen[modifier]);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activityName = "Home";
                 returnHome(v);
             }
         });
@@ -85,10 +92,9 @@ public class TextViewActivity extends AppCompatActivity {
                     textView.setText(valmistautuminen[modifier]);
                     rightArrow.setVisibility(View.VISIBLE);
                 }
-
-
             }
         });
+
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +109,7 @@ public class TextViewActivity extends AppCompatActivity {
                 }
             }
         });
+
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             activityName = extras.getString("ActivityName");
@@ -172,6 +179,4 @@ public class TextViewActivity extends AppCompatActivity {
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
-
-
 }
