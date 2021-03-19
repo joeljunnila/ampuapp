@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //pass
+                // disable home button in home page
             }
         });
 
@@ -105,17 +105,43 @@ public class MainActivity extends AppCompatActivity {
                 aikanaActivity(v);
             }
         });
+
         button4.setOnClickListener(new View.OnClickListener() {
            @Override
-           public void onClick(View v) { tarkistusActivity(v); }
+           public void onClick(View v) {
+               tarkistusActivity(v);
+           }
         });
+
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 erikoistilanteetPage();
             }
         });
+    }
 
+    public void settings() {
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.INVISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.INVISIBLE);
+        button5.setVisibility(View.INVISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
+        button3.setText("UPDATE");
+
+        leftArrow.setVisibility(View.INVISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myFirebase = new MyFirebase();
+                myFirebaseThread = new Thread(myFirebase);
+                myFirebaseThread.start();
+            }
+        });
     }
 
     public void valmistautuminenPage() {
@@ -212,29 +238,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void settings() {
-        button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.INVISIBLE);
-        button3.setVisibility(View.VISIBLE);
-        button4.setVisibility(View.INVISIBLE);
-        button5.setVisibility(View.INVISIBLE);
-        button6.setVisibility(View.INVISIBLE);
-
-        button3.setText("UPDATE");
-
-        leftArrow.setVisibility(View.INVISIBLE);
-        rightArrow.setVisibility(View.INVISIBLE);
-
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myFirebase = new MyFirebase();
-                myFirebaseThread = new Thread(myFirebase);
-                myFirebaseThread.start();
-            }
-        });
-    }
-
     public void KuvaTekstiActivity(View view){
         Intent intent = new Intent(this, KuvaTekstiActivity.class);
         intent.putExtra("ActivityName", activityName);
@@ -255,7 +258,6 @@ public class MainActivity extends AppCompatActivity {
                 homePage();
             }
         });
-
 
         title.setText("Synnytyksen aikana");
         button1.setVisibility(View.VISIBLE);
@@ -280,7 +282,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         */
-
     }
 
     public void tarkistusActivity(View view){

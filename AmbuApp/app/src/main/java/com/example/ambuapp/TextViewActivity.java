@@ -91,7 +91,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     public void returnHome(View v) {
-        activityName = "Home";
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
@@ -138,11 +137,6 @@ public class TextViewActivity extends AppCompatActivity {
                 }
             }
         });
-
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            activityName = extras.getString("ActivityName");
-        }
 
         if(activityName.equals("Valmistautuminen1")) {
             modifier = 0;
