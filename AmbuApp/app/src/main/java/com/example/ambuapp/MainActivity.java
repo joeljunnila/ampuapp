@@ -111,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
                 aikanaActivity(v);
             }
         });
+        button4.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) { tarkistusActivity(v); }
+        });
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -283,5 +287,30 @@ public class MainActivity extends AppCompatActivity {
         });
         */
 
+    }
+
+    public void tarkistusActivity(View view){
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { homePage();; }
+        });
+
+        title.setText("Tarkistus");
+        button1.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.VISIBLE);
+        button1.setText("Synnytyksen jälkeen 1");
+        button2.setText("Synnyttyksen jälkeen 2");
+        button3.setText("Synnytyksen jälkeen 3");
+        button4.setText("Synnytyksen jälkeen 4");
+        button5.setText("Synnytyksen jälkeen 5");
+        button6.setText("Synnytyksen jälkeen 6");
+
+        button1.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "SynnytyksenJalkeen1";
+                textViewActivity(v);
+            }
+        });
     }
 }
