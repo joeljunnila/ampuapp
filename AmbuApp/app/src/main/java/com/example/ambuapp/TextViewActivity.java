@@ -119,6 +119,7 @@ public class TextViewActivity extends AppCompatActivity {
 
             }
         });
+        
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,6 +134,7 @@ public class TextViewActivity extends AppCompatActivity {
                 }
             }
         });
+
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             activityName = extras.getString("ActivityName");
@@ -196,12 +198,4 @@ public class TextViewActivity extends AppCompatActivity {
         String output = sb.toString();
         return output;
     }
-
-    public void returnHome(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
-    }
-
-
 }
