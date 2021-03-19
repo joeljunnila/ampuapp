@@ -75,7 +75,60 @@ public class TextViewActivity extends AppCompatActivity {
             }
         });
 
-        leftArrow.setOnClickListener(new View.OnClickListener() {
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            activityName = extras.getString("ActivityName");
+        }
+
+        switch (activityName) {
+            case "Valmistautuminen1":
+                valmistautuminenPage1();
+                break;
+            case "Valmistautuminen2":
+                valmistautuminenPage2();
+                break;
+            case "Valmistautuminen3":
+                valmistautuminenPage3();
+                break;
+            case "Synnytysvaiheet1":
+                synnytysvaiheetPage1();
+                break;
+            case "Synnytysvaiheet2":
+                synnytysvaiheetPage2();
+                break;
+            case "Synnytysvaiheet3":
+                synnytysvaiheetPage3();
+                break;
+            case "Synnytysvaiheet4":
+                synnytysvaiheetPage4();
+                break;
+            case "Tarkistus1":
+                tarkistusPage1();
+                break;
+            case "Tarkistus2":
+                tarkistusPage2();
+                break;
+            case "Tarkistus3":
+                tarkistusPage3();
+                break;
+            case "Tarkistus4":
+                tarkistusPage4();
+                break;
+            case "Tarkistus5":
+                tarkistusPage5();
+                break;
+            case "Erikoistilanteet1":
+                erikoistilanteetPage1();
+                break;
+            case "Erikoistilanteet2":
+                erikoistilanteetPage2();
+                break;
+            case "Erikoistilanteet3":
+                erikoistilanteetPage3();
+                break;
+        }
+
+        /*leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (modifier <= 0) {
@@ -105,28 +158,222 @@ public class TextViewActivity extends AppCompatActivity {
             }
         });
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            activityName = extras.getString("ActivityName");
-        }
-
-        if(activityName.equals("Valmistautuminen1")) {
-            modifier = 0;
-            textView.setText(valmistautuminen[0]);
-        }
-        else if(activityName.equals("Valmistautuminen2")) {
+        switch (activityName) {
+            case "Valmistautuminen1":
+                modifier = 0;
+                textView.setText(valmistautuminen[0]);
+                break;
+            case "Valmistautuminen2":
                 modifier = 1;
-            textView.setText(valmistautuminen[1]);
-        }
-        else if(activityName.equals("Valmistautuminen3"))
-        {
-            modifier = 2;
-            textView.setText(valmistautuminen[2]);
-        }
-        else if(activityName.equals("SynnytyksenJalkeen1"))
-        {
-            textView.setText(changeText("synnytyksenJalkeen1.txt"));
-        }
+                textView.setText(valmistautuminen[1]);
+                break;
+            case "Valmistautuminen3":
+                modifier = 2;
+                textView.setText(valmistautuminen[2]);
+                break;
+            case "SynnytyksenJalkeen1":
+                textView.setText(changeText("synnytyksenJalkeen1.txt"));
+                break;
+        }*/
+    }
+
+    private void valmistautuminenPage1() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen";
+                menuActivity(v);
+            }
+        });
+    }
+
+    private void valmistautuminenPage2() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage1();
+            }
+        });
+    }
+
+    private void valmistautuminenPage3() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage2();
+            }
+        });
+    }
+
+    private void synnytysvaiheetPage1() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Synnytysvaiheet";
+                menuActivity(v);
+            }
+        });
+    }
+
+    private void synnytysvaiheetPage2() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                synnytysvaiheetPage1();
+            }
+        });
+    }
+
+    private void synnytysvaiheetPage3() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                synnytysvaiheetPage2();
+            }
+        });
+    }
+
+    private void synnytysvaiheetPage4() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                synnytysvaiheetPage3();
+            }
+        });
+    }
+
+    private void tarkistusPage1() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Tarkistus";
+                menuActivity(v);
+            }
+        });
+    }
+
+    private void tarkistusPage2() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage1();
+            }
+        });
+    }
+
+    private void tarkistusPage3() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage2();
+            }
+        });
+    }
+
+    private void tarkistusPage4() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage3();
+            }
+        });
+    }
+
+    private void tarkistusPage5() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage4();
+            }
+        });
+    }
+
+    private void erikoistilanteetPage1() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Erikoistilanteet";
+                menuActivity(v);
+            }
+        });
+    }
+
+    private void erikoistilanteetPage2() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                erikoistilanteetPage1();
+            }
+        });
+    }
+
+    private void erikoistilanteetPage3() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                erikoistilanteetPage2();
+            }
+        });
     }
 
     // Lukee txt-tiedoston ja palauttaa sen Stringinä

@@ -57,16 +57,22 @@ public class MenuActivity extends AppCompatActivity {
             activityName = extras.getString("ActivityName");
         }
 
-        if(activityName.equals("Home")) {
-            homePage();
-        } else if (activityName.equals("Valmistautuminen")) {
-            valmistautuminenPage();
-        } else if (activityName.equals("Synnytysvaiheet")) {
-            synnytysvaiheetPage();
-        } else if (activityName.equals("Tarkistus")) {
-            tarkistusPage();
-        } else if (activityName.equals("Erikoistilanteet")) {
-            erikoistilanteetPage();
+        switch (activityName) {
+            case "Home":
+                homePage();
+                break;
+            case "Valmistautuminen":
+                valmistautuminenPage();
+                break;
+            case "Synnytysvaiheet":
+                synnytysvaiheetPage();
+                break;
+            case "Tarkistus":
+                tarkistusPage();
+                break;
+            case "Erikoistilanteet":
+                erikoistilanteetPage();
+                break;
         }
     }
 
@@ -167,6 +173,14 @@ public class MenuActivity extends AppCompatActivity {
         button5.setText("Miten toimitaan");
 
         leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,13 +203,6 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 activityName = "Valmistautuminen3";
                 textViewActivity(v);
-            }
-        });
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePage();
             }
         });
     }
@@ -222,18 +229,19 @@ public class MenuActivity extends AppCompatActivity {
         button5.setText("Synnytyksen aikana 5");
 
         leftArrow.setVisibility(View.VISIBLE);
-
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                kuvaTekstiActivity(v);
-            }
-        });
+        rightArrow.setVisibility(View.INVISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 homePage();
+            }
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                kuvaTekstiActivity(v);
             }
         });
     }
@@ -259,19 +267,20 @@ public class MenuActivity extends AppCompatActivity {
         button5.setText("Synnytyksen jälkeen 5");
 
         leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
 
         button1.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activityName = "SynnytyksenJalkeen1";
                 textViewActivity(v);
-            }
-        });
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePage();
             }
         });
     }
@@ -295,8 +304,16 @@ public class MenuActivity extends AppCompatActivity {
         button3.setText("Perätila");
         button4.setText("Hartiadystokia");
         button5.setText("Napanuoran esiinluiskahdus");
-        
+
         leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -319,13 +336,6 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 activityName = "Valmistautuminen1";
                 textViewActivity(v);
-            }
-        });
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePage();
             }
         });
     }
