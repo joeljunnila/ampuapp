@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
     ImageButton homeButton;
     TextView title;
     ImageButton naviconButton;
@@ -61,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
             homePage();
         } else if (activityName.equals("Valmistautuminen")) {
             valmistautuminenPage();
+        } else if (activityName.equals("Synnytysvaiheet")) {
+            synnytysvaiheetPage();
+        } else if (activityName.equals("Tarkistus")) {
+            tarkistusPage();
+        } else if (activityName.equals("Erikoistilanteet")) {
+            erikoistilanteetPage();
         }
     }
 
@@ -98,13 +104,15 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                aikanaActivity(v);
+                synnytysvaiheetPage();
             }
         });
 
         button4.setOnClickListener(new View.OnClickListener() {
            @Override
-           public void onClick(View v) { tarkistusActivity(v); }
+           public void onClick(View v) {
+               tarkistusPage();
+           }
         });
 
         button5.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenPage() {
-
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,18 +157,16 @@ public class MainActivity extends AppCompatActivity {
         title.setText("Valmistautuminen");
         button1.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.INVISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.VISIBLE);
+        button5.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
         button3.setText("Valmistautuminen");
         button4.setText("Kohteessa vai matkaan?");
         button5.setText("Miten toimitaan");
-        button6.setVisibility(View.INVISIBLE);
-        leftArrow.setVisibility(View.VISIBLE);
 
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePage();
-            }
-        });
+        leftArrow.setVisibility(View.VISIBLE);
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,6 +192,88 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+    }
+
+    public void synnytysvaiheetPage(){
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+
+        title.setText("Synnytyksen aikana");
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.VISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.VISIBLE);
+        button5.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
+        button2.setText("Synnytyksen aikana 2");
+        button3.setText("Synnytyksen aikana 3");
+        button4.setText("Synnytyksen aikana 4");
+        button5.setText("Synnytyksen aikana 5");
+
+        leftArrow.setVisibility(View.VISIBLE);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                kuvaTekstiActivity(v);
+            }
+        });
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+    }
+
+    public void tarkistusPage(){
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { homePage();; }
+        });
+
+        title.setText("Tarkistus");
+        button1.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.VISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.VISIBLE);
+        button5.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
+        button1.setText("Synnytyksen jälkeen 1");
+        button2.setText("Synnytyksen jälkeen 2");
+        button3.setText("Synnytyksen jälkeen 3");
+        button4.setText("Synnytyksen jälkeen 4");
+        button5.setText("Synnytyksen jälkeen 5");
+
+        leftArrow.setVisibility(View.VISIBLE);
+
+        button1.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "SynnytyksenJalkeen1";
+                textViewActivity(v);
+            }
+        });
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
     }
 
     public void erikoistilanteetPage() {
@@ -196,20 +283,20 @@ public class MainActivity extends AppCompatActivity {
                 homePage();
             }
         });
-        title.setText("Erikoistilanteet");
 
+        title.setText("Erikoistilanteet");
+        button1.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.INVISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.VISIBLE);
+        button5.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
         button3.setText("Perätila");
         button4.setText("Hartiadystokia");
         button5.setText("Napanuoran esiinluiskahdus");
+        
         leftArrow.setVisibility(View.VISIBLE);
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePage();
-            }
-        });
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,69 +322,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    public void aikanaActivity(View view){
-        homeButton.setOnClickListener(new View.OnClickListener() {
+        leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 homePage();
             }
         });
-
-
-        title.setText("Synnytyksen aikana");
-        button1.setVisibility(View.VISIBLE);
-        button6.setVisibility(View.VISIBLE);
-        button1.setText("Synnytyksen aikana 1");
-        button2.setText("Synnytyksen aikana 2");
-        button3.setText("Synnytyksen aikana 3");
-        button4.setText("Synnytyksen aikana 4");
-        button5.setText("Synnytyksen aikana 5");
-        button6.setText("Synnytyksen aikana 6");
-
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                KuvaTekstiActivity(v);
-            }
-        });
-        /*leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePage();
-            }
-        });
-        */
-
     }
 
-    public void tarkistusActivity(View view){
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { homePage();; }
-        });
-
-        title.setText("Tarkistus");
-        button1.setVisibility(View.VISIBLE);
-        button6.setVisibility(View.VISIBLE);
-        button1.setText("Synnytyksen jälkeen 1");
-        button2.setText("Synnyttyksen jälkeen 2");
-        button3.setText("Synnytyksen jälkeen 3");
-        button4.setText("Synnytyksen jälkeen 4");
-        button5.setText("Synnytyksen jälkeen 5");
-        button6.setText("Synnytyksen jälkeen 6");
-
-        button1.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "SynnytyksenJalkeen1";
-                textViewActivity(v);
-            }
-        });
-    }
-
-    public void KuvaTekstiActivity(View view){
+    public void kuvaTekstiActivity(View view){
         Intent intent = new Intent(this, KuvaTekstiActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);

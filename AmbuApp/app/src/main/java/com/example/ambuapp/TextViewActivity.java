@@ -3,20 +3,15 @@ package com.example.ambuapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.ContextWrapper;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.StringBuilder;
-
-
 
 public class TextViewActivity extends AppCompatActivity {
     ImageButton homeButton;
@@ -76,7 +71,7 @@ public class TextViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Home";
-                returnHome(v);
+                menuActivity(v);
             }
         });
 
@@ -85,7 +80,7 @@ public class TextViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (modifier <= 0) {
                     activityName = "Valmistautuminen";
-                    returnHome(v);
+                    menuActivity(v);
                 }
                 else {
                     modifier--;
@@ -100,7 +95,7 @@ public class TextViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (modifier >= 2) {
                     activityName = "Home";
-                    returnHome(v);
+                    menuActivity(v);
                 }
                 else {
                     modifier++;
@@ -174,8 +169,8 @@ public class TextViewActivity extends AppCompatActivity {
         return output;
     }
 
-    public void returnHome(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
+    public void menuActivity(View v) {
+        Intent intent = new Intent(this, MenuActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
