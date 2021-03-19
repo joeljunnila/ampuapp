@@ -143,7 +143,7 @@ public class TextViewActivity extends AppCompatActivity {
             textView.setText(valmistautuminen[0]);
         }
         else if(activityName.equals("Valmistautuminen2")) {
-            modifier = 1;
+                modifier = 1;
             textView.setText(valmistautuminen[1]);
         }
         else if(activityName.equals("Valmistautuminen3"))
