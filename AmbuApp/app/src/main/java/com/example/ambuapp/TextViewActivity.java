@@ -19,11 +19,14 @@ import java.lang.StringBuilder;
 
 
 public class TextViewActivity extends AppCompatActivity {
+    ImageButton homeButton;
+    TextView title;
+    ImageButton naviconButton;
     TextView textView;
-    String activityName;
     ImageButton rightArrow;
     ImageButton leftArrow;
-    ImageButton homeButton;
+
+    String activityName;
     StringBuilder sb = new StringBuilder();
 
     int modifier = 0;
@@ -60,27 +63,27 @@ public class TextViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_view);
 
+        homeButton = findViewById(R.id.homeButton);
+        title = findViewById(R.id.title);
+        naviconButton = findViewById(R.id.naviconButton);
+        textView = findViewById(R.id.content);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
-        homeButton = findViewById(R.id.homeButton);
-        textView = (TextView) findViewById(R.id.content);
 
         Bundle extras = getIntent().getExtras();
-        if(extras != null) {
+        if (extras != null) {
             activityName = extras.getString("ActivityName");
         }
 
-        if(activityName.equals("Valmistautuminen1")) {
+        if (activityName.equals("Valmistautuminen1")) {
             valmistautuminenSetit();
             modifier = 0;
             textView.setText(valmistautuminen[0]);
-        }
-        else if(activityName.equals("Valmistautuminen2")) {
+        } else if (activityName.equals("Valmistautuminen2")) {
             valmistautuminenSetit();
             modifier = 1;
             textView.setText(valmistautuminen[1]);
-        }
-        else if(activityName.equals("Valmistautuminen3")) {
+        } else if (activityName.equals("Valmistautuminen3")) {
             valmistautuminenSetit();
             modifier = 2;
             textView.setText(valmistautuminen[2]);
@@ -88,6 +91,7 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     public void returnHome(View v) {
+        activityName = "Home";
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);

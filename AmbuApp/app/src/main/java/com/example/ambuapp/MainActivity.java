@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        homeButton = (ImageButton) findViewById(R.id.homeButton);
-        title = (TextView) findViewById(R.id.title);
-        naviconButton = (ImageButton) findViewById(R.id.naviconButton);
+        homeButton = findViewById(R.id.homeButton);
+        title = findViewById(R.id.title);
+        naviconButton = findViewById(R.id.naviconButton);
 
         naviconButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,25 +45,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-        button4 = (Button) findViewById(R.id.button4);
-        button5 = (Button) findViewById(R.id.button5);
-        button6 = (Button) findViewById(R.id.button6);
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
+        button4 = findViewById(R.id.button4);
+        button5 = findViewById(R.id.button5);
+        button6 = findViewById(R.id.button6);
 
-        leftArrow = (ImageButton) findViewById(R.id.leftArrow);
-        rightArrow = (ImageButton) findViewById(R.id.rightArrow);
+        leftArrow = findViewById(R.id.leftArrow);
+        rightArrow = findViewById(R.id.rightArrow);
 
         Bundle extras = getIntent().getExtras();
-        if(extras != null) {
+        if (extras != null) {
             activityName = extras.getString("ActivityName");
         }
 
-        if(activityName.equals("Home")) {
+        if (activityName.equals("Home")) {
             homePage();
-        }
-        else if (activityName.equals("Valmistautuminen")) {
+        } else if (activityName.equals("Valmistautuminen")) {
             valmistautuminenPage();
         }
 
