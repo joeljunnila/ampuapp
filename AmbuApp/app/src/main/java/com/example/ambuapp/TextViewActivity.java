@@ -3,13 +3,10 @@ package com.example.ambuapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.ContextWrapper;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -87,11 +84,6 @@ public class TextViewActivity extends AppCompatActivity {
         }
     }
 
-    public void returnHome(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
-    }
 
     public void valmistautuminenSetit() {
         textView.setText(valmistautuminen[modifier]);
@@ -100,7 +92,7 @@ public class TextViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Home";
-                returnHome(v);
+                menu(v);
             }
         });
 
@@ -109,7 +101,7 @@ public class TextViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (modifier <= 0) {
                     activityName = "Valmistautuminen";
-                    returnHome(v);
+                    menu(v);
                 }
                 else {
                     modifier--;
@@ -124,7 +116,7 @@ public class TextViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (modifier >= 2) {
                     activityName = "Home";
-                    returnHome(v);
+                    menu(v);
                 }
                 else {
                     modifier++;
@@ -197,7 +189,7 @@ public class TextViewActivity extends AppCompatActivity {
         return output;
     }
 
-    public void returnHome(View v) {
+    public void menu(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
