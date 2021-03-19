@@ -3,17 +3,31 @@ package com.example.ambuapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.ContextWrapper;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.StringBuilder;
+
+
 
 public class TextViewActivity extends AppCompatActivity {
+    ImageButton homeButton;
+    TextView title;
+    ImageButton naviconButton;
     TextView textView;
-    String activityName;
     ImageButton rightArrow;
     ImageButton leftArrow;
-    ImageButton homeButton;
+
+    String activityName;
+    StringBuilder sb = new StringBuilder();
 
     int modifier = 0;
     String[] valmistautuminen = {"Synnytystehtävän (791 A-D) tulessa huomioi seuraavat asiat:  \n" +
@@ -49,40 +63,13 @@ public class TextViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_view);
 
+        homeButton = findViewById(R.id.homeButton);
+        title = findViewById(R.id.title);
+        naviconButton = findViewById(R.id.naviconButton);
+        textView = findViewById(R.id.content);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
-        homeButton = findViewById(R.id.homeButton);
-        textView = (TextView) findViewById(R.id.content);
 
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            activityName = extras.getString("ActivityName");
-        }
-
-        if(activityName.equals("Valmistautuminen1")) {
-            valmistautuminenSetit();
-            modifier = 0;
-            textView.setText(valmistautuminen[0]);
-        }
-        else if(activityName.equals("Valmistautuminen2")) {
-            valmistautuminenSetit();
-            modifier = 1;
-            textView.setText(valmistautuminen[1]);
-        }
-        else if(activityName.equals("Valmistautuminen3")) {
-            valmistautuminenSetit();
-            modifier = 2;
-            textView.setText(valmistautuminen[2]);
-        }
-    }
-
-    public void returnHome(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
-    }
-
-    public void valmistautuminenSetit() {
         textView.setText(valmistautuminen[modifier]);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -105,9 +92,9 @@ public class TextViewActivity extends AppCompatActivity {
                     textView.setText(valmistautuminen[modifier]);
                     rightArrow.setVisibility(View.VISIBLE);
                 }
-
             }
         });
+
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,5 +109,74 @@ public class TextViewActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            activityName = extras.getString("ActivityName");
+        }
+
+        if(activityName.equals("Valmistautuminen1")) {
+            modifier = 0;
+            textView.setText(valmistautuminen[0]);
+        }
+        else if(activityName.equals("Valmistautuminen2")) {
+                modifier = 1;
+            textView.setText(valmistautuminen[1]);
+        }
+        else if(activityName.equals("Valmistautuminen3"))
+        {
+            modifier = 2;
+            textView.setText(valmistautuminen[2]);
+        }
+        else if(activityName.equals("SynnytyksenJalkeen1"))
+        {
+            textView.setText(changeText("synnytyksenJalkeen1.txt"));
+        }
+    }
+
+    // Lukee txt-tiedoston ja palauttaa sen Stringinä
+    // Parametriksi tiedoston nimi joka halutaan avata
+    private String changeText(String tiedosto) {
+        // Alustetaan lukija
+        BufferedReader lukija = null;
+        // Tyhjennetään stringbuilder tarvittaessa
+        if (sb.length() != 0)
+        {
+            sb.delete(0, -1);
+        }
+
+        try {
+            // Avataan ja luetaan tiedosto
+            lukija = new BufferedReader(
+                    new InputStreamReader(getAssets().open(tiedosto)));
+            String rivi;
+            // Luetaan rivi kerrallaan ja lisätään string buillderiin
+            while ((rivi = lukija.readLine()) != null) {
+                sb.append(rivi);
+                sb.append('\n');
+            }
+        }
+        catch (IOException e) {
+            // Lisää error viesti lukuvirheen tullessa
+        }
+        finally {
+            if (lukija != null)
+                try {
+                    // Koitetaan sulkea lukija
+                    lukija.close();
+                }
+                catch (IOException e) {
+                    // joku error viesti sulkemis virheen tullessa
+                }
+        }
+        // Muutetaan stringbuilderin tiedot stringiksi ja palautetaan
+        String output = sb.toString();
+        return output;
+    }
+
+    public void returnHome(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
     }
 }

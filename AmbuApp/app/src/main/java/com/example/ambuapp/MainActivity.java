@@ -10,33 +10,30 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    String activityName = "Home";
-
-    MyFirebase myFirebase;
-    Thread myFirebaseThread;
-
     ImageButton homeButton;
     TextView title;
     ImageButton naviconButton;
-
     Button button1;
     Button button2;
     Button button3;
     Button button4;
     Button button5;
     Button button6;
-
     ImageButton leftArrow;
     ImageButton rightArrow;
+
+    String activityName = "Home";
+    MyFirebase myFirebase;
+    Thread myFirebaseThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        homeButton = (ImageButton) findViewById(R.id.homeButton);
-        title = (TextView) findViewById(R.id.title);
-        naviconButton = (ImageButton) findViewById(R.id.naviconButton);
+        homeButton = findViewById(R.id.homeButton);
+        title = findViewById(R.id.title);
+        naviconButton = findViewById(R.id.naviconButton);
 
         naviconButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,15 +42,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-        button4 = (Button) findViewById(R.id.button4);
-        button5 = (Button) findViewById(R.id.button5);
-        button6 = (Button) findViewById(R.id.button6);
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
+        button4 = findViewById(R.id.button4);
+        button5 = findViewById(R.id.button5);
+        button6 = findViewById(R.id.button6);
 
-        leftArrow = (ImageButton) findViewById(R.id.leftArrow);
-        rightArrow = (ImageButton) findViewById(R.id.rightArrow);
+        leftArrow = findViewById(R.id.leftArrow);
+        rightArrow = findViewById(R.id.rightArrow);
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
@@ -62,18 +59,16 @@ public class MainActivity extends AppCompatActivity {
 
         if(activityName.equals("Home")) {
             homePage();
-        }
-        else if (activityName.equals("Valmistautuminen")) {
+        } else if (activityName.equals("Valmistautuminen")) {
             valmistautuminenPage();
         }
-
     }
 
     public void homePage() {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //pass
+                //Disable home button
             }
         });
 
@@ -106,107 +101,18 @@ public class MainActivity extends AppCompatActivity {
                 aikanaActivity(v);
             }
         });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) { tarkistusActivity(v); }
+        });
+
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 erikoistilanteetPage();
             }
         });
-
-    }
-
-    public void valmistautuminenPage() {
-
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePage();
-            }
-        });
-        title.setText("Valmistautuminen");
-        button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.INVISIBLE);
-        button3.setText("Valmistautuminen");
-        button4.setText("Kohteessa vai matkaan?");
-        button5.setText("Miten toimitaan");
-        button6.setVisibility(View.INVISIBLE);
-        leftArrow.setVisibility(View.VISIBLE);
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePage();
-            }
-        });
-
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Valmistautuminen1";
-                textViewActivity(v);
-            }
-        });
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Valmistautuminen2";
-                textViewActivity(v);
-            }
-        });
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Valmistautuminen3";
-                textViewActivity(v);
-            }
-        });
-
-    }
-
-    public void erikoistilanteetPage() {
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePage();
-            }
-        });
-        title.setText("Erikoistilanteet");
-
-        button2.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.INVISIBLE);
-        button3.setText("Perätila");
-        button4.setText("Hartiadystokia");
-        button5.setText("Napanuoran esiinluiskahdus");
-        leftArrow.setVisibility(View.VISIBLE);
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePage();
-            }
-        });
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "KuvaTekstiActivity";
-                textViewActivity(v);
-            }
-        });
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Valmistautuminen1";
-                textViewActivity(v);
-            }
-        });
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Valmistautuminen1";
-                textViewActivity(v);
-            }
-        });
-
     }
 
     public void settings() {
@@ -232,17 +138,103 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void KuvaTekstiActivity(View view){
-        Intent intent = new Intent(this, KuvaTekstiActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
+    public void valmistautuminenPage() {
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+
+        title.setText("Valmistautuminen");
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.INVISIBLE);
+        button3.setText("Valmistautuminen");
+        button4.setText("Kohteessa vai matkaan?");
+        button5.setText("Miten toimitaan");
+        button6.setVisibility(View.INVISIBLE);
+        leftArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen1";
+                textViewActivity(v);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen2";
+                textViewActivity(v);
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen3";
+                textViewActivity(v);
+            }
+        });
 
     }
 
-    public void textViewActivity(View view) {
-        Intent intent = new Intent(this, TextViewActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
+    public void erikoistilanteetPage() {
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+        title.setText("Erikoistilanteet");
+
+        button2.setVisibility(View.INVISIBLE);
+        button3.setText("Perätila");
+        button4.setText("Hartiadystokia");
+        button5.setText("Napanuoran esiinluiskahdus");
+        leftArrow.setVisibility(View.VISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "KuvaTekstiActivity";
+                textViewActivity(v);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen1";
+                textViewActivity(v);
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen1";
+                textViewActivity(v);
+            }
+        });
+
     }
 
     public void aikanaActivity(View view){
@@ -278,5 +270,43 @@ public class MainActivity extends AppCompatActivity {
         });
         */
 
+    }
+
+    public void tarkistusActivity(View view){
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { homePage();; }
+        });
+
+        title.setText("Tarkistus");
+        button1.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.VISIBLE);
+        button1.setText("Synnytyksen jälkeen 1");
+        button2.setText("Synnyttyksen jälkeen 2");
+        button3.setText("Synnytyksen jälkeen 3");
+        button4.setText("Synnytyksen jälkeen 4");
+        button5.setText("Synnytyksen jälkeen 5");
+        button6.setText("Synnytyksen jälkeen 6");
+
+        button1.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "SynnytyksenJalkeen1";
+                textViewActivity(v);
+            }
+        });
+    }
+
+    public void KuvaTekstiActivity(View view){
+        Intent intent = new Intent(this, KuvaTekstiActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+
+    }
+
+    public void textViewActivity(View view) {
+        Intent intent = new Intent(this, TextViewActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
     }
 }
