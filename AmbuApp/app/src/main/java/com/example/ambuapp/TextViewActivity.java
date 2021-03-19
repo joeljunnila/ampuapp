@@ -189,6 +189,13 @@ public class TextViewActivity extends AppCompatActivity {
                 menuActivity(v);
             }
         });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage2();
+            }
+        });
     }
 
     private void valmistautuminenPage2() {
@@ -202,6 +209,13 @@ public class TextViewActivity extends AppCompatActivity {
                 valmistautuminenPage1();
             }
         });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage3();
+            }
+        });
     }
 
     private void valmistautuminenPage3() {
@@ -213,6 +227,14 @@ public class TextViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 valmistautuminenPage2();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                menuActivity(v);
             }
         });
     }
@@ -229,6 +251,13 @@ public class TextViewActivity extends AppCompatActivity {
                 menuActivity(v);
             }
         });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                synnytysvaiheetPage2();
+            }
+        });
     }
 
     private void synnytysvaiheetPage2() {
@@ -240,6 +269,13 @@ public class TextViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 synnytysvaiheetPage1();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                synnytysvaiheetPage3();
             }
         });
     }
@@ -255,6 +291,13 @@ public class TextViewActivity extends AppCompatActivity {
                 synnytysvaiheetPage2();
             }
         });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                synnytysvaiheetPage4();
+            }
+        });
     }
 
     private void synnytysvaiheetPage4() {
@@ -266,6 +309,14 @@ public class TextViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 synnytysvaiheetPage3();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                menuActivity(v);
             }
         });
     }
@@ -282,6 +333,13 @@ public class TextViewActivity extends AppCompatActivity {
                 menuActivity(v);
             }
         });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage2();
+            }
+        });
     }
 
     private void tarkistusPage2() {
@@ -293,6 +351,13 @@ public class TextViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tarkistusPage1();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage3();
             }
         });
     }
@@ -308,6 +373,13 @@ public class TextViewActivity extends AppCompatActivity {
                 tarkistusPage2();
             }
         });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage4();
+            }
+        });
     }
 
     private void tarkistusPage4() {
@@ -321,6 +393,13 @@ public class TextViewActivity extends AppCompatActivity {
                 tarkistusPage3();
             }
         });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage5();
+            }
+        });
     }
 
     private void tarkistusPage5() {
@@ -332,6 +411,14 @@ public class TextViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tarkistusPage4();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                menuActivity(v);
             }
         });
     }
@@ -348,6 +435,13 @@ public class TextViewActivity extends AppCompatActivity {
                 menuActivity(v);
             }
         });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                erikoistilanteetPage2();
+            }
+        });
     }
 
     private void erikoistilanteetPage2() {
@@ -361,6 +455,13 @@ public class TextViewActivity extends AppCompatActivity {
                 erikoistilanteetPage1();
             }
         });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                erikoistilanteetPage3();
+            }
+        });
     }
 
     private void erikoistilanteetPage3() {
@@ -372,6 +473,14 @@ public class TextViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 erikoistilanteetPage2();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                menuActivity(v);
             }
         });
     }
