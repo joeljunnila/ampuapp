@@ -325,6 +325,7 @@ public class TextViewActivity extends AppCompatActivity {
         title.setText("valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("synnytyksenJalkeen1.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -346,6 +347,7 @@ public class TextViewActivity extends AppCompatActivity {
         title.setText("valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("synnytyksenJalkeen2.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -366,6 +368,7 @@ public class TextViewActivity extends AppCompatActivity {
         title.setText("valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("synnytyksenJalkeen3.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -386,6 +389,7 @@ public class TextViewActivity extends AppCompatActivity {
         title.setText("valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("synnytyksenJalkeen4.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -406,6 +410,7 @@ public class TextViewActivity extends AppCompatActivity {
         title.setText("valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("synnytyksenJalkeen5.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -493,7 +498,7 @@ public class TextViewActivity extends AppCompatActivity {
         // Tyhjennetään stringbuilder tarvittaessa
         if (sb.length() != 0)
         {
-            sb.delete(0, -1);
+            sb.delete(0, sb.length());
         }
 
         try {

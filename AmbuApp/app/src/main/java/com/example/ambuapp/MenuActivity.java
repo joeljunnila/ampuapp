@@ -279,7 +279,39 @@ public class MenuActivity extends AppCompatActivity {
         button1.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "SynnytyksenJalkeen1";
+                activityName = "Tarkistus1";
+                textViewActivity(v);
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Tarkistus2";
+                textViewActivity(v);
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Tarkistus3";
+                textViewActivity(v);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Tarkistus4";
+                textViewActivity(v);
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Tarkistus5";
                 textViewActivity(v);
             }
         });
