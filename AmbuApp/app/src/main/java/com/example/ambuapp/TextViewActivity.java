@@ -103,7 +103,6 @@ public class TextViewActivity extends AppCompatActivity {
                 settingsPage();
                 break; */
         }
-
     }
 
     private void aboutPage() {
