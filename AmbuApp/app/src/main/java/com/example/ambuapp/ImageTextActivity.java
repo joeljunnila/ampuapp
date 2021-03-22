@@ -3,7 +3,10 @@ package com.example.ambuapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.ImageButton;
@@ -293,6 +296,12 @@ public class ImageTextActivity extends AppCompatActivity {
         // Muutetaan stringbuilderin tiedot stringiksi ja palautetaan
         String output = sb.toString();
         return output;
+    }
+
+    public void updateImage() { // tää on vaa referenssi
+        String path = Environment.getExternalStorageDirectory() + "/AmbuApp/image2.jpg";
+        Bitmap bitmap = BitmapFactory.decodeFile(path);
+        homeButton.setImageBitmap(bitmap);
     }
 
     protected void menuActivity(View v){
