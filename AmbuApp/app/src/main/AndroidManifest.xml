@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".KuvaTekstiActivity" />
+        <activity android:name=".ImageTextActivity" />
         <activity android:name=".TextViewActivity" />
     </application>
 </manifest>
