@@ -171,6 +171,76 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    public void aikanaActivity(View view){
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+
+
+        title.setText("Synnytyksen aikana");
+        button1.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.VISIBLE);
+        button1.setText("Synnytyksen aikana 1");
+        button2.setText("Synnytyksen aikana 2");
+        button3.setText("Synnytyksen aikana 3");
+        button4.setText("Synnytyksen aikana 4");
+        button5.setText("Synnytyksen aikana 5");
+        button6.setText("Synnytyksen aikana 6");
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KuvaTekstiActivity(v);
+                activityName = "Synnytyksen aikana1";
+            }
+
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KuvaTekstiActivity(v);
+                activityName = "Synnytyksen aikana2";
+            }
+
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KuvaTekstiActivity(v);
+                activityName = "Synnytyksen aikana3";
+            }
+
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KuvaTekstiActivity(v);
+                activityName = "Synnytyksen aikana4";
+            }
+
+
+        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KuvaTekstiActivity(v);
+                activityName = "Synnytyksen aikana5";
+            }
+
+        });
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KuvaTekstiActivity(v);
+                activityName = "Synnytyksen aikana6";
+            }
+
+        });
+
+    }
 
     public void erikoistilanteetPage() {
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -197,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "KuvaTekstiActivity";
+                activityName = "Valmistautuminen1";
                 textViewActivity(v);
             }
         });
@@ -254,40 +324,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void aikanaActivity(View view){
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePage();
-            }
-        });
 
-
-        title.setText("Synnytyksen aikana");
-        button1.setVisibility(View.VISIBLE);
-        button6.setVisibility(View.VISIBLE);
-        button1.setText("Synnytyksen aikana 1");
-        button2.setText("Synnytyksen aikana 2");
-        button3.setText("Synnytyksen aikana 3");
-        button4.setText("Synnytyksen aikana 4");
-        button5.setText("Synnytyksen aikana 5");
-        button6.setText("Synnytyksen aikana 6");
-
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                KuvaTekstiActivity(v);
-            }
-        });
-        /*leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                homePage();
-            }
-        });
-        */
-
-    }
 
     public void tarkistusActivity(View view){
         homeButton.setOnClickListener(new View.OnClickListener() {

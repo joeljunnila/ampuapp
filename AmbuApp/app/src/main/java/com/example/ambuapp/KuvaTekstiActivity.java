@@ -41,38 +41,87 @@ public class KuvaTekstiActivity extends AppCompatActivity {
 
         TextToChange = findViewById(R.id.textViewSA1);
 
-        TextToChange.setText(Texts[0]);
+        //TextToChange.setText(Texts[0]);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    takeMeHome();
+                    takeMeHome(v);
             }
         });
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            activityName = extras.getString("ActivityName");
+        }
+        else
+            activityName = "Synnytyksen aikana1";
+
+        if(activityName.equals("Synnytyksen aikana1")) {
+            modifier = 0;
+            TextToChange.setText(Texts[0]);
+        }
+        else if(activityName.equals("Synnytyksen aikana2")) {
+            modifier = 1;
+            TextToChange.setText(Texts[1]);
+        }
+        else if(activityName.equals("Synnytyksen aikana3"))
+        {
+            modifier = 2;
+            TextToChange.setText(Texts[2]);
+        }
+        else if(activityName.equals("Synnytyksen aikana4"))
+        {
+            modifier = 3;
+            TextToChange.setText(Texts[3]);
+            //TextToChange.setText(changeText("synnytyksenJalkeen1.txt"));
+        }
+        else if(activityName.equals("Synnytyksen aikana5"))
+        {
+            modifier = 4;
+            TextToChange.setText(Texts[4]);
+        }
+        else if(activityName.equals("Synnytyksen aikana6"))
+        {
+            modifier = 5;
+            TextToChange.setText(Texts[5]);
+        }
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                modifier++;
-                TextToChange.setText(Texts[modifier]);
-                if (modifier == 10)
-                    takeMeHome();
+            public void onClick(View v) {
+
+
+                if (modifier >= 9) {
+                    activityName = "Home";
+                    takeMeHome(v);
+                }
+                else {
+                    modifier++;
+                    TextToChange.setText(Texts[modifier]);
+                }
             }
         });
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                modifier--;
-                TextToChange.setText(Texts[modifier]);
-                if (modifier == 0)
-                    takeMeHome();
+            public void onClick(View v) {
+
+
+                if (modifier <= 0) {
+                    activityName = "Home";
+                    takeMeHome(v);
+
+                }
+                else {
+                    modifier--;
+                    TextToChange.setText(Texts[modifier]);
+                }
             }
         });
 
 
     }
-    public void takeMeHome(){
+    public void takeMeHome(View v){
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
