@@ -55,26 +55,26 @@ public class ImageTextActivity extends AppCompatActivity {
         }
 
         switch (activityName) {
-            case "Valmistautuminen1":
-                valmistautuminenPage1();
+            case "Aikana1":
+                aikanaPage1();
                 break;
-            case "Valmistautuminen2":
-                valmistautuminenPage2();
+            case "Aikana2":
+                aikanaPage2();
                 break;
-            case "Valmistautuminen3":
-                valmistautuminenPage3();
+            case "Aikana3":
+                aikanaPage3();
                 break;
-            case "Synnytysvaiheet1":
-                synnytysvaiheetPage1();
+            case "Aikana4":
+                aikanaPage4();
                 break;
-            case "Synnytysvaiheet2":
-                synnytysvaiheetPage2();
+            case "Aikana5":
+                aikanaPage5();
                 break;
-            case "Synnytysvaiheet3":
-                synnytysvaiheetPage3();
+            case "Aikana6":
+                aikanaPage6();
                 break;
-            case "Synnytysvaiheet4":
-                synnytysvaiheetPage4();
+            case "Aikana7":
+                aikanaPage7();
                 break;
 
         }
@@ -162,16 +162,14 @@ public class ImageTextActivity extends AppCompatActivity {
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "aikana1";
+                activityName = "Home";
                 menuActivity(v);
             }
         });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                aikanaPage2();
-            }
+            public void onClick(View v) { aikanaPage2(); }
         });
     }
 
@@ -180,16 +178,12 @@ public class ImageTextActivity extends AppCompatActivity {
         TextToChange.setText(changeText("SynnytyksenAikana2.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                aikanaPage1();
-            }
+            public void onClick(View v) { aikanaPage1(); }
         });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                aikanaPage3();
-            }
+            public void onClick(View v) { aikanaPage3(); }
         });
     }
     private void aikanaPage3() {
@@ -197,16 +191,12 @@ public class ImageTextActivity extends AppCompatActivity {
         TextToChange.setText(changeText("SynnytyksenAikana3.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                aikanaPage2();
-            }
+            public void onClick(View v) { aikanaPage2(); }
         });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                aikanaPage4();
-            }
+            public void onClick(View v) { aikanaPage4(); }
         });
     }
     private void aikanaPage4() {
@@ -214,16 +204,12 @@ public class ImageTextActivity extends AppCompatActivity {
         TextToChange.setText(changeText("SynnytyksenAikana4.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                aikanaPage3();
-            }
+            public void onClick(View v) { aikanaPage3(); }
         });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                aikanaPage5();
-            }
+            public void onClick(View v) { aikanaPage5(); }
         });
     }
     private void aikanaPage5() {
@@ -231,49 +217,39 @@ public class ImageTextActivity extends AppCompatActivity {
         TextToChange.setText(changeText("SynnytyksenAikana5.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                aikanaPage4();
-            }
+            public void onClick(View v) { aikanaPage4(); }
         });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                aikanaPage6();
-            }
+            public void onClick(View v) { aikanaPage6(); }
         });
     }
     private void aikanaPage6() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(changeText("SynnytyksenAikana2.txt"));
+        TextToChange.setText(changeText("SynnytyksenAikana6.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                aikanaPage5();
-            }
+            public void onClick(View v) { aikanaPage5(); }
         });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                aikanaPage7();
-            }
+            public void onClick(View v) { aikanaPage7(); }
         });
     }
     private void aikanaPage7() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(changeText("SynnytyksenAikana2.txt"));
+        TextToChange.setText(changeText("SynnytyksenAikana7.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-               aikanaPage6();
-            }
+            public void onClick(View v) { aikanaPage6(); }
         });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                activityName ="Home";
                 menuActivity(v);
             }
         });
