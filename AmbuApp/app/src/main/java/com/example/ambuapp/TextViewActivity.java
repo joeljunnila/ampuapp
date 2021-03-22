@@ -133,54 +133,6 @@ public class TextViewActivity extends AppCompatActivity {
                 settingsPage();
                 break; */
         }
-
-        /*leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (modifier <= 0) {
-                    activityName = "Valmistautuminen";
-                    menuActivity(v);
-                }
-                else {
-                    modifier--;
-                    textView.setText(valmistautuminen[modifier]);
-                    rightArrow.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-
-        rightArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (modifier >= 2) {
-                    activityName = "Home";
-                    menuActivity(v);
-                }
-                else {
-                    modifier++;
-                    textView.setText(valmistautuminen[modifier]);
-                    leftArrow.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-
-        switch (activityName) {
-            case "Valmistautuminen1":
-                modifier = 0;
-                textView.setText(valmistautuminen[0]);
-                break;
-            case "Valmistautuminen2":
-                modifier = 1;
-                textView.setText(valmistautuminen[1]);
-                break;
-            case "Valmistautuminen3":
-                modifier = 2;
-                textView.setText(valmistautuminen[2]);
-                break;
-            case "SynnytyksenJalkeen1":
-                textView.setText(changeText("synnytyksenJalkeen1.txt"));
-                break;
-        }*/
     }
 
     private void aboutPage() {
