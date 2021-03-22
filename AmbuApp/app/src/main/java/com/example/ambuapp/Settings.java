@@ -16,6 +16,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     TextView title;
     ImageButton naviconButton;
     TextView textView;
+    TextView textView2;
     ImageButton leftArrow;
     ImageButton rightArrow;
     String activityName;
@@ -28,7 +29,8 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
         naviconButton = findViewById(R.id.naviconButton);
-        textView = findViewById(R.id.content);
+        textView = findViewById(R.id.textView);
+        textView2 = findViewById(R.id.textView2);
         leftArrow = findViewById(R.id.leftArrow);
         rightArrow = findViewById(R.id.rightArrow);
         rightArrow.setVisibility(View.INVISIBLE);
@@ -66,20 +68,21 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         startActivity(intent);
     }
 
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
 
         switch (position) {
             case 0:
-                //pieni
+                textView2.setTextSize(15);
                 // Whatever you want to happen when the first item gets selected
                 break;
             case 1:
-                //keskisuuri
+                textView2.setTextSize(20);
                 // Whatever you want to happen when the second item gets selected
                 break;
             case 2:
-                //suuri
+                textView2.setTextSize(40);
                 // Whatever you want to happen when the thrid item gets selected
                 break;
 
