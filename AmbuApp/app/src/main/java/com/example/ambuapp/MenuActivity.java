@@ -216,17 +216,19 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         title.setText("Synnytyksen aikana");
-        button1.setVisibility(View.INVISIBLE);
+        button1.setVisibility(View.VISIBLE);
         button2.setVisibility(View.VISIBLE);
         button3.setVisibility(View.VISIBLE);
         button4.setVisibility(View.VISIBLE);
         button5.setVisibility(View.VISIBLE);
-        button6.setVisibility(View.INVISIBLE);
+        button6.setVisibility(View.VISIBLE);
 
+        button1.setText("Synnytyksen aikana 1");
         button2.setText("Synnytyksen aikana 2");
         button3.setText("Synnytyksen aikana 3");
         button4.setText("Synnytyksen aikana 4");
         button5.setText("Synnytyksen aikana 5");
+        button6.setText("Synnytyksen aikana 6");
 
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.INVISIBLE);
@@ -373,7 +375,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void kuvaTekstiActivity(View view){
-        Intent intent = new Intent(this, KuvaTekstiActivity.class);
+        Intent intent = new Intent(this, ImageTextActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
 

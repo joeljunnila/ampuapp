@@ -179,8 +179,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void valmistautuminenPage1() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,8 +198,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void valmistautuminenPage2() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,8 +216,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void valmistautuminenPage3() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,8 +235,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void synnytysvaiheetPage1() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -262,8 +254,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void synnytysvaiheetPage2() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -282,8 +272,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void synnytysvaiheetPage3() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -302,8 +290,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void synnytysvaiheetPage4() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -323,8 +309,7 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage1() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
+
         textView.setText(changeText("synnytyksenJalkeen1.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -345,8 +330,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage2() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
         textView.setText(changeText("synnytyksenJalkeen2.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -366,8 +349,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage3() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
         textView.setText(changeText("synnytyksenJalkeen3.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -387,8 +368,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage4() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
         textView.setText(changeText("synnytyksenJalkeen4.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -408,8 +387,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage5() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
         textView.setText(changeText("synnytyksenJalkeen5.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -430,8 +407,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void erikoistilanteetPage1() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -451,8 +426,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void erikoistilanteetPage2() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -471,8 +444,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void erikoistilanteetPage3() {
         title.setText("valmistautuminen");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
