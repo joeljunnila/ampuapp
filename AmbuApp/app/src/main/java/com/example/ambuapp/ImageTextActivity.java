@@ -25,8 +25,6 @@ public class ImageTextActivity extends AppCompatActivity {
     TextView TextToChange;
     TextView title;
 
-    int modifier = 0;
-
     String activityName;
     StringBuilder sb = new StringBuilder();
 
@@ -52,6 +50,10 @@ public class ImageTextActivity extends AppCompatActivity {
                     menuActivity(v);
             }
         });
+
+        //Sivun vaihdon toiminnallisuus hakee ActivityName avaimella MenuActivitystä pusketun stringin
+        // ja avaa sitä vastaavan sivun.
+
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             activityName = extras.getString("ActivityName");
@@ -81,82 +83,9 @@ public class ImageTextActivity extends AppCompatActivity {
                 break;
         }
 
-       /* if(extras != null)
-        {
-            activityName = extras.getString("ActivityName");
-        }
-        else
-            {
-            activityName = "Synnytyksen aikana1";
-        }
-
-        if(activityName.equals("Synnytyksen aikana1"))
-        {
-            modifier = 0;
-            TextToChange.setText(Texts[0]);
-        }
-        else if(activityName.equals("Synnytyksen aikana2"))
-        {
-            modifier = 1;
-            TextToChange.setText(Texts[1]);
-        }
-        else if(activityName.equals("Synnytyksen aikana3"))
-        {
-            modifier = 2;
-            TextToChange.setText(Texts[2]);
-        }
-        else if(activityName.equals("Synnytyksen aikana4"))
-        {
-            modifier = 3;
-            TextToChange.setText(Texts[3]);
-            //TextToChange.setText(changeText("synnytyksenJalkeen1.txt"));
-        }
-        else if(activityName.equals("Synnytyksen aikana5"))
-        {
-            modifier = 4;
-            TextToChange.setText(Texts[4]);
-        }
-        else if(activityName.equals("Synnytyksen aikana6"))
-        {
-            modifier = 5;
-            TextToChange.setText(Texts[5]);
-        }
-
-        rightArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (modifier >= 9) {
-                    activityName = "Home";
-                    menuActivity(v);
-                }
-                else {
-                    modifier++;
-                    //TextToChange.setText();
-                }
-            }
-        });
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (modifier <= 0) {
-                    activityName = "Home";
-                    menuActivity(v);
-
-                }
-                else {
-                    modifier--;
-                    //TextToChange.setText();
-                }
-            }
-        });*/
-
 
     }
+
     //Funktiot joka sivulle
     private void aikanaPage1() {
         title.setText("Synnytyksen aikana");
@@ -188,6 +117,7 @@ public class ImageTextActivity extends AppCompatActivity {
             public void onClick(View v) { aikanaPage3(); }
         });
     }
+
     private void aikanaPage3() {
         title.setText("Synnytyksen aikana");
         TextToChange.setText(changeText("SynnytyksenAikana3.txt"));
@@ -201,6 +131,7 @@ public class ImageTextActivity extends AppCompatActivity {
             public void onClick(View v) { aikanaPage4(); }
         });
     }
+
     private void aikanaPage4() {
         title.setText("Synnytyksen aikana");
         TextToChange.setText(changeText("SynnytyksenAikana4.txt"));
@@ -214,6 +145,7 @@ public class ImageTextActivity extends AppCompatActivity {
             public void onClick(View v) { aikanaPage5(); }
         });
     }
+
     private void aikanaPage5() {
         title.setText("Synnytyksen aikana");
         TextToChange.setText(changeText("SynnytyksenAikana5.txt"));
@@ -227,6 +159,7 @@ public class ImageTextActivity extends AppCompatActivity {
             public void onClick(View v) { aikanaPage6(); }
         });
     }
+
     private void aikanaPage6() {
         title.setText("Synnytyksen aikana");
         TextToChange.setText(changeText("SynnytyksenAikana6.txt"));
@@ -240,6 +173,7 @@ public class ImageTextActivity extends AppCompatActivity {
             public void onClick(View v) { aikanaPage7(); }
         });
     }
+
     private void aikanaPage7() {
         title.setText("Synnytyksen aikana");
         TextToChange.setText(changeText("SynnytyksenAikana7.txt"));
