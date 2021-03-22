@@ -277,9 +277,46 @@ public class MenuActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                kuvaTekstiActivity(v);
+                activityName = "Aikana1";
+                imageTextActivity(v);
             }
         });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Aikana2";
+                imageTextActivity(v);
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Aikana3";
+                imageTextActivity(v);
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Aikana4";
+                imageTextActivity(v);
+            }
+        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Aikana5";
+                imageTextActivity(v);
+            }
+        });
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Aikana6";
+                imageTextActivity(v);
+            }
+        });
+
     }
 
     public void tarkistusPage(){
@@ -408,7 +445,7 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-    public void kuvaTekstiActivity(View view){
+    public void imageTextActivity(View view){
         Intent intent = new Intent(this, ImageTextActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
