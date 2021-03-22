@@ -76,7 +76,6 @@ public class ImageTextActivity extends AppCompatActivity {
             case "Aikana7":
                 aikanaPage7();
                 break;
-
         }
 
        /* if(extras != null)
