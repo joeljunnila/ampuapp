@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 public class KuvaTekstiActivity extends AppCompatActivity {
 
@@ -126,8 +125,8 @@ public class KuvaTekstiActivity extends AppCompatActivity {
 
 
     }
-    public void takeMeHome(View v){
-        Intent intent = new Intent(this, MainActivity.class);
+    public void takeMeHome(){
+        Intent intent = new Intent(this, MenuActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
