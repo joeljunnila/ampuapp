@@ -1,5 +1,7 @@
 package com.example.ambuapp;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,14 +18,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class MyFirebase implements Runnable {
-    StorageReference storageRef;
     boolean firebase = false;
 
     @Override
     public void run() {
-        File ambuAppDir = new File(Environment.getExternalStorageDirectory(), "AmbuApp");
-        //File rootPath = new File(Environment.getDataDirectory(), "AmbuApp"); // internal storage
-
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
         ArrayList<StorageReference> imageRefs = new ArrayList<>();
@@ -36,7 +34,32 @@ public class MyFirebase implements Runnable {
         imageFileNames.add("image2.jpg");
         imageFileNames.add("image3.jpg");
 
-        downloadFileFromFirebase(imageRefs.get(0), ambuAppDir, imageFileNames.get(0));
+        ArrayList<StorageReference> txtRefs = new ArrayList<>();
+        txtRefs.add(storageRef.child("kuvat/ohje3.jpg"));
+        //txtRefs.add(storageRef.child("tekstit/txt2.jpg"));
+        //txtRefs.add(storageRef.child("tekstit/txt3.jpg"));
+
+        ArrayList<String> txtFileNames = new ArrayList<>();
+        txtFileNames.add("txt1.jpg");
+        //txtFileNames.add("txt2.txt");
+        //txtFileNames.add("txt3.txt");
+
+        File ambuAppImgDir = new File(Environment.getExternalStorageDirectory(), "AmbuApp/Images");
+        File ambuAppTxtDir = new File(Environment.getExternalStorageDirectory(), "AmbuApp/TextFiles");
+
+        if(ambuAppImgDir.exists()) {
+            downloadFileFromFirebase(imageRefs.get(0), ambuAppImgDir, imageFileNames.get(0));
+        } else {
+            if(!ambuAppImgDir.mkdir()) {
+                Log.d("test", "Cannot create ambuAppImgDir, permission denied.");
+            }
+        }
+
+        if(!ambuAppTxtDir.exists()) {
+            if(!ambuAppImgDir.mkdir()) {
+                Log.d("test", "Cannot create ambuAppTxtDir, permission denied.");
+            }
+        }
 
         try {
             Thread.sleep(1000);
@@ -46,24 +69,29 @@ public class MyFirebase implements Runnable {
 
         if(firebase) {
             //Log.d("test", "Succesfully connected to the Firebase!");
-            if(ambuAppDir.exists()) {
-                // delete all contents in the directory
-                String[] items = ambuAppDir.list();
-                for(String item : items) {
-                    new File(ambuAppDir, item).delete();
-                }
-
-                for(int i=0; i<imageRefs.size(); i++) {
-                    downloadFileFromFirebase(imageRefs.get(i), ambuAppDir, imageFileNames.get(i));
-                }
-                Log.d("test", "Updated succesfully!");
-            } else {
-                if(!ambuAppDir.mkdir()) {
-                    Log.d("test", "Cannot create directory, permission denied.");
-                }
+            // delete all contents in the directory
+            String[] items = ambuAppImgDir.list();
+            for(String item : items) {
+                new File(ambuAppImgDir, item).delete();
             }
+
+            items = ambuAppTxtDir.list();
+            for(String item : items) {
+                new File(ambuAppTxtDir, item).delete();
+            }
+
+            // download files from Firebase
+            for(int i=0; i<imageRefs.size(); i++) {
+                downloadFileFromFirebase(imageRefs.get(i), ambuAppImgDir, imageFileNames.get(i));
+            }
+
+            for(int i=0; i<txtRefs.size(); i++) {
+                downloadFileFromFirebase(txtRefs.get(i), ambuAppTxtDir, txtFileNames.get(i));
+            }
+            Log.d("test", "Updated succesfully!");
+
         } else {
-            Log.d("test", "Connection to the Firebase failed!");
+            Log.d("test", "Firebase Error!");
         }
     }
 
