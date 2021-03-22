@@ -23,4 +23,15 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.ambuapp", appContext.getPackageName());
     }
+
+    @Test
+    public void  firebaseTest() {
+        MyFirebase myFirebase = new MyFirebase();
+        Thread myFirebaseThread = new Thread(myFirebase);
+        myFirebaseThread.start();
+
+        assertFalse(myFirebase.firebase);
+        myFirebase.run();
+        assertFalse(myFirebase.firebase);
+    }
 }
