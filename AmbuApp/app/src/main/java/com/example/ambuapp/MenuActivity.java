@@ -38,7 +38,7 @@ public class MenuActivity extends AppCompatActivity {
         naviconButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                settings();
+                naviconPage();
             }
         });
 
@@ -129,20 +129,54 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-    public void settings() {
+    public void naviconPage() {
         button1.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.INVISIBLE);
         button3.setVisibility(View.VISIBLE);
-        button4.setVisibility(View.INVISIBLE);
-        button5.setVisibility(View.INVISIBLE);
+        button4.setVisibility(View.VISIBLE);
+        button5.setVisibility(View.VISIBLE);
         button6.setVisibility(View.INVISIBLE);
 
-        button3.setText("UPDATE");
+        button3.setText("Asetukset");
+        button4.setText("Tietoja sovelluksesta");
+        button5.setText("Päivitä tiedot");
 
-        leftArrow.setVisibility(View.INVISIBLE);
+        leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.INVISIBLE);
 
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                homePage();
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                homePage();
+            }
+        });
+
         button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen1";
+                textViewActivity(v);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "tietoaSovelluksesta";
+                textViewActivity(v);
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 myFirebase = new MyFirebase();

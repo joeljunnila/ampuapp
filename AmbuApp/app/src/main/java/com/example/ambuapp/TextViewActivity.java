@@ -126,6 +126,12 @@ public class TextViewActivity extends AppCompatActivity {
             case "Erikoistilanteet3":
                 erikoistilanteetPage3();
                 break;
+            case "tietoaSovelluksesta":
+                aboutPage();
+                break;
+            /*case "asetukset":
+                settingsPage();
+                break; */
         }
 
         /*leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -177,10 +183,35 @@ public class TextViewActivity extends AppCompatActivity {
         }*/
     }
 
+    private void aboutPage() {
+        title.setText("Tietoa sovelluksesta");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+        textView.setText(changeText("tietoaSovelluksesta.txt"));
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                menuActivity(v);
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                menuActivity(v);
+            }
+        });
+    }
+
+
     private void valmistautuminenPage1() {
-        title.setText("valmistautuminen");
+        title.setText("Valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("valmistautuminen1.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,9 +230,10 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void valmistautuminenPage2() {
-        title.setText("valmistautuminen");
+        title.setText("Valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("valmistautuminen2.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -219,9 +251,10 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void valmistautuminenPage3() {
-        title.setText("valmistautuminen");
+        title.setText("Valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("valmistautuminen3.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
