@@ -50,17 +50,22 @@ public class KuvaTekstiActivity extends AppCompatActivity {
             }
         });
         Bundle extras = getIntent().getExtras();
-        if(extras != null) {
+        if(extras != null)
+        {
             activityName = extras.getString("ActivityName");
         }
         else
+            {
             activityName = "Synnytyksen aikana1";
+        }
 
-        if(activityName.equals("Synnytyksen aikana1")) {
+        if(activityName.equals("Synnytyksen aikana1"))
+        {
             modifier = 0;
             TextToChange.setText(Texts[0]);
         }
-        else if(activityName.equals("Synnytyksen aikana2")) {
+        else if(activityName.equals("Synnytyksen aikana2"))
+        {
             modifier = 1;
             TextToChange.setText(Texts[1]);
         }
