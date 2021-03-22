@@ -350,7 +350,7 @@ public class MenuActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "KuvaTekstiActivity";
+                activityName = "Erikoistilanteet1";
                 textViewActivity(v);
             }
         });
@@ -358,7 +358,7 @@ public class MenuActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Valmistautuminen1";
+                activityName = "Erikoistilanteet2";
                 textViewActivity(v);
             }
         });
@@ -366,7 +366,7 @@ public class MenuActivity extends AppCompatActivity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Valmistautuminen1";
+                activityName = "Erikoistilanteet3";
                 textViewActivity(v);
             }
         });
