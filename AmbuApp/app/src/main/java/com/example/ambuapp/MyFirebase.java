@@ -8,8 +8,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -22,17 +24,22 @@ public class MyFirebase implements Runnable {
 
     @Override
     public void run() {
+
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
         ArrayList<StorageReference> imageRefs = new ArrayList<>();
         imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje4.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje5.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje7.jpg"));
 
         ArrayList<String> imageFileNames = new ArrayList<>();
         imageFileNames.add("image1.jpg");
         imageFileNames.add("image2.jpg");
         imageFileNames.add("image3.jpg");
+        imageFileNames.add("image4.jpg");
+        imageFileNames.add("image5.jpg");
 
         ArrayList<StorageReference> txtRefs = new ArrayList<>();
         txtRefs.add(storageRef.child("tekstit/hartiadystokia1.txt"));
@@ -44,18 +51,18 @@ public class MyFirebase implements Runnable {
         txtRefs.add(storageRef.child("tekstit/napanuora2.txt"));
         txtRefs.add(storageRef.child("tekstit/napanuora3.txt"));
         txtRefs.add(storageRef.child("tekstit/napanuora4.txt"));
-        txtRefs.add(storageRef.child("tekstit/peratila1.txt"));
-        txtRefs.add(storageRef.child("tekstit/peratila2.txt"));
-        txtRefs.add(storageRef.child("tekstit/peratila3.txt"));
-        txtRefs.add(storageRef.child("tekstit/peratila4.txt"));
-        txtRefs.add(storageRef.child("tekstit/peratila5.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana1.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana2.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana3.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana4.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana5.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana6.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana7.txt"));
+        txtRefs.add(storageRef.child("tekstit/perätila1.txt"));
+        txtRefs.add(storageRef.child("tekstit/perätila2.txt"));
+        txtRefs.add(storageRef.child("tekstit/perätila3.txt"));
+        txtRefs.add(storageRef.child("tekstit/perätila4.txt"));
+        txtRefs.add(storageRef.child("tekstit/perätila5.txt"));
+        txtRefs.add(storageRef.child("tekstit/SynnytyksenAikana1.txt"));
+        txtRefs.add(storageRef.child("tekstit/SynnytyksenAikana2.txt"));
+        txtRefs.add(storageRef.child("tekstit/SynnytyksenAikana3.txt"));
+        txtRefs.add(storageRef.child("tekstit/SynnytyksenAikana4.txt"));
+        txtRefs.add(storageRef.child("tekstit/SynnytyksenAikana5.txt"));
+        txtRefs.add(storageRef.child("tekstit/SynnytyksenAikana6.txt"));
+        txtRefs.add(storageRef.child("tekstit/SynnytyksenAikana7.txt"));
         txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen1.txt"));
         txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen2.txt"));
         txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen3.txt"));
