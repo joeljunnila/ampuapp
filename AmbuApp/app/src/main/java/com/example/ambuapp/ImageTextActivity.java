@@ -431,6 +431,7 @@ public class ImageTextActivity extends AppCompatActivity {
         homeButton.setImageBitmap(bitmap);
     }
 
+    //Päävalikkoon palaamisen funktio
     protected void menuActivity(View v){
         Intent intent = new Intent(this, MenuActivity.class);
         intent.putExtra("ActivityName", activityName);
