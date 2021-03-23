@@ -26,12 +26,12 @@ public class ImageTextActivity extends AppCompatActivity {
     ImageButton homeButton;
     ImageButton rightArrow;
     ImageButton leftArrow;
-    ImageButton naviconButton;
 
     TextView TextToChange;
     TextView title;
 
     String activityName;
+    String previousActivityName;
     StringBuilder sb = new StringBuilder();
 
 
@@ -43,7 +43,6 @@ public class ImageTextActivity extends AppCompatActivity {
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
         homeButton = findViewById(R.id.homeButton);
-        naviconButton = findViewById(R.id.naviconButton);
 
         TextToChange = findViewById(R.id.textViewSA1);
         title = findViewById(R.id.title);
@@ -119,7 +118,6 @@ public class ImageTextActivity extends AppCompatActivity {
             case "Napanuora3":
                 napanuoraPage3();
                 break;
-
         }
     }
 
@@ -449,7 +447,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
-        intent.putExtra("ActivityName", activityName);
+        intent.putExtra("previousActivityName", previousActivityName);
         startActivity(intent);
     }
 
@@ -470,6 +468,7 @@ public class ImageTextActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settings:
+                        previousActivityName = activityName;
                         activityName = "Settings";
                         settingsActivity(v);
                         return true;

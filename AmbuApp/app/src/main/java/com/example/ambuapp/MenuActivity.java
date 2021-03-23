@@ -27,7 +27,6 @@ import java.io.File;
 public class MenuActivity extends AppCompatActivity {
     ImageButton homeButton;
     TextView title;
-    ImageButton naviconButton;
     Button button1;
     Button button2;
     Button button3;
@@ -38,6 +37,8 @@ public class MenuActivity extends AppCompatActivity {
     ImageButton rightArrow;
 
     String activityName = "Home";
+    String previousActivityName;
+    boolean permissionGranted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,6 @@ public class MenuActivity extends AppCompatActivity {
 
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
-        naviconButton = findViewById(R.id.naviconButton);
 
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
@@ -107,100 +107,42 @@ public class MenuActivity extends AppCompatActivity {
         button5.setVisibility(View.VISIBLE);
         button6.setVisibility(View.INVISIBLE);
 
-        button2.setText("Valmistautuminen");
-        button3.setText("Synnytysvaiheet");
-        button4.setText("Tarkistus");
-        button5.setText("Erikoistilanteet");
+        button3.setText("Valmistautuminen");
+        button4.setText("Synnytysvaiheet");
+        button5.setText("Tarkistus");
+        button6.setText("Erikoistilanteet");
 
         leftArrow.setVisibility(View.INVISIBLE);
         rightArrow.setVisibility(View.INVISIBLE);
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 valmistautuminenPage();
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 synnytysvaiheetPage();
             }
         });
 
-        button4.setOnClickListener(new View.OnClickListener() {
+        button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tarkistusPage();
             }
         });
 
-        button5.setOnClickListener(new View.OnClickListener() {
+        button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 erikoistilanteetPage();
             }
         });
     }
-
-    /*public void naviconPage() {
-        button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.INVISIBLE);
-        button3.setVisibility(View.VISIBLE);
-        button4.setVisibility(View.VISIBLE);
-        button5.setVisibility(View.VISIBLE);
-        button6.setVisibility(View.INVISIBLE);
-
-        button3.setText("Asetukset");
-        button4.setText("Tietoja sovelluksesta");
-        button5.setText("Päivitä tiedot");
-
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.INVISIBLE);
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Home";
-                homePage();
-            }
-        });
-
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Home";
-                homePage();
-            }
-        });
-
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Settings";
-                settingsActivity(v);
-
-            }
-        });
-
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "tietoaSovelluksesta";
-                textViewActivity(v);
-            }
-        });
-
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myFirebase = new MyFirebase();
-                myFirebaseThread = new Thread(myFirebase);
-                myFirebaseThread.start();
-            }
-        });
-    } */
 
     public void valmistautuminenPage() {
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -669,7 +611,7 @@ public class MenuActivity extends AppCompatActivity {
     }
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
-        intent.putExtra("ActivityName", activityName);
+        intent.putExtra("previousActivityName", previousActivityName);
         startActivity(intent);
     }
 
@@ -690,6 +632,7 @@ public class MenuActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settings:
+                        previousActivityName = activityName;
                         activityName = "Settings";
                         settingsActivity(v);
                         return true;

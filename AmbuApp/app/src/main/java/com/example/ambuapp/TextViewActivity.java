@@ -25,14 +25,13 @@ import com.example.*;
 public class TextViewActivity extends AppCompatActivity {
     ImageButton homeButton;
     TextView title;
-    ImageButton naviconButton;
     TextView textView;
     ImageButton rightArrow;
     ImageButton leftArrow;
 
     String activityName;
+    String previousActivityName;
     StringBuilder sb = new StringBuilder();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,6 @@ public class TextViewActivity extends AppCompatActivity {
 
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
-        naviconButton = findViewById(R.id.naviconButton);
         textView = findViewById(R.id.content);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
@@ -451,7 +449,7 @@ public class TextViewActivity extends AppCompatActivity {
 
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
-        intent.putExtra("ActivityName", activityName);
+        intent.putExtra("previousActivityName", previousActivityName);
         startActivity(intent);
     }
     
@@ -478,6 +476,7 @@ public class TextViewActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settings:
+                        previousActivityName = activityName;
                         activityName = "Settings";
                         settingsActivity(v);
                         return true;
