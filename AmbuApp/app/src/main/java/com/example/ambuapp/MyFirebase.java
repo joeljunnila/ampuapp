@@ -108,21 +108,27 @@ public class MyFirebase implements Runnable {
         txtFileNames.add("valmistautuminen2.txt");
         txtFileNames.add("valmistautuminen3.txt");
 
-        Log.d("test", "Total image files: " + imageRefs.size() + "/" + imageFileNames.size());
-        Log.d("test", "Total image files: " + txtRefs.size() + "/" + txtFileNames.size());
-
         File ambuAppDir = new File(Environment.getExternalStorageDirectory(), "AmbuApp");
         File ambuAppImgDir = new File(Environment.getExternalStorageDirectory(), "AmbuApp/Images");
         File ambuAppTxtDir = new File(Environment.getExternalStorageDirectory(), "AmbuApp/TextFiles");
 
-        if(!ambuAppDir.exists()) {
+        // temporary for better workflow
+        if(!ambuAppDir.exists()) { ambuAppDir.mkdir(); }
+        if(!ambuAppImgDir.exists()) { ambuAppImgDir.mkdir(); }
+        if(!ambuAppTxtDir.exists()) { ambuAppTxtDir.mkdir(); }
+        if(!ambuAppDir.exists() || !ambuAppImgDir.exists() || !ambuAppTxtDir.exists()) {
+            Log.d("test", "Cannot create AmbuApp directories, permission denied.");
+        }
+
+        // add this function to the final work
+        /*if(!ambuAppDir.exists()) {
             if(ambuAppDir.mkdir()) {
                 ambuAppImgDir.mkdir();
                 ambuAppTxtDir.mkdir();
             } else {
-                Log.d("test", "Cannot create ambuAppDir, permission denied.");
+                Log.d("test", "Cannot create AmbuApp directory, permission denied.");
             }
-        }
+        }*/
 
         // test connection to the Firebase
         downloadFileFromFirebase(imageRefs.get(0), ambuAppImgDir, imageFileNames.get(0));
@@ -133,10 +139,11 @@ public class MyFirebase implements Runnable {
             e.printStackTrace();
         }
 
-        //deleteFilesFromDir(ambuAppImgDir);
-        //deleteFilesFromDir(ambuAppTxtDir);
-
         if(firebase) {
+            // temporary for better workflow
+            deleteFilesFromDir(ambuAppImgDir);
+            deleteFilesFromDir(ambuAppTxtDir);
+
             // download files from Firebase
             for(int i=0; i<imageRefs.size(); i++) {
                 downloadFileFromFirebase(imageRefs.get(i), ambuAppImgDir, imageFileNames.get(i));
@@ -146,6 +153,8 @@ public class MyFirebase implements Runnable {
                 downloadFileFromFirebase(txtRefs.get(i), ambuAppTxtDir, txtFileNames.get(i));
             }
             Log.d("test", "Updated succesfully!");
+            Log.d("test", "Image files: " + imageRefs.size() + "/" + imageFileNames.size());
+            Log.d("test", "Text files: " + txtRefs.size() + "/" + txtFileNames.size());
         } else {
             Log.d("test", "Firebase Error!");
         }

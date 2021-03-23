@@ -248,6 +248,7 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+    //Synnytyksen aikana -valikko valitsee avaimen ImageText -activityyn
     public void synnytysvaiheetPage(){
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -645,6 +646,7 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+    //Avaimen välitys ImageTextiin
     public void imageTextActivity(View view){
         Intent intent = new Intent(this, ImageTextActivity.class);
         intent.putExtra("ActivityName", activityName);
