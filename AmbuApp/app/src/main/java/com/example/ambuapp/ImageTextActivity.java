@@ -122,7 +122,7 @@ public class ImageTextActivity extends AppCompatActivity {
     //Funktiot joka sivulle
     private void aikanaPage1() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana1.txt"));
+        TextToChange.setText(textViewContent("synnytyksenaikana1.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +139,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage2() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana2.txt"));
+        TextToChange.setText(textViewContent("synnytyksenaikana2.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage1(); }
@@ -153,7 +153,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage3() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana3.txt"));
+        TextToChange.setText(textViewContent("synnytyksenaikana3.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage2(); }
@@ -167,7 +167,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage4() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana4.txt"));
+        TextToChange.setText(textViewContent("synnytyksenaikana4.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage3(); }
@@ -181,7 +181,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage5() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana5.txt"));
+        TextToChange.setText(textViewContent("synnytyksenaikana5.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage4(); }
@@ -195,7 +195,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage6() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana6.txt"));
+        TextToChange.setText(textViewContent("synnytyksenaikana6.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage5(); }
@@ -209,7 +209,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage7() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana7.txt"));
+        TextToChange.setText(textViewContent("synnytyksenaikana7.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage6(); }
