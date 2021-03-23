@@ -401,7 +401,6 @@ public class ImageTextActivity extends AppCompatActivity {
                 textViewActivity(v);
             }
         });
-
     }
 
     private String textViewContent(String fileName) {
@@ -424,7 +423,7 @@ public class ImageTextActivity extends AppCompatActivity {
             br.close();
         }
         catch (IOException e) {
-            Log.d("test", "Error: textViewContent");
+            Log.d("test", "Error: Cannot access txt files");
         }
 
         return text.toString();
@@ -442,6 +441,7 @@ public class ImageTextActivity extends AppCompatActivity {
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
+
     public void textViewActivity(View view) {
         Intent intent = new Intent(this, TextViewActivity.class);
         intent.putExtra("ActivityName", activityName);
