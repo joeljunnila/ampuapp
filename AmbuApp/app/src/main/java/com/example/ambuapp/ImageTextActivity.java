@@ -26,12 +26,12 @@ public class ImageTextActivity extends AppCompatActivity {
     ImageButton homeButton;
     ImageButton rightArrow;
     ImageButton leftArrow;
-    ImageButton naviconButton;
 
     TextView TextToChange;
     TextView title;
 
     String activityName;
+    String previousActivityName;
     StringBuilder sb = new StringBuilder();
 
 
@@ -43,7 +43,6 @@ public class ImageTextActivity extends AppCompatActivity {
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
         homeButton = findViewById(R.id.homeButton);
-        naviconButton = findViewById(R.id.naviconButton);
 
         TextToChange = findViewById(R.id.textViewSA1);
         title = findViewById(R.id.title);
@@ -119,14 +118,13 @@ public class ImageTextActivity extends AppCompatActivity {
             case "Napanuora3":
                 napanuoraPage3();
                 break;
-
         }
     }
 
     //Funktiot joka sivulle
     private void aikanaPage1() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana1.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana1.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,7 +141,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage2() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana2.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana2.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage1(); }
@@ -157,7 +155,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage3() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana3.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana3.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage2(); }
@@ -171,7 +169,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage4() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana4.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana4.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage3(); }
@@ -185,7 +183,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage5() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana5.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana5.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage4(); }
@@ -199,7 +197,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage6() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana6.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana6.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage5(); }
@@ -213,7 +211,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage7() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana7.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana7.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage6(); }
@@ -400,7 +398,6 @@ public class ImageTextActivity extends AppCompatActivity {
                 textViewActivity(v);
             }
         });
-
     }
 
     private String textViewContent(String fileName) {
@@ -423,7 +420,7 @@ public class ImageTextActivity extends AppCompatActivity {
             br.close();
         }
         catch (IOException e) {
-            Log.d("test", "Error: textViewContent");
+            Log.d("test", "Error: Cannot access txt files");
         }
 
         return text.toString();
@@ -435,11 +432,13 @@ public class ImageTextActivity extends AppCompatActivity {
         homeButton.setImageBitmap(bitmap);
     }
 
+    //Päävalikkoon palaamisen funktio
     protected void menuActivity(View v){
         Intent intent = new Intent(this, MenuActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
+
     public void textViewActivity(View view) {
         Intent intent = new Intent(this, TextViewActivity.class);
         intent.putExtra("ActivityName", activityName);
@@ -448,7 +447,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
-        intent.putExtra("ActivityName", activityName);
+        intent.putExtra("previousActivityName", previousActivityName);
         startActivity(intent);
     }
 
@@ -469,6 +468,7 @@ public class ImageTextActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settings:
+                        previousActivityName = activityName;
                         activityName = "Settings";
                         settingsActivity(v);
                         return true;
