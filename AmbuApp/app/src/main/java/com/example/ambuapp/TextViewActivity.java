@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,8 +12,6 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.StringBuilder;
@@ -32,9 +28,35 @@ public class TextViewActivity extends AppCompatActivity {
 
     String activityName;
     StringBuilder sb = new StringBuilder();
-    MyFirebase myFirebase;
-    Thread myFirebaseThread;
 
+    int modifier = 0;
+    String[] valmistautuminen = {"Synnytystehtävän (791 A-D) tulessa huomioi seuraavat asiat:  \n" +
+            "Kirjaa ylös synnyttäjän perustiedot (sairaudet, allergiat, monesko raskaus ja synnytys jne.) \n" +
+            "\n" +
+            "Raskausviikot, selvitä miten raskaus on edennyt ja onko sikiö perä- vai raivotarjonnassa \n" +
+            "\n" +
+            "Kohteeseen päästyäsi tarkista mikä on synnytyksen tilanne: \n" +
+            "Onko lapsivesi mennyt? Koska se on mennyt?\n" +
+            "Lapsiveden väri? Kirkas vai vihreä/kellertävää? Hajuton/pahanhajuista? \n" +
+            "\n" +
+            "Onko supistuksia? Milloin ne ovat alkaneet? Kuinka tiheään supistuksia tulee? Onko synnytys oikeasti käynnissä? ", "Hoidetaan kohteessa: \n" +
+            "Supistuksia on 1-2 minuutin välein säännöllisesti \n" +
+            "Synnyttäjällä on ponnistamisen pakko \n" +
+            "Sikiön pää näkyy \n" +
+            "  \n" +
+            "Milloin matkaan: \n" +
+            "Lapsivesi on mennyt, mutta ei ole supistuksia \n" +
+            "Supistukset tulevat epäsäännöllisesti \n" +
+            "Supistukset tulevat säännöllisesti 2-15 minuutin välein \n" +
+            "Synnyttäjä otetaan kyytiin ja lähdetään liikkeelle, tutkimukset yms. voi tehdä matkalla \n" +
+            "MUISTA ENNAKKOILMOITUS", "Miten toimitaan: \n" +
+            "Valmistaudu ottamalla synnytyssetit esille \n" +
+            "Paarien yläosa käännettään toisin päin. \n" +
+            "Synnyttäjä asetetaan vasemmalle kyljelleen \n" +
+            "Avaa i.v. -yhteys \n" +
+            "Seuraa supistusten väliä \n" +
+            "Jos synnyttäjällä tulee paineen tunne tai ponnistamisen pakko matkalla, pysäytä auto \n" +
+            "Lääkkeettömiä kivunlievitys keinoja voi kokeilla kuten hierontaa tai lämpöpussia kipukohtiin"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +69,8 @@ public class TextViewActivity extends AppCompatActivity {
         textView = findViewById(R.id.content);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
+
+        textView.setText(valmistautuminen[modifier]);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,50 +122,68 @@ public class TextViewActivity extends AppCompatActivity {
             case "Tarkistus5":
                 tarkistusPage5();
                 break;
-            case "Napanuora1":
-                napanuoraPage1();
+            case "Erikoistilanteet1":
+                erikoistilanteetPage1();
                 break;
-            case "Napanuora2" :
-                napanuoraPage2();
+            case "Erikoistilanteet2":
+                erikoistilanteetPage2();
                 break;
-            case "Napanuora4":
-                napanuoraPage4();
+            case "Erikoistilanteet3":
+                erikoistilanteetPage3();
                 break;
-            case "tietoaSovelluksesta":
-                aboutPage();
-                break;
-            /*case "asetukset":
-                settingsPage();
-                break; */
         }
-    }
 
-    private void aboutPage() {
-        title.setText("Tietoa sovelluksesta");
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.INVISIBLE);
-        textView.setText(textViewContent("tietoaSovelluksesta.txt"));
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
+        /*leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Home";
-                menuActivity(v);
+                if (modifier <= 0) {
+                    activityName = "Valmistautuminen";
+                    menuActivity(v);
+                }
+                else {
+                    modifier--;
+                    textView.setText(valmistautuminen[modifier]);
+                    rightArrow.setVisibility(View.VISIBLE);
+                }
             }
         });
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Home";
-                menuActivity(v);
+                if (modifier >= 2) {
+                    activityName = "Home";
+                    menuActivity(v);
+                }
+                else {
+                    modifier++;
+                    textView.setText(valmistautuminen[modifier]);
+                    leftArrow.setVisibility(View.VISIBLE);
+                }
             }
         });
-
+        switch (activityName) {
+            case "Valmistautuminen1":
+                modifier = 0;
+                textView.setText(valmistautuminen[0]);
+                break;
+            case "Valmistautuminen2":
+                modifier = 1;
+                textView.setText(valmistautuminen[1]);
+                break;
+            case "Valmistautuminen3":
+                modifier = 2;
+                textView.setText(valmistautuminen[2]);
+                break;
+            case "SynnytyksenJalkeen1":
+                textView.setText(changeText("synnytyksenJalkeen1.txt"));
+                break;
+        }*/
     }
 
-
     private void valmistautuminenPage1() {
-        textView.setText(textViewContent("valmistautuminen1.txt"));
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,7 +202,9 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void valmistautuminenPage2() {
-        textView.setText(textViewContent("valmistautuminen2.txt"));
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,7 +222,9 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void valmistautuminenPage3() {
-        textView.setText(textViewContent("valmistautuminen3.txt"));
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,6 +243,10 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void synnytysvaiheetPage1() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,6 +264,10 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void synnytysvaiheetPage2() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -230,6 +284,10 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void synnytysvaiheetPage3() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -246,6 +304,10 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void synnytysvaiheetPage4() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -263,7 +325,10 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage1() {
-        textView.setText(textViewContent("synnytyksenJalkeen1.txt"));
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("synnytyksenJalkeen1.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -282,7 +347,10 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage2() {
-        textView.setText(textViewContent("synnytyksenJalkeen2.txt"));
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("synnytyksenJalkeen2.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -300,7 +368,10 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage3() {
-        textView.setText(textViewContent("synnytyksenJalkeen3.txt"));
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("synnytyksenJalkeen3.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -318,7 +389,10 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage4() {
-        textView.setText(textViewContent("synnytyksenJalkeen4.txt"));
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("synnytyksenJalkeen4.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -336,7 +410,10 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage5() {
-        textView.setText(textViewContent("synnytyksenJalkeen5.txt"));
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
+        textView.setText(changeText("synnytyksenJalkeen5.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -354,9 +431,10 @@ public class TextViewActivity extends AppCompatActivity {
         });
     }
 
-    private void napanuoraPage1() {
-        title.setText("Napanuoran esiinluiskahdus");
-        textView.setText(textViewContent("napanuora1.txt"));
+    private void erikoistilanteetPage1() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -368,39 +446,41 @@ public class TextViewActivity extends AppCompatActivity {
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { napanuoraPage2();}
+            public void onClick(View v) {
+                erikoistilanteetPage2();
+            }
         });
     }
 
-    private void napanuoraPage2() {
-        title.setText("Napanuoran esiinluiskahdus");
-        textView.setText(textViewContent("napanuora2.txt"));
+    private void erikoistilanteetPage2() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { napanuoraPage1();}
+            public void onClick(View v) {
+                erikoistilanteetPage1();
+            }
         });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //siirrytään 3 sivulla jossa on kuva
-                activityName = "Napanuora3";
-                imageTextActivity(v);
+                erikoistilanteetPage3();
             }
         });
     }
 
-    private void napanuoraPage4() {
-        title.setText("Napanuoran esiinluiskahdus");
-        textView.setText(textViewContent("napanuora4.txt"));
+    private void erikoistilanteetPage3() {
+        title.setText("valmistautuminen");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.VISIBLE);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //siirrytään 3 sivulla jossa on kuva
-                activityName = "Napanuora3";
-                imageTextActivity(v);
+                erikoistilanteetPage2();
             }
         });
 
@@ -413,52 +493,48 @@ public class TextViewActivity extends AppCompatActivity {
         });
     }
 
-    private String textViewContent(String fileName) {
-        File txtDir = new File(Environment.getExternalStorageDirectory() + "/AmBuApp/TextFiles");
-
-        //Get the text file
-        File file = new File(txtDir, fileName);
-
-        //Read text from file
-        StringBuilder text = new StringBuilder();
+    // Lukee txt-tiedoston ja palauttaa sen Stringinä
+    // Parametriksi tiedoston nimi joka halutaan avata
+    private String changeText(String tiedosto) {
+        // Alustetaan lukija
+        BufferedReader lukija = null;
+        // Tyhjennetään stringbuilder tarvittaessa
+        if (sb.length() != 0)
+        {
+            sb.delete(0, sb.length());
+        }
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
+            // Avataan ja luetaan tiedosto
+            lukija = new BufferedReader(
+                    new InputStreamReader(getAssets().open(tiedosto)));
+            String rivi;
+            // Luetaan rivi kerrallaan ja lisätään string buillderiin
+            while ((rivi = lukija.readLine()) != null) {
+                sb.append(rivi);
+                sb.append('\n');
             }
-            br.close();
         }
         catch (IOException e) {
-            Log.d("test", "Error: textViewContent");
+            // Lisää error viesti lukuvirheen tullessa
         }
-
-        return text.toString();
+        finally {
+            if (lukija != null)
+                try {
+                    // Koitetaan sulkea lukija
+                    lukija.close();
+                }
+                catch (IOException e) {
+                    // joku error viesti sulkemis virheen tullessa
+                }
+        }
+        // Muutetaan stringbuilderin tiedot stringiksi ja palautetaan
+        String output = sb.toString();
+        return output;
     }
 
     public void menuActivity(View v) {
         Intent intent = new Intent(this, MenuActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
-    }
-
-    public void imageTextActivity(View view){
-        Intent intent = new Intent(this, ImageTextActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
-
-    }
-
-    public void settingsActivity(View view) {
-        Intent intent = new Intent(this, Settings.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
-    }
-    public void textViewActivity(View view) {
-        Intent intent = new Intent(this, TextViewActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
@@ -473,24 +549,19 @@ public class TextViewActivity extends AppCompatActivity {
         inflater.inflate(R.menu.popup_menu, popup.getMenu());
         popup.show();
 
-
         // Set up a click listener to handle when menu items are clicked
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()  {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settings:
-                        activityName = "Settings";
-                        settingsActivity(v);
+                        //TODO Avaa asetukset sivut
                         return true;
                     case R.id.update:
-                        myFirebase = new MyFirebase();
-                        myFirebaseThread = new Thread(myFirebase);
-                        myFirebaseThread.start();
+                        //TODO avaa update sivu
                         return true;
                     case R.id.about:
-                        activityName = "tietoaSovelluksesta";
-                        textViewActivity(v);
+                        //TODO avaa about sivu
                         return true;
                     default:
                         return false;
