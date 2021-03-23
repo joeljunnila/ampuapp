@@ -37,5 +37,6 @@
         android:layout_weight="0.6"
         android:src="@drawable/navicon"
         android:scaleType="fitXY"
-        android:backgroundTint="@color/secondaryColor" />
+        android:backgroundTint="@color/secondaryColor"
+        android:onClick="showPopup" />
 </LinearLayout>

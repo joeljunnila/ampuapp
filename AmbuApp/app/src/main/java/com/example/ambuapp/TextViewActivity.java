@@ -32,6 +32,8 @@ public class TextViewActivity extends AppCompatActivity {
 
     String activityName;
     StringBuilder sb = new StringBuilder();
+    MyFirebase myFirebase;
+    Thread myFirebaseThread;
 
 
     @Override
@@ -443,6 +445,24 @@ public class TextViewActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void imageTextActivity(View view){
+        Intent intent = new Intent(this, ImageTextActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+
+    public void settingsActivity(View view) {
+        Intent intent = new Intent(this, Settings.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+    
+    public void textViewActivity(View view) {
+        Intent intent = new Intent(this, TextViewActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+
     // Method for popup menu
     public void showPopup(View v) {
         // Create a new popup menu
@@ -453,19 +473,24 @@ public class TextViewActivity extends AppCompatActivity {
         inflater.inflate(R.menu.popup_menu, popup.getMenu());
         popup.show();
 
+
         // Set up a click listener to handle when menu items are clicked
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()  {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settings:
-                        //TODO Avaa asetukset sivut
+                        activityName = "Settings";
+                        settingsActivity(v);
                         return true;
                     case R.id.update:
-                        //TODO avaa update sivu
+                        myFirebase = new MyFirebase();
+                        myFirebaseThread = new Thread(myFirebase);
+                        myFirebaseThread.start();
                         return true;
                     case R.id.about:
-                        //TODO avaa about sivu
+                        activityName = "tietoaSovelluksesta";
+                        textViewActivity(v);
                         return true;
                     default:
                         return false;
