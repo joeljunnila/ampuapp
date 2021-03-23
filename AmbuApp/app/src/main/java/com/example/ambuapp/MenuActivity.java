@@ -40,19 +40,19 @@ public class MenuActivity extends AppCompatActivity {
     String activityName = "Home";
     MyFirebase myFirebase;
     Thread myFirebaseThread;
-    boolean once = true;
+    boolean permissionGranted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        if(once) {
+        if(!permissionGranted) {
             if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED ||
                     ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
                 ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 1);
             } else {
-                once = false;
+                permissionGranted = true;
             }
         }
 
