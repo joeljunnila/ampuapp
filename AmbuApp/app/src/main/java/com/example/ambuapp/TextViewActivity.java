@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.StringBuilder;
@@ -87,14 +91,14 @@ public class TextViewActivity extends AppCompatActivity {
             case "Tarkistus5":
                 tarkistusPage5();
                 break;
-            case "Erikoistilanteet1":
-                erikoistilanteetPage1();
+            case "Napanuora1":
+                napanuoraPage1();
                 break;
-            case "Erikoistilanteet2":
-                erikoistilanteetPage2();
+            case "Napanuora2" :
+                napanuoraPage2();
                 break;
-            case "Erikoistilanteet3":
-                erikoistilanteetPage3();
+            case "Napanuora4":
+                napanuoraPage4();
                 break;
             case "tietoaSovelluksesta":
                 aboutPage();
@@ -109,7 +113,7 @@ public class TextViewActivity extends AppCompatActivity {
         title.setText("Tietoa sovelluksesta");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.INVISIBLE);
-        textView.setText(changeText("tietoaSovelluksesta.txt"));
+        textView.setText(textViewContent("tietoaSovelluksesta.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,8 +134,7 @@ public class TextViewActivity extends AppCompatActivity {
 
 
     private void valmistautuminenPage1() {
-        title.setText("Valmistautuminen");
-        textView.setText(changeText("valmistautuminen1.txt"));
+        textView.setText(textViewContent("valmistautuminen1.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,8 +153,7 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void valmistautuminenPage2() {
-        title.setText("Valmistautuminen");
-        textView.setText(changeText("valmistautuminen2.txt"));
+        textView.setText(textViewContent("valmistautuminen2.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,8 +171,7 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void valmistautuminenPage3() {
-        title.setText("Valmistautuminen");
-        textView.setText(changeText("valmistautuminen3.txt"));
+        textView.setText(textViewContent("valmistautuminen3.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,8 +190,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void synnytysvaiheetPage1() {
-        title.setText("valmistautuminen");
-
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -208,8 +207,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void synnytysvaiheetPage2() {
-        title.setText("valmistautuminen");
-
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -226,8 +223,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void synnytysvaiheetPage3() {
-        title.setText("valmistautuminen");
-
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -244,8 +239,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void synnytysvaiheetPage4() {
-        title.setText("valmistautuminen");
-
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -263,9 +256,7 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage1() {
-        title.setText("valmistautuminen");
-
-        textView.setText(changeText("synnytyksenJalkeen1.txt"));
+        textView.setText(textViewContent("synnytyksenJalkeen1.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -284,8 +275,7 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage2() {
-        title.setText("valmistautuminen");
-        textView.setText(changeText("synnytyksenJalkeen2.txt"));
+        textView.setText(textViewContent("synnytyksenJalkeen2.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -303,8 +293,7 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage3() {
-        title.setText("valmistautuminen");
-        textView.setText(changeText("synnytyksenJalkeen3.txt"));
+        textView.setText(textViewContent("synnytyksenJalkeen3.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -322,8 +311,7 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage4() {
-        title.setText("valmistautuminen");
-        textView.setText(changeText("synnytyksenJalkeen4.txt"));
+        textView.setText(textViewContent("synnytyksenJalkeen4.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -341,8 +329,7 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage5() {
-        title.setText("valmistautuminen");
-        textView.setText(changeText("synnytyksenJalkeen5.txt"));
+        textView.setText(textViewContent("synnytyksenJalkeen5.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -360,8 +347,9 @@ public class TextViewActivity extends AppCompatActivity {
         });
     }
 
-    private void erikoistilanteetPage1() {
-        title.setText("valmistautuminen");
+    private void napanuoraPage1() {
+        title.setText("Napanuoran esiinluiskahdus");
+        textView.setText(textViewContent("napanuora1.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -373,37 +361,39 @@ public class TextViewActivity extends AppCompatActivity {
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                erikoistilanteetPage2();
-            }
+            public void onClick(View v) { napanuoraPage2();}
         });
     }
 
-    private void erikoistilanteetPage2() {
-        title.setText("valmistautuminen");
+    private void napanuoraPage2() {
+        title.setText("Napanuoran esiinluiskahdus");
+        textView.setText(textViewContent("napanuora2.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                erikoistilanteetPage1();
-            }
+            public void onClick(View v) { napanuoraPage1();}
         });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                erikoistilanteetPage3();
+                //siirrytään 3 sivulla jossa on kuva
+                activityName = "Napanuora3";
+                imageTextActivity(v);
             }
         });
     }
 
-    private void erikoistilanteetPage3() {
-        title.setText("valmistautuminen");
+    private void napanuoraPage4() {
+        title.setText("Napanuoran esiinluiskahdus");
+        textView.setText(textViewContent("napanuora4.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                erikoistilanteetPage2();
+                //siirrytään 3 sivulla jossa on kuva
+                activityName = "Napanuora3";
+                imageTextActivity(v);
             }
         });
 
@@ -416,49 +406,42 @@ public class TextViewActivity extends AppCompatActivity {
         });
     }
 
-    // Lukee txt-tiedoston ja palauttaa sen Stringinä
-    // Parametriksi tiedoston nimi joka halutaan avata
-    private String changeText(String tiedosto) {
-        // Alustetaan lukija
-        BufferedReader lukija = null;
-        // Tyhjennetään stringbuilder tarvittaessa
-        if (sb.length() != 0)
-        {
-            sb.delete(0, sb.length());
-        }
+    private String textViewContent(String fileName) {
+        File txtDir = new File(Environment.getExternalStorageDirectory() + "/AmBuApp/TextFiles");
+
+        //Get the text file
+        File file = new File(txtDir, fileName);
+
+        //Read text from file
+        StringBuilder text = new StringBuilder();
 
         try {
-            // Avataan ja luetaan tiedosto
-            lukija = new BufferedReader(
-                    new InputStreamReader(getAssets().open(tiedosto)));
-            String rivi;
-            // Luetaan rivi kerrallaan ja lisätään string buillderiin
-            while ((rivi = lukija.readLine()) != null) {
-                sb.append(rivi);
-                sb.append('\n');
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                text.append(line);
+                text.append('\n');
             }
+            br.close();
         }
         catch (IOException e) {
-            // Lisää error viesti lukuvirheen tullessa
+            Log.d("test", "Error: textViewContent");
         }
-        finally {
-            if (lukija != null)
-                try {
-                    // Koitetaan sulkea lukija
-                    lukija.close();
-                }
-                catch (IOException e) {
-                    // joku error viesti sulkemis virheen tullessa
-                }
-        }
-        // Muutetaan stringbuilderin tiedot stringiksi ja palautetaan
-        String output = sb.toString();
-        return output;
+
+        return text.toString();
     }
 
     public void menuActivity(View v) {
         Intent intent = new Intent(this, MenuActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
+    }
+
+    public void imageTextActivity(View view){
+        Intent intent = new Intent(this, ImageTextActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+
     }
 }
