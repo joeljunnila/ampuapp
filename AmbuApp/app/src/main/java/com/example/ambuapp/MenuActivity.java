@@ -511,7 +511,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
     }
-    
+
     public void hartiadystokiaPage() {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
