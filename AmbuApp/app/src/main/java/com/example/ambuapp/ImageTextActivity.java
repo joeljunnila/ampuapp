@@ -8,7 +8,10 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.ImageButton;
 
@@ -30,6 +33,8 @@ public class ImageTextActivity extends AppCompatActivity {
 
     String activityName;
     StringBuilder sb = new StringBuilder();
+    MyFirebase myFirebase;
+    Thread myFirebaseThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +127,7 @@ public class ImageTextActivity extends AppCompatActivity {
     //Funktiot joka sivulle
     private void aikanaPage1() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("synnytyksenaikana1.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana1.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +144,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage2() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("synnytyksenaikana2.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana2.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage1(); }
@@ -153,7 +158,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage3() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("synnytyksenaikana3.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana3.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage2(); }
@@ -167,7 +172,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage4() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("synnytyksenaikana4.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana4.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage3(); }
@@ -181,7 +186,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage5() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("synnytyksenaikana5.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana5.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage4(); }
@@ -195,7 +200,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage6() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("synnytyksenaikana6.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana6.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage5(); }
@@ -209,7 +214,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage7() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("synnytyksenaikana7.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana7.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage6(); }
@@ -441,5 +446,47 @@ public class ImageTextActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TextViewActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
+    }
+
+    public void settingsActivity(View view) {
+        Intent intent = new Intent(this, Settings.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+
+    // Method for popup menu
+    public void showPopup(View v) {
+        // Create a new popup menu
+        PopupMenu popup = new PopupMenu(this, v);
+
+        // Instantiate popup_menu.xml into menu object and make it visible
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.popup_menu, popup.getMenu());
+        popup.show();
+
+
+        // Set up a click listener to handle when menu items are clicked
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()  {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.settings:
+                        activityName = "Settings";
+                        settingsActivity(v);
+                        return true;
+                    case R.id.update:
+                        myFirebase = new MyFirebase();
+                        myFirebaseThread = new Thread(myFirebase);
+                        myFirebaseThread.start();
+                        return true;
+                    case R.id.about:
+                        activityName = "tietoaSovelluksesta";
+                        textViewActivity(v);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
     }
 }
