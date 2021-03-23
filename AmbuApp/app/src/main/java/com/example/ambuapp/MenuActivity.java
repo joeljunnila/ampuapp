@@ -135,7 +135,7 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-    public void naviconPage() {
+    /*public void naviconPage() {
         button1.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.INVISIBLE);
         button3.setVisibility(View.VISIBLE);
@@ -191,7 +191,7 @@ public class MenuActivity extends AppCompatActivity {
                 myFirebaseThread.start();
             }
         });
-    }
+    } */
 
     public void valmistautuminenPage() {
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -656,6 +656,11 @@ public class MenuActivity extends AppCompatActivity {
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
+    public void settingsActivity(View view) {
+        Intent intent = new Intent(this, Settings.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
 
     // Method for popup menu
     public void showPopup(View v) {
@@ -667,19 +672,24 @@ public class MenuActivity extends AppCompatActivity {
         inflater.inflate(R.menu.popup_menu, popup.getMenu());
         popup.show();
 
+
         // Set up a click listener to handle when menu items are clicked
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()  {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settings:
-                        //TODO Avaa asetukset sivut
+                        activityName = "Settings";
+                        settingsActivity(v);
                         return true;
                     case R.id.update:
-                        //TODO avaa update sivu
+                        myFirebase = new MyFirebase();
+                        myFirebaseThread = new Thread(myFirebase);
+                        myFirebaseThread.start();
                         return true;
                     case R.id.about:
-                        //TODO avaa about sivu
+                        activityName = "tietoaSovelluksesta";
+                        textViewActivity(v);
                         return true;
                     default:
                         return false;

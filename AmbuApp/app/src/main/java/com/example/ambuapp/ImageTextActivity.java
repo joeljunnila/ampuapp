@@ -8,7 +8,10 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.ImageButton;
 
@@ -30,6 +33,8 @@ public class ImageTextActivity extends AppCompatActivity {
 
     String activityName;
     StringBuilder sb = new StringBuilder();
+    MyFirebase myFirebase;
+    Thread myFirebaseThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -440,5 +445,47 @@ public class ImageTextActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TextViewActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
+    }
+
+    public void settingsActivity(View view) {
+        Intent intent = new Intent(this, Settings.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+
+    // Method for popup menu
+    public void showPopup(View v) {
+        // Create a new popup menu
+        PopupMenu popup = new PopupMenu(this, v);
+
+        // Instantiate popup_menu.xml into menu object and make it visible
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.popup_menu, popup.getMenu());
+        popup.show();
+
+
+        // Set up a click listener to handle when menu items are clicked
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()  {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.settings:
+                        activityName = "Settings";
+                        settingsActivity(v);
+                        return true;
+                    case R.id.update:
+                        myFirebase = new MyFirebase();
+                        myFirebaseThread = new Thread(myFirebase);
+                        myFirebaseThread.start();
+                        return true;
+                    case R.id.about:
+                        activityName = "tietoaSovelluksesta";
+                        textViewActivity(v);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
     }
 }
