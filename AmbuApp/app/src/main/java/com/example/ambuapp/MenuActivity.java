@@ -169,8 +169,9 @@ public class MenuActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Valmistautuminen1";
-                textViewActivity(v);
+                activityName = "Settings";
+                settingsActivity(v);
+
             }
         });
 
@@ -460,6 +461,12 @@ public class MenuActivity extends AppCompatActivity {
 
     public void textViewActivity(View view) {
         Intent intent = new Intent(this, TextViewActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+
+    public void settingsActivity(View view) {
+        Intent intent = new Intent(this, Settings.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }

@@ -47,6 +47,7 @@ public class ImageTextActivity extends AppCompatActivity {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    activityName = "Home";
                     menuActivity(v);
             }
         });
