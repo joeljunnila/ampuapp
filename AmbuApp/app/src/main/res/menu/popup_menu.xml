@@ -4,8 +4,6 @@
 
     <item android:id="@+id/settings"
         android:title="Asetukset"/>
-    <item android:id="@+id/update"
-        android:title="Päivitä"/>
     <item android:id="@+id/about"
         android:title="About"/>
 

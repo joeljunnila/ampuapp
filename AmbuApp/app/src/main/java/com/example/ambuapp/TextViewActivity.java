@@ -32,8 +32,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     String activityName;
     StringBuilder sb = new StringBuilder();
-    MyFirebase myFirebase;
-    Thread myFirebaseThread;
 
 
     @Override
@@ -482,11 +480,6 @@ public class TextViewActivity extends AppCompatActivity {
                     case R.id.settings:
                         activityName = "Settings";
                         settingsActivity(v);
-                        return true;
-                    case R.id.update:
-                        myFirebase = new MyFirebase();
-                        myFirebaseThread = new Thread(myFirebase);
-                        myFirebaseThread.start();
                         return true;
                     case R.id.about:
                         activityName = "tietoaSovelluksesta";
