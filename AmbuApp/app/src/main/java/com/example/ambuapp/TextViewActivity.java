@@ -130,7 +130,6 @@ public class TextViewActivity extends AppCompatActivity {
 
 
     private void valmistautuminenPage1() {
-        title.setText("Valmistautuminen");
         textView.setText(changeText("valmistautuminen1.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +149,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void valmistautuminenPage2() {
-        title.setText("Valmistautuminen");
         textView.setText(changeText("valmistautuminen2.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +167,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void valmistautuminenPage3() {
-        title.setText("Valmistautuminen");
         textView.setText(changeText("valmistautuminen3.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -189,8 +186,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void synnytysvaiheetPage1() {
-        title.setText("valmistautuminen");
-
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -208,8 +203,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void synnytysvaiheetPage2() {
-        title.setText("valmistautuminen");
-
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -226,8 +219,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void synnytysvaiheetPage3() {
-        title.setText("valmistautuminen");
-
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -244,8 +235,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void synnytysvaiheetPage4() {
-        title.setText("valmistautuminen");
-
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -263,8 +252,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage1() {
-        title.setText("valmistautuminen");
-
         textView.setText(changeText("synnytyksenJalkeen1.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -284,7 +271,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage2() {
-        title.setText("valmistautuminen");
         textView.setText(changeText("synnytyksenJalkeen2.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -303,7 +289,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage3() {
-        title.setText("valmistautuminen");
         textView.setText(changeText("synnytyksenJalkeen3.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -322,7 +307,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage4() {
-        title.setText("valmistautuminen");
         textView.setText(changeText("synnytyksenJalkeen4.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -341,7 +325,6 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage5() {
-        title.setText("valmistautuminen");
         textView.setText(changeText("synnytyksenJalkeen5.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {

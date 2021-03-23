@@ -28,7 +28,6 @@ public class ImageTextActivity extends AppCompatActivity {
     String activityName;
     StringBuilder sb = new StringBuilder();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +41,10 @@ public class ImageTextActivity extends AppCompatActivity {
         TextToChange = findViewById(R.id.textViewSA1);
         title = findViewById(R.id.title);
 
-
-
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    activityName = "Home";
                     menuActivity(v);
             }
         });
@@ -116,8 +114,6 @@ public class ImageTextActivity extends AppCompatActivity {
                 break;
 
         }
-
-
     }
 
     //Funktiot joka sivulle
