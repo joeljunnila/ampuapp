@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -16,6 +19,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.StringBuilder;
+
+import com.example.*;
 
 public class TextViewActivity extends AppCompatActivity {
     ImageButton homeButton;
@@ -436,6 +441,37 @@ public class TextViewActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
+    }
+
+    // Method for popup menu
+    public void showPopup(View v) {
+        // Create a new popup menu
+        PopupMenu popup = new PopupMenu(this, v);
+
+        // Instantiate popup_menu.xml into menu object and make it visible
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.popup_menu, popup.getMenu());
+        popup.show();
+
+        // Set up a click listener to handle when menu items are clicked
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()  {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.settings:
+                        //TODO Avaa asetukset sivut
+                        return true;
+                    case R.id.update:
+                        //TODO avaa update sivu
+                        return true;
+                    case R.id.about:
+                        //TODO avaa about sivu
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
     }
 
     public void imageTextActivity(View view){
