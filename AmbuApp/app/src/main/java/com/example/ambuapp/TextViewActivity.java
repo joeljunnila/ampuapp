@@ -87,14 +87,14 @@ public class TextViewActivity extends AppCompatActivity {
             case "Tarkistus5":
                 tarkistusPage5();
                 break;
-            case "Erikoistilanteet1":
-                erikoistilanteetPage1();
+            case "Napanuora1":
+                napanuoraPage1();
                 break;
-            case "Erikoistilanteet2":
-                erikoistilanteetPage2();
+            case "Napanuora2" :
+                napanuoraPage2();
                 break;
-            case "Erikoistilanteet3":
-                erikoistilanteetPage3();
+            case "Napanuora4":
+                napanuoraPage4();
                 break;
             case "tietoaSovelluksesta":
                 aboutPage();
@@ -343,7 +343,10 @@ public class TextViewActivity extends AppCompatActivity {
         });
     }
 
-    private void erikoistilanteetPage1() {
+    private void napanuoraPage1() {
+        title.setText("Napanuoran esiinluiskahdus");
+        textView.setText(changeText("napanuora1.txt"));
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -354,33 +357,39 @@ public class TextViewActivity extends AppCompatActivity {
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                erikoistilanteetPage2();
-            }
+            public void onClick(View v) { napanuoraPage2();}
         });
     }
 
-    private void erikoistilanteetPage2() {
+    private void napanuoraPage2() {
+        title.setText("Napanuoran esiinluiskahdus");
+        textView.setText(changeText("napanuora2.txt"));
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                erikoistilanteetPage1();
-            }
+            public void onClick(View v) { napanuoraPage1();}
         });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                erikoistilanteetPage3();
+                //siirrytään 3 sivulla jossa on kuva
+                activityName = "Napanuora3";
+                imageTextActivity(v);
             }
         });
     }
 
-    private void erikoistilanteetPage3() {
+    private void napanuoraPage4() {
+        title.setText("Napanuoran esiinluiskahdus");
+        textView.setText(changeText("napanuora4.txt"));
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                erikoistilanteetPage2();
+                //siirrytään 3 sivulla jossa on kuva
+                activityName = "Napanuora3";
+                imageTextActivity(v);
             }
         });
 
@@ -392,6 +401,11 @@ public class TextViewActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
 
     // Lukee txt-tiedoston ja palauttaa sen Stringinä
     // Parametriksi tiedoston nimi joka halutaan avata
@@ -437,5 +451,11 @@ public class TextViewActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MenuActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
+    }
+    public void imageTextActivity(View view){
+        Intent intent = new Intent(this, ImageTextActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+
     }
 }

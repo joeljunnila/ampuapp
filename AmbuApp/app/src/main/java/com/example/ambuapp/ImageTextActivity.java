@@ -79,6 +79,40 @@ public class ImageTextActivity extends AppCompatActivity {
             case "Aikana7":
                 aikanaPage7();
                 break;
+            case "Perätila1":
+                peratilaPage1();
+                break;
+            case "Perätila2":
+                peratilaPage2();
+                break;
+            case "Perätila3":
+                peratilaPage3();
+                break;
+            case "Perätila4":
+                peratilaPage4();
+                break;
+            case "Perätila5":
+                peratilaPage5();
+                break;
+            case "Hartiadystokia1":
+                hartiadystokiaPage1();
+                break;
+            case "Hartiadystokia2":
+                hartiadystokiaPage2();
+                break;
+            case "Hartiadystokia3":
+                hartiadystokiaPage3();
+                break;
+            case "Hartiadystokia4":
+                hartiadystokiaPage4();
+                break;
+            case "Hartiadystokia5":
+                hartiadystokiaPage5();
+                break;
+            case "Napanuora3":
+                napanuoraPage3();
+                break;
+
         }
     }
 
@@ -187,6 +221,182 @@ public class ImageTextActivity extends AppCompatActivity {
         });
     }
 
+    private void peratilaPage1(){
+        title.setText("Perätila");
+        TextToChange.setText(changeText("perätila1.txt"));
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Erikoistilanteet";
+                menuActivity(v);
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { peratilaPage2();}
+        });
+    }
+
+    private void peratilaPage2(){
+        title.setText("Perätila");
+        TextToChange.setText(changeText("perätila2.txt"));
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { peratilaPage1();}
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { peratilaPage3();}
+        });
+    }
+
+    private void peratilaPage3(){
+        title.setText("Perätila");
+        TextToChange.setText(changeText("perätila3.txt"));
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { peratilaPage2();}
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { peratilaPage4();}
+        });
+    }
+
+    private void peratilaPage4(){
+        title.setText("Perätila");
+        TextToChange.setText(changeText("perätila4.txt"));
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { peratilaPage3();}
+
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { peratilaPage5();}
+        });
+    }
+
+    private void peratilaPage5(){
+        title.setText("Perätila");
+        TextToChange.setText(changeText("perätila5.txt"));
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { peratilaPage4();}
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                menuActivity(v);
+            }
+        });
+    }
+
+    private void hartiadystokiaPage1(){
+        title.setText("Hartiadystokia");
+        TextToChange.setText(changeText("hartiadystokia1.txt"));
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Erikoistilanteet";
+                menuActivity(v);
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { hartiadystokiaPage2();}
+        });
+    }
+
+    private void hartiadystokiaPage2(){
+        title.setText("Hartiadystokia");
+        TextToChange.setText(changeText("hartiadystokia2.txt"));
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { hartiadystokiaPage1();}
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { hartiadystokiaPage3();}
+        });
+    }
+
+    private void hartiadystokiaPage3(){
+        title.setText("Hartiadystokia");
+        TextToChange.setText(changeText("hartiadystokia3.txt"));
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { hartiadystokiaPage2();}
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { hartiadystokiaPage4();}
+        });
+    }
+
+    private void hartiadystokiaPage4(){
+        title.setText("Hartiadystokia");
+        TextToChange.setText(changeText("hartiadystokia4.txt"));
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { hartiadystokiaPage3();}
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { hartiadystokiaPage5();}
+        });
+    }
+
+    private void hartiadystokiaPage5(){
+        title.setText("Hartiadystokia");
+        TextToChange.setText(changeText("hartiadystokia5.txt"));
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { hartiadystokiaPage4();}
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                menuActivity(v);
+            }
+        });
+    }
+
+    //ainoa napanuorasivu johon tulee kuva?
+    private void napanuoraPage3() {
+        title.setText("Napanuoran esiinluiskahdus");
+        TextToChange.setText(changeText("napanuora3.txt"));
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Napanuora2";
+                textViewActivity(v);
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Napanuora4";
+                textViewActivity(v);
+            }
+        });
+
+    }
+
+
 
     // Lukee txt-tiedoston ja palauttaa sen Stringinä
     // Parametriksi tiedoston nimi joka halutaan avata
@@ -236,6 +446,11 @@ public class ImageTextActivity extends AppCompatActivity {
 
     protected void menuActivity(View v){
         Intent intent = new Intent(this, MenuActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+    public void textViewActivity(View view) {
+        Intent intent = new Intent(this, TextViewActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
