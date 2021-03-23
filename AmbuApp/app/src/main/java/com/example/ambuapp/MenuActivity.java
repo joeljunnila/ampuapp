@@ -29,8 +29,6 @@ public class MenuActivity extends AppCompatActivity {
     ImageButton rightArrow;
 
     String activityName = "Home";
-    MyFirebase myFirebase;
-    Thread myFirebaseThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +38,6 @@ public class MenuActivity extends AppCompatActivity {
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
         naviconButton = findViewById(R.id.naviconButton);
-
-        /*naviconButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                naviconPage();
-            }
-        });*/
 
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
@@ -681,11 +672,6 @@ public class MenuActivity extends AppCompatActivity {
                     case R.id.settings:
                         activityName = "Settings";
                         settingsActivity(v);
-                        return true;
-                    case R.id.update:
-                        myFirebase = new MyFirebase();
-                        myFirebaseThread = new Thread(myFirebase);
-                        myFirebaseThread.start();
                         return true;
                     case R.id.about:
                         activityName = "tietoaSovelluksesta";
