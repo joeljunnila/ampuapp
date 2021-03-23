@@ -643,16 +643,12 @@ public class MenuActivity extends AppCompatActivity {
                 textViewActivity(v);
             }
         });
-
     }
-
-
 
     public void imageTextActivity(View view){
         Intent intent = new Intent(this, ImageTextActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
-
     }
 
     public void textViewActivity(View view) {

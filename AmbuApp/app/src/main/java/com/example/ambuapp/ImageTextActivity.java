@@ -7,11 +7,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.ImageButton;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -119,7 +122,7 @@ public class ImageTextActivity extends AppCompatActivity {
     //Funktiot joka sivulle
     private void aikanaPage1() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(changeText("SynnytyksenAikana1.txt"));
+        TextToChange.setText(textViewContent("SynnytyksenAikana1.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +139,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage2() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(changeText("SynnytyksenAikana2.txt"));
+        TextToChange.setText(textViewContent("SynnytyksenAikana2.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage1(); }
@@ -150,7 +153,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage3() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(changeText("SynnytyksenAikana3.txt"));
+        TextToChange.setText(textViewContent("SynnytyksenAikana3.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage2(); }
@@ -164,7 +167,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage4() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(changeText("SynnytyksenAikana4.txt"));
+        TextToChange.setText(textViewContent("SynnytyksenAikana4.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage3(); }
@@ -178,7 +181,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage5() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(changeText("SynnytyksenAikana5.txt"));
+        TextToChange.setText(textViewContent("SynnytyksenAikana5.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage4(); }
@@ -192,7 +195,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage6() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(changeText("SynnytyksenAikana6.txt"));
+        TextToChange.setText(textViewContent("SynnytyksenAikana6.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage5(); }
@@ -206,7 +209,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage7() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(changeText("SynnytyksenAikana7.txt"));
+        TextToChange.setText(textViewContent("SynnytyksenAikana7.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage6(); }
@@ -223,7 +226,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage1(){
         title.setText("Perätila");
-        TextToChange.setText(changeText("perätila1.txt"));
+        TextToChange.setText(textViewContent("peratila1.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -240,7 +243,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage2(){
         title.setText("Perätila");
-        TextToChange.setText(changeText("perätila2.txt"));
+        TextToChange.setText(textViewContent("peratila2.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { peratilaPage1();}
@@ -254,7 +257,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage3(){
         title.setText("Perätila");
-        TextToChange.setText(changeText("perätila3.txt"));
+        TextToChange.setText(textViewContent("peratila3.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { peratilaPage2();}
@@ -268,7 +271,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage4(){
         title.setText("Perätila");
-        TextToChange.setText(changeText("perätila4.txt"));
+        TextToChange.setText(textViewContent("peratila4.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { peratilaPage3();}
@@ -283,7 +286,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage5(){
         title.setText("Perätila");
-        TextToChange.setText(changeText("perätila5.txt"));
+        TextToChange.setText(textViewContent("peratila5.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { peratilaPage4();}
@@ -300,7 +303,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage1(){
         title.setText("Hartiadystokia");
-        TextToChange.setText(changeText("hartiadystokia1.txt"));
+        TextToChange.setText(textViewContent("hartiadystokia1.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -317,7 +320,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage2(){
         title.setText("Hartiadystokia");
-        TextToChange.setText(changeText("hartiadystokia2.txt"));
+        TextToChange.setText(textViewContent("hartiadystokia2.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { hartiadystokiaPage1();}
@@ -331,7 +334,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage3(){
         title.setText("Hartiadystokia");
-        TextToChange.setText(changeText("hartiadystokia3.txt"));
+        TextToChange.setText(textViewContent("hartiadystokia3.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { hartiadystokiaPage2();}
@@ -345,7 +348,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage4(){
         title.setText("Hartiadystokia");
-        TextToChange.setText(changeText("hartiadystokia4.txt"));
+        TextToChange.setText(textViewContent("hartiadystokia4.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { hartiadystokiaPage3();}
@@ -359,7 +362,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage5(){
         title.setText("Hartiadystokia");
-        TextToChange.setText(changeText("hartiadystokia5.txt"));
+        TextToChange.setText(textViewContent("hartiadystokia5.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { hartiadystokiaPage4();}
@@ -377,7 +380,7 @@ public class ImageTextActivity extends AppCompatActivity {
     //ainoa napanuorasivu johon tulee kuva?
     private void napanuoraPage3() {
         title.setText("Napanuoran esiinluiskahdus");
-        TextToChange.setText(changeText("napanuora3.txt"));
+        TextToChange.setText(textViewContent("napanuora3.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -396,46 +399,30 @@ public class ImageTextActivity extends AppCompatActivity {
 
     }
 
+    private String textViewContent(String fileName) {
+        File txtDir = new File(Environment.getExternalStorageDirectory() + "/AmBuApp/TextFiles");
 
+        //Get the text file
+        File file = new File(txtDir, fileName);
 
-    // Lukee txt-tiedoston ja palauttaa sen Stringinä
-    // Parametriksi tiedoston nimi joka halutaan avata
-    private String changeText(String tiedosto) {
-        // Alustetaan lukija
-        BufferedReader lukija = null;
-        // Tyhjennetään stringbuilder tarvittaessa
-        if (sb.length() != 0)
-        {
-            sb.delete(0, sb.length());
-        }
+        //Read text from file
+        StringBuilder text = new StringBuilder();
 
         try {
-            // Avataan ja luetaan tiedosto
-            lukija = new BufferedReader(
-                    new InputStreamReader(getAssets().open(tiedosto)));
-            String rivi;
-            // Luetaan rivi kerrallaan ja lisätään string buillderiin
-            while ((rivi = lukija.readLine()) != null) {
-                sb.append(rivi);
-                sb.append('\n');
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                text.append(line);
+                text.append('\n');
             }
+            br.close();
         }
         catch (IOException e) {
-            // Lisää error viesti lukuvirheen tullessa
+            Log.d("test", "Error: textViewContent");
         }
-        finally {
-            if (lukija != null)
-                try {
-                    // Koitetaan sulkea lukija
-                    lukija.close();
-                }
-                catch (IOException e) {
-                    // joku error viesti sulkemis virheen tullessa
-                }
-        }
-        // Muutetaan stringbuilderin tiedot stringiksi ja palautetaan
-        String output = sb.toString();
-        return output;
+
+        return text.toString();
     }
 
     public void updateImage() { // tää on vaa referenssi
