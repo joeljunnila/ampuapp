@@ -498,11 +498,4 @@ public class TextViewActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void imageTextActivity(View view){
-        Intent intent = new Intent(this, ImageTextActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
-
-    }
 }
