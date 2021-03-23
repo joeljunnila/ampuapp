@@ -423,15 +423,208 @@ public class MenuActivity extends AppCompatActivity {
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
+            public void onClick(View v) { homePage();}
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { peratilaPage();}
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { hartiadystokiaPage();}
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { napanuoraPage();}
+        });
+    }
+
+    public void peratilaPage() {
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 homePage();
+            }
+        });
+
+        title.setText("Perätila");
+        button1.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.VISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.VISIBLE);
+        button5.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
+        button1.setText("Perätila vaihe1");
+        button2.setText("Perätila vaihe2");
+        button3.setText("Perätila vaihe3");
+        button4.setText("Perätila vaihe4");
+        button5.setText("Perätila vaihe5");
+
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { erikoistilanteetPage();}
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Perätila1";
+                imageTextActivity(v);
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Perätila2";
+                imageTextActivity(v);
             }
         });
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "KuvaTekstiActivity";
+                activityName = "Perätila3";
+                imageTextActivity(v);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Perätila4";
+                imageTextActivity(v);
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Perätila5";
+                imageTextActivity(v);
+            }
+        });
+    }
+    
+    public void hartiadystokiaPage() {
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+
+        title.setText("Hartiadystokia");
+        button1.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.VISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.VISIBLE);
+        button5.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
+        button1.setText("Hartiadystokia vaihe1");
+        button2.setText("Hartiadystokia vaihe2");
+        button3.setText("Hartiadystokia vaihe3");
+        button4.setText("Hartiadystokia vaihe4");
+        button5.setText("Hartiadystokia vaihe5");
+
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { erikoistilanteetPage();}
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Hartiadystokia1";
+                imageTextActivity(v);
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Hartiadystokia2";
+                imageTextActivity(v);
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Hartiadystokia3";
+                imageTextActivity(v);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Hartiadystokia4";
+                imageTextActivity(v);
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Hartiadystokia5";
+                imageTextActivity(v);
+            }
+        });
+    }
+
+    public void napanuoraPage() {
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+
+        title.setText("Napanuoran esiinluiskahdus");
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.VISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.VISIBLE);
+        button5.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
+        button2.setText("Napanuora vaihe1");
+        button3.setText("Napanuora vaihe2");
+        button4.setText("Napanuora vaihe3");
+        button5.setText("Napanuora vaihe4");
+
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { erikoistilanteetPage();}
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Napanuora1";
+                textViewActivity(v);
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Napanuora2";
                 textViewActivity(v);
             }
         });
@@ -439,15 +632,15 @@ public class MenuActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Valmistautuminen1";
-                textViewActivity(v);
+                activityName = "Napanuora3";
+                imageTextActivity(v);
             }
         });
 
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Valmistautuminen1";
+                activityName = "Napanuora4";
                 textViewActivity(v);
             }
         });
@@ -458,7 +651,6 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ImageTextActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
-
     }
 
     public void textViewActivity(View view) {
