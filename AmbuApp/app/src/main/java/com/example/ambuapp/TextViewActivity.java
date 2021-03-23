@@ -4,10 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -17,17 +20,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.StringBuilder;
 
+import com.example.*;
+
 public class TextViewActivity extends AppCompatActivity {
     ImageButton homeButton;
     TextView title;
-    ImageButton naviconButton;
     TextView textView;
     ImageButton rightArrow;
     ImageButton leftArrow;
 
     String activityName;
+    String previousActivityName;
     StringBuilder sb = new StringBuilder();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,6 @@ public class TextViewActivity extends AppCompatActivity {
 
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
-        naviconButton = findViewById(R.id.naviconButton);
         textView = findViewById(R.id.content);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
@@ -426,7 +429,7 @@ public class TextViewActivity extends AppCompatActivity {
             br.close();
         }
         catch (IOException e) {
-            Log.d("test", "Error: textViewContent");
+            Log.d("test", "Error: Cannot access txt files");
         }
 
         return text.toString();
@@ -442,6 +445,49 @@ public class TextViewActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ImageTextActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
+    }
 
+    public void settingsActivity(View view) {
+        Intent intent = new Intent(this, Settings.class);
+        intent.putExtra("previousActivityName", previousActivityName);
+        startActivity(intent);
+    }
+    
+    public void textViewActivity(View view) {
+        Intent intent = new Intent(this, TextViewActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+
+    // Method for popup menu
+    public void showPopup(View v) {
+        // Create a new popup menu
+        PopupMenu popup = new PopupMenu(this, v);
+
+        // Instantiate popup_menu.xml into menu object and make it visible
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.popup_menu, popup.getMenu());
+        popup.show();
+
+
+        // Set up a click listener to handle when menu items are clicked
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()  {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.settings:
+                        previousActivityName = activityName;
+                        activityName = "Settings";
+                        settingsActivity(v);
+                        return true;
+                    case R.id.about:
+                        activityName = "tietoaSovelluksesta";
+                        textViewActivity(v);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
     }
 }

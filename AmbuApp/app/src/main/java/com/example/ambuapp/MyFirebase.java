@@ -8,8 +8,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -22,17 +24,22 @@ public class MyFirebase implements Runnable {
 
     @Override
     public void run() {
+
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
         ArrayList<StorageReference> imageRefs = new ArrayList<>();
         imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje4.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje5.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje7.jpg"));
 
         ArrayList<String> imageFileNames = new ArrayList<>();
         imageFileNames.add("image1.jpg");
         imageFileNames.add("image2.jpg");
         imageFileNames.add("image3.jpg");
+        imageFileNames.add("image4.jpg");
+        imageFileNames.add("image5.jpg");
 
         ArrayList<StorageReference> txtRefs = new ArrayList<>();
         txtRefs.add(storageRef.child("tekstit/hartiadystokia1.txt"));

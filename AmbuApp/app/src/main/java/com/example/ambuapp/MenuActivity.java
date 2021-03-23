@@ -1,24 +1,32 @@
 package com.example.ambuapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import java.io.File;
 
 public class MenuActivity extends AppCompatActivity {
     ImageButton homeButton;
     TextView title;
-    ImageButton naviconButton;
     Button button1;
     Button button2;
     Button button3;
@@ -29,24 +37,25 @@ public class MenuActivity extends AppCompatActivity {
     ImageButton rightArrow;
 
     String activityName = "Home";
-    MyFirebase myFirebase;
-    Thread myFirebaseThread;
+    String previousActivityName;
+    boolean permissionGranted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        if(!permissionGranted) {
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED ||
+                    ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 1);
+            } else {
+                permissionGranted = true;
+            }
+        }
+
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
-        naviconButton = findViewById(R.id.naviconButton);
-
-        naviconButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                naviconPage();
-            }
-        });
 
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
@@ -98,97 +107,39 @@ public class MenuActivity extends AppCompatActivity {
         button5.setVisibility(View.VISIBLE);
         button6.setVisibility(View.INVISIBLE);
 
-        button2.setText("Valmistautuminen");
-        button3.setText("Synnytysvaiheet");
-        button4.setText("Tarkistus");
-        button5.setText("Erikoistilanteet");
+        button3.setText("Valmistautuminen");
+        button4.setText("Synnytysvaiheet");
+        button5.setText("Tarkistus");
+        button6.setText("Erikoistilanteet");
 
         leftArrow.setVisibility(View.INVISIBLE);
         rightArrow.setVisibility(View.INVISIBLE);
 
-        button2.setOnClickListener(new View.OnClickListener() {
+        button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 valmistautuminenPage();
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 synnytysvaiheetPage();
             }
         });
 
-        button4.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               tarkistusPage();
-           }
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage();
+            }
         });
 
-        button5.setOnClickListener(new View.OnClickListener() {
+        button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 erikoistilanteetPage();
-            }
-        });
-    }
-
-    public void naviconPage() {
-        button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.INVISIBLE);
-        button3.setVisibility(View.VISIBLE);
-        button4.setVisibility(View.VISIBLE);
-        button5.setVisibility(View.VISIBLE);
-        button6.setVisibility(View.INVISIBLE);
-
-        button3.setText("Asetukset");
-        button4.setText("Tietoja sovelluksesta");
-        button5.setText("Päivitä tiedot");
-
-        leftArrow.setVisibility(View.VISIBLE);
-        rightArrow.setVisibility(View.INVISIBLE);
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Home";
-                homePage();
-            }
-        });
-
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Home";
-                homePage();
-            }
-        });
-
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Settings";
-                settingsActivity(v);
-
-            }
-        });
-
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "tietoaSovelluksesta";
-                textViewActivity(v);
-            }
-        });
-
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myFirebase = new MyFirebase();
-                myFirebaseThread = new Thread(myFirebase);
-                myFirebaseThread.start();
             }
         });
     }
@@ -512,7 +463,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
     }
-    
+
     public void hartiadystokiaPage() {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -658,10 +609,41 @@ public class MenuActivity extends AppCompatActivity {
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
-
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
-        intent.putExtra("ActivityName", activityName);
+        intent.putExtra("previousActivityName", previousActivityName);
         startActivity(intent);
+    }
+
+    // Method for popup menu
+    public void showPopup(View v) {
+        // Create a new popup menu
+        PopupMenu popup = new PopupMenu(this, v);
+
+        // Instantiate popup_menu.xml into menu object and make it visible
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.popup_menu, popup.getMenu());
+        popup.show();
+
+
+        // Set up a click listener to handle when menu items are clicked
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()  {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.settings:
+                        previousActivityName = activityName;
+                        activityName = "Settings";
+                        settingsActivity(v);
+                        return true;
+                    case R.id.about:
+                        activityName = "tietoaSovelluksesta";
+                        textViewActivity(v);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
     }
 }

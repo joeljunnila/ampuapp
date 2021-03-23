@@ -8,7 +8,10 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.ImageButton;
 
@@ -23,13 +26,14 @@ public class ImageTextActivity extends AppCompatActivity {
     ImageButton homeButton;
     ImageButton rightArrow;
     ImageButton leftArrow;
-    ImageButton naviconButton;
 
     TextView TextToChange;
     TextView title;
 
     String activityName;
+    String previousActivityName;
     StringBuilder sb = new StringBuilder();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,6 @@ public class ImageTextActivity extends AppCompatActivity {
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
         homeButton = findViewById(R.id.homeButton);
-        naviconButton = findViewById(R.id.naviconButton);
 
         TextToChange = findViewById(R.id.textViewSA1);
         title = findViewById(R.id.title);
@@ -115,14 +118,13 @@ public class ImageTextActivity extends AppCompatActivity {
             case "Napanuora3":
                 napanuoraPage3();
                 break;
-
         }
     }
 
     //Funktiot joka sivulle
     private void aikanaPage1() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana1.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana1.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +141,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage2() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana2.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana2.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage1(); }
@@ -153,7 +155,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage3() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana3.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana3.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage2(); }
@@ -167,7 +169,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage4() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana4.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana4.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage3(); }
@@ -181,7 +183,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage5() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana5.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana5.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage4(); }
@@ -195,7 +197,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage6() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana6.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana6.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage5(); }
@@ -209,7 +211,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage7() {
         title.setText("Synnytyksen aikana");
-        TextToChange.setText(textViewContent("SynnytyksenAikana7.txt"));
+        TextToChange.setText(textViewContent("synnytyksenAikana7.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage6(); }
@@ -396,7 +398,6 @@ public class ImageTextActivity extends AppCompatActivity {
                 textViewActivity(v);
             }
         });
-
     }
 
     private String textViewContent(String fileName) {
@@ -419,7 +420,7 @@ public class ImageTextActivity extends AppCompatActivity {
             br.close();
         }
         catch (IOException e) {
-            Log.d("test", "Error: textViewContent");
+            Log.d("test", "Error: Cannot access txt files");
         }
 
         return text.toString();
@@ -437,9 +438,48 @@ public class ImageTextActivity extends AppCompatActivity {
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
+
     public void textViewActivity(View view) {
         Intent intent = new Intent(this, TextViewActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
+    }
+
+    public void settingsActivity(View view) {
+        Intent intent = new Intent(this, Settings.class);
+        intent.putExtra("previousActivityName", previousActivityName);
+        startActivity(intent);
+    }
+
+    // Method for popup menu
+    public void showPopup(View v) {
+        // Create a new popup menu
+        PopupMenu popup = new PopupMenu(this, v);
+
+        // Instantiate popup_menu.xml into menu object and make it visible
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.popup_menu, popup.getMenu());
+        popup.show();
+
+
+        // Set up a click listener to handle when menu items are clicked
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()  {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.settings:
+                        previousActivityName = activityName;
+                        activityName = "Settings";
+                        settingsActivity(v);
+                        return true;
+                    case R.id.about:
+                        activityName = "tietoaSovelluksesta";
+                        textViewActivity(v);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
     }
 }

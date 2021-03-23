@@ -5,11 +5,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuActivity"
+    tools:context=".Settings"
     android:keepScreenOn="true"
     android:orientation="vertical">
 
     <include layout="@layout/menu_bar" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/myTextViewStyle"
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Päivitä tiedot:" />
+
+        <Button
+            android:id="@+id/button"
+            android:onClick="update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="140dp"
+            android:text="Päivitä" />
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -44,6 +67,8 @@
         android:layout_marginRight="20dp"
         android:padding="60dp"
         android:background="@drawable/border"/>
+
+
 
     <include layout="@layout/arrows" />
 
