@@ -1,8 +1,10 @@
 package com.example.ambuapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,15 +15,16 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.StringBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.example.*;
-import com.kofigyan.stateprogressbar.StateProgressBar;
 
 public class TextViewActivity extends AppCompatActivity {
     ImageButton homeButton;
@@ -34,9 +37,6 @@ public class TextViewActivity extends AppCompatActivity {
     String previousActivityName;
     StringBuilder sb = new StringBuilder();
 
-    StateProgressBar stateProgressBar;
-    //String[] descriptionData = {"Details", "Status", "Photo", "Confirm"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +47,6 @@ public class TextViewActivity extends AppCompatActivity {
         textView = findViewById(R.id.content);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
-
-        stateProgressBar = (StateProgressBar) findViewById(R.id.progressbar);
-        //stateProgressBar.setStateDescriptionData(descriptionData);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override

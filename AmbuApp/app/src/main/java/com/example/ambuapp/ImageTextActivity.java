@@ -17,11 +17,9 @@ import android.widget.TextView;
 import android.widget.ImageButton;
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class ImageTextActivity extends AppCompatActivity {
 
