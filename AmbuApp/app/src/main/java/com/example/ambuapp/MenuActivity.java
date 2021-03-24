@@ -111,32 +111,32 @@ public class MenuActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valmistautuminenPage();
                 activityName = "Valmistautuminen";
+                valmistautuminenPage();
             }
         });
 
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                synnytysvaiheetPage();
                 activityName = "Synnytysvaiheet";
+                synnytysvaiheetPage();
             }
         });
 
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tarkistusPage();
                 activityName = "Tarkistus";
+                tarkistusPage();
             }
         });
 
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                erikoistilanteetPage();
                 activityName = "Erikoistilanteet";
+                erikoistilanteetPage();
             }
         });
     }
