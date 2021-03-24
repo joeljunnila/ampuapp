@@ -11,11 +11,13 @@ import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.ImageButton;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -26,6 +28,7 @@ public class ImageTextActivity extends AppCompatActivity {
     ImageButton homeButton;
     ImageButton rightArrow;
     ImageButton leftArrow;
+    ImageView imageView;
 
     TextView TextToChange;
     TextView title;
@@ -124,6 +127,7 @@ public class ImageTextActivity extends AppCompatActivity {
     //Funktiot joka sivulle
     private void aikanaPage1() {
         title.setText("Synnytyksen aikana");
+        updateImage("image1.jpg");
         TextToChange.setText(textViewContent("synnytyksenAikana1.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +145,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage2() {
         title.setText("Synnytyksen aikana");
+        updateImage("image2.jpg");
         TextToChange.setText(textViewContent("synnytyksenAikana2.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,6 +160,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage3() {
         title.setText("Synnytyksen aikana");
+        updateImage("image3.jpg");
         TextToChange.setText(textViewContent("synnytyksenAikana3.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,6 +175,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage4() {
         title.setText("Synnytyksen aikana");
+        updateImage("image4.jpg");
         TextToChange.setText(textViewContent("synnytyksenAikana4.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,6 +190,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage5() {
         title.setText("Synnytyksen aikana");
+        updateImage("image5.jpg");
         TextToChange.setText(textViewContent("synnytyksenAikana5.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,6 +205,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage6() {
         title.setText("Synnytyksen aikana");
+        updateImage("image1.jpg");
         TextToChange.setText(textViewContent("synnytyksenAikana6.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,6 +220,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage7() {
         title.setText("Synnytyksen aikana");
+        updateImage("image2.jpg");
         TextToChange.setText(textViewContent("synnytyksenAikana7.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,6 +239,7 @@ public class ImageTextActivity extends AppCompatActivity {
     private void peratilaPage1(){
         title.setText("Perätila");
         TextToChange.setText(textViewContent("peratila1.txt"));
+        updateImage("image1.jpg");
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,6 +256,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage2(){
         title.setText("Perätila");
+        updateImage("image2.jpg");
         TextToChange.setText(textViewContent("peratila2.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -259,6 +271,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage3(){
         title.setText("Perätila");
+        updateImage("image3.jpg");
         TextToChange.setText(textViewContent("peratila3.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -273,6 +286,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage4(){
         title.setText("Perätila");
+        updateImage("image4.jpg");
         TextToChange.setText(textViewContent("peratila4.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -288,6 +302,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage5(){
         title.setText("Perätila");
+        updateImage("image5.jpg");
         TextToChange.setText(textViewContent("peratila5.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -297,7 +312,7 @@ public class ImageTextActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Home";
+                activityName = "Erikoistilanteet";
                 menuActivity(v);
             }
         });
@@ -305,6 +320,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage1(){
         title.setText("Hartiadystokia");
+        updateImage("image1.jpg");
         TextToChange.setText(textViewContent("hartiadystokia1.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -322,6 +338,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage2(){
         title.setText("Hartiadystokia");
+        updateImage("image2.jpg");
         TextToChange.setText(textViewContent("hartiadystokia2.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -336,6 +353,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage3(){
         title.setText("Hartiadystokia");
+        updateImage("image3.jpg");
         TextToChange.setText(textViewContent("hartiadystokia3.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -350,6 +368,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage4(){
         title.setText("Hartiadystokia");
+        updateImage("image4.jpg");
         TextToChange.setText(textViewContent("hartiadystokia4.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -364,6 +383,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage5(){
         title.setText("Hartiadystokia");
+        updateImage("image5.jpg");
         TextToChange.setText(textViewContent("hartiadystokia5.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -373,7 +393,7 @@ public class ImageTextActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Home";
+                activityName = "Erikoistilanteet";
                 menuActivity(v);
             }
         });
@@ -383,6 +403,7 @@ public class ImageTextActivity extends AppCompatActivity {
     private void napanuoraPage3() {
         title.setText("Napanuoran esiinluiskahdus");
         TextToChange.setText(textViewContent("napanuora3.txt"));
+        updateImage("image3.jpg");
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -426,10 +447,18 @@ public class ImageTextActivity extends AppCompatActivity {
         return text.toString();
     }
 
-    public void updateImage() { // tää on vaa referenssi
-        String path = Environment.getExternalStorageDirectory() + "/AmbuApp/image2.jpg";
-        Bitmap bitmap = BitmapFactory.decodeFile(path);
-        homeButton.setImageBitmap(bitmap);
+    public void updateImage(String fileName) { // tää on vaa referenssi
+        File imgDir = new File (Environment.getExternalStorageDirectory() + "/AmbuApp/Images");
+
+        File file = new File(imgDir, fileName);
+
+        if (file.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(String.valueOf(file));
+            imageView.setImageBitmap(bitmap);
+        }
+        else {
+            Log.d("test", "File not found");
+        }
     }
 
     //Päävalikkoon palaamisen funktio

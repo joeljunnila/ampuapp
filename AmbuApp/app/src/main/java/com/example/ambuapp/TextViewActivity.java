@@ -403,7 +403,7 @@ public class TextViewActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Home";
+                activityName = "Erikoistilanteet";
                 menuActivity(v);
             }
         });
