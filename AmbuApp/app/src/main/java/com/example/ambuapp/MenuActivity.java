@@ -27,10 +27,11 @@ public class MenuActivity extends AppCompatActivity {
     Button button6;
     ImageButton leftArrow;
     ImageButton rightArrow;
-
     String activityName = "Home";
     String previousActivityName;
     boolean permissionGranted = false;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +112,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 valmistautuminenPage();
+                activityName = "Valmistautuminen";
             }
         });
 
@@ -118,6 +120,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 synnytysvaiheetPage();
+                activityName = "Synnytysvaiheet";
             }
         });
 
@@ -125,6 +128,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tarkistusPage();
+                activityName = "Tarkistus";
             }
         });
 
@@ -132,6 +136,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 erikoistilanteetPage();
+                activityName = "Erikoistilanteet";
             }
         });
     }
