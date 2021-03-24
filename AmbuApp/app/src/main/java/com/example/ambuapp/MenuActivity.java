@@ -101,11 +101,11 @@ public class MenuActivity extends AppCompatActivity {
 
         title.setText("AmbuApp");
         button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.INVISIBLE);
         button3.setVisibility(View.VISIBLE);
         button4.setVisibility(View.VISIBLE);
         button5.setVisibility(View.VISIBLE);
-        button6.setVisibility(View.INVISIBLE);
+        button6.setVisibility(View.VISIBLE);
 
         button3.setText("Valmistautuminen");
         button4.setText("Synnytysvaiheet");
