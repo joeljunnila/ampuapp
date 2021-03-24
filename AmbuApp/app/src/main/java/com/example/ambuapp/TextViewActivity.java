@@ -21,6 +21,7 @@ import java.io.InputStreamReader;
 import java.lang.StringBuilder;
 
 import com.example.*;
+import com.kofigyan.stateprogressbar.StateProgressBar;
 
 public class TextViewActivity extends AppCompatActivity {
     ImageButton homeButton;
@@ -33,6 +34,9 @@ public class TextViewActivity extends AppCompatActivity {
     String previousActivityName;
     StringBuilder sb = new StringBuilder();
 
+    StateProgressBar stateProgressBar;
+    //String[] descriptionData = {"Details", "Status", "Photo", "Confirm"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,9 @@ public class TextViewActivity extends AppCompatActivity {
         textView = findViewById(R.id.content);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
+
+        stateProgressBar = (StateProgressBar) findViewById(R.id.progressbar);
+        //stateProgressBar.setStateDescriptionData(descriptionData);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
