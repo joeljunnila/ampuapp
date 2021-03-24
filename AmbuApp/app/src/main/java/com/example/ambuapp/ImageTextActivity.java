@@ -324,7 +324,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage1(){
         title.setText("Hartiadystokia");
-        updateImage("image51.jpg");
+        updateImage("image1.jpg");
         TextToChange.setText(textViewContent("hartiadystokia1.txt"));
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
