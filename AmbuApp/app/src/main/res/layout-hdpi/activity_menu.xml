@@ -37,5 +37,13 @@
         android:id="@+id/button6"
         android:text="Button 2" />
 
+    <com.baoyachi.stepview.HorizontalStepView
+        android:id="@+id/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+
+        />
+
     <include layout="@layout/arrows" />
 </LinearLayout>
