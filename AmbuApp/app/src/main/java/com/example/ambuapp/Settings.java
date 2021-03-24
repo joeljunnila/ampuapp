@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
@@ -16,14 +17,16 @@ import android.widget.TextView;
 
 public class Settings extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     ImageButton homeButton;
+    Button button;
     TextView title;
-    ImageButton naviconButton;
     TextView textView;
     TextView textView2;
     ImageButton leftArrow;
     ImageButton rightArrow;
     String activityName;
+    String previousActivityName;
     String[] items = new String[]{"Pieni", "Keskisuuri", "Suuri"};
+
     MyFirebase myFirebase;
     Thread myFirebaseThread;
 
@@ -31,14 +34,19 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        button = findViewById(R.id.button);
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
-        naviconButton = findViewById(R.id.naviconButton);
         textView = findViewById(R.id.textView);
         textView2 = findViewById(R.id.textView2);
         leftArrow = findViewById(R.id.leftArrow);
         rightArrow = findViewById(R.id.rightArrow);
         rightArrow.setVisibility(View.INVISIBLE);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            previousActivityName = extras.getString("previousActivityName");
+        }
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,10 +59,10 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Home";
-                menuActivity(v);
+
             }
         });
+
         //get the spinner from the xml.
         Spinner dropdown = findViewById(R.id.spinner);
         //create a list of items for the spinner.
@@ -64,8 +72,15 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(adapter);
         dropdown.setOnItemSelectedListener(this);
-
     }
+
+    public void update(View v) {
+        myFirebase = new MyFirebase();
+        myFirebaseThread = new Thread(myFirebase);
+        myFirebaseThread.start();
+        textView2.setText("Updated");
+    }
+
     public void menuActivity(View v) {
         Intent intent = new Intent(this, MenuActivity.class);
         intent.putExtra("ActivityName", activityName);
@@ -93,7 +108,6 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         inflater.inflate(R.menu.popup_menu, popup.getMenu());
         popup.show();
 
-
         // Set up a click listener to handle when menu items are clicked
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()  {
             @Override
@@ -102,11 +116,6 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                     case R.id.settings:
                         activityName = "Settings";
                         settingsActivity(v);
-                        return true;
-                    case R.id.update:
-                        myFirebase = new MyFirebase();
-                        myFirebaseThread = new Thread(myFirebase);
-                        myFirebaseThread.start();
                         return true;
                     case R.id.about:
                         activityName = "tietoaSovelluksesta";
@@ -119,10 +128,8 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         });
     }
 
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-
         switch (position) {
             case 0:
                 textView2.setTextSize(15);
@@ -136,7 +143,6 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                 textView2.setTextSize(40);
                 // Whatever you want to happen when the thrid item gets selected
                 break;
-
         }
     }
 
@@ -144,5 +150,4 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     public void onNothingSelected(AdapterView<?> parent) {
         // TODO Auto-generated method stub
     }
-
 }

@@ -25,16 +25,13 @@ import com.example.*;
 public class TextViewActivity extends AppCompatActivity {
     ImageButton homeButton;
     TextView title;
-    ImageButton naviconButton;
     TextView textView;
     ImageButton rightArrow;
     ImageButton leftArrow;
 
     String activityName;
+    String previousActivityName;
     StringBuilder sb = new StringBuilder();
-    MyFirebase myFirebase;
-    Thread myFirebaseThread;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +40,6 @@ public class TextViewActivity extends AppCompatActivity {
 
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
-        naviconButton = findViewById(R.id.naviconButton);
         textView = findViewById(R.id.content);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
@@ -433,7 +429,7 @@ public class TextViewActivity extends AppCompatActivity {
             br.close();
         }
         catch (IOException e) {
-            Log.d("test", "Error: textViewContent");
+            Log.d("test", "Error: Cannot access txt files");
         }
 
         return text.toString();
@@ -453,7 +449,7 @@ public class TextViewActivity extends AppCompatActivity {
 
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
-        intent.putExtra("ActivityName", activityName);
+        intent.putExtra("previousActivityName", previousActivityName);
         startActivity(intent);
     }
     
@@ -480,13 +476,9 @@ public class TextViewActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settings:
+                        previousActivityName = activityName;
                         activityName = "Settings";
                         settingsActivity(v);
-                        return true;
-                    case R.id.update:
-                        myFirebase = new MyFirebase();
-                        myFirebaseThread = new Thread(myFirebase);
-                        myFirebaseThread.start();
                         return true;
                     case R.id.about:
                         activityName = "tietoaSovelluksesta";

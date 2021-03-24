@@ -28,16 +28,15 @@ public class ImageTextActivity extends AppCompatActivity {
     ImageButton homeButton;
     ImageButton rightArrow;
     ImageButton leftArrow;
-    ImageButton naviconButton;
     ImageView imageView;
 
     TextView TextToChange;
     TextView title;
 
     String activityName;
+    String previousActivityName;
     StringBuilder sb = new StringBuilder();
-    MyFirebase myFirebase;
-    Thread myFirebaseThread;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,6 @@ public class ImageTextActivity extends AppCompatActivity {
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
         homeButton = findViewById(R.id.homeButton);
-        naviconButton = findViewById(R.id.naviconButton);
         imageView = findViewById(R.id.imageView);
 
         TextToChange = findViewById(R.id.textViewSA1);
@@ -124,7 +122,6 @@ public class ImageTextActivity extends AppCompatActivity {
             case "Napanuora3":
                 napanuoraPage3();
                 break;
-
         }
     }
 
@@ -423,7 +420,6 @@ public class ImageTextActivity extends AppCompatActivity {
                 textViewActivity(v);
             }
         });
-
     }
 
     private String textViewContent(String fileName) {
@@ -446,7 +442,7 @@ public class ImageTextActivity extends AppCompatActivity {
             br.close();
         }
         catch (IOException e) {
-            Log.d("test", "Error: textViewContent");
+            Log.d("test", "Error: Cannot access txt files");
         }
 
         return text.toString();
@@ -472,6 +468,7 @@ public class ImageTextActivity extends AppCompatActivity {
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
+
     public void textViewActivity(View view) {
         Intent intent = new Intent(this, TextViewActivity.class);
         intent.putExtra("ActivityName", activityName);
@@ -480,7 +477,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
-        intent.putExtra("ActivityName", activityName);
+        intent.putExtra("previousActivityName", previousActivityName);
         startActivity(intent);
     }
 
@@ -501,13 +498,9 @@ public class ImageTextActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settings:
+                        previousActivityName = activityName;
                         activityName = "Settings";
                         settingsActivity(v);
-                        return true;
-                    case R.id.update:
-                        myFirebase = new MyFirebase();
-                        myFirebaseThread = new Thread(myFirebase);
-                        myFirebaseThread.start();
                         return true;
                     case R.id.about:
                         activityName = "tietoaSovelluksesta";
