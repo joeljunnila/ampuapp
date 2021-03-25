@@ -35,10 +35,11 @@ public class MenuActivity extends AppCompatActivity {
     Button button6;
     ImageButton leftArrow;
     ImageButton rightArrow;
-
     String activityName = "Home";
     String previousActivityName;
     boolean permissionGranted = false;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,11 +102,11 @@ public class MenuActivity extends AppCompatActivity {
 
         title.setText("AmbuApp");
         button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.INVISIBLE);
         button3.setVisibility(View.VISIBLE);
         button4.setVisibility(View.VISIBLE);
         button5.setVisibility(View.VISIBLE);
-        button6.setVisibility(View.INVISIBLE);
+        button6.setVisibility(View.VISIBLE);
 
         button3.setText("Valmistautuminen");
         button4.setText("Synnytysvaiheet");
@@ -119,6 +120,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 valmistautuminenPage();
+                activityName = "Valmistautuminen";
             }
         });
 
@@ -126,6 +128,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 synnytysvaiheetPage();
+                activityName = "Synnytysvaiheet";
             }
         });
 
@@ -133,6 +136,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 tarkistusPage();
+                activityName = "Tarkistus";
             }
         });
 
@@ -140,6 +144,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 erikoistilanteetPage();
+                activityName = "Erikoistilanteet";
             }
         });
     }

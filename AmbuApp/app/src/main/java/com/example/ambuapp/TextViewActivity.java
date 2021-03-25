@@ -29,9 +29,12 @@ public class TextViewActivity extends AppCompatActivity {
     ImageButton rightArrow;
     ImageButton leftArrow;
 
+
     String activityName;
     String previousActivityName;
     StringBuilder sb = new StringBuilder();
+
+    Settings settingsObj = new Settings();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class TextViewActivity extends AppCompatActivity {
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
         textView = findViewById(R.id.content);
+        textView.setTextSize(settingsObj.textSize);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
 
@@ -66,18 +70,6 @@ public class TextViewActivity extends AppCompatActivity {
                 break;
             case "Valmistautuminen3":
                 valmistautuminenPage3();
-                break;
-            case "Synnytysvaiheet1":
-                synnytysvaiheetPage1();
-                break;
-            case "Synnytysvaiheet2":
-                synnytysvaiheetPage2();
-                break;
-            case "Synnytysvaiheet3":
-                synnytysvaiheetPage3();
-                break;
-            case "Synnytysvaiheet4":
-                synnytysvaiheetPage4();
                 break;
             case "Tarkistus1":
                 tarkistusPage1();
@@ -180,72 +172,6 @@ public class TextViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 valmistautuminenPage2();
-            }
-        });
-
-        rightArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Home";
-                menuActivity(v);
-            }
-        });
-    }
-
-    private void synnytysvaiheetPage1() {
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Synnytysvaiheet";
-                menuActivity(v);
-            }
-        });
-
-        rightArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                synnytysvaiheetPage2();
-            }
-        });
-    }
-
-    private void synnytysvaiheetPage2() {
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                synnytysvaiheetPage1();
-            }
-        });
-
-        rightArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                synnytysvaiheetPage3();
-            }
-        });
-    }
-
-    private void synnytysvaiheetPage3() {
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                synnytysvaiheetPage2();
-            }
-        });
-
-        rightArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                synnytysvaiheetPage4();
-            }
-        });
-    }
-
-    private void synnytysvaiheetPage4() {
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                synnytysvaiheetPage3();
             }
         });
 
