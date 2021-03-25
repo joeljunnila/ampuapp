@@ -33,7 +33,7 @@ public class MenuActivity extends AppCompatActivity {
     String activityName = "Home";
     String previousActivityName;
     boolean permissionGranted = false;
-    
+
     MyFirebase myFirebase;
     Thread myFirebaseThread;
 
