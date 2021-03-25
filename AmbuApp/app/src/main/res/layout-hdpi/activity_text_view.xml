@@ -13,8 +13,8 @@
     <TextView style="@style/myTextViewStyle"
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:padding="15dp"
         android:layout_height="300dp"
+        android:padding="15dp"
         android:textAlignment="center"
         android:textSize="12sp"/>
 
@@ -29,7 +29,7 @@
         app:sv_stepViewStyle="@style/StepView"
         app:sv_animationType="None"
         app:sv_selectedCircleRadius="8dp"
-        app:sv_stepNumberTextSize="10sp"
+        app:sv_stepNumberTextSize="6sp"
         app:sv_stepLineWidth="4dp"
 
         app:sv_stepPadding="0dp"
