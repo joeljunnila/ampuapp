@@ -18,27 +18,28 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="120dp" />
+        android:layout_height="80dp" />
 
     <TextView
         android:id="@+id/textViewSA1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="190dp"
         android:padding="15dp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textSize="15sp"/>
 
     <com.shuhart.stepview.StepView
         android:id="@+id/stepView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="10dp"
 
         app:sv_stepViewStyle="@style/StepView"
         app:sv_animationType="None"
-        app:sv_selectedCircleRadius="14dp"
-        app:sv_stepNumberTextSize="16sp"
+        app:sv_selectedCircleRadius="8dp"
+        app:sv_stepNumberTextSize="10sp"
         app:sv_stepLineWidth="4dp"
 
         app:sv_stepPadding="0dp"

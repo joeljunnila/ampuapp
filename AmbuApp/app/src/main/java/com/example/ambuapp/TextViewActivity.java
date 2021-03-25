@@ -49,7 +49,7 @@ public class TextViewActivity extends AppCompatActivity {
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
         textView = findViewById(R.id.content);
-        textView.setTextSize(textSize);
+        //textView.setTextSize(textSize);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
         stepView = findViewById(R.id.stepView);

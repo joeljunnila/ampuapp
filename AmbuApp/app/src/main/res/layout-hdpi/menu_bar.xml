@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_gravity="center_vertical"
-        android:layout_weight="0.6"
+        android:layout_weight="0.7"
         android:src="@drawable/home"
         android:scaleType="fitXY"
         android:backgroundTint="@color/secondaryColor" />
@@ -34,7 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_gravity="center_vertical"
-        android:layout_weight="0.6"
+        android:layout_weight="0.7"
         android:src="@drawable/navicon"
         android:scaleType="fitXY"
         android:backgroundTint="@color/secondaryColor"
