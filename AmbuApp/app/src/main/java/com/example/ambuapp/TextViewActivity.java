@@ -198,7 +198,7 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage1() {
         textView.setText(textViewContent("synnytyksenJalkeen1.txt"));
-
+        title.setText("Synnytyksen Jalkeen 1");
         stepView.getState().stepsNumber(5).commit();
         stepView.go(0, false);
 
@@ -220,7 +220,7 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage2() {
         textView.setText(textViewContent("synnytyksenJalkeen2.txt"));
-
+        title.setText("Synnytyksen Jalkeen 2");
         stepView.getState().stepsNumber(5).commit();
         stepView.go(1, false);
 
@@ -241,7 +241,7 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage3() {
         textView.setText(textViewContent("synnytyksenJalkeen3.txt"));
-
+        title.setText("Synnytyksen Jalkeen 3");
         stepView.getState().stepsNumber(5).commit();
         stepView.go(2, false);
 
@@ -264,7 +264,7 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage5() {
         textView.setText(textViewContent("synnytyksenJalkeen5.txt"));
-
+        title.setText("Synnytyksen Jalkeen 5");
         stepView.getState().stepsNumber(5).commit();
         stepView.go(4, false);
 
