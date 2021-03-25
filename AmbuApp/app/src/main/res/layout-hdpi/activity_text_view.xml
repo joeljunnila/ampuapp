@@ -20,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         app:sv_stepViewStyle="@style/StepView"
         app:sv_animationType="None"
         app:sv_selectedCircleRadius="14dp"
@@ -29,7 +30,7 @@
 
         app:sv_stepPadding="0dp"
 
-        app:sv_selectedCircleColor="@color/teal_700"
+        app:sv_selectedCircleColor="@color/secondaryColor"
         app:sv_selectedStepNumberColor="@color/primaryColor"
 
         app:sv_nextStepCircleEnabled="true"

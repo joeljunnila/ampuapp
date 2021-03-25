@@ -126,6 +126,8 @@ public class ImageTextActivity extends AppCompatActivity {
             case "Napanuora3":
                 napanuoraPage3();
                 break;
+            case "Tarkistus4":
+                tarkistusPage4();
         }
     }
 
@@ -262,6 +264,31 @@ public class ImageTextActivity extends AppCompatActivity {
             public void onClick(View v) {
                 activityName ="Home";
                 menuActivity(v);
+            }
+        });
+    }
+
+    //Synnytyksen jalkeen kuva sivu
+    private void tarkistusPage4() {
+        title.setText("Synnytyksen Jalkeen 4");
+        TextToChange.setText(textViewContent("synnytyksenJalkeen4.txt"));
+        imageView.setImageBitmap(updateImage("image1.jpg"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(0, false);
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Tarkistus3";
+                textViewActivity(v);
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Tarkistus5";
+                textViewActivity(v);
             }
         });
     }

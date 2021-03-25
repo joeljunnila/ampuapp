@@ -188,9 +188,9 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                 // Whatever you want to happen when the first item gets selected
                 break;
             case 1:
-                textActivity.textSize = 20;
-                ImageTextActivity.textSize = 20;
-                textView2.setTextSize(20);
+                textActivity.textSize = 18;
+                ImageTextActivity.textSize = 18;
+                textView2.setTextSize(18);
                 // Whatever you want to happen when the second item gets selected
                 break;
             case 2:

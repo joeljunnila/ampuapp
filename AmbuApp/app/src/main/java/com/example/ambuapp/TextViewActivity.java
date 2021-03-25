@@ -86,9 +86,6 @@ public class TextViewActivity extends AppCompatActivity {
             case "Tarkistus3":
                 tarkistusPage3();
                 break;
-            case "Tarkistus4":
-                tarkistusPage4();
-                break;
             case "Tarkistus5":
                 tarkistusPage5();
                 break;
@@ -258,31 +255,12 @@ public class TextViewActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tarkistusPage4();
+                activityName="Tarkistus4";
+                imageTextActivity(v);
             }
         });
     }
 
-    private void tarkistusPage4() {
-        textView.setText(textViewContent("synnytyksenJalkeen4.txt"));
-
-        stepView.getState().stepsNumber(5).commit();
-        stepView.go(3, false);
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tarkistusPage3();
-            }
-        });
-
-        rightArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tarkistusPage5();
-            }
-        });
-    }
 
     private void tarkistusPage5() {
         textView.setText(textViewContent("synnytyksenJalkeen5.txt"));
@@ -293,7 +271,8 @@ public class TextViewActivity extends AppCompatActivity {
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tarkistusPage4();
+                activityName="Tarkistus4";
+                imageTextActivity(v);
             }
         });
 
