@@ -39,6 +39,4 @@
         android:scaleType="fitXY"
         android:backgroundTint="@color/secondaryColor"
         android:onClick="showPopup" />
-
-
 </LinearLayout>

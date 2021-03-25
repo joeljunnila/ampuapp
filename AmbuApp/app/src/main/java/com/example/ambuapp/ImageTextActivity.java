@@ -36,7 +36,6 @@ public class ImageTextActivity extends AppCompatActivity {
 
     String activityName;
     String previousActivityName;
-    StringBuilder sb = new StringBuilder();
 
     public static Integer textSize = 20;
 
