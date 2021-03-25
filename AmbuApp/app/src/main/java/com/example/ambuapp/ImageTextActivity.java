@@ -50,7 +50,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView);
         TextToChange = findViewById(R.id.textViewSA1);
-        TextToChange.setTextSize(textSize);
+        //TextToChange.setTextSize(textSize);
         title = findViewById(R.id.title);
         stepView = findViewById(R.id.stepView);
 
