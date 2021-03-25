@@ -28,13 +28,11 @@ public class TextViewActivity extends AppCompatActivity {
     TextView textView;
     ImageButton rightArrow;
     ImageButton leftArrow;
-
-
     String activityName;
     String previousActivityName;
     StringBuilder sb = new StringBuilder();
 
-    Settings settingsObj = new Settings();
+    public static Integer textSize = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +42,8 @@ public class TextViewActivity extends AppCompatActivity {
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
         textView = findViewById(R.id.content);
-        textView.setTextSize(settingsObj.textSize);
+        textView.setTextSize(textSize);
+        Log.d("test", textSize.toString());
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
 
@@ -394,7 +393,6 @@ public class TextViewActivity extends AppCompatActivity {
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.popup_menu, popup.getMenu());
         popup.show();
-
 
         // Set up a click listener to handle when menu items are clicked
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()  {

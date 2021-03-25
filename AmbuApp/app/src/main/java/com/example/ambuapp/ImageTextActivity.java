@@ -34,6 +34,7 @@ public class ImageTextActivity extends AppCompatActivity {
     String previousActivityName;
     StringBuilder sb = new StringBuilder();
 
+    public static Integer textSize = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,8 @@ public class ImageTextActivity extends AppCompatActivity {
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
         homeButton = findViewById(R.id.homeButton);
-
         TextToChange = findViewById(R.id.textViewSA1);
+        TextToChange.setTextSize(textSize);
         title = findViewById(R.id.title);
 
         homeButton.setOnClickListener(new View.OnClickListener() {

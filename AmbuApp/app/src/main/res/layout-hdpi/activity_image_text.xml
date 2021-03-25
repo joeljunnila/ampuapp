@@ -23,13 +23,9 @@
 
         android:id="@+id/textViewSA1"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="wrap_content"
         android:padding="15px"
-        android:textAlignment="center"
-        android:textSize="15.5dp"
-        android:text ="Välilihan repeäminen estetään tukemalla sitä toisen kämmenellä,
-peukalo ja etusormi kurovat välilihaan joustoa.
-Samalla toisella kädellä kontrolloidaan pään syntymistä."/>
+        android:textAlignment="center" />
 
     <include layout="@layout/arrows"/>
 

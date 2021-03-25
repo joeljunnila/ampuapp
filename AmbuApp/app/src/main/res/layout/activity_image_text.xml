@@ -25,10 +25,9 @@
 
         android:id="@+id/textViewSA1"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:padding="40px"
-        android:textAlignment="center"
-        android:textSize="20dp" />
+        android:textAlignment="center" />
     <include layout="@layout/arrows"/>
 
 
