@@ -13,7 +13,8 @@
     <TextView style="@style/myTextViewStyle"
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="500dp"
+        android:textSize="25sp"/>
 
     <com.shuhart.stepview.StepView
         android:id="@+id/stepView"
@@ -22,10 +23,12 @@
         android:padding="16dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+
         app:sv_stepViewStyle="@style/StepView"
         app:sv_animationType="None"
-        app:sv_selectedCircleRadius="14dp"
-        app:sv_stepNumberTextSize="16sp"
+        app:sv_selectedCircleRadius="8dp"
+        app:sv_stepNumberTextSize="6sp"
         app:sv_stepLineWidth="4dp"
 
         app:sv_stepPadding="0dp"
@@ -40,7 +43,7 @@
 
         app:sv_doneCircleColor="#BDBDBD"
         app:sv_doneStepLineColor="#808080"
-        app:sv_doneCircleRadius="14dp"
+        app:sv_doneCircleRadius="8dp"
         app:sv_doneStepMarkColor="@color/primaryColor" />
 
     <include layout="@layout/arrows" />
