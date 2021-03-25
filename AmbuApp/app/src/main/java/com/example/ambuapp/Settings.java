@@ -29,8 +29,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     String previousActivityName;
     String[] items = new String[]{"Pieni", "Keskisuuri", "Suuri"};
 
-    public Integer textSize = 20;
-
+    TextViewActivity textActivity = new TextViewActivity();
     MyFirebase myFirebase;
     Thread myFirebaseThread;
 
@@ -48,6 +47,8 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         rightArrow = findViewById(R.id.rightArrow);
         rightArrow.setVisibility(View.INVISIBLE);
 
+
+        //otetaan entinen activityName talteen, jotta voidaan palata sinne paluu-nuolesta
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             previousActivityName = extras.getString("previousActivityName");
@@ -61,6 +62,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
             }
         });
 
+        //vaihtoehdot palautumissivulle
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,6 +119,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         dropdown.setOnItemSelectedListener(this);
     }
 
+    //päivitetään materiaalit sovellukseen
     public void update(View v) {
         myFirebase = new MyFirebase();
         myFirebaseThread = new Thread(myFirebase);
@@ -129,7 +132,6 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
-
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
         intent.putExtra("ActivityName", activityName);
@@ -180,26 +182,21 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
         switch (position) {
             case 0:
-                textSize = 10;
-                textView.setTextSize(textSize);
-                textView2.setTextSize(textSize);
-                textView3.setTextSize(textSize);
-
+                textActivity.textSize = 10;
+                ImageTextActivity.textSize = 10;
+                textView2.setTextSize(10);
                 // Whatever you want to happen when the first item gets selected
                 break;
             case 1:
-                textSize = 20;
-                textView.setTextSize(textSize);
-                textView2.setTextSize(textSize);
-                textView3.setTextSize(textSize);
-
+                textActivity.textSize = 18;
+                ImageTextActivity.textSize = 18;
+                textView2.setTextSize(18);
                 // Whatever you want to happen when the second item gets selected
                 break;
             case 2:
-                textSize = 40;
-                textView.setTextSize(textSize);
-                textView2.setTextSize(textSize);
-                textView3.setTextSize(textSize);
+                textActivity.textSize = 30;
+                ImageTextActivity.textSize = 30;
+                textView2.setTextSize(30);
                 // Whatever you want to happen when the thrid item gets selected
                 break;
         }
@@ -209,5 +206,4 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     public void onNothingSelected(AdapterView<?> parent) {
         // TODO Auto-generated method stub
     }
-
 }

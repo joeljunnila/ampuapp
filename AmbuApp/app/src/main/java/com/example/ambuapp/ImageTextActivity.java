@@ -16,6 +16,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.ImageButton;
 
+import com.shuhart.stepview.StepView;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -30,11 +32,13 @@ public class ImageTextActivity extends AppCompatActivity {
 
     TextView TextToChange;
     TextView title;
+    StepView stepView;
 
     String activityName;
     String previousActivityName;
     StringBuilder sb = new StringBuilder();
 
+    public static Integer textSize = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,9 @@ public class ImageTextActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView);
         TextToChange = findViewById(R.id.textViewSA1);
+        TextToChange.setTextSize(textSize);
         title = findViewById(R.id.title);
+        stepView = findViewById(R.id.stepView);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +126,8 @@ public class ImageTextActivity extends AppCompatActivity {
             case "Napanuora3":
                 napanuoraPage3();
                 break;
+            case "Tarkistus4":
+                tarkistusPage4();
         }
     }
 
@@ -128,6 +136,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Synnytyksen aikana");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana1.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(0, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,6 +158,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Synnytyksen aikana");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana2.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(1, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage1(); }
@@ -161,6 +177,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Synnytyksen aikana");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana3.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(2, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage2(); }
@@ -176,6 +196,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Synnytyksen aikana");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana4.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(3, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage3(); }
@@ -191,6 +215,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Synnytyksen aikana");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana5.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(4, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage4(); }
@@ -206,6 +234,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Synnytyksen aikana");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana6.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(5, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage5(); }
@@ -221,6 +253,7 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Synnytyksen aikana");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana7.txt"));
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { aikanaPage6(); }
@@ -235,10 +268,39 @@ public class ImageTextActivity extends AppCompatActivity {
         });
     }
 
+    //Synnytyksen jalkeen kuva sivu
+    private void tarkistusPage4() {
+        title.setText("Synnytyksen Jalkeen 4");
+        TextToChange.setText(textViewContent("synnytyksenJalkeen4.txt"));
+        imageView.setImageBitmap(updateImage("image1.jpg"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(0, false);
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Tarkistus3";
+                textViewActivity(v);
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Tarkistus5";
+                textViewActivity(v);
+            }
+        });
+    }
+
     private void peratilaPage1(){
         title.setText("Perätila");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("peratila1.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(0, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -257,6 +319,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Perätila");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("peratila2.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(1, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { peratilaPage1();}
@@ -272,6 +338,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Perätila");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("peratila3.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(2, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { peratilaPage2();}
@@ -287,6 +357,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Perätila");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("peratila4.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(3, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { peratilaPage3();}
@@ -303,6 +377,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Perätila");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("peratila5.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(4, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { peratilaPage4();}
@@ -321,6 +399,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Hartiadystokia");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia1.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(0, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -339,6 +421,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Hartiadystokia");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia2.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(1, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { hartiadystokiaPage1();}
@@ -354,6 +440,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Hartiadystokia");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia3.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(2, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { hartiadystokiaPage2();}
@@ -369,6 +459,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Hartiadystokia");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia4.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(3, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { hartiadystokiaPage3();}
@@ -384,6 +478,10 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Hartiadystokia");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia5.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(4, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { hartiadystokiaPage4();}
@@ -403,6 +501,9 @@ public class ImageTextActivity extends AppCompatActivity {
         title.setText("Napanuoran esiinluiskahdus");
         imageView.setImageBitmap(updateImage("image1.jpg"));
         TextToChange.setText(textViewContent("napanuora3.txt"));
+
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(2, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
