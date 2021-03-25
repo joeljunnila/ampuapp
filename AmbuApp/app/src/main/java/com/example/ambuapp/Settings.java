@@ -47,7 +47,6 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         rightArrow = findViewById(R.id.rightArrow);
         rightArrow.setVisibility(View.INVISIBLE);
 
-
         //otetaan entinen activityName talteen, jotta voidaan palata sinne paluu-nuolesta
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
@@ -197,7 +196,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                 textActivity.textSize = 30;
                 ImageTextActivity.textSize = 30;
                 textView2.setTextSize(30);
-                // Whatever you want to happen when the thrid item gets selected
+                // Whatever you want to happen when the third item gets selected
                 break;
         }
     }
