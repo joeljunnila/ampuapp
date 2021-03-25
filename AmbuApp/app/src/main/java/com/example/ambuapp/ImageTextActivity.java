@@ -36,7 +36,6 @@ public class ImageTextActivity extends AppCompatActivity {
 
     String activityName;
     String previousActivityName;
-    StringBuilder sb = new StringBuilder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

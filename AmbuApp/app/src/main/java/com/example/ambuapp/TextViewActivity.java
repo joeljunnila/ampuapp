@@ -37,7 +37,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     String activityName;
     String previousActivityName;
-    StringBuilder sb = new StringBuilder();
 
     Settings settingsObj = new Settings();
 
