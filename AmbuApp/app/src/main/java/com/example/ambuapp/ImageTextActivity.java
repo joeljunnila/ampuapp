@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.ImageButton;
@@ -26,6 +27,7 @@ public class ImageTextActivity extends AppCompatActivity {
     ImageButton homeButton;
     ImageButton rightArrow;
     ImageButton leftArrow;
+    ImageView imageView;
 
     TextView TextToChange;
     TextView title;
@@ -47,6 +49,7 @@ public class ImageTextActivity extends AppCompatActivity {
         TextToChange = findViewById(R.id.textViewSA1);
         TextToChange.setTextSize(textSize);
         title = findViewById(R.id.title);
+        imageView = findViewById(R.id.imageView);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -427,10 +430,17 @@ public class ImageTextActivity extends AppCompatActivity {
         return text.toString();
     }
 
-    public void updateImage() { // tää on vaa referenssi
-        String path = Environment.getExternalStorageDirectory() + "/AmbuApp/image2.jpg";
-        Bitmap bitmap = BitmapFactory.decodeFile(path);
-        homeButton.setImageBitmap(bitmap);
+    public Bitmap updateImage(String fileName) { // tää on vaa referenssi
+        File imgDir = new File (Environment.getExternalStorageDirectory() + "/AmbuApp/Images");
+        File file = new File(imgDir, fileName);
+
+        if (file.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(String.valueOf(file));
+            return bitmap;
+        } else {
+            Log.d("test", "Error: File not found");
+            return null;
+        }
     }
 
     //Päävalikkoon palaamisen funktio

@@ -15,12 +15,11 @@
         android:layout_height="45dp" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:src="@mipmap/ohje" />
+        android:layout_height="120dp" />
 
     <TextView
-
         android:id="@+id/textViewSA1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
