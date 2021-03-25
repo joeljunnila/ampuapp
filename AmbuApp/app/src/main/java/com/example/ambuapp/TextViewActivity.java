@@ -1,8 +1,10 @@
 package com.example.ambuapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,14 +15,17 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+
+import com.shuhart.stepview.StepView;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.StringBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.example.*;
 
 public class TextViewActivity extends AppCompatActivity {
     ImageButton homeButton;
@@ -28,6 +33,8 @@ public class TextViewActivity extends AppCompatActivity {
     TextView textView;
     ImageButton rightArrow;
     ImageButton leftArrow;
+    StepView stepView;
+
     String activityName;
     String previousActivityName;
     StringBuilder sb = new StringBuilder();
@@ -45,6 +52,7 @@ public class TextViewActivity extends AppCompatActivity {
         textView.setTextSize(textSize);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
+        stepView = findViewById(R.id.stepView);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +137,9 @@ public class TextViewActivity extends AppCompatActivity {
     private void valmistautuminenPage1() {
         textView.setText(textViewContent("valmistautuminen1.txt"));
 
+        stepView.getState().stepsNumber(3).commit();
+        stepView.go(0, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,6 +159,9 @@ public class TextViewActivity extends AppCompatActivity {
     private void valmistautuminenPage2() {
         textView.setText(textViewContent("valmistautuminen2.txt"));
 
+        stepView.getState().stepsNumber(3).commit();
+        stepView.go(1, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,6 +179,9 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void valmistautuminenPage3() {
         textView.setText(textViewContent("valmistautuminen3.txt"));
+
+        stepView.getState().stepsNumber(3).commit();
+        stepView.go(2, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,6 +202,9 @@ public class TextViewActivity extends AppCompatActivity {
     private void tarkistusPage1() {
         textView.setText(textViewContent("synnytyksenJalkeen1.txt"));
 
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(0, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -204,6 +224,9 @@ public class TextViewActivity extends AppCompatActivity {
     private void tarkistusPage2() {
         textView.setText(textViewContent("synnytyksenJalkeen2.txt"));
 
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(1, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -221,6 +244,9 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage3() {
         textView.setText(textViewContent("synnytyksenJalkeen3.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(2, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -240,6 +266,9 @@ public class TextViewActivity extends AppCompatActivity {
     private void tarkistusPage4() {
         textView.setText(textViewContent("synnytyksenJalkeen4.txt"));
 
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(3, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -257,6 +286,9 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage5() {
         textView.setText(textViewContent("synnytyksenJalkeen5.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(4, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -278,6 +310,9 @@ public class TextViewActivity extends AppCompatActivity {
         title.setText("Napanuoran esiinluiskahdus");
         textView.setText(textViewContent("napanuora1.txt"));
 
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(0, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -295,6 +330,9 @@ public class TextViewActivity extends AppCompatActivity {
     private void napanuoraPage2() {
         title.setText("Napanuoran esiinluiskahdus");
         textView.setText(textViewContent("napanuora2.txt"));
+
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(1, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -315,6 +353,9 @@ public class TextViewActivity extends AppCompatActivity {
         title.setText("Napanuoran esiinluiskahdus");
         textView.setText(textViewContent("napanuora4.txt"));
 
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(3, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -327,7 +368,7 @@ public class TextViewActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Home";
+                activityName = "Erikoistilanteet";
                 menuActivity(v);
             }
         });
