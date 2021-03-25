@@ -133,16 +133,11 @@ public class TextViewActivity extends AppCompatActivity {
         });
     }
 
-
     private void valmistautuminenPage1() {
         textView.setText(textViewContent("valmistautuminen1.txt"));
 
-        stepView.getState()
-                .stepsNumber(6)
-                .commit();
-
-        //stepView.done(true);
-        stepView.go(3, false);
+        stepView.getState().stepsNumber(3).commit();
+        stepView.go(0, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +158,9 @@ public class TextViewActivity extends AppCompatActivity {
     private void valmistautuminenPage2() {
         textView.setText(textViewContent("valmistautuminen2.txt"));
 
+        stepView.getState().stepsNumber(3).commit();
+        stepView.go(1, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,6 +178,9 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void valmistautuminenPage3() {
         textView.setText(textViewContent("valmistautuminen3.txt"));
+
+        stepView.getState().stepsNumber(3).commit();
+        stepView.go(2, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,6 +201,9 @@ public class TextViewActivity extends AppCompatActivity {
     private void tarkistusPage1() {
         textView.setText(textViewContent("synnytyksenJalkeen1.txt"));
 
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(0, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,6 +223,9 @@ public class TextViewActivity extends AppCompatActivity {
     private void tarkistusPage2() {
         textView.setText(textViewContent("synnytyksenJalkeen2.txt"));
 
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(1, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -236,6 +243,9 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage3() {
         textView.setText(textViewContent("synnytyksenJalkeen3.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(2, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,6 +265,9 @@ public class TextViewActivity extends AppCompatActivity {
     private void tarkistusPage4() {
         textView.setText(textViewContent("synnytyksenJalkeen4.txt"));
 
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(3, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -272,6 +285,9 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void tarkistusPage5() {
         textView.setText(textViewContent("synnytyksenJalkeen5.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(4, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -293,6 +309,9 @@ public class TextViewActivity extends AppCompatActivity {
         title.setText("Napanuoran esiinluiskahdus");
         textView.setText(textViewContent("napanuora1.txt"));
 
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(0, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -310,6 +329,9 @@ public class TextViewActivity extends AppCompatActivity {
     private void napanuoraPage2() {
         title.setText("Napanuoran esiinluiskahdus");
         textView.setText(textViewContent("napanuora2.txt"));
+
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(1, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -329,6 +351,9 @@ public class TextViewActivity extends AppCompatActivity {
     private void napanuoraPage4() {
         title.setText("Napanuoran esiinluiskahdus");
         textView.setText(textViewContent("napanuora4.txt"));
+
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(3, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
