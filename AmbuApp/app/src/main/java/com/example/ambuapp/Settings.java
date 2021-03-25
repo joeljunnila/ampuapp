@@ -47,6 +47,8 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         rightArrow = findViewById(R.id.rightArrow);
         rightArrow.setVisibility(View.INVISIBLE);
 
+
+        //otetaan entinen activityName talteen, jotta voidaan palata sinne paluu-nuolesta
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             previousActivityName = extras.getString("previousActivityName");
@@ -60,6 +62,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
             }
         });
 
+        //vaihtoehdot palautumissivulle
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,6 +119,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         dropdown.setOnItemSelectedListener(this);
     }
 
+    //päivitetään materiaalit sovellukseen
     public void update(View v) {
         myFirebase = new MyFirebase();
         myFirebaseThread = new Thread(myFirebase);

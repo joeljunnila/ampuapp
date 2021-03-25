@@ -43,7 +43,6 @@ public class TextViewActivity extends AppCompatActivity {
         title = findViewById(R.id.title);
         textView = findViewById(R.id.content);
         textView.setTextSize(textSize);
-        Log.d("test", textSize.toString());
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
 
@@ -126,7 +125,7 @@ public class TextViewActivity extends AppCompatActivity {
         });
     }
 
-
+//haetaan materiaalit ja activityName valitun sivun mukaan
     private void valmistautuminenPage1() {
         textView.setText(textViewContent("valmistautuminen1.txt"));
 
