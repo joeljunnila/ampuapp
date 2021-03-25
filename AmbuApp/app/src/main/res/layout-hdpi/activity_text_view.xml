@@ -16,7 +16,7 @@
         android:padding="15dp"
         android:layout_height="300dp"
         android:textAlignment="center"
-        android:textSize="11sp"/>
+        android:textSize="12sp"/>
 
     <com.shuhart.stepview.StepView
         android:id="@+id/stepView"
