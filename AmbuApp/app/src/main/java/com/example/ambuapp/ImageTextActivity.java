@@ -464,7 +464,7 @@ public class ImageTextActivity extends AppCompatActivity {
         }
     }
 
-    //Päävalikkoon palaamisen funktio
+    //Päävalikkoon palaamisen funktio ja funktiot muihin näkymiin
     protected void menuActivity(View v){
         Intent intent = new Intent(this, MenuActivity.class);
         intent.putExtra("ActivityName", activityName);
