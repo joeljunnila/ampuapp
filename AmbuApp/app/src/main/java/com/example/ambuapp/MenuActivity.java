@@ -7,22 +7,17 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
-
-import java.io.File;
+import com.shuhart.stepview.StepView;
 
 public class MenuActivity extends AppCompatActivity {
     ImageButton homeButton;
@@ -38,8 +33,6 @@ public class MenuActivity extends AppCompatActivity {
     String activityName = "Home";
     String previousActivityName;
     boolean permissionGranted = false;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,32 +112,32 @@ public class MenuActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valmistautuminenPage();
                 activityName = "Valmistautuminen";
+                valmistautuminenPage();
             }
         });
 
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                synnytysvaiheetPage();
                 activityName = "Synnytysvaiheet";
+                synnytysvaiheetPage();
             }
         });
 
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tarkistusPage();
                 activityName = "Tarkistus";
+                tarkistusPage();
             }
         });
 
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                erikoistilanteetPage();
                 activityName = "Erikoistilanteet";
+                erikoistilanteetPage();
             }
         });
     }

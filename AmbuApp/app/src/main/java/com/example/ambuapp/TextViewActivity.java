@@ -1,8 +1,10 @@
 package com.example.ambuapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,14 +15,17 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+
+import com.shuhart.stepview.StepView;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.StringBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.example.*;
 
 public class TextViewActivity extends AppCompatActivity {
     ImageButton homeButton;
@@ -28,7 +33,7 @@ public class TextViewActivity extends AppCompatActivity {
     TextView textView;
     ImageButton rightArrow;
     ImageButton leftArrow;
-
+    StepView stepView;
 
     String activityName;
     String previousActivityName;
@@ -47,6 +52,7 @@ public class TextViewActivity extends AppCompatActivity {
         textView.setTextSize(settingsObj.textSize);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
+        stepView = findViewById(R.id.stepView);
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +136,13 @@ public class TextViewActivity extends AppCompatActivity {
 
     private void valmistautuminenPage1() {
         textView.setText(textViewContent("valmistautuminen1.txt"));
+
+        stepView.getState()
+                .stepsNumber(6)
+                .commit();
+
+        //stepView.done(true);
+        stepView.go(3, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
