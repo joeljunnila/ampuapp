@@ -334,7 +334,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus4";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 

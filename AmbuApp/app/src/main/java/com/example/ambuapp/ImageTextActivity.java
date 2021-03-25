@@ -37,6 +37,8 @@ public class ImageTextActivity extends AppCompatActivity {
     String activityName;
     String previousActivityName;
 
+    public static Integer textSize = 20;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imageView);
         TextToChange = findViewById(R.id.textViewSA1);
+        TextToChange.setTextSize(textSize);
         title = findViewById(R.id.title);
         stepView = findViewById(R.id.stepView);
 
@@ -122,6 +125,8 @@ public class ImageTextActivity extends AppCompatActivity {
             case "Napanuora3":
                 napanuoraPage3();
                 break;
+            case "Tarkistus4":
+                tarkistusPage4();
         }
     }
 
@@ -258,6 +263,31 @@ public class ImageTextActivity extends AppCompatActivity {
             public void onClick(View v) {
                 activityName ="Home";
                 menuActivity(v);
+            }
+        });
+    }
+
+    //Synnytyksen jalkeen kuva sivu
+    private void tarkistusPage4() {
+        title.setText("Synnytyksen Jalkeen 4");
+        TextToChange.setText(textViewContent("synnytyksenJalkeen4.txt"));
+        imageView.setImageBitmap(updateImage("image1.jpg"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(0, false);
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Tarkistus3";
+                textViewActivity(v);
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Tarkistus5";
+                textViewActivity(v);
             }
         });
     }

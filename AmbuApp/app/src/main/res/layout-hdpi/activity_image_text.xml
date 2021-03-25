@@ -18,25 +18,22 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        />
+        android:layout_height="120dp" />
 
     <TextView
         android:id="@+id/textViewSA1"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:padding="15dp"
-        android:textAlignment="center"
-        android:textSize="15.5dp"
-        android:text ="Välilihan repeäminen estetään tukemalla sitä toisen kämmenellä,
-peukalo ja etusormi kurovat välilihaan joustoa.
-Samalla toisella kädellä kontrolloidaan pään syntymistä."/>
+        android:textAlignment="center" />
 
     <com.shuhart.stepview.StepView
         android:id="@+id/stepView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="100dp"
 
         app:sv_stepViewStyle="@style/StepView"
         app:sv_animationType="None"
@@ -46,7 +43,7 @@ Samalla toisella kädellä kontrolloidaan pään syntymistä."/>
 
         app:sv_stepPadding="0dp"
 
-        app:sv_selectedCircleColor="@color/teal_700"
+        app:sv_selectedCircleColor="@color/secondaryColor"
         app:sv_selectedStepNumberColor="@color/primaryColor"
 
         app:sv_nextStepCircleEnabled="true"

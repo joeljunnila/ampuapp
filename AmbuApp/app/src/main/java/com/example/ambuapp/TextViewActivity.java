@@ -38,7 +38,7 @@ public class TextViewActivity extends AppCompatActivity {
     String activityName;
     String previousActivityName;
 
-    Settings settingsObj = new Settings();
+    public static Integer textSize = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class TextViewActivity extends AppCompatActivity {
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
         textView = findViewById(R.id.content);
-        textView.setTextSize(settingsObj.textSize);
+        textView.setTextSize(textSize);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
         stepView = findViewById(R.id.stepView);
@@ -84,9 +84,6 @@ public class TextViewActivity extends AppCompatActivity {
                 break;
             case "Tarkistus3":
                 tarkistusPage3();
-                break;
-            case "Tarkistus4":
-                tarkistusPage4();
                 break;
             case "Tarkistus5":
                 tarkistusPage5();
@@ -132,6 +129,7 @@ public class TextViewActivity extends AppCompatActivity {
         });
     }
 
+//haetaan materiaalit ja activityName valitun sivun mukaan
     private void valmistautuminenPage1() {
         textView.setText(textViewContent("valmistautuminen1.txt"));
 
@@ -256,31 +254,12 @@ public class TextViewActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tarkistusPage4();
+                activityName="Tarkistus4";
+                imageTextActivity(v);
             }
         });
     }
 
-    private void tarkistusPage4() {
-        textView.setText(textViewContent("synnytyksenJalkeen4.txt"));
-
-        stepView.getState().stepsNumber(5).commit();
-        stepView.go(3, false);
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tarkistusPage3();
-            }
-        });
-
-        rightArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tarkistusPage5();
-            }
-        });
-    }
 
     private void tarkistusPage5() {
         textView.setText(textViewContent("synnytyksenJalkeen5.txt"));
@@ -291,7 +270,8 @@ public class TextViewActivity extends AppCompatActivity {
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tarkistusPage4();
+                activityName="Tarkistus4";
+                imageTextActivity(v);
             }
         });
 
@@ -431,7 +411,6 @@ public class TextViewActivity extends AppCompatActivity {
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.popup_menu, popup.getMenu());
         popup.show();
-
 
         // Set up a click listener to handle when menu items are clicked
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()  {
