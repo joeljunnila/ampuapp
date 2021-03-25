@@ -8,6 +8,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+
+import com.shuhart.stepview.StepView;
 
 public class MenuActivity extends AppCompatActivity {
     ImageButton homeButton;
@@ -30,8 +33,6 @@ public class MenuActivity extends AppCompatActivity {
     String activityName = "Home";
     String previousActivityName;
     boolean permissionGranted = false;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
