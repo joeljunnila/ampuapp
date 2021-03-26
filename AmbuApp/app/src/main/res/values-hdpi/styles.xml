@@ -2,16 +2,16 @@
 <resources>
     <style name="myButtonStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:padding">5dp</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginRight">10dp</item>
-        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
         <item name="backgroundTint">@color/secondaryColor</item>
         <item name="android:textColor">@color/buttonTextColor</item>
         <item name="strokeWidth">2dp</item>
-        <item name="cornerRadius">10dp</item>
+        <item name="cornerRadius">8dp</item>
     </style>
 
     <style name="arrowButtonStyle">
@@ -25,7 +25,7 @@
     <style name="myTextViewStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">20dp</item>
+        <item name="android:padding">15dp</item>
 
     </style>
 </resources>

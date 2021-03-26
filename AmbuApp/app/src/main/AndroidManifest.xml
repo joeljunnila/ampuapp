@@ -3,6 +3,7 @@
     package="com.example.ambuapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -12,14 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AmbuApp">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Settings" />
+        <activity android:name=".MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".KuvaTekstiActivity" />
+        <activity android:name=".ImageTextActivity" />
         <activity android:name=".TextViewActivity" />
     </application>
 </manifest>
