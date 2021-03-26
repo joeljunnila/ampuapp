@@ -16,8 +16,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-
-import com.shuhart.stepview.StepView;
+import android.widget.Toast;
 
 public class MenuActivity extends AppCompatActivity {
     ImageButton homeButton;
@@ -32,27 +31,11 @@ public class MenuActivity extends AppCompatActivity {
     ImageButton rightArrow;
     String activityName = "Home";
     String previousActivityName;
-    boolean permissionGranted = false;
-
-    MyFirebase myFirebase;
-    Thread myFirebaseThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-        if(!permissionGranted) {
-            if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED ||
-                    ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 1);
-                //myFirebase = new MyFirebase();
-                //myFirebaseThread = new Thread(myFirebase);
-                //myFirebaseThread.start();
-            } else {
-                permissionGranted = true;
-            }
-        }
 
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);

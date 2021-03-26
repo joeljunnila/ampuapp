@@ -2,6 +2,7 @@ package com.example.ambuapp;
 
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -11,11 +12,19 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class MyFirebase implements Runnable {
-    boolean firebase = false;
+    short firebase = 0;
 
     @Override
     public void run() {
@@ -131,7 +140,7 @@ public class MyFirebase implements Runnable {
             e.printStackTrace();
         }
 
-        if(firebase) {
+        if(firebase == 1) {
             // temporary for better workflow
             deleteFilesFromDir(ambuAppImgDir);
             deleteFilesFromDir(ambuAppTxtDir);
@@ -147,6 +156,7 @@ public class MyFirebase implements Runnable {
             Log.d("test", "Updated succesfully!");
             Log.d("test", "Image files: " + imageRefs.size() + "/" + imageFileNames.size());
             Log.d("test", "Text files: " + txtRefs.size() + "/" + txtFileNames.size());
+            firebase = 2;
         } else {
             Log.d("test", "Firebase Error!");
         }
@@ -159,14 +169,14 @@ public class MyFirebase implements Runnable {
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 //Toast.makeText(getApplicationContext(), "Updated succesfully!", Toast.LENGTH_LONG).show();
                 //Log.d("test", "Succesfully connected to the Firebase");
-                firebase = true;
+                firebase = 1;
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 //Toast.makeText(getApplicationContext(), "Update failed!", Toast.LENGTH_LONG).show();
                 //Log.d("test", "Unexpected error");
-                firebase = false;
+                firebase = 0;
             }
         });
     }
