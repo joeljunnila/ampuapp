@@ -51,10 +51,10 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     TextViewActivity textActivity = new TextViewActivity();
 
     StorageReference storageRef;
-    ArrayList<StorageReference> imageRefs = new ArrayList<>();
     ArrayList<String> imageFileNames = new ArrayList<>();
-    ArrayList<StorageReference> txtRefs = new ArrayList<>();
     ArrayList<String> txtFileNames = new ArrayList<>();
+    ArrayList<StorageReference> imageRefs = new ArrayList<>();
+    ArrayList<StorageReference> txtRefs = new ArrayList<>();
     int firebaseFileCounter = 0;
 
     @Override
@@ -72,7 +72,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         rightArrow.setVisibility(View.INVISIBLE);
 
         storageRef = FirebaseStorage.getInstance().getReference();
-        addFirebaseFileRefs();
+        addFileNames();
 
         //otetaan entinen activityName talteen, jotta voidaan palata sinne paluu-nuolesta
         Bundle extras = getIntent().getExtras();
@@ -247,49 +247,12 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         // TODO Auto-generated method stub
     }
 
-    public void addFirebaseFileRefs() {
-        imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
-        imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
-        imageRefs.add(storageRef.child("kuvat/ohje4.jpg"));
-        imageRefs.add(storageRef.child("kuvat/ohje5.jpg"));
-        imageRefs.add(storageRef.child("kuvat/ohje7.jpg"));
-
+    public void addFileNames() {
         imageFileNames.add("image1.jpg");
         imageFileNames.add("image2.jpg");
         imageFileNames.add("image3.jpg");
         imageFileNames.add("image4.jpg");
         imageFileNames.add("image5.jpg");
-
-        txtRefs.add(storageRef.child("tekstit/hartiadystokia1.txt"));
-        txtRefs.add(storageRef.child("tekstit/hartiadystokia2.txt"));
-        txtRefs.add(storageRef.child("tekstit/hartiadystokia3.txt"));
-        txtRefs.add(storageRef.child("tekstit/hartiadystokia4.txt"));
-        txtRefs.add(storageRef.child("tekstit/hartiadystokia5.txt"));
-        txtRefs.add(storageRef.child("tekstit/napanuora1.txt"));
-        txtRefs.add(storageRef.child("tekstit/napanuora2.txt"));
-        txtRefs.add(storageRef.child("tekstit/napanuora3.txt"));
-        txtRefs.add(storageRef.child("tekstit/napanuora4.txt"));
-        txtRefs.add(storageRef.child("tekstit/peratila1.txt"));
-        txtRefs.add(storageRef.child("tekstit/peratila2.txt"));
-        txtRefs.add(storageRef.child("tekstit/peratila3.txt"));
-        txtRefs.add(storageRef.child("tekstit/peratila4.txt"));
-        txtRefs.add(storageRef.child("tekstit/peratila5.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana1.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana2.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana3.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana4.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana5.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana6.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana7.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen1.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen2.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen3.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen4.txt"));
-        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen5.txt"));
-        txtRefs.add(storageRef.child("tekstit/tietoaSovelluksesta.txt"));
-        txtRefs.add(storageRef.child("tekstit/valmistautuminen1.txt"));
-        txtRefs.add(storageRef.child("tekstit/valmistautuminen2.txt"));
-        txtRefs.add(storageRef.child("tekstit/valmistautuminen3.txt"));
 
         txtFileNames.add("hartiadystokia1.txt");
         txtFileNames.add("hartiadystokia2.txt");
@@ -321,6 +284,43 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         txtFileNames.add("valmistautuminen1.txt");
         txtFileNames.add("valmistautuminen2.txt");
         txtFileNames.add("valmistautuminen3.txt");
+
+        imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje4.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje5.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje7.jpg"));
+
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia1.txt"));
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia2.txt"));
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia3.txt"));
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia4.txt"));
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia5.txt"));
+        txtRefs.add(storageRef.child("tekstit/napanuora1.txt"));
+        txtRefs.add(storageRef.child("tekstit/napanuora2.txt"));
+        txtRefs.add(storageRef.child("tekstit/napanuora3.txt"));
+        txtRefs.add(storageRef.child("tekstit/napanuora4.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila1.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila2.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila3.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila4.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila5.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana1.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana2.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana3.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana4.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana5.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana6.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana7.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen1.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen2.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen3.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen4.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen5.txt"));
+        txtRefs.add(storageRef.child("tekstit/tietoaSovelluksesta.txt"));
+        txtRefs.add(storageRef.child("tekstit/valmistautuminen1.txt"));
+        txtRefs.add(storageRef.child("tekstit/valmistautuminen2.txt"));
+        txtRefs.add(storageRef.child("tekstit/valmistautuminen3.txt"));
     }
 
     public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
