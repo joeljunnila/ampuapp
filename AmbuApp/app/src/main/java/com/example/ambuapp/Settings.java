@@ -48,14 +48,14 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     String previousActivityName;
     String[] items = new String[]{"Pieni", "Keskisuuri", "Suuri"};
 
-    StorageReference storageRef;
     TextViewActivity textActivity = new TextViewActivity();
+
+    StorageReference storageRef;
+    ArrayList<StorageReference> imageRefs = new ArrayList<>();
     ArrayList<String> imageFileNames = new ArrayList<>();
     ArrayList<StorageReference> txtRefs = new ArrayList<>();
     ArrayList<String> txtFileNames = new ArrayList<>();
-
-    ArrayList<StorageReference> imageRefs = new ArrayList<>();
-    static int firebaseFileCounter = 0;
+    int firebaseFileCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +158,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         // print files
         /*String[] files = this.fileList();
         for(String file : files) {
-            Log.d("myFiles", file);
+            Log.d("test", file);
         }*/
     }
 
@@ -167,16 +167,19 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
+
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
+
     public void textViewActivity(View view) {
         Intent intent = new Intent(this, TextViewActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
+
     public void imageTextActivity(View view) {
         Intent intent = new Intent(this, ImageTextActivity.class);
         intent.putExtra("ActivityName", activityName);

@@ -1,5 +1,6 @@
 package com.example.ambuapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -18,6 +19,15 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.util.ArrayList;
+
 public class MenuActivity extends AppCompatActivity {
     ImageButton homeButton;
     TextView title;
@@ -31,6 +41,13 @@ public class MenuActivity extends AppCompatActivity {
     ImageButton rightArrow;
     String activityName = "Home";
     String previousActivityName;
+
+    StorageReference storageRef;
+    ArrayList<StorageReference> imageRefs = new ArrayList<>();
+    ArrayList<String> imageFileNames = new ArrayList<>();
+    ArrayList<StorageReference> txtRefs = new ArrayList<>();
+    ArrayList<String> txtFileNames = new ArrayList<>();
+    int firebaseFileCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +66,8 @@ public class MenuActivity extends AppCompatActivity {
 
         leftArrow = findViewById(R.id.leftArrow);
         rightArrow = findViewById(R.id.rightArrow);
+
+        storageRef = FirebaseStorage.getInstance().getReference();
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
@@ -72,6 +91,115 @@ public class MenuActivity extends AppCompatActivity {
                 erikoistilanteetPage();
                 break;
         }
+
+        String[] files = this.fileList();
+        if(files.length < 10) {
+            //Log.d("test", String.valueOf(files.length));
+            update();
+        }
+    }
+
+    public void update() {
+        imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje4.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje5.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje7.jpg"));
+
+        imageFileNames.add("image1.jpg");
+        imageFileNames.add("image2.jpg");
+        imageFileNames.add("image3.jpg");
+        imageFileNames.add("image4.jpg");
+        imageFileNames.add("image5.jpg");
+
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia1.txt"));
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia2.txt"));
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia3.txt"));
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia4.txt"));
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia5.txt"));
+        txtRefs.add(storageRef.child("tekstit/napanuora1.txt"));
+        txtRefs.add(storageRef.child("tekstit/napanuora2.txt"));
+        txtRefs.add(storageRef.child("tekstit/napanuora3.txt"));
+        txtRefs.add(storageRef.child("tekstit/napanuora4.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila1.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila2.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila3.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila4.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila5.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana1.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana2.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana3.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana4.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana5.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana6.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana7.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen1.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen2.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen3.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen4.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen5.txt"));
+        txtRefs.add(storageRef.child("tekstit/tietoaSovelluksesta.txt"));
+        txtRefs.add(storageRef.child("tekstit/valmistautuminen1.txt"));
+        txtRefs.add(storageRef.child("tekstit/valmistautuminen2.txt"));
+        txtRefs.add(storageRef.child("tekstit/valmistautuminen3.txt"));
+
+        txtFileNames.add("hartiadystokia1.txt");
+        txtFileNames.add("hartiadystokia2.txt");
+        txtFileNames.add("hartiadystokia3.txt");
+        txtFileNames.add("hartiadystokia4.txt");
+        txtFileNames.add("hartiadystokia5.txt");
+        txtFileNames.add("napanuora1.txt");
+        txtFileNames.add("napanuora2.txt");
+        txtFileNames.add("napanuora3.txt");
+        txtFileNames.add("napanuora4.txt");
+        txtFileNames.add("peratila1.txt");
+        txtFileNames.add("peratila2.txt");
+        txtFileNames.add("peratila3.txt");
+        txtFileNames.add("peratila4.txt");
+        txtFileNames.add("peratila5.txt");
+        txtFileNames.add("synnytyksenAikana1.txt");
+        txtFileNames.add("synnytyksenAikana2.txt");
+        txtFileNames.add("synnytyksenAikana3.txt");
+        txtFileNames.add("synnytyksenAikana4.txt");
+        txtFileNames.add("synnytyksenAikana5.txt");
+        txtFileNames.add("synnytyksenAikana6.txt");
+        txtFileNames.add("synnytyksenAikana7.txt");
+        txtFileNames.add("synnytyksenJalkeen1.txt");
+        txtFileNames.add("synnytyksenJalkeen2.txt");
+        txtFileNames.add("synnytyksenJalkeen3.txt");
+        txtFileNames.add("synnytyksenJalkeen4.txt");
+        txtFileNames.add("synnytyksenJalkeen5.txt");
+        txtFileNames.add("tietoaSovelluksesta.txt");
+        txtFileNames.add("valmistautuminen1.txt");
+        txtFileNames.add("valmistautuminen2.txt");
+        txtFileNames.add("valmistautuminen3.txt");
+
+        for(int i=0; i<imageRefs.size(); i++) {
+            downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
+        }
+
+        for(int i=0; i<txtRefs.size(); i++) {
+            downloadFileFromFirebase(txtRefs.get(i), getFilesDir(), txtFileNames.get(i));
+        }
+    }
+
+    public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
+        File file = new File(dir, name);
+        ref.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                firebaseFileCounter++;
+                if(firebaseFileCounter == (imageFileNames.size() + txtFileNames.size())) {
+                    Log.d("test", "Necessary files created");
+                    firebaseFileCounter = 0;
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.d("test", "Firebase error");
+            }
+        });
     }
 
     public void homePage() {
