@@ -340,7 +340,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Toast.makeText(getApplicationContext(), "Update failed!", Toast.LENGTH_LONG).show();
-                Log.d("test", "Firebase error");
+                Log.d("test", "Update failed!");
             }
         });
     }

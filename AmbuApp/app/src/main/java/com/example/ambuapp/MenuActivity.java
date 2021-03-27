@@ -6,8 +6,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
@@ -67,8 +70,6 @@ public class MenuActivity extends AppCompatActivity {
         leftArrow = findViewById(R.id.leftArrow);
         rightArrow = findViewById(R.id.rightArrow);
 
-        storageRef = FirebaseStorage.getInstance().getReference();
-
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             activityName = extras.getString("ActivityName");
@@ -92,11 +93,28 @@ public class MenuActivity extends AppCompatActivity {
                 break;
         }
 
+        // lataa tarvittavat tiedostot firebasesta jos niitä ei ole olemassa
         String[] files = this.fileList();
         if(files.length < 10) {
             //Log.d("test", String.valueOf(files.length));
-            update();
+
+            // if network && firebase
+            if(isNetworkAvailable()) {
+                storageRef = FirebaseStorage.getInstance().getReference();
+                update();
+
+                files = this.fileList();
+                if(files.length < 10) {
+                    // firebase failed, so use default files instead
+                }
+            }
         }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     public void update() {
