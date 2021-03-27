@@ -147,15 +147,19 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
 
     //päivitetään materiaalit sovellukseen
     public void update(View v) {
-        updateFilesFromFirebase();
-
-        // print files
-        String[] files = this.fileList();
-        for(String file : files) {
-            Log.d("myFiles", file);
+        for(int i=0; i<imageRefs.size(); i++) {
+            downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
         }
 
-        textView2.setText("Updated");
+        for(int i=0; i<txtRefs.size(); i++) {
+            downloadFileFromFirebase(txtRefs.get(i), getFilesDir(), txtFileNames.get(i));
+        }
+
+        // print files
+        /*String[] files = this.fileList();
+        for(String file : files) {
+            Log.d("myFiles", file);
+        }*/
     }
 
     public void menuActivity(View v) {
@@ -314,16 +318,6 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         txtFileNames.add("valmistautuminen3.txt");
     }
 
-    public void updateFilesFromFirebase() {
-        for(int i=0; i<imageRefs.size(); i++) {
-            downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
-        }
-
-        for(int i=0; i<txtRefs.size(); i++) {
-            downloadFileFromFirebase(txtRefs.get(i), getFilesDir(), txtFileNames.get(i));
-        }
-    }
-
     public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
         File file = new File(dir, name);
         ref.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
@@ -331,9 +325,10 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 firebaseFileCounter++;
                 if(firebaseFileCounter == (imageFileNames.size() + txtFileNames.size())) {
+                    textView2.setText("Updated");
                     Toast.makeText(getApplicationContext(), "Updated succesfully!", Toast.LENGTH_LONG).show();
                     Log.d("test", "Updated succesfully!");
-                    Log.d("test", firebaseFileCounter + "/" + (imageFileNames.size() + txtFileNames.size()));
+                    //Log.d("test", "Files downloaded: " + firebaseFileCounter + "/" + (imageFileNames.size() + txtFileNames.size()));
                     firebaseFileCounter = 0;
                 }
             }
@@ -344,57 +339,5 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                 Log.d("test", "Firebase error");
             }
         });
-    }
-
-    public void firebaseInput() {
-        String text = "hello world!";
-        FileOutputStream fos = null;
-        try {
-            fos = openFileOutput("test.txt", MODE_PRIVATE);
-            fos.write(text.getBytes());
-
-            Log.d("test", "save: " + getFilesDir() + "test.txt");
-            Toast.makeText(this, "save: " + getFilesDir() + " !! ", Toast.LENGTH_SHORT).show();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
-    public void firebaseOutput() {
-        FileInputStream fis = null;
-        try {
-            fis = openFileInput("test.txt");
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(isr);
-            StringBuilder sb = new StringBuilder();
-            String text;
-
-            while((text = br.readLine()) != null) {
-                sb.append(text).append("\n");
-                Log.d("test", "asd: " + text);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (fis != null) {
-                try {
-                    fis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
     }
 }
