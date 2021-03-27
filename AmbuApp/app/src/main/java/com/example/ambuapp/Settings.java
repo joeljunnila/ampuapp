@@ -31,7 +31,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Settings extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     ImageButton homeButton;
@@ -52,8 +54,8 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     ArrayList<StorageReference> txtRefs = new ArrayList<>();
     ArrayList<String> txtFileNames = new ArrayList<>();
 
-    int firebaseFileCounter = 0;
     ArrayList<StorageReference> imageRefs = new ArrayList<>();
+    static int firebaseFileCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,8 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         rightArrow = findViewById(R.id.rightArrow);
         rightArrow.setVisibility(View.INVISIBLE);
 
-        FirebaseStorage.getInstance().getReference();
+        storageRef = FirebaseStorage.getInstance().getReference();
+        addFirebaseFileRefs();
 
         //otetaan entinen activityName talteen, jotta voidaan palata sinne paluu-nuolesta
         Bundle extras = getIntent().getExtras();
@@ -144,7 +147,14 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
 
     //päivitetään materiaalit sovellukseen
     public void update(View v) {
-        firebase();
+        updateFilesFromFirebase();
+
+        // print files
+        String[] files = this.fileList();
+        for(String file : files) {
+            Log.d("myFiles", file);
+        }
+
         textView2.setText("Updated");
     }
 
@@ -228,7 +238,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         // TODO Auto-generated method stub
     }
 
-    public void firebase() {
+    public void addFirebaseFileRefs() {
         imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje4.jpg"));
@@ -302,6 +312,12 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         txtFileNames.add("valmistautuminen1.txt");
         txtFileNames.add("valmistautuminen2.txt");
         txtFileNames.add("valmistautuminen3.txt");
+    }
+
+    public void updateFilesFromFirebase() {
+        for(int i=0; i<imageRefs.size(); i++) {
+            downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
+        }
 
         for(int i=0; i<txtRefs.size(); i++) {
             downloadFileFromFirebase(txtRefs.get(i), getFilesDir(), txtFileNames.get(i));
@@ -309,14 +325,16 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
     public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
-        File imageFile = new File(dir, name);
-        ref.getFile(imageFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+        File file = new File(dir, name);
+        ref.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 firebaseFileCounter++;
                 if(firebaseFileCounter == (imageFileNames.size() + txtFileNames.size())) {
                     Toast.makeText(getApplicationContext(), "Updated succesfully!", Toast.LENGTH_LONG).show();
-                    Log.d("test", "Succesfully connected to the Firebase");
+                    Log.d("test", "Updated succesfully!");
+                    Log.d("test", firebaseFileCounter + "/" + (imageFileNames.size() + txtFileNames.size()));
+                    firebaseFileCounter = 0;
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -328,7 +346,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         });
     }
 
-    public void firebase3() {
+    public void firebaseInput() {
         String text = "hello world!";
         FileOutputStream fos = null;
         try {
@@ -352,7 +370,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         }
     }
 
-    public void firebase2() {
+    public void firebaseOutput() {
         FileInputStream fis = null;
         try {
             fis = openFileInput("test.txt");
