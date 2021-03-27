@@ -31,6 +31,8 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.util.ArrayList;
 
+import static java.lang.Thread.sleep;
+
 public class MenuActivity extends AppCompatActivity {
     ImageButton homeButton;
     TextView title;
@@ -51,6 +53,7 @@ public class MenuActivity extends AppCompatActivity {
     ArrayList<StorageReference> txtRefs = new ArrayList<>();
     ArrayList<String> txtFileNames = new ArrayList<>();
     int firebaseFileCounter = 0;
+    boolean firebaseStatus = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,16 +99,23 @@ public class MenuActivity extends AppCompatActivity {
         // lataa tarvittavat tiedostot firebasesta jos niitä ei ole olemassa
         String[] files = this.fileList();
         if(files.length < 10) {
-            //Log.d("test", String.valueOf(files.length));
-
-            // if network && firebase
             if(isNetworkAvailable()) {
                 storageRef = FirebaseStorage.getInstance().getReference();
-                update();
+                //update();
 
+                // small delay for firebase to upload some files
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // if no files has been downloaded from firebase, use default files instead
                 files = this.fileList();
-                if(files.length < 10) {
-                    // firebase failed, so use default files instead
+                if(files.length < 5) {
+                    // default files script
+
+                    Log.d("test", "here we go");
                 }
             }
         }
@@ -210,7 +220,8 @@ public class MenuActivity extends AppCompatActivity {
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 firebaseFileCounter++;
                 if(firebaseFileCounter == (imageFileNames.size() + txtFileNames.size())) {
-                    Log.d("test", "Necessary files created");
+                    firebaseStatus = true;
+                    Log.d("test", "Necessary files created from firebase");
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
