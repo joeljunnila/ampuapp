@@ -174,6 +174,8 @@ public class MenuActivity extends AppCompatActivity {
         txtFileNames.add("valmistautuminen2.txt");
         txtFileNames.add("valmistautuminen3.txt");
 
+        firebaseFileCounter = 0;
+
         for(int i=0; i<imageRefs.size(); i++) {
             downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
         }
@@ -191,7 +193,6 @@ public class MenuActivity extends AppCompatActivity {
                 firebaseFileCounter++;
                 if(firebaseFileCounter == (imageFileNames.size() + txtFileNames.size())) {
                     Log.d("test", "Necessary files created");
-                    firebaseFileCounter = 0;
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

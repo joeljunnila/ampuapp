@@ -147,6 +147,8 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
 
     //päivitetään materiaalit sovellukseen
     public void update(View v) {
+        firebaseFileCounter = 0;
+
         for(int i=0; i<imageRefs.size(); i++) {
             downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
         }
@@ -332,7 +334,6 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                     Toast.makeText(getApplicationContext(), "Updated succesfully!", Toast.LENGTH_LONG).show();
                     Log.d("test", "Updated succesfully!");
                     //Log.d("test", "Files downloaded: " + firebaseFileCounter + "/" + (imageFileNames.size() + txtFileNames.size()));
-                    firebaseFileCounter = 0;
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
