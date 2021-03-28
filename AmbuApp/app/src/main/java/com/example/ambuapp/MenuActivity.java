@@ -56,7 +56,7 @@ public class MenuActivity extends AppCompatActivity {
     ArrayList<String> txtFileNames = new ArrayList<>();
     ArrayList<StorageReference> imageRefs = new ArrayList<>();
     ArrayList<StorageReference> txtRefs = new ArrayList<>();
-    int firebaseFileCounter = 0;
+    int fileCounter = 0;
     boolean firebaseStatus = false;
 
     @Override
@@ -102,10 +102,12 @@ public class MenuActivity extends AppCompatActivity {
 
         // lataa tarvittavat tiedostot firebasesta jos niitä ei ole olemassa
         String[] files = this.fileList();
-        if(files.length < 10) {
+        if(files.length < 5) {
+            storageRef = FirebaseStorage.getInstance().getReference();
+
             if(isNetworkAvailable()) {
-                storageRef = FirebaseStorage.getInstance().getReference();
-                //update();
+                addFileNames();
+                update();
 
                 // small delay for firebase to upload some files
                 try {
@@ -117,32 +119,47 @@ public class MenuActivity extends AppCompatActivity {
                 // if no files has been downloaded from firebase, use default files instead
                 files = this.fileList();
                 if(files.length < 5) {
-                    useDefaultFiles("ohje.jng");
+                    for(String image : imageFileNames) useAssetFile(image);
+                    for(String text : txtFileNames) useAssetFile(text);
+                    Log.d("test", "Firebase failed!");
+                    Log.d("test", "Necessary files created from assets");
+
+                    // print all files from dir
+//                    fileCounter = 0;
+//                    files = this.fileList();
+//                    for(String file : files) {
+//                        Log.d("files", "fileName: " + file + " " + ++fileCounter + "/" + (fileList().length));
+//                    }
                 }
+            } else {
+                Log.d("test", "No internet connection!");
+                addFileNames();
+                for(String image : imageFileNames) useAssetFile(image);
+                for(String text : txtFileNames) useAssetFile(text);
+                Log.d("test", "Necessary files created from assets");
             }
         }
     }
 
-    public void useDefaultFiles(String fileName) {
-        Log.d("test", "useDefaultFiles");
+    public void useAssetFile(String fileName) {
         AssetManager assetManager = getAssets();
+        InputStream in = null;
+        FileOutputStream out = null;
         try {
-            InputStream in = assetManager.open("data");
-            OutputStream out = new FileOutputStream(getFilesDir());
+            File outFile = new File(getFilesDir(), fileName);
+            in = assetManager.open(fileName);
+            out = new FileOutputStream(outFile);
+
             byte[] buffer = new byte[1024];
-            int read = in.read(buffer);
-            while (read != -1) {
+            int read;
+            while ((read = in.read(buffer)) != -1) {
                 out.write(buffer, 0, read);
-                read = in.read(buffer);
             }
+
+            if(in != null) in.close();
+            if(out != null) out.close();
         } catch (Exception e) {
             e.getMessage();
-        }
-
-        // print all files from dir
-        String[] files = this.fileList();
-        for(String file : files) {
-            Log.d("test", "fileName: " + file);
         }
     }
 
@@ -153,12 +170,12 @@ public class MenuActivity extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-    public void update() {
-        imageFileNames.add("image1.jpg");
-        imageFileNames.add("image2.jpg");
-        imageFileNames.add("image3.jpg");
-        imageFileNames.add("image4.jpg");
-        imageFileNames.add("image5.jpg");
+    public void addFileNames() {
+        imageFileNames.add("ohje.jpg");
+        imageFileNames.add("ohje3.jpg");
+        imageFileNames.add("ohje4.jpg");
+        imageFileNames.add("ohje5.jpg");
+        imageFileNames.add("ohje7.jpg");
 
         txtFileNames.add("hartiadystokia1.txt");
         txtFileNames.add("hartiadystokia2.txt");
@@ -227,8 +244,10 @@ public class MenuActivity extends AppCompatActivity {
         txtRefs.add(storageRef.child("tekstit/valmistautuminen1.txt"));
         txtRefs.add(storageRef.child("tekstit/valmistautuminen2.txt"));
         txtRefs.add(storageRef.child("tekstit/valmistautuminen3.txt"));
+    }
 
-        firebaseFileCounter = 0;
+    public void update() {
+        fileCounter = 0;
 
         for(int i=0; i<imageRefs.size(); i++) {
             downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
@@ -244,8 +263,8 @@ public class MenuActivity extends AppCompatActivity {
         ref.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                firebaseFileCounter++;
-                if(firebaseFileCounter == (imageFileNames.size() + txtFileNames.size())) {
+                fileCounter++;
+                if(fileCounter == (imageFileNames.size() + txtFileNames.size())) {
                     firebaseStatus = true;
                     Log.d("test", "Necessary files created from firebase");
                 }

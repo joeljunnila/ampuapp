@@ -248,11 +248,11 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     }
 
     public void addFileNames() {
-        imageFileNames.add("image1.jpg");
-        imageFileNames.add("image2.jpg");
-        imageFileNames.add("image3.jpg");
-        imageFileNames.add("image4.jpg");
-        imageFileNames.add("image5.jpg");
+        imageFileNames.add("ohje.jpg");
+        imageFileNames.add("ohje3.jpg");
+        imageFileNames.add("ohje4.jpg");
+        imageFileNames.add("ohje5.jpg");
+        imageFileNames.add("ohje7.jpg");
 
         txtFileNames.add("hartiadystokia1.txt");
         txtFileNames.add("hartiadystokia2.txt");

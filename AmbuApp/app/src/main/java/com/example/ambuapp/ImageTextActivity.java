@@ -138,7 +138,7 @@ public class ImageTextActivity extends AppCompatActivity {
     //Funktiot joka sivulle
     private void aikanaPage1() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana1.txt"));
 
         stepView.getState().stepsNumber(6).commit();
@@ -160,7 +160,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage2() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana2.txt"));
 
         stepView.getState().stepsNumber(6).commit();
@@ -179,7 +179,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage3() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana3.txt"));
 
         stepView.getState().stepsNumber(6).commit();
@@ -198,7 +198,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage4() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana4.txt"));
 
         stepView.getState().stepsNumber(6).commit();
@@ -217,7 +217,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage5() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana5.txt"));
 
         stepView.getState().stepsNumber(6).commit();
@@ -236,7 +236,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage6() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana6.txt"));
 
         stepView.getState().stepsNumber(6).commit();
@@ -255,7 +255,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage7() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana7.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -276,7 +276,7 @@ public class ImageTextActivity extends AppCompatActivity {
     private void tarkistusPage4() {
         title.setText("Synnytyksen Jalkeen 4");
         TextToChange.setText(textViewContent("synnytyksenJalkeen4.txt"));
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
 
         stepView.getState().stepsNumber(5).commit();
         stepView.go(4, false);
@@ -299,7 +299,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage1(){
         title.setText("Perätila");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("peratila1.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -321,7 +321,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage2(){
         title.setText("Perätila");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("peratila2.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -340,7 +340,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage3(){
         title.setText("Perätila");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("peratila3.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -359,7 +359,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage4(){
         title.setText("Perätila");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("peratila4.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -379,7 +379,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage5(){
         title.setText("Perätila");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("peratila5.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -401,7 +401,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage1(){
         title.setText("Hartiadystokia");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia1.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -423,7 +423,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage2(){
         title.setText("Hartiadystokia");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia2.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -442,7 +442,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage3(){
         title.setText("Hartiadystokia");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia3.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -461,7 +461,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage4(){
         title.setText("Hartiadystokia");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia4.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -480,7 +480,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage5(){
         title.setText("Hartiadystokia");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia5.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -503,7 +503,7 @@ public class ImageTextActivity extends AppCompatActivity {
     //ainoa napanuorasivu johon tulee kuva?
     private void napanuoraPage3() {
         title.setText("Napanuoran esiinluiskahdus");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("napanuora3.txt"));
 
         stepView.getState().stepsNumber(4).commit();
@@ -538,7 +538,6 @@ public class ImageTextActivity extends AppCompatActivity {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
-
             while ((line = br.readLine()) != null) {
                 sb.append(line).append('\n');
             }
