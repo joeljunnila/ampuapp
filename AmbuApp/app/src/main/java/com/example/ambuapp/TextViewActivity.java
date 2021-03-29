@@ -1,32 +1,40 @@
 package com.example.ambuapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+
+import com.shuhart.stepview.StepView;
+
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.StringBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.example.*;
 
 public class TextViewActivity extends AppCompatActivity {
     ImageButton homeButton;
     TextView title;
-    ImageButton naviconButton;
     TextView textView;
     ImageButton rightArrow;
     ImageButton leftArrow;
+    StepView stepView;
 
     String activityName;
+<<<<<<< HEAD
     StringBuilder sb = new StringBuilder();
 
     int modifier = 0;
@@ -57,6 +65,11 @@ public class TextViewActivity extends AppCompatActivity {
             "Seuraa supistusten väliä \n" +
             "Jos synnyttäjällä tulee paineen tunne tai ponnistamisen pakko matkalla, pysäytä auto \n" +
             "Lääkkeettömiä kivunlievitys keinoja voi kokeilla kuten hierontaa tai lämpöpussia kipukohtiin"};
+=======
+    String previousActivityName;
+
+    public static Integer textSize = 20;
+>>>>>>> origin/Teemu
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +78,11 @@ public class TextViewActivity extends AppCompatActivity {
 
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
-        naviconButton = findViewById(R.id.naviconButton);
         textView = findViewById(R.id.content);
+        //textView.setTextSize(textSize);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
+        stepView = findViewById(R.id.stepView);
 
         textView.setText(valmistautuminen[modifier]);
 
@@ -95,18 +109,6 @@ public class TextViewActivity extends AppCompatActivity {
             case "Valmistautuminen3":
                 valmistautuminenPage3();
                 break;
-            case "Synnytysvaiheet1":
-                synnytysvaiheetPage1();
-                break;
-            case "Synnytysvaiheet2":
-                synnytysvaiheetPage2();
-                break;
-            case "Synnytysvaiheet3":
-                synnytysvaiheetPage3();
-                break;
-            case "Synnytysvaiheet4":
-                synnytysvaiheetPage4();
-                break;
             case "Tarkistus1":
                 tarkistusPage1();
                 break;
@@ -115,9 +117,6 @@ public class TextViewActivity extends AppCompatActivity {
                 break;
             case "Tarkistus3":
                 tarkistusPage3();
-                break;
-            case "Tarkistus4":
-                tarkistusPage4();
                 break;
             case "Tarkistus5":
                 tarkistusPage5();
@@ -147,7 +146,8 @@ public class TextViewActivity extends AppCompatActivity {
                 }
             }
         });
-        rightArrow.setOnClickListener(new View.OnClickListener() {
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (modifier >= 2) {
@@ -161,6 +161,7 @@ public class TextViewActivity extends AppCompatActivity {
                 }
             }
         });
+<<<<<<< HEAD
         switch (activityName) {
             case "Valmistautuminen1":
                 modifier = 0;
@@ -180,10 +181,18 @@ public class TextViewActivity extends AppCompatActivity {
         }*/
     }
 
+=======
+    }
+
+//haetaan materiaalit ja activityName valitun sivun mukaan
+>>>>>>> origin/Teemu
     private void valmistautuminenPage1() {
         title.setText("valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
+
+        stepView.getState().stepsNumber(3).commit();
+        stepView.go(0, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,6 +215,9 @@ public class TextViewActivity extends AppCompatActivity {
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
 
+        stepView.getState().stepsNumber(3).commit();
+        stepView.go(1, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -226,6 +238,7 @@ public class TextViewActivity extends AppCompatActivity {
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
 
+<<<<<<< HEAD
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -308,10 +321,15 @@ public class TextViewActivity extends AppCompatActivity {
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
 
+=======
+        stepView.getState().stepsNumber(3).commit();
+        stepView.go(2, false);
+
+>>>>>>> origin/Teemu
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                synnytysvaiheetPage3();
+                valmistautuminenPage2();
             }
         });
 
@@ -325,10 +343,18 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage1() {
+<<<<<<< HEAD
         title.setText("valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
         textView.setText(changeText("synnytyksenJalkeen1.txt"));
+=======
+        title.setText("Synnytyksen Jälkeen 1");
+        textView.setText(textViewContent("synnytyksenJalkeen1.txt"));
+>>>>>>> origin/Teemu
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(0, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -347,10 +373,18 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage2() {
+<<<<<<< HEAD
         title.setText("valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
         textView.setText(changeText("synnytyksenJalkeen2.txt"));
+=======
+        title.setText("Synnytyksen Jälkeen 2");
+        textView.setText(textViewContent("synnytyksenJalkeen2.txt"));
+>>>>>>> origin/Teemu
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(1, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -368,10 +402,18 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage3() {
+<<<<<<< HEAD
         title.setText("valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
         textView.setText(changeText("synnytyksenJalkeen3.txt"));
+=======
+        title.setText("Synnytyksen Jälkeen 3");
+        textView.setText(textViewContent("synnytyksenJalkeen3.txt"));
+>>>>>>> origin/Teemu
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(2, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -383,11 +425,13 @@ public class TextViewActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tarkistusPage4();
+                activityName="Tarkistus4";
+                imageTextActivity(v);
             }
         });
     }
 
+<<<<<<< HEAD
     private void tarkistusPage4() {
         title.setText("valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
@@ -414,11 +458,21 @@ public class TextViewActivity extends AppCompatActivity {
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
         textView.setText(changeText("synnytyksenJalkeen5.txt"));
+=======
+
+    private void tarkistusPage5() {
+        title.setText("Synnytyksen Jälkeen 5");
+        textView.setText(textViewContent("synnytyksenJalkeen5.txt"));
+>>>>>>> origin/Teemu
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(4, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tarkistusPage4();
+                activityName="Tarkistus4";
+                imageTextActivity(v);
             }
         });
 
@@ -435,6 +489,9 @@ public class TextViewActivity extends AppCompatActivity {
         title.setText("valmistautuminen");
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
+
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(0, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -457,6 +514,9 @@ public class TextViewActivity extends AppCompatActivity {
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
 
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(1, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -477,6 +537,9 @@ public class TextViewActivity extends AppCompatActivity {
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.VISIBLE);
 
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(3, false);
+
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -487,7 +550,7 @@ public class TextViewActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Home";
+                activityName = "Erikoistilanteet";
                 menuActivity(v);
             }
         });
@@ -516,7 +579,11 @@ public class TextViewActivity extends AppCompatActivity {
             }
         }
         catch (IOException e) {
+<<<<<<< HEAD
             // Lisää error viesti lukuvirheen tullessa
+=======
+            Log.d("test", "Error: Cannot access txt files");
+>>>>>>> origin/Teemu
         }
         finally {
             if (lukija != null)
@@ -539,6 +606,27 @@ public class TextViewActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+<<<<<<< HEAD
+=======
+    public void imageTextActivity(View view){
+        Intent intent = new Intent(this, ImageTextActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+
+    public void settingsActivity(View view) {
+        Intent intent = new Intent(this, Settings.class);
+        intent.putExtra("previousActivityName", previousActivityName);
+        startActivity(intent);
+    }
+    
+    public void textViewActivity(View view) {
+        Intent intent = new Intent(this, TextViewActivity.class);
+        intent.putExtra("ActivityName", activityName);
+        startActivity(intent);
+    }
+
+>>>>>>> origin/Teemu
     // Method for popup menu
     public void showPopup(View v) {
         // Create a new popup menu
@@ -555,11 +643,18 @@ public class TextViewActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settings:
+<<<<<<< HEAD
                         //TODO Avaa asetukset sivut
                         return true;
                     case R.id.update:
                         //TODO avaa update sivu
                         return true;
+=======
+                        previousActivityName = activityName;
+                        activityName = "Settings";
+                        settingsActivity(v);
+                        return true;
+>>>>>>> origin/Teemu
                     case R.id.about:
                         //TODO avaa about sivu
                         return true;

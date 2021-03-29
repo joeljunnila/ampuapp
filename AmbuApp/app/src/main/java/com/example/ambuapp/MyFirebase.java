@@ -2,7 +2,6 @@ package com.example.ambuapp;
 
 import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -21,8 +20,11 @@ public class MyFirebase implements Runnable {
 
     @Override
     public void run() {
+<<<<<<< HEAD
         File ambuAppDir = new File(Environment.getExternalStorageDirectory(), "AmbuApp");
         //File rootPath = new File(Environment.getDataDirectory(), "AmbuApp"); // internal storage
+=======
+>>>>>>> origin/Teemu
 
         StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
@@ -30,11 +32,15 @@ public class MyFirebase implements Runnable {
         imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje4.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje5.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje7.jpg"));
 
         ArrayList<String> imageFileNames = new ArrayList<>();
         imageFileNames.add("image1.jpg");
         imageFileNames.add("image2.jpg");
         imageFileNames.add("image3.jpg");
+        imageFileNames.add("image4.jpg");
+        imageFileNames.add("image5.jpg");
 
         downloadFileFromFirebase(imageRefs.get(0), ambuAppDir, imageFileNames.get(0));
 

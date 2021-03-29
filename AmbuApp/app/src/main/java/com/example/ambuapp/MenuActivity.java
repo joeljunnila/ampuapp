@@ -1,9 +1,17 @@
 package com.example.ambuapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+<<<<<<< HEAD
+=======
+import android.content.pm.PackageManager;
+>>>>>>> origin/Teemu
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,11 +20,11 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.shuhart.stepview.StepView;
 
 public class MenuActivity extends AppCompatActivity {
     ImageButton homeButton;
     TextView title;
-    ImageButton naviconButton;
     Button button1;
     Button button2;
     Button button3;
@@ -25,8 +33,10 @@ public class MenuActivity extends AppCompatActivity {
     Button button6;
     ImageButton leftArrow;
     ImageButton rightArrow;
-
     String activityName = "Home";
+    String previousActivityName;
+    boolean permissionGranted = false;
+    
     MyFirebase myFirebase;
     Thread myFirebaseThread;
 
@@ -35,8 +45,21 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        if(!permissionGranted) {
+            if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED ||
+                    ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 1);
+                //myFirebase = new MyFirebase();
+                //myFirebaseThread = new Thread(myFirebase);
+                //myFirebaseThread.start();
+            } else {
+                permissionGranted = true;
+            }
+        }
+
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
+<<<<<<< HEAD
         naviconButton = findViewById(R.id.naviconButton);
 
         /*naviconButton.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +68,8 @@ public class MenuActivity extends AppCompatActivity {
                 settings();
             }
         });*/
+=======
+>>>>>>> origin/Teemu
 
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
@@ -90,49 +115,54 @@ public class MenuActivity extends AppCompatActivity {
 
         title.setText("AmbuApp");
         button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.INVISIBLE);
         button3.setVisibility(View.VISIBLE);
         button4.setVisibility(View.VISIBLE);
         button5.setVisibility(View.VISIBLE);
-        button6.setVisibility(View.INVISIBLE);
+        button6.setVisibility(View.VISIBLE);
 
-        button2.setText("Valmistautuminen");
-        button3.setText("Synnytysvaiheet");
-        button4.setText("Tarkistus");
-        button5.setText("Erikoistilanteet");
+        button3.setText("Valmistautuminen");
+        button4.setText("Synnytysvaiheet");
+        button5.setText("Tarkistus");
+        button6.setText("Erikoistilanteet");
 
         leftArrow.setVisibility(View.INVISIBLE);
         rightArrow.setVisibility(View.INVISIBLE);
 
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                valmistautuminenPage();
-            }
-        });
-
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                synnytysvaiheetPage();
+                activityName = "Valmistautuminen";
+                valmistautuminenPage();
             }
         });
 
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tarkistusPage();
+                activityName = "Synnytysvaiheet";
+                synnytysvaiheetPage();
             }
         });
 
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                activityName = "Tarkistus";
+                tarkistusPage();
+            }
+        });
+
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Erikoistilanteet";
                 erikoistilanteetPage();
             }
         });
     }
 
+<<<<<<< HEAD
     public void settings() {
         button1.setVisibility(View.INVISIBLE);
         button2.setVisibility(View.INVISIBLE);
@@ -156,6 +186,8 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+=======
+>>>>>>> origin/Teemu
     public void valmistautuminenPage() {
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,6 +243,7 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+    //Synnytyksen aikana -valikko valitsee avaimen ImageText -activityyn
     public void synnytysvaiheetPage(){
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -308,7 +341,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus4";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -354,7 +387,144 @@ public class MenuActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 activityName = "KuvaTekstiActivity";
+=======
+                activityName = "Perätila3";
+                imageTextActivity(v);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Perätila4";
+                imageTextActivity(v);
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Perätila5";
+                imageTextActivity(v);
+            }
+        });
+    }
+
+    public void hartiadystokiaPage() {
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+
+        title.setText("Hartiadystokia");
+        button1.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.VISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.VISIBLE);
+        button5.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
+        button1.setText("Hartiadystokia vaihe1");
+        button2.setText("Hartiadystokia vaihe2");
+        button3.setText("Hartiadystokia vaihe3");
+        button4.setText("Hartiadystokia vaihe4");
+        button5.setText("Hartiadystokia vaihe5");
+
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { erikoistilanteetPage();}
+        });
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Hartiadystokia1";
+                imageTextActivity(v);
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Hartiadystokia2";
+                imageTextActivity(v);
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Hartiadystokia3";
+                imageTextActivity(v);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Hartiadystokia4";
+                imageTextActivity(v);
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Hartiadystokia5";
+                imageTextActivity(v);
+            }
+        });
+    }
+
+    public void napanuoraPage() {
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homePage();
+            }
+        });
+
+        title.setText("Napanuoran esiinluiskahdus");
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.VISIBLE);
+        button3.setVisibility(View.VISIBLE);
+        button4.setVisibility(View.VISIBLE);
+        button5.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.INVISIBLE);
+
+        button2.setText("Napanuora vaihe1");
+        button3.setText("Napanuora vaihe2");
+        button4.setText("Napanuora vaihe3");
+        button5.setText("Napanuora vaihe4");
+
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { erikoistilanteetPage();}
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Napanuora1";
+                textViewActivity(v);
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Napanuora2";
+>>>>>>> origin/Teemu
                 textViewActivity(v);
             }
         });
@@ -376,8 +546,14 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+<<<<<<< HEAD
     public void kuvaTekstiActivity(View view){
         Intent intent = new Intent(this, KuvaTekstiActivity.class);
+=======
+    //Avaimen välitys ImageTextiin
+    public void imageTextActivity(View view){
+        Intent intent = new Intent(this, ImageTextActivity.class);
+>>>>>>> origin/Teemu
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
 
@@ -388,6 +564,14 @@ public class MenuActivity extends AppCompatActivity {
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
+<<<<<<< HEAD
+=======
+    public void settingsActivity(View view) {
+        Intent intent = new Intent(this, Settings.class);
+        intent.putExtra("previousActivityName", previousActivityName);
+        startActivity(intent);
+    }
+>>>>>>> origin/Teemu
 
     // Method for popup menu
     public void showPopup(View v) {
@@ -405,11 +589,18 @@ public class MenuActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.settings:
+<<<<<<< HEAD
                         //TODO Avaa asetukset sivut
                         return true;
                     case R.id.update:
                         //TODO avaa update sivu
                         return true;
+=======
+                        previousActivityName = activityName;
+                        activityName = "Settings";
+                        settingsActivity(v);
+                        return true;
+>>>>>>> origin/Teemu
                     case R.id.about:
                         //TODO avaa about sivu
                         return true;
@@ -419,5 +610,4 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
     }
-
 }

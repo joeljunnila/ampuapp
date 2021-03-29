@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TextViewActivity"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:keepScreenOn="true"
-    android:orientation="vertical">
+    tools:context=".ImageTextActivity">
 
     <include layout="@layout/menu_bar" />
 
-    <TextView style="@style/myTextViewStyle"
-        android:id="@+id/content"
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:textSize="25sp"/>
+        android:layout_height="45dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:id="@+id/textViewSA1"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:padding="15dp"
+        android:textAlignment="center"
+        android:textSize="12sp"/>
 
     <com.shuhart.stepview.StepView
         android:id="@+id/stepView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:layout_height="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
@@ -46,5 +57,5 @@
         app:sv_doneCircleRadius="8dp"
         app:sv_doneStepMarkColor="@color/primaryColor" />
 
-    <include layout="@layout/arrows" />
+    <include layout="@layout/arrows"/>
 </LinearLayout>
