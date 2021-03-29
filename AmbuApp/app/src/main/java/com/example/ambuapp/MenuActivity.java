@@ -33,7 +33,7 @@ public class MenuActivity extends AppCompatActivity {
     String activityName = "Home";
     String previousActivityName;
     boolean permissionGranted = false;
-    
+
     MyFirebase myFirebase;
     Thread myFirebaseThread;
 
@@ -182,7 +182,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Valmistautuminen1";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -190,7 +190,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Valmistautuminen2";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -198,7 +198,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Valmistautuminen3";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
     }
@@ -316,7 +316,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus1";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -324,7 +324,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus2";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -332,7 +332,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus3";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -348,7 +348,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus5";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
     }
@@ -572,7 +572,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Napanuora1";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -580,7 +580,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Napanuora2";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -596,7 +596,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Napanuora4";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
     }
@@ -608,11 +608,6 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void textViewActivity(View view) {
-        Intent intent = new Intent(this, TextViewActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
-    }
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
         intent.putExtra("previousActivityName", previousActivityName);
@@ -642,7 +637,7 @@ public class MenuActivity extends AppCompatActivity {
                         return true;
                     case R.id.about:
                         activityName = "tietoaSovelluksesta";
-                        textViewActivity(v);
+                        imageTextActivity(v);
                         return true;
                     default:
                         return false;

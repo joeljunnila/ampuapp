@@ -54,6 +54,7 @@ Onko supistuksia? Milloin ne ovat alkaneet? Kuinka tiheään supistuksia tulee? 
     <string name="synnytyksenAikanaText6">Synnytyksen aikana 6</string>
 
 
+
     <string-array name="navicon">
         <item>Asetukset</item>
         <item>About</item>
