@@ -19,13 +19,24 @@
         <item name="android:layout_height">45dp</item>
         <item name="android:layout_marginBottom">10dp</item>
         <item name="android:layout_gravity">bottom</item>
-        <item name="backgroundTint">@color/white</item>
+        <item name="backgroundTint">@color/backgroundColor</item>
     </style>
 
     <style name="myTextViewStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">15dp</item>
-
+        <item name="android:background">@color/backgroundColor</item>
+        <item name="android:textColor">@color/buttonTextColor</item>
     </style>
+
+
+    <style name="Spinner" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:textColor">@color/buttonTextColor</item>
+        <item name="android:backgroundTint">@color/backgroundColor</item>
+    </style>
+
+
 </resources>
