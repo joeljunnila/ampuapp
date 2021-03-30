@@ -99,9 +99,16 @@ public class MenuActivity extends AppCompatActivity {
                 erikoistilanteetPage();
                 break;
         }
+        
+        Log.d("test", "No internet connection!");
+        storageRef = FirebaseStorage.getInstance().getReference();
+        addFileNames();
+        for(String image : imageFileNames) useAssetFile(image);
+        for(String text : txtFileNames) useAssetFile(text);
+        Log.d("test", "Necessary files created from assets");
 
         // lataa tarvittavat tiedostot firebasesta jos niitä ei ole olemassa
-        String[] files = this.fileList();
+        /*String[] files = this.fileList();
         if(files.length < 5) {
             storageRef = FirebaseStorage.getInstance().getReference();
 
@@ -138,7 +145,7 @@ public class MenuActivity extends AppCompatActivity {
                 for(String text : txtFileNames) useAssetFile(text);
                 Log.d("test", "Necessary files created from assets");
             }
-        }
+        } */
     }
 
     public void useAssetFile(String fileName) {
@@ -368,7 +375,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Valmistautuminen1";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -376,7 +383,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Valmistautuminen2";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -384,7 +391,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Valmistautuminen3";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
     }
@@ -502,7 +509,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus1";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -510,7 +517,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus2";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -518,7 +525,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus3";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -534,7 +541,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus5";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
     }
@@ -758,7 +765,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Napanuora1";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -766,7 +773,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Napanuora2";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -782,7 +789,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Napanuora4";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
     }
@@ -794,11 +801,6 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void textViewActivity(View view) {
-        Intent intent = new Intent(this, TextViewActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
-    }
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
         intent.putExtra("previousActivityName", previousActivityName);
@@ -828,7 +830,7 @@ public class MenuActivity extends AppCompatActivity {
                         return true;
                     case R.id.about:
                         activityName = "tietoaSovelluksesta";
-                        textViewActivity(v);
+                        imageTextActivity(v);
                         return true;
                     default:
                         return false;
