@@ -48,7 +48,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     String previousActivityName;
     String[] items = new String[]{"Pieni", "Keskisuuri", "Suuri"};
 
-    TextViewActivity textActivity = new TextViewActivity();
+    ImageTextActivity imageTextActivity = new ImageTextActivity();
 
     StorageReference storageRef;
     ArrayList<String> imageFileNames = new ArrayList<>();
@@ -95,24 +95,17 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                 if (previousActivityName.equals("Valmistautuminen1") ||
                         previousActivityName.equals("Valmistautuminen2") ||
                         previousActivityName.equals("Valmistautuminen3") ||
-                        previousActivityName.equals("Tarkistus1") ||
-                        previousActivityName.equals("Tarkistus2") ||
-                        previousActivityName.equals("Tarkistus3") ||
-                        previousActivityName.equals("Tarkistus5") ||
-                        previousActivityName.equals("Napanuora1") ||
-                        previousActivityName.equals("Napanuora2") ||
-                        previousActivityName.equals("Napanuora4") ||
-                        previousActivityName.equals("tietoaSovelluksesta")) {
-                    activityName = previousActivityName;
-                    textViewActivity(v);
-                }
-                else if (previousActivityName.equals("Aikana1") ||
+                        previousActivityName.equals("Aikana1") ||
                         previousActivityName.equals("Aikana2") ||
                         previousActivityName.equals("Aikana3") ||
                         previousActivityName.equals("Aikana4") ||
                         previousActivityName.equals("Aikana5") ||
                         previousActivityName.equals("Aikana6") ||
+                        previousActivityName.equals("Tarkistus1") ||
+                        previousActivityName.equals("Tarkistus2") ||
+                        previousActivityName.equals("Tarkistus3") ||
                         previousActivityName.equals("Tarkistus4") ||
+                        previousActivityName.equals("Tarkistus5") ||
                         previousActivityName.equals("Perätila1") ||
                         previousActivityName.equals("Perätila2") ||
                         previousActivityName.equals("Perätila3") ||
@@ -123,7 +116,11 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                         previousActivityName.equals("Hartiadystokia3") ||
                         previousActivityName.equals("Hartiadystokia4") ||
                         previousActivityName.equals("Hartiadystokia5") ||
-                        previousActivityName.equals("Napanuora3")) {
+                        previousActivityName.equals("Napanuora1") ||
+                        previousActivityName.equals("Napanuora2") ||
+                        previousActivityName.equals("Napanuora3") ||
+                        previousActivityName.equals("Napanuora4") ||
+                        previousActivityName.equals("tietoaSovelluksesta")) {
                     activityName = previousActivityName;
                     imageTextActivity(v);
                 }
@@ -176,12 +173,6 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         startActivity(intent);
     }
 
-    public void textViewActivity(View view) {
-        Intent intent = new Intent(this, TextViewActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
-    }
-
     public void imageTextActivity(View view) {
         Intent intent = new Intent(this, ImageTextActivity.class);
         intent.putExtra("ActivityName", activityName);
@@ -209,7 +200,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                         return true;
                     case R.id.about:
                         activityName = "tietoaSovelluksesta";
-                        textViewActivity(v);
+                        imageTextActivity(v);
                         return true;
                     default:
                         return false;
@@ -222,19 +213,16 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
         switch (position) {
             case 0:
-                textActivity.textSize = 10;
                 ImageTextActivity.textSize = 10;
                 textView2.setTextSize(10);
                 // Whatever you want to happen when the first item gets selected
                 break;
             case 1:
-                textActivity.textSize = 18;
                 ImageTextActivity.textSize = 18;
                 textView2.setTextSize(18);
                 // Whatever you want to happen when the second item gets selected
                 break;
             case 2:
-                textActivity.textSize = 30;
                 ImageTextActivity.textSize = 30;
                 textView2.setTextSize(30);
                 // Whatever you want to happen when the third item gets selected
