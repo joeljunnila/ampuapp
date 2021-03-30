@@ -99,9 +99,16 @@ public class MenuActivity extends AppCompatActivity {
                 erikoistilanteetPage();
                 break;
         }
+        
+        Log.d("test", "No internet connection!");
+        storageRef = FirebaseStorage.getInstance().getReference();
+        addFileNames();
+        for(String image : imageFileNames) useAssetFile(image);
+        for(String text : txtFileNames) useAssetFile(text);
+        Log.d("test", "Necessary files created from assets");
 
         // lataa tarvittavat tiedostot firebasesta jos niitä ei ole olemassa
-        String[] files = this.fileList();
+        /*String[] files = this.fileList();
         if(files.length < 5) {
             storageRef = FirebaseStorage.getInstance().getReference();
 
@@ -138,7 +145,7 @@ public class MenuActivity extends AppCompatActivity {
                 for(String text : txtFileNames) useAssetFile(text);
                 Log.d("test", "Necessary files created from assets");
             }
-        }
+        } */
     }
 
     public void useAssetFile(String fileName) {

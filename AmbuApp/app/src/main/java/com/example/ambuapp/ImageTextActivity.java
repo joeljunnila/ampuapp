@@ -478,7 +478,7 @@ public class ImageTextActivity extends AppCompatActivity {
         imageView.setImageBitmap(updateImage("ohje.jpg"));
 
         stepView.getState().stepsNumber(5).commit();
-        stepView.go(4, false);
+        stepView.go(3, false);
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
