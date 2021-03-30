@@ -357,21 +357,20 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private String textViewContent(String fileName) {
-        File txtDir = new File(Environment.getExternalStorageDirectory() + "/AmBuApp/TextFiles");
+        //file directory
+        File txtDir = new File(String.valueOf(getFilesDir()));
 
-        //Get the text file
+        //Get the text file from directory
         File file = new File(txtDir, fileName);
 
         //Read text from file
-        StringBuilder text = new StringBuilder();
-
+        StringBuilder sb = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
 
             while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
+                sb.append(line).append('\n');
             }
             br.close();
         }
@@ -379,7 +378,7 @@ public class TextViewActivity extends AppCompatActivity {
             Log.d("test", "Error: Cannot access txt files");
         }
 
-        return text.toString();
+        return sb.toString();
     }
 
     public void menuActivity(View v) {
