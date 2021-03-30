@@ -28,7 +28,7 @@
         android:layout_weight="5"
         android:padding="15dp"
         android:textAlignment="center"
-        android:textSize="12sp"/>
+        android:textSize="26sp"/>
 
     <com.shuhart.stepview.StepView
         android:id="@+id/stepView"
@@ -41,10 +41,10 @@
 
         app:sv_stepViewStyle="@style/StepView"
         app:sv_animationType="None"
-        app:sv_selectedCircleRadius="8dp"
-        app:sv_stepNumberTextSize="6sp"
+        app:sv_doneCircleRadius="14dp"
+        app:sv_selectedCircleRadius="14dp"
+        app:sv_stepNumberTextSize="16sp"
         app:sv_stepLineWidth="4dp"
-
         app:sv_stepPadding="0dp"
 
         app:sv_selectedCircleColor="@color/secondaryColor"
@@ -57,7 +57,6 @@
 
         app:sv_doneCircleColor="#BDBDBD"
         app:sv_doneStepLineColor="#808080"
-        app:sv_doneCircleRadius="8dp"
         app:sv_doneStepMarkColor="@color/primaryColor" />
 
     <include layout="@layout/arrows"/>

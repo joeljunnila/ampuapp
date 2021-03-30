@@ -29,7 +29,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">15dp</item>
         <item name="android:background">@color/backgroundColor</item>
-        <item name="android:textColor">@color/buttonTextColor</item>
+
     </style>
 
 
