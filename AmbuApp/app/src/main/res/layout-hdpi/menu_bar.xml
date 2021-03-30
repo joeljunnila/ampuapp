@@ -5,14 +5,14 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@color/secondaryColor"
-    android:padding="3dp">
+    android:padding="2dp">
 
     <ImageButton
         android:id="@+id/homeButton"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_vertical"
-        android:layout_weight="0.6"
+        android:layout_weight="1"
         android:src="@drawable/home"
         android:scaleType="fitXY"
         android:backgroundTint="@color/secondaryColor" />
@@ -22,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:layout_weight="2"
+        android:layout_weight="4"
         android:gravity="center"
         android:text="@string/app_name"
         android:textColor="@color/primaryColor"
@@ -32,9 +32,9 @@
     <ImageButton
         android:id="@+id/naviconButton"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_vertical"
-        android:layout_weight="0.6"
+        android:layout_weight="1"
         android:src="@drawable/navicon"
         android:scaleType="fitXY"
         android:backgroundTint="@color/secondaryColor"

@@ -1,5 +1,6 @@
 package com.example.ambuapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +16,24 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Settings extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     ImageButton homeButton;
@@ -30,8 +49,13 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     String[] items = new String[]{"Pieni", "Keskisuuri", "Suuri"};
 
     TextViewActivity textActivity = new TextViewActivity();
-    MyFirebase myFirebase;
-    Thread myFirebaseThread;
+
+    StorageReference storageRef;
+    ArrayList<String> imageFileNames = new ArrayList<>();
+    ArrayList<String> txtFileNames = new ArrayList<>();
+    ArrayList<StorageReference> imageRefs = new ArrayList<>();
+    ArrayList<StorageReference> txtRefs = new ArrayList<>();
+    int firebaseFileCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +71,8 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         rightArrow = findViewById(R.id.rightArrow);
         rightArrow.setVisibility(View.INVISIBLE);
 
+        storageRef = FirebaseStorage.getInstance().getReference();
+        addFileNames();
 
         //otetaan entinen activityName talteen, jotta voidaan palata sinne paluu-nuolesta
         Bundle extras = getIntent().getExtras();
@@ -121,10 +147,21 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
 
     //päivitetään materiaalit sovellukseen
     public void update(View v) {
-        myFirebase = new MyFirebase();
-        myFirebaseThread = new Thread(myFirebase);
-        myFirebaseThread.start();
-        textView2.setText("Updated");
+        firebaseFileCounter = 0;
+
+        for(int i=0; i<imageRefs.size(); i++) {
+            downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
+        }
+
+        for(int i=0; i<txtRefs.size(); i++) {
+            downloadFileFromFirebase(txtRefs.get(i), getFilesDir(), txtFileNames.get(i));
+        }
+
+        // print files
+        /*String[] files = this.fileList();
+        for(String file : files) {
+            Log.d("test", file);
+        }*/
     }
 
     public void menuActivity(View v) {
@@ -132,16 +169,19 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
+
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
+
     public void textViewActivity(View view) {
         Intent intent = new Intent(this, TextViewActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
+
     public void imageTextActivity(View view) {
         Intent intent = new Intent(this, ImageTextActivity.class);
         intent.putExtra("ActivityName", activityName);
@@ -197,7 +237,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                 textActivity.textSize = 30;
                 ImageTextActivity.textSize = 30;
                 textView2.setTextSize(30);
-                // Whatever you want to happen when the thrid item gets selected
+                // Whatever you want to happen when the third item gets selected
                 break;
         }
     }
@@ -205,5 +245,103 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         // TODO Auto-generated method stub
+    }
+
+    public void addFileNames() {
+        imageFileNames.add("ohje.jpg");
+        imageFileNames.add("ohje3.jpg");
+        imageFileNames.add("ohje4.jpg");
+        imageFileNames.add("ohje5.jpg");
+        imageFileNames.add("ohje7.jpg");
+
+        txtFileNames.add("hartiadystokia1.txt");
+        txtFileNames.add("hartiadystokia2.txt");
+        txtFileNames.add("hartiadystokia3.txt");
+        txtFileNames.add("hartiadystokia4.txt");
+        txtFileNames.add("hartiadystokia5.txt");
+        txtFileNames.add("napanuora1.txt");
+        txtFileNames.add("napanuora2.txt");
+        txtFileNames.add("napanuora3.txt");
+        txtFileNames.add("napanuora4.txt");
+        txtFileNames.add("peratila1.txt");
+        txtFileNames.add("peratila2.txt");
+        txtFileNames.add("peratila3.txt");
+        txtFileNames.add("peratila4.txt");
+        txtFileNames.add("peratila5.txt");
+        txtFileNames.add("synnytyksenAikana1.txt");
+        txtFileNames.add("synnytyksenAikana2.txt");
+        txtFileNames.add("synnytyksenAikana3.txt");
+        txtFileNames.add("synnytyksenAikana4.txt");
+        txtFileNames.add("synnytyksenAikana5.txt");
+        txtFileNames.add("synnytyksenAikana6.txt");
+        txtFileNames.add("synnytyksenAikana7.txt");
+        txtFileNames.add("synnytyksenJalkeen1.txt");
+        txtFileNames.add("synnytyksenJalkeen2.txt");
+        txtFileNames.add("synnytyksenJalkeen3.txt");
+        txtFileNames.add("synnytyksenJalkeen4.txt");
+        txtFileNames.add("synnytyksenJalkeen5.txt");
+        txtFileNames.add("tietoaSovelluksesta.txt");
+        txtFileNames.add("valmistautuminen1.txt");
+        txtFileNames.add("valmistautuminen2.txt");
+        txtFileNames.add("valmistautuminen3.txt");
+
+        imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje4.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje5.jpg"));
+        imageRefs.add(storageRef.child("kuvat/ohje7.jpg"));
+
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia1.txt"));
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia2.txt"));
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia3.txt"));
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia4.txt"));
+        txtRefs.add(storageRef.child("tekstit/hartiadystokia5.txt"));
+        txtRefs.add(storageRef.child("tekstit/napanuora1.txt"));
+        txtRefs.add(storageRef.child("tekstit/napanuora2.txt"));
+        txtRefs.add(storageRef.child("tekstit/napanuora3.txt"));
+        txtRefs.add(storageRef.child("tekstit/napanuora4.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila1.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila2.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila3.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila4.txt"));
+        txtRefs.add(storageRef.child("tekstit/peratila5.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana1.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana2.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana3.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana4.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana5.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana6.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenAikana7.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen1.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen2.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen3.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen4.txt"));
+        txtRefs.add(storageRef.child("tekstit/synnytyksenJalkeen5.txt"));
+        txtRefs.add(storageRef.child("tekstit/tietoaSovelluksesta.txt"));
+        txtRefs.add(storageRef.child("tekstit/valmistautuminen1.txt"));
+        txtRefs.add(storageRef.child("tekstit/valmistautuminen2.txt"));
+        txtRefs.add(storageRef.child("tekstit/valmistautuminen3.txt"));
+    }
+
+    public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
+        File file = new File(dir, name);
+        ref.getFile(file).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                firebaseFileCounter++;
+                if(firebaseFileCounter == (imageFileNames.size() + txtFileNames.size())) {
+                    textView2.setText("Updated");
+                    Toast.makeText(getApplicationContext(), "Updated succesfully!", Toast.LENGTH_LONG).show();
+                    Log.d("test", "Updated succesfully!");
+                    //Log.d("test", "Files downloaded: " + firebaseFileCounter + "/" + (imageFileNames.size() + txtFileNames.size()));
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(getApplicationContext(), "Update failed!", Toast.LENGTH_LONG).show();
+                Log.d("test", "Update failed!");
+            }
+        });
     }
 }

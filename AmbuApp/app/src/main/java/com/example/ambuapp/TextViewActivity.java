@@ -37,7 +37,6 @@ public class TextViewActivity extends AppCompatActivity {
 
     String activityName;
     String previousActivityName;
-    StringBuilder sb = new StringBuilder();
 
     public static Integer textSize = 20;
 
@@ -49,7 +48,7 @@ public class TextViewActivity extends AppCompatActivity {
         homeButton = findViewById(R.id.homeButton);
         title = findViewById(R.id.title);
         textView = findViewById(R.id.content);
-        textView.setTextSize(textSize);
+        //textView.setTextSize(textSize);
         rightArrow = findViewById(R.id.rightArrow);
         leftArrow = findViewById(R.id.leftArrow);
         stepView = findViewById(R.id.stepView);
@@ -197,6 +196,7 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage1() {
+        title.setText("Synnytyksen Jälkeen 1");
         textView.setText(textViewContent("synnytyksenJalkeen1.txt"));
         title.setText("Synnytyksen Jalkeen 1");
         stepView.getState().stepsNumber(5).commit();
@@ -219,6 +219,7 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage2() {
+        title.setText("Synnytyksen Jälkeen 2");
         textView.setText(textViewContent("synnytyksenJalkeen2.txt"));
         title.setText("Synnytyksen Jalkeen 2");
         stepView.getState().stepsNumber(5).commit();
@@ -240,6 +241,7 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage3() {
+        title.setText("Synnytyksen Jälkeen 3");
         textView.setText(textViewContent("synnytyksenJalkeen3.txt"));
         title.setText("Synnytyksen Jalkeen 3");
         stepView.getState().stepsNumber(5).commit();
@@ -263,6 +265,7 @@ public class TextViewActivity extends AppCompatActivity {
 
 
     private void tarkistusPage5() {
+        title.setText("Synnytyksen Jälkeen 5");
         textView.setText(textViewContent("synnytyksenJalkeen5.txt"));
         title.setText("Synnytyksen Jalkeen 5");
         stepView.getState().stepsNumber(5).commit();
@@ -354,21 +357,20 @@ public class TextViewActivity extends AppCompatActivity {
     }
 
     private String textViewContent(String fileName) {
-        File txtDir = new File(Environment.getExternalStorageDirectory() + "/AmBuApp/TextFiles");
+        //file directory
+        File txtDir = new File(String.valueOf(getFilesDir()));
 
-        //Get the text file
+        //Get the text file from directory
         File file = new File(txtDir, fileName);
 
         //Read text from file
-        StringBuilder text = new StringBuilder();
-
+        StringBuilder sb = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
 
             while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
+                sb.append(line).append('\n');
             }
             br.close();
         }
@@ -376,7 +378,7 @@ public class TextViewActivity extends AppCompatActivity {
             Log.d("test", "Error: Cannot access txt files");
         }
 
-        return text.toString();
+        return sb.toString();
     }
 
     public void menuActivity(View v) {
