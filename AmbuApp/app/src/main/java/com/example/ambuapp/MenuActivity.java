@@ -99,7 +99,7 @@ public class MenuActivity extends AppCompatActivity {
                 erikoistilanteetPage();
                 break;
         }
-        
+
         Log.d("test", "No internet connection!");
         storageRef = FirebaseStorage.getInstance().getReference();
         addFileNames();
@@ -214,6 +214,9 @@ public class MenuActivity extends AppCompatActivity {
         txtFileNames.add("valmistautuminen1.txt");
         txtFileNames.add("valmistautuminen2.txt");
         txtFileNames.add("valmistautuminen3.txt");
+        txtFileNames.add("valmistautuminen4.txt");
+        txtFileNames.add("valmistautuminen5.txt");
+        txtFileNames.add("valmistautuminen6.txt");
 
         imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
@@ -350,16 +353,19 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         title.setText("Valmistautuminen");
-        button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.INVISIBLE);
+        button1.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.VISIBLE);
         button3.setVisibility(View.VISIBLE);
         button4.setVisibility(View.VISIBLE);
         button5.setVisibility(View.VISIBLE);
-        button6.setVisibility(View.INVISIBLE);
+        button6.setVisibility(View.VISIBLE);
 
-        button3.setText("Valmistautuminen");
-        button4.setText("Kohteessa vai matkaan?");
+        button1.setText("Huomioitavaa");
+        button2.setText("Synnytyksen tilanne");
+        button3.setText("Hoidetaan kohteessa");
+        button4.setText("Milloin matkaan");
         button5.setText("Miten toimitaan");
+        button6.setText("Hyvä tietää");
 
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.INVISIBLE);
@@ -371,7 +377,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activityName = "Valmistautuminen1";
@@ -379,7 +385,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        button4.setOnClickListener(new View.OnClickListener() {
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activityName = "Valmistautuminen2";
@@ -387,10 +393,33 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        button5.setOnClickListener(new View.OnClickListener() {
+        button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activityName = "Valmistautuminen3";
+                imageTextActivity(v);
+            }
+        });
+
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen4";
+                imageTextActivity(v);
+            }
+        });
+
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen5";
+                imageTextActivity(v);
+            }
+        });
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen6";
                 imageTextActivity(v);
             }
         });

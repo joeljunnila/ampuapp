@@ -85,6 +85,15 @@ public class ImageTextActivity extends AppCompatActivity {
             case "Valmistautuminen3":
                 valmistautuminenPage3();
                 break;
+            case "Valmistautuminen4":
+                valmistautuminenPage4();
+                break;
+            case "Valmistautuminen5":
+                valmistautuminenPage5();
+                break;
+            case "Valmistautuminen6":
+                valmistautuminenPage6();
+                break;
             case "Aikana1":
                 aikanaPage1();
                 break;
@@ -198,10 +207,11 @@ public class ImageTextActivity extends AppCompatActivity {
 
     //haetaan materiaalit ja activityName valitun sivun mukaan
     private void valmistautuminenPage1() {
+        title.setText("Huomioitavaa");
         hideImage();
         TextToChange.setText(textViewContent("valmistautuminen1.txt"));
 
-        stepView.getState().stepsNumber(3).commit();
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(0, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -222,9 +232,10 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void valmistautuminenPage2() {
         hideImage();
+        title.setText("Synnytyksen tilanne");
         TextToChange.setText(textViewContent("valmistautuminen2.txt"));
 
-        stepView.getState().stepsNumber(3).commit();
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(1, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -244,15 +255,85 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void valmistautuminenPage3() {
         hideImage();
+        title.setText("Hoidetaan kohteessa");
         TextToChange.setText(textViewContent("valmistautuminen3.txt"));
 
-        stepView.getState().stepsNumber(3).commit();
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(2, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 valmistautuminenPage2();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage4();
+            }
+        });
+    }
+
+    private void valmistautuminenPage4() {
+        hideImage();
+        title.setText("Milloin matkaan");
+        TextToChange.setText(textViewContent("valmistautuminen4.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(3, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage3();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage5();
+            }
+        });
+    }
+
+    private void valmistautuminenPage5() {
+        hideImage();
+        title.setText("Miten toimitaan");
+        TextToChange.setText(textViewContent("valmistautuminen5.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(4, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage4();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage6();
+            }
+        });
+    }
+
+    private void valmistautuminenPage6() {
+        hideImage();
+        title.setText("Hyvä tietää");
+        TextToChange.setText(textViewContent("valmistautuminen6.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(5, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage5();
             }
         });
 
