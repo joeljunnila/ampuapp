@@ -15,11 +15,11 @@
         android:layout_marginEnd="100dp"
         android:src="@drawable/left"
         android:scaleType="fitXY" />
-<Space
+    <Space
     android:layout_width="0dp"
     android:layout_height="80dp"
     android:layout_weight="1"
-    ></Space>
+        />
 
     <ImageButton style="@style/arrowButtonStyle"
         android:layout_width="0dp"
