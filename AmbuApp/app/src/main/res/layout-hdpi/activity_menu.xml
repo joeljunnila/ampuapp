@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--hdpi resoluutiolle mallinnusdokumentit(esim 480x800) -->
+<!--weightSum 10.6 optimal -->
+
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -39,4 +41,5 @@
         android:text="Button 6" />
 
     <include layout="@layout/arrows" />
+
 </LinearLayout>

@@ -15,13 +15,18 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.shuhart.stepview.StepView;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class ImageTextActivity extends AppCompatActivity {
 
@@ -262,7 +267,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage1() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana1.txt"));
 
         stepView.getState().stepsNumber(6).commit();
@@ -284,7 +289,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage2() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana2.txt"));
 
         stepView.getState().stepsNumber(6).commit();
@@ -303,7 +308,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage3() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana3.txt"));
 
         stepView.getState().stepsNumber(6).commit();
@@ -322,7 +327,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage4() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana4.txt"));
 
         stepView.getState().stepsNumber(6).commit();
@@ -341,7 +346,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage5() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana5.txt"));
 
         stepView.getState().stepsNumber(6).commit();
@@ -360,7 +365,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage6() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana6.txt"));
 
         stepView.getState().stepsNumber(6).commit();
@@ -379,7 +384,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void aikanaPage7() {
         title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("synnytyksenAikana7.txt"));
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -470,10 +475,10 @@ public class ImageTextActivity extends AppCompatActivity {
     private void tarkistusPage4() {
         title.setText("Synnytyksen Jalkeen 4");
         TextToChange.setText(textViewContent("synnytyksenJalkeen4.txt"));
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
 
         stepView.getState().stepsNumber(5).commit();
-        stepView.go(4, false);
+        stepView.go(3, false);
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -515,7 +520,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage1(){
         title.setText("Perätila");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("peratila1.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -537,7 +542,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage2(){
         title.setText("Perätila");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("peratila2.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -556,7 +561,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage3(){
         title.setText("Perätila");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("peratila3.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -575,7 +580,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage4(){
         title.setText("Perätila");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("peratila4.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -595,7 +600,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void peratilaPage5(){
         title.setText("Perätila");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("peratila5.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -617,7 +622,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage1(){
         title.setText("Hartiadystokia");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia1.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -639,7 +644,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage2(){
         title.setText("Hartiadystokia");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia2.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -658,7 +663,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage3(){
         title.setText("Hartiadystokia");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia3.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -677,7 +682,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage4(){
         title.setText("Hartiadystokia");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia4.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -696,7 +701,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     private void hartiadystokiaPage5(){
         title.setText("Hartiadystokia");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("hartiadystokia5.txt"));
 
         stepView.getState().stepsNumber(5).commit();
@@ -763,7 +768,7 @@ public class ImageTextActivity extends AppCompatActivity {
     //ainoa napanuorasivu johon tulee kuva?
     private void napanuoraPage3() {
         title.setText("Napanuoran esiinluiskahdus");
-        imageView.setImageBitmap(updateImage("image1.jpg"));
+        imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("napanuora3.txt"));
 
         stepView.getState().stepsNumber(4).commit();
@@ -809,22 +814,20 @@ public class ImageTextActivity extends AppCompatActivity {
         });
     }
 
-    private String textViewContent(String fileName) {
-        File txtDir = new File(Environment.getExternalStorageDirectory() + "/AmBuApp/TextFiles");
+    public String textViewContent(String fileName) {
+        //file directory
+        File txtDir = new File(String.valueOf(getFilesDir()));
 
-        //Get the text file
+        //Get the text file from directory
         File file = new File(txtDir, fileName);
 
         //Read text from file
-        StringBuilder text = new StringBuilder();
-
+        StringBuilder sb = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
-
             while ((line = br.readLine()) != null) {
-                text.append(line);
-                text.append('\n');
+                sb.append(line).append('\n');
             }
             br.close();
         }
@@ -832,21 +835,19 @@ public class ImageTextActivity extends AppCompatActivity {
             Log.d("test", "Error: Cannot access txt files");
         }
 
-        return text.toString();
+        return sb.toString();
     }
 
-    public Bitmap updateImage(String fileName) { // tää on vaa referenssi
+    public Bitmap updateImage(String fileName) {
+        File file = new File(getFilesDir(), fileName);
         // Palauta imageView näkyviin
         imageView.setVisibility(View.VISIBLE);
-
-        File imgDir = new File (Environment.getExternalStorageDirectory() + "/AmbuApp/Images");
-        File file = new File(imgDir, fileName);
 
         if (file.exists()) {
             Bitmap bitmap = BitmapFactory.decodeFile(String.valueOf(file));
             return bitmap;
         } else {
-            Log.d("test", "Error: File not found");
+            Log.d("test", "Error: Image not found");
             return null;
         }
     }
