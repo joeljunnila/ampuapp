@@ -2,17 +2,21 @@ package com.example.ambuapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,7 +41,7 @@ import java.util.Arrays;
 
 public class Settings extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     ImageButton homeButton;
-    Button button;
+    Button button, darkbutton;
     TextView title;
     TextView textView;
     TextView textView2;
@@ -57,6 +61,8 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
     ArrayList<StorageReference> txtRefs = new ArrayList<>();
     int firebaseFileCounter = 0;
 
+    boolean darkmode = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +76,9 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         leftArrow = findViewById(R.id.leftArrow);
         rightArrow = findViewById(R.id.rightArrow);
         rightArrow.setVisibility(View.INVISIBLE);
+        darkbutton = findViewById(R.id.darkbutton);
+
+
 
         storageRef = FirebaseStorage.getInstance().getReference();
         addFileNames();
@@ -127,6 +136,20 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                 else {
                     activityName = previousActivityName;
                     menuActivity(v);
+                }
+            }
+        });
+
+        darkbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (darkmode == false) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    darkmode = true;
+                }
+                else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    darkmode = false;
                 }
             }
         });
@@ -215,6 +238,7 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
             case 0:
                 ImageTextActivity.textSize = 10;
                 textView2.setTextSize(10);
+
                 // Whatever you want to happen when the first item gets selected
                 break;
             case 1:

@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">AmbuApp</string>
+    <string name="homeText1">Valmistautuminen</string>
+    <string name="homeText2">Synnytyksen aikana</string>
+    <string name="homeText3">Synnytyksen jälkeen</string>
+    <string name="homeText4">Erikoistilanteet</string>
+
+    <string name="valmistautuminenText1">Valmistautuminen</string>
+    <string name="valmistautuminenText2">Kohteessa vai matkaan?</string>
+    <string name="valmistautuminenText3">Miten toimitaan?</string>
+
+    <string name="valmText1">Synnytystehtävän (791 A-D) tulessa huomioi seuraavat asiat:
+
+\n\nKirjaa ylös synnyttäjän perustiedot (sairaudet, allergiat, monesko raskaus ja synnytys jne.)
+
+Raskausviikot, selvitä miten raskaus on edennyt ja onko sikiö perä- vai raivotarjonnassa?
+
+\n\nKohteeseen päästyäsi tarkista mikä on synnytyksen tilanne:
+Onko lapsivesi mennyt? Koska se on mennyt?
+
+\n\nLapsiveden väri? Kirkas vai vihreä/kellertävää? Hajuton/pahanhajuista?
+
+Onko supistuksia? Milloin ne ovat alkaneet? Kuinka tiheään supistuksia tulee? Onko synnytys oikeasti käynnissä?  </string>
+
+    <string name="valmText2">Hoidetaan kohteessa:
+\n\nSupistuksia on 1-2 minuutin välein säännöllisesti.
+\nSynnyttäjällä on ponnistamisen pakko.
+\nSikiön pää näkyy.
+
+\n\nMilloin matkaan:
+\nLapsivesi on mennyt, mutta ei ole supistuksia
+\nSupistukset tulevat epäsäännöllisesti
+\nSupistukset tulevat säännöllisesti 2-15 minuutin välein
+\nSynnyttäjä otetaan kyytiin ja lähdetään liikkeelle, tutkimukset yms. voi tehdä matkalla
+\n\nMUISTA ENNAKKOILMOITUS  </string>
+
+    <string name="valmText3">Miten toimitaan:
+\n\nValmistaudu ottamalla synnytyssetit esille
+\nPaarien yläosa käännettään toisin päin.
+\nSynnyttäjä asetetaan vasemmalle kyljelleen
+\n\nAvaa i.v. -yhteys
+\nSeuraa supistusten väliä
+\n\nJos synnyttäjällä tulee paineen tunne tai ponnistamisen pakko matkalla, pysäytä auto
+\nLääkkeettömiä kivunlievitys keinoja voi kokeilla kuten hierontaa tai lämpöpussia kipukohtiin </string>
+
+
+    <string name="synnytyksenJalkeenText">Miten?</string>
+
+    <string name="synnytyksenAikanaText1">Synnytyksen aikana 1</string>
+    <string name="synnytyksenAikanaText2">Synnytyksen aikana 2</string>
+    <string name="synnytyksenAikanaText3">Synnytyksen aikana 3</string>
+    <string name="synnytyksenAikanaText4">Synnytyksen aikana 4</string>
+    <string name="synnytyksenAikanaText5">Synnytyksen aikana 5</string>
+    <string name="synnytyksenAikanaText6">Synnytyksen aikana 6</string>
+
+
+    <string-array name="navicon">
+        <item>Asetukset</item>
+        <item>About</item>
+    </string-array>
+
+</resources>
