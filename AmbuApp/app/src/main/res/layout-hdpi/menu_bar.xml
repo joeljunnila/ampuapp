@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_weight="1.2"
+    android:layout_weight="0.5"
     android:orientation="horizontal"
     android:background="@color/secondaryColor"
     android:padding="2dp">
@@ -11,11 +11,11 @@
     <ImageButton
         android:id="@+id/homeButton"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:src="@drawable/home"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         android:backgroundTint="@color/secondaryColor" />
 
     <TextView
@@ -33,11 +33,11 @@
     <ImageButton
         android:id="@+id/naviconButton"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_gravity="center_vertical"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:src="@drawable/navicon"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         android:backgroundTint="@color/secondaryColor"
         android:onClick="showPopup" />
 </LinearLayout>
