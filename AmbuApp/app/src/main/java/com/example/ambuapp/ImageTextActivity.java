@@ -76,6 +76,24 @@ public class ImageTextActivity extends AppCompatActivity {
         }
 
         switch (activityName) {
+            case "Valmistautuminen1":
+                valmistautuminenPage1();
+                break;
+            case "Valmistautuminen2":
+                valmistautuminenPage2();
+                break;
+            case "Valmistautuminen3":
+                valmistautuminenPage3();
+                break;
+            case "Valmistautuminen4":
+                valmistautuminenPage4();
+                break;
+            case "Valmistautuminen5":
+                valmistautuminenPage5();
+                break;
+            case "Valmistautuminen6":
+                valmistautuminenPage6();
+                break;
             case "Aikana1":
                 aikanaPage1();
                 break;
@@ -96,6 +114,21 @@ public class ImageTextActivity extends AppCompatActivity {
                 break;
             case "Aikana7":
                 aikanaPage7();
+                break;
+            case "Tarkistus1":
+                tarkistusPage1();
+                break;
+            case "Tarkistus2":
+                tarkistusPage2();
+                break;
+            case "Tarkistus3":
+                tarkistusPage3();
+                break;
+            case "Tarkistus4":
+                tarkistusPage4();
+                break;
+            case "Tarkistus5":
+                tarkistusPage5();
                 break;
             case "Perätila1":
                 peratilaPage1();
@@ -127,15 +160,192 @@ public class ImageTextActivity extends AppCompatActivity {
             case "Hartiadystokia5":
                 hartiadystokiaPage5();
                 break;
+            case "Napanuora1":
+                napanuoraPage1();
+                break;
+            case "Napanuora2" :
+                napanuoraPage2();
+                break;
             case "Napanuora3":
                 napanuoraPage3();
                 break;
-            case "Tarkistus4":
-                tarkistusPage4();
+            case "Napanuora4":
+                napanuoraPage4();
+                break;
+            case "tietoaSovelluksesta":
+                aboutPage();
+                break;
+
         }
     }
 
     //Funktiot joka sivulle
+
+    private void aboutPage() {
+        title.setText("Tietoa sovelluksesta");
+        leftArrow.setVisibility(View.VISIBLE);
+        rightArrow.setVisibility(View.INVISIBLE);
+        hideImage();
+        TextToChange.setText(textViewContent("tietoaSovelluksesta.txt"));
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                menuActivity(v);
+            }
+        });
+
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                menuActivity(v);
+            }
+        });
+    }
+
+    //haetaan materiaalit ja activityName valitun sivun mukaan
+    private void valmistautuminenPage1() {
+        title.setText("Huomioitavaa");
+        hideImage();
+        TextToChange.setText(textViewContent("valmistautuminen1.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(0, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen";
+                menuActivity(v);
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage2();
+            }
+        });
+    }
+
+    private void valmistautuminenPage2() {
+        hideImage();
+        title.setText("Synnytyksen tilanne");
+        TextToChange.setText(textViewContent("valmistautuminen2.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(1, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage1();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage3();
+            }
+        });
+    }
+
+    private void valmistautuminenPage3() {
+        hideImage();
+        title.setText("Hoidetaan kohteessa");
+        TextToChange.setText(textViewContent("valmistautuminen3.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(2, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage2();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage4();
+            }
+        });
+    }
+
+    private void valmistautuminenPage4() {
+        hideImage();
+        title.setText("Milloin matkaan");
+        TextToChange.setText(textViewContent("valmistautuminen4.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(3, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage3();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage5();
+            }
+        });
+    }
+
+    private void valmistautuminenPage5() {
+        hideImage();
+        title.setText("Miten toimitaan");
+        TextToChange.setText(textViewContent("valmistautuminen5.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(4, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage4();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage6();
+            }
+        });
+    }
+
+    private void valmistautuminenPage6() {
+        hideImage();
+        title.setText("Hyvä tietää");
+        TextToChange.setText(textViewContent("valmistautuminen6.txt"));
+
+        stepView.getState().stepsNumber(6).commit();
+        stepView.go(5, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                valmistautuminenPage5();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                menuActivity(v);
+            }
+        });
+    }
+
     private void aikanaPage1() {
         title.setText("Synnytyksen aikana");
         imageView.setImageBitmap(updateImage("ohje.jpg"));
@@ -272,6 +482,76 @@ public class ImageTextActivity extends AppCompatActivity {
         });
     }
 
+    private void tarkistusPage1() {
+        title.setText("Synnytyksen Jälkeen 1");
+        hideImage();
+        TextToChange.setText(textViewContent("synnytyksenJalkeen1.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(0, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Tarkistus";
+                menuActivity(v);
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage2();
+            }
+        });
+    }
+
+    private void tarkistusPage2() {
+        title.setText("Synnytyksen Jälkeen 2");
+        hideImage();
+        TextToChange.setText(textViewContent("synnytyksenJalkeen2.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(1, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage1();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage3();
+            }
+        });
+    }
+
+    private void tarkistusPage3() {
+        title.setText("Synnytyksen Jälkeen 3");
+        hideImage();
+        TextToChange.setText(textViewContent("synnytyksenJalkeen3.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(2, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage2();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage4();
+            }
+        });
+    }
+
     //Synnytyksen jalkeen kuva sivu
     private void tarkistusPage4() {
         title.setText("Synnytyksen Jalkeen 4");
@@ -279,20 +559,42 @@ public class ImageTextActivity extends AppCompatActivity {
         imageView.setImageBitmap(updateImage("ohje.jpg"));
 
         stepView.getState().stepsNumber(5).commit();
-        stepView.go(4, false);
+        stepView.go(3, false);
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Tarkistus3";
-                textViewActivity(v);
+                tarkistusPage3();
             }
         });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Tarkistus5";
-                textViewActivity(v);
+                tarkistusPage5();
+            }
+        });
+    }
+
+    private void tarkistusPage5() {
+        title.setText("Synnytyksen Jälkeen 5");
+        hideImage();
+        TextToChange.setText(textViewContent("synnytyksenJalkeen5.txt"));
+
+        stepView.getState().stepsNumber(5).commit();
+        stepView.go(4, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tarkistusPage4();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Home";
+                menuActivity(v);
             }
         });
     }
@@ -500,6 +802,50 @@ public class ImageTextActivity extends AppCompatActivity {
         });
     }
 
+    private void napanuoraPage1() {
+        title.setText("Napanuoran esiinluiskahdus");
+        hideImage();
+        TextToChange.setText(textViewContent("napanuora1.txt"));
+
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(0, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Erikoistilanteet";
+                menuActivity(v);
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { napanuoraPage2();}
+        });
+    }
+
+    private void napanuoraPage2() {
+        title.setText("Napanuoran esiinluiskahdus");
+        hideImage();
+        TextToChange.setText(textViewContent("napanuora2.txt"));
+
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(1, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { napanuoraPage1();}
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //siirrytään 3 sivulla jossa on kuva
+                napanuoraPage3();
+            }
+        });
+    }
+
     //ainoa napanuorasivu johon tulee kuva?
     private void napanuoraPage3() {
         title.setText("Napanuoran esiinluiskahdus");
@@ -512,16 +858,39 @@ public class ImageTextActivity extends AppCompatActivity {
         leftArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Napanuora2";
-                textViewActivity(v);
+                napanuoraPage2();
             }
         });
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Napanuora4";
-                textViewActivity(v);
+                napanuoraPage4();
+            }
+        });
+    }
+
+    private void napanuoraPage4() {
+        title.setText("Napanuoran esiinluiskahdus");
+        hideImage();
+        TextToChange.setText(textViewContent("napanuora4.txt"));
+
+        stepView.getState().stepsNumber(4).commit();
+        stepView.go(3, false);
+
+        leftArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //siirrytään 3 sivulla jossa on kuva
+                napanuoraPage3();
+            }
+        });
+
+        rightArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Erikoistilanteet";
+                menuActivity(v);
             }
         });
     }
@@ -552,6 +921,8 @@ public class ImageTextActivity extends AppCompatActivity {
 
     public Bitmap updateImage(String fileName) {
         File file = new File(getFilesDir(), fileName);
+        // Palauta imageView näkyviin
+        imageView.setVisibility(View.VISIBLE);
 
         if (file.exists()) {
             Bitmap bitmap = BitmapFactory.decodeFile(String.valueOf(file));
@@ -562,15 +933,14 @@ public class ImageTextActivity extends AppCompatActivity {
         }
     }
 
+    // Funktio imageView olion piilottamiseen
+    protected void hideImage() {
+        imageView.setVisibility(View.GONE);
+    }
+
     //Päävalikkoon palaamisen funktio ja funktiot muihin näkymiin
     protected void menuActivity(View v){
         Intent intent = new Intent(this, MenuActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
-    }
-
-    public void textViewActivity(View view) {
-        Intent intent = new Intent(this, TextViewActivity.class);
         intent.putExtra("ActivityName", activityName);
         startActivity(intent);
     }
@@ -603,8 +973,7 @@ public class ImageTextActivity extends AppCompatActivity {
                         settingsActivity(v);
                         return true;
                     case R.id.about:
-                        activityName = "tietoaSovelluksesta";
-                        textViewActivity(v);
+                        aboutPage();
                         return true;
                     default:
                         return false;

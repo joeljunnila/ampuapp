@@ -100,8 +100,15 @@ public class MenuActivity extends AppCompatActivity {
                 break;
         }
 
+        Log.d("test", "No internet connection!");
+        storageRef = FirebaseStorage.getInstance().getReference();
+        addFileNames();
+        for(String image : imageFileNames) useAssetFile(image);
+        for(String text : txtFileNames) useAssetFile(text);
+        Log.d("test", "Necessary files created from assets");
+
         // lataa tarvittavat tiedostot firebasesta jos niitä ei ole olemassa
-        String[] files = this.fileList();
+        /*String[] files = this.fileList();
         if(files.length < 5) {
             storageRef = FirebaseStorage.getInstance().getReference();
 
@@ -138,7 +145,7 @@ public class MenuActivity extends AppCompatActivity {
                 for(String text : txtFileNames) useAssetFile(text);
                 Log.d("test", "Necessary files created from assets");
             }
-        }
+        } */
     }
 
     public void useAssetFile(String fileName) {
@@ -207,6 +214,9 @@ public class MenuActivity extends AppCompatActivity {
         txtFileNames.add("valmistautuminen1.txt");
         txtFileNames.add("valmistautuminen2.txt");
         txtFileNames.add("valmistautuminen3.txt");
+        txtFileNames.add("valmistautuminen4.txt");
+        txtFileNames.add("valmistautuminen5.txt");
+        txtFileNames.add("valmistautuminen6.txt");
 
         imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
@@ -343,16 +353,19 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         title.setText("Valmistautuminen");
-        button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.INVISIBLE);
+        button1.setVisibility(View.VISIBLE);
+        button2.setVisibility(View.VISIBLE);
         button3.setVisibility(View.VISIBLE);
         button4.setVisibility(View.VISIBLE);
         button5.setVisibility(View.VISIBLE);
-        button6.setVisibility(View.INVISIBLE);
+        button6.setVisibility(View.VISIBLE);
 
-        button3.setText("Valmistautuminen");
-        button4.setText("Kohteessa vai matkaan?");
+        button1.setText("Huomioitavaa");
+        button2.setText("Synnytyksen tilanne");
+        button3.setText("Hoidetaan kohteessa");
+        button4.setText("Milloin matkaan");
         button5.setText("Miten toimitaan");
+        button6.setText("Hyvä tietää");
 
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.INVISIBLE);
@@ -364,27 +377,50 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        button3.setOnClickListener(new View.OnClickListener() {
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activityName = "Valmistautuminen1";
-                textViewActivity(v);
+                imageTextActivity(v);
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen2";
+                imageTextActivity(v);
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen3";
+                imageTextActivity(v);
             }
         });
 
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Valmistautuminen2";
-                textViewActivity(v);
+                activityName = "Valmistautuminen4";
+                imageTextActivity(v);
             }
         });
 
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activityName = "Valmistautuminen3";
-                textViewActivity(v);
+                activityName = "Valmistautuminen5";
+                imageTextActivity(v);
+            }
+        });
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activityName = "Valmistautuminen6";
+                imageTextActivity(v);
             }
         });
     }
@@ -502,7 +538,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus1";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -510,7 +546,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus2";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -518,7 +554,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus3";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -534,7 +570,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Tarkistus5";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
     }
@@ -758,7 +794,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Napanuora1";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -766,7 +802,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Napanuora2";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
 
@@ -782,7 +818,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 activityName = "Napanuora4";
-                textViewActivity(v);
+                imageTextActivity(v);
             }
         });
     }
@@ -794,11 +830,6 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void textViewActivity(View view) {
-        Intent intent = new Intent(this, TextViewActivity.class);
-        intent.putExtra("ActivityName", activityName);
-        startActivity(intent);
-    }
     public void settingsActivity(View view) {
         Intent intent = new Intent(this, Settings.class);
         intent.putExtra("previousActivityName", previousActivityName);
@@ -828,7 +859,7 @@ public class MenuActivity extends AppCompatActivity {
                         return true;
                     case R.id.about:
                         activityName = "tietoaSovelluksesta";
-                        textViewActivity(v);
+                        imageTextActivity(v);
                         return true;
                     default:
                         return false;
