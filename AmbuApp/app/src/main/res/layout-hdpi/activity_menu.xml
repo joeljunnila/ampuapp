@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--hdpi resoluutiolle mallinnusdokumentit(esim 480x800) -->
+<!--weightSum 10.6 optimal -->
+
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".MenuActivity"
     android:keepScreenOn="true"
     android:orientation="vertical">
@@ -19,31 +22,24 @@
 
     <Button style="@style/myButtonStyle"
         android:id="@+id/button2"
-        android:text="@string/homeText1" />
+        android:text="Button 2" />
 
     <Button style="@style/myButtonStyle"
         android:id="@+id/button3"
-        android:text="@string/homeText2" />
+        android:text="Button 3" />
 
     <Button style="@style/myButtonStyle"
         android:id="@+id/button4"
-        android:text="@string/homeText3" />
+        android:text="Button 4" />
 
     <Button style="@style/myButtonStyle"
         android:id="@+id/button5"
-        android:text="@string/homeText4" />
+        android:text="Button 5" />
 
     <Button style="@style/myButtonStyle"
         android:id="@+id/button6"
-        android:text="Button 2" />
-
-    <com.baoyachi.stepview.HorizontalStepView
-        android:id="@+id/progressbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-
-        />
+        android:text="Button 6" />
 
     <include layout="@layout/arrows" />
+
 </LinearLayout>
