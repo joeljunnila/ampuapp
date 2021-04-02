@@ -133,24 +133,13 @@ public class MainActivity extends AppCompatActivity {
         setupSpinner();
         setupDarkModeSwitch();
         updateButton.setOnClickListener(v -> update());
-        setupConfigFile();
 
         //start program
+        setupConfigFile();
         addFileNames();
         checkFiles();
 
-        //test area
-//        test();
-    }
-
-    public void test() {
-        //print all files from dir
-//        fileCounter = 0;
-//        String[] files = this.fileList();
-//        Log.d("test", "files: " + files.length);
-//        for(String file : files) Log.d("test", "fileName: " + file + " " + ++fileCounter + "/" + (fileList().length));
-
-
+        Log.d("test", "main");
     }
 
     //region functions
@@ -185,10 +174,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0) {
+                    updateConfigFile("TextSize", "small");
                     textSizeTextView.setTextSize(10);
                 } else if (position == 1) {
+                    updateConfigFile("TextSize", "normal");
                     textSizeTextView.setTextSize(20);
                 } else if (position == 2) {
+                    updateConfigFile("TextSize", "big");
                     textSizeTextView.setTextSize(30);
                 }
             }
@@ -198,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
                 //Toast.makeText(this, "impossible", Toast.LENGTH_SHORT).show();
             }
         });
-        spinner.setSelection(1);
     }
 
     public void setupDarkModeSwitch() {
@@ -207,49 +198,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            updateConfigFile("ThemeChanged", "true");
             if(isChecked) {
-                StringBuilder stringBuilder = new StringBuilder();
-                try {
-                    BufferedReader reader = new BufferedReader(new FileReader(configFile));
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        if(line.contains("ThemeChanged")) {
-                            line = "ThemeChanged = true";
-                        } else if(line.contains("DarkMode")) {
-                            line = "DarkMode = true";
-                        }
-                        stringBuilder.append(line).append('\n');
-                    }
-                    FileWriter writer = new FileWriter(configFile);
-                    writer.write(String.valueOf(stringBuilder));
-                    reader.close();
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+                updateConfigFile("DarkMode", "true");
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
-                StringBuilder stringBuilder = new StringBuilder();
-                try {
-                    BufferedReader reader = new BufferedReader(new FileReader(configFile));
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        if(line.contains("ThemeChanged")) {
-                            line = "ThemeChanged = true";
-                        } else if(line.contains("DarkMode")) {
-                            line = "DarkMode = false";
-                        }
-                        stringBuilder.append(line).append('\n');
-                    }
-                    FileWriter writer = new FileWriter(configFile);
-                    writer.write(String.valueOf(stringBuilder));
-                    reader.close();
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
+                updateConfigFile("DarkMode", "false");
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
         });
@@ -274,16 +228,13 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             line = "DarkMode = true";
                         }
-                    } else if(line.contains("TextSizex")) {
+                    } else if(line.contains("TextSize")) {
                         if(line.endsWith("small")) {
-                            // set text size to small
-                            Log.d("test", "small text size");
+                            spinner.setSelection(0);
                         } else if (line.endsWith("normal")) {
-                            // set text size to small
-                            Log.d("test", "normal text size");
+                            spinner.setSelection(1);
                         } else if(line.endsWith("big")) {
-                            // set text size to small
-                            Log.d("test", "big text size");
+                            spinner.setSelection(2);
                         }
                     }
                     stringBuilder.append(line).append('\n');
@@ -293,12 +244,33 @@ public class MainActivity extends AppCompatActivity {
 
                 reader.close();
                 writer.close();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 Log.d("test", "Error: setupConfigFile");
             }
         } else {
             useAssetFile("", "config.txt");
+        }
+    }
+
+    public void updateConfigFile(String section, String value) {
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(configFile));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if(line.contains(section)) {
+                    line = section + " = " + value;
+                }
+                stringBuilder.append(line).append('\n');
+            }
+
+            FileWriter writer = new FileWriter(configFile);
+            writer.write(String.valueOf(stringBuilder));
+
+            reader.close();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -386,7 +358,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkFiles() { //lataa tarvittavat tiedostot firebasesta jos niitä ei ole olemassa
         String[] files = this.fileList();
-        if(files.length < 5) { //If app is run for the first time
+        if(files.length < 5) { //if internal storage is empty
             if(isNetworkAvailable()) {
                 update();
 
@@ -411,7 +383,6 @@ public class MainActivity extends AppCompatActivity {
                 for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
                 Log.d("test", "Necessary files created from assets");
             }
-            useAssetFile("", "config.txt");
         }
     }
 
@@ -460,7 +431,31 @@ public class MainActivity extends AppCompatActivity {
             fileCounter++;
             if(fileCounter == (imageFileNames.size() + textFileNames.size())) {
                 Log.d("test", "Updated succesfully!");
-                Toast.makeText(this, "Päivitetty onnistuneesti!", Toast.LENGTH_SHORT).show();
+
+                if(configFile.exists()) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    try {
+                        BufferedReader reader = new BufferedReader(new FileReader(configFile));
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            if (line.contains("FirstLaunch") && line.endsWith("true")) {
+                                line = "FirstLaunch = false";
+                            } else if(line.contains("FirstLaunch") && line.endsWith("false")) {
+                                Toast.makeText(this, "Päivitetty xonnistuneesti!", Toast.LENGTH_SHORT).show();
+                            }
+                            stringBuilder.append(line).append('\n');
+                        }
+                        FileWriter writer = new FileWriter(configFile);
+                        writer.write(String.valueOf(stringBuilder));
+
+                        reader.close();
+                        writer.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(this, "Päivitetty yonnistuneesti!", Toast.LENGTH_SHORT).show();
+                }
             }
         }).addOnFailureListener(exception -> {
             Log.d("test", "Update failed!");
