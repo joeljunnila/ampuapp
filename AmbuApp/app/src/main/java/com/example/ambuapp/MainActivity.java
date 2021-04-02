@@ -3,28 +3,24 @@ package com.example.ambuapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.appcompat.widget.ThemeUtils;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -37,9 +33,12 @@ import com.google.firebase.storage.StorageReference;
 import com.shuhart.stepview.StepView;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -85,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<StorageReference> imageRefs = new ArrayList<>();
     ArrayList<StorageReference> textRefs = new ArrayList<>();
 
+    File configFile;
     String activityName = "kotisivu";
     String imageFileDir = "kuvat/";
     String textFileDir = "tekstit/";
@@ -127,26 +127,30 @@ public class MainActivity extends AppCompatActivity {
         rightArrow = findViewById(R.id.rightArrow);
         //endregion
 
+        configFile = new File(getFilesDir(), "config.txt");
         storageRef = FirebaseStorage.getInstance().getReference();
         naviconButton.setOnClickListener(this::setupPopupMenu);
         setupSpinner();
         setupDarkModeSwitch();
         updateButton.setOnClickListener(v -> update());
+        setupConfigFile();
 
         //start program
         addFileNames();
         checkFiles();
 
-        //useAssetFile("", "DarkMode.txt");
-        //checkDarkMode();
+        //test area
+//        test();
     }
 
     public void test() {
         //print all files from dir
-        fileCounter = 0;
-        String[] files = this.fileList();
-        Log.d("test", "files: " + files.length);
-        for(String file : files) Log.d("test", "fileName: " + file + " " + ++fileCounter + "/" + (fileList().length));
+//        fileCounter = 0;
+//        String[] files = this.fileList();
+//        Log.d("test", "files: " + files.length);
+//        for(String file : files) Log.d("test", "fileName: " + file + " " + ++fileCounter + "/" + (fileList().length));
+
+
     }
 
     //region functions
@@ -204,77 +208,101 @@ public class MainActivity extends AppCompatActivity {
 
         darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked) {
+                StringBuilder stringBuilder = new StringBuilder();
+                try {
+                    BufferedReader reader = new BufferedReader(new FileReader(configFile));
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        if(line.contains("ThemeChanged")) {
+                            line = "ThemeChanged = true";
+                        } else if(line.contains("DarkMode")) {
+                            line = "DarkMode = true";
+                        }
+                        stringBuilder.append(line).append('\n');
+                    }
+                    FileWriter writer = new FileWriter(configFile);
+                    writer.write(String.valueOf(stringBuilder));
+                    reader.close();
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
+                StringBuilder stringBuilder = new StringBuilder();
+                try {
+                    BufferedReader reader = new BufferedReader(new FileReader(configFile));
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        if(line.contains("ThemeChanged")) {
+                            line = "ThemeChanged = true";
+                        } else if(line.contains("DarkMode")) {
+                            line = "DarkMode = false";
+                        }
+                        stringBuilder.append(line).append('\n');
+                    }
+                    FileWriter writer = new FileWriter(configFile);
+                    writer.write(String.valueOf(stringBuilder));
+                    reader.close();
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
         });
     }
-    
-    public void checkDarkMode() { // use setup file?
-        String darkModeText = getText("DarkMode.txt");
-//        darkModeSwitch.setChecked(darkModeText != null && darkModeText.startsWith("true"));
-    }
 
-    public void checkFiles() { //lataa tarvittavat tiedostot firebasesta jos niitä ei ole olemassa
-        String[] files = this.fileList();
-        if(files.length < 5) { //If app is run for the first time
-            if(isNetworkAvailable()) {
-                update();
-
-                // small delay for firebase to upload some files
-                try {
-                    sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+    public void setupConfigFile() {
+        if(configFile.exists()) {
+            boolean skipDarkMode = false;
+            StringBuilder stringBuilder = new StringBuilder();
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(configFile));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if(line.contains("ThemeChanged") && line.endsWith("true")) {
+                        line = "ThemeChanged = false";
+                        skipDarkMode = true;
+                        asetukset();
+                    } else if(line.contains("DarkMode") && AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO && !skipDarkMode) {
+                        if(line.endsWith("true")) {
+                            line = "DarkMode = x";
+                            darkModeSwitch.setChecked(true);
+                        } else {
+                            line = "DarkMode = true";
+                        }
+                    } else if(line.contains("TextSizex")) {
+                        if(line.endsWith("small")) {
+                            // set text size to small
+                            Log.d("test", "small text size");
+                        } else if (line.endsWith("normal")) {
+                            // set text size to small
+                            Log.d("test", "normal text size");
+                        } else if(line.endsWith("big")) {
+                            // set text size to small
+                            Log.d("test", "big text size");
+                        }
+                    }
+                    stringBuilder.append(line).append('\n');
                 }
+                FileWriter writer = new FileWriter(configFile);
+                writer.write(String.valueOf(stringBuilder));
 
-                // if no files has been downloaded from firebase, use default files instead
-                files = this.fileList();
-                if (files.length < 5) {
-                    Log.d("test", "Firebase failed!");
-                    for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-                    for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-                    Log.d("test", "Necessary files created from assets");
-                }
-            } else {
-                Log.d("test", "No internet connection!");
-                for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-                for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-                Log.d("test", "Necessary files created from assets");
+                reader.close();
+                writer.close();
             }
-            useAssetFile("", "DarkMode.txt");
+            catch (IOException e) {
+                Log.d("test", "Error: setupConfigFile");
+            }
+        } else {
+            useAssetFile("", "config.txt");
         }
     }
 
-    private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
-
-    private void useAssetFile(String dir, String fileName) {
-        AssetManager assetManager = getAssets();
-        try {
-            InputStream in = assetManager.open(dir + fileName);
-
-            File outFile = new File(getFilesDir(), fileName);
-            FileOutputStream out = new FileOutputStream(outFile);
-
-            byte[] buffer = new byte[1024];
-            int read;
-            while ((read = in.read(buffer)) != -1) {
-                out.write(buffer, 0, read);
-            }
-
-            in.close();
-            out.close();
-        } catch (IOException e) {
-            e.getMessage();
-        }
-    }
-
-    private void addFileNames() {
+    public void addFileNames() {
         imageFileNames.add("ohje.jpg");
         imageFileNames.add("ohje3.jpg");
         imageFileNames.add("ohje4.jpg");
@@ -356,7 +384,65 @@ public class MainActivity extends AppCompatActivity {
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu6.txt"));
     }
 
-    private void update() {
+    public void checkFiles() { //lataa tarvittavat tiedostot firebasesta jos niitä ei ole olemassa
+        String[] files = this.fileList();
+        if(files.length < 5) { //If app is run for the first time
+            if(isNetworkAvailable()) {
+                update();
+
+                // small delay for firebase to upload some files
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // if no files has been downloaded from firebase, use default files instead
+                files = this.fileList();
+                if (files.length < 5) {
+                    Log.d("test", "Firebase failed!");
+                    for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
+                    for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
+                    Log.d("test", "Necessary files created from assets");
+                }
+            } else {
+                Log.d("test", "No internet connection!");
+                for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
+                for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
+                Log.d("test", "Necessary files created from assets");
+            }
+            useAssetFile("", "config.txt");
+        }
+    }
+
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    public void useAssetFile(String dir, String fileName) {
+        AssetManager assetManager = getAssets();
+        try {
+            InputStream in = assetManager.open(dir + fileName);
+
+            File outFile = new File(getFilesDir(), fileName);
+            FileOutputStream out = new FileOutputStream(outFile);
+
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = in.read(buffer)) != -1) {
+                out.write(buffer, 0, read);
+            }
+
+            in.close();
+            out.close();
+        } catch (IOException e) {
+            e.getMessage();
+        }
+    }
+
+    public void update() {
         fileCounter = 0;
 
         for(int i=0; i<imageRefs.size(); i++) {
@@ -368,7 +454,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
+    public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
         File file = new File(dir, name);
         ref.getFile(file).addOnSuccessListener(taskSnapshot -> {
             fileCounter++;
@@ -382,7 +468,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private Bitmap getImage(String fileName) {
+    public Bitmap getImage(String fileName) {
         File imageFile = new File(getFilesDir(), fileName);
 
         if(imageFile.exists()) {
@@ -393,31 +479,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private String getText(String fileName) {
+    public String getText(String fileName) {
         File textFile = new File(getFilesDir(), fileName);
 
         if(textFile.exists()) {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
             try {
-                BufferedReader br = new BufferedReader(new FileReader(textFile));
+                BufferedReader reader = new BufferedReader(new FileReader(textFile));
                 String line;
-                while ((line = br.readLine()) != null) {
-                    sb.append(line).append('\n');
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line).append('\n');
                 }
-                br.close();
+                reader.close();
             }
             catch (IOException e) {
                 Log.d("test", "Error: getText function");
             }
 
-            return sb.toString();
+            return stringBuilder.toString();
         } else {
             Log.d("test", "Error: Text file not found");
             return null;
         }
     }
 
-    private void setLayout(String content) {
+    public void setLayout(String content) {
         switch (content) {
             case "layoutMenu":
                 layoutMenu.setVisibility(View.VISIBLE);
@@ -570,6 +656,14 @@ public class MainActivity extends AppCompatActivity {
     //endregion
 
     //region navicon sivut
+    public void asetukset() {
+        title.setText(R.string.asetukset);
+        setLayout("x");
+        activityName = "asetukset";
+
+        layoutSettings.setVisibility(View.VISIBLE);
+    }
+
     public void asetukset(View v) {
         title.setText(R.string.asetukset);
         setLayout("x");
