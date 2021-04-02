@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "812625720469",
-    "project_id": "ambuapp-2691e",
-    "storage_bucket": "ambuapp-2691e.appspot.com"
+    "project_number": "895983320521",
+    "project_id": "ambuapp-1840a",
+    "storage_bucket": "ambuapp-1840a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:812625720469:android:1e912f95c056ded874d79c",
+        "mobilesdk_app_id": "1:895983320521:android:09cb1a7b6a03ac3b26bc18",
         "android_client_info": {
           "package_name": "com.example.ambuapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "812625720469-9iuhc19n56hjtte23l3q2nqlsbag31pa.apps.googleusercontent.com",
+          "client_id": "895983320521-d2hvna5k9fotl6ulpf0nnm43sgbgdtj5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB052wZc8ZINdMwFKU5paen_VVCtwTMN1w"
+          "current_key": "AIzaSyDqLeDfN-XRgglsZnceAxUUDldXVzIfIjs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "812625720469-9iuhc19n56hjtte23l3q2nqlsbag31pa.apps.googleusercontent.com",
+              "client_id": "895983320521-d2hvna5k9fotl6ulpf0nnm43sgbgdtj5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
