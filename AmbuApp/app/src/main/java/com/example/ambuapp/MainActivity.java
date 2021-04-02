@@ -138,8 +138,6 @@ public class MainActivity extends AppCompatActivity {
         setupConfigFile();
         addFileNames();
         checkFiles();
-
-        Log.d("test", "main");
     }
 
     //region functions
