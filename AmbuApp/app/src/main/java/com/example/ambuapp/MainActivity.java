@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -127,15 +128,16 @@ public class MainActivity extends AppCompatActivity {
 
         configFile = new File(getFilesDir(), "config.txt");
         storageRef = FirebaseStorage.getInstance().getReference();
+
         naviconButton.setOnClickListener(this::setupPopupMenu);
         setupSpinner();
-        setupDarkModeSwitch();
         updateButton.setOnClickListener(v -> update());
 
         //start program
-        setupConfigFile();
         addFileNames();
-        checkFiles();
+        ifFirstLaunch();
+        setupAppFromConfigFile();
+        setupDarkModeSwitch();
     }
 
     //region functions
@@ -196,16 +198,37 @@ public class MainActivity extends AppCompatActivity {
         darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             updateConfigFile("ThemeChanged", "true");
             if(isChecked) {
+                Log.d("test", "swtich 1");
                 updateConfigFile("DarkMode", "true");
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
+                Log.d("test", "swtich 2");
                 updateConfigFile("DarkMode", "false");
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
         });
     }
 
-    public void setupConfigFile() {
+    public void ifFirstLaunch() {
+        if(!configFile.exists()) {
+            for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
+            for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
+            if (isNetworkAvailable()) update();
+
+            spinner.setSelection(1);
+            useAssetFile("", "config.txt");
+
+            int phoneTheme = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            if (phoneTheme == Configuration.UI_MODE_NIGHT_YES) {
+                updateConfigFile("DarkMode", "true");
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+        }
+    }
+
+    public void setupAppFromConfigFile() {
         if(configFile.exists()) {
             boolean skipDarkMode = false;
             StringBuilder stringBuilder = new StringBuilder();
@@ -217,12 +240,11 @@ public class MainActivity extends AppCompatActivity {
                         line = "ThemeChanged = false";
                         skipDarkMode = true;
                         asetukset();
-                    } else if(line.contains("DarkMode") && AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_NO && !skipDarkMode) {
+                    } else if(line.contains("DarkMode") && AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES && !skipDarkMode) {
                         if(line.endsWith("true")) {
-                            line = "DarkMode = x";
-                            darkModeSwitch.setChecked(true);
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                         } else {
-                            line = "DarkMode = true";
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                         }
                     } else if(line.contains("TextSize")) {
                         if(line.endsWith("small")) {
@@ -240,12 +262,29 @@ public class MainActivity extends AppCompatActivity {
 
                 reader.close();
                 writer.close();
+
+//                Log.d("test", "config: \n" + stringBuilder);
             } catch (IOException e) {
                 Log.d("test", "Error: setupConfigFile");
             }
-        } else {
-            useAssetFile("", "config.txt");
         }
+    }
+
+    public boolean checkFromConfigFile(String section, String value) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(configFile));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if(line.contains(section) && line.endsWith(value)) {
+                    reader.close();
+                    return true;
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void updateConfigFile(String section, String value) {
@@ -352,36 +391,6 @@ public class MainActivity extends AppCompatActivity {
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu6.txt"));
     }
 
-    public void checkFiles() { //lataa tarvittavat tiedostot firebasesta jos niitä ei ole olemassa
-        String[] files = this.fileList();
-        if(files.length < 5) { //if internal storage is empty
-            if(isNetworkAvailable()) {
-                update();
-
-                // small delay for firebase to upload some files
-                try {
-                    sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                // if no files has been downloaded from firebase, use default files instead
-                files = this.fileList();
-                if (files.length < 5) {
-                    Log.d("test", "Firebase failed!");
-                    for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-                    for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-                    Log.d("test", "Necessary files created from assets");
-                }
-            } else {
-                Log.d("test", "No internet connection!");
-                for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-                for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-                Log.d("test", "Necessary files created from assets");
-            }
-        }
-    }
-
     public boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
@@ -427,35 +436,15 @@ public class MainActivity extends AppCompatActivity {
             fileCounter++;
             if(fileCounter == (imageFileNames.size() + textFileNames.size())) {
                 Log.d("test", "Updated succesfully!");
-
-                if(configFile.exists()) {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    try {
-                        BufferedReader reader = new BufferedReader(new FileReader(configFile));
-                        String line;
-                        while ((line = reader.readLine()) != null) {
-                            if (line.contains("FirstLaunch") && line.endsWith("true")) {
-                                line = "FirstLaunch = false";
-                            } else if(line.contains("FirstLaunch") && line.endsWith("false")) {
-                                Toast.makeText(this, "Päivitetty xonnistuneesti!", Toast.LENGTH_SHORT).show();
-                            }
-                            stringBuilder.append(line).append('\n');
-                        }
-                        FileWriter writer = new FileWriter(configFile);
-                        writer.write(String.valueOf(stringBuilder));
-
-                        reader.close();
-                        writer.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                if(checkFromConfigFile("FirstLaunch", "false")) {
+                    Toast.makeText(this, "Päivitetty onnistuneesti!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(this, "Päivitetty yonnistuneesti!", Toast.LENGTH_SHORT).show();
+                    updateConfigFile("FirstLaunch", "false");
                 }
             }
         }).addOnFailureListener(exception -> {
             Log.d("test", "Update failed!");
-            Toast.makeText(getApplicationContext(), "Päivitys epäonnistui", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Päivitys epäonnistui!", Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -1145,7 +1134,7 @@ public class MainActivity extends AppCompatActivity {
         setLayout("layoutImageText");
 
         leftArrow.setOnClickListener(this::peratilaSivu4);
-        rightArrow.setOnClickListener(this::kotisivu);
+        rightArrow.setOnClickListener(this::erikoistilanteetSivu);
 
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
@@ -1210,7 +1199,7 @@ public class MainActivity extends AppCompatActivity {
         setLayout("layoutImageText");
 
         leftArrow.setOnClickListener(this::hartiadystokiaSivu4);
-        rightArrow.setOnClickListener(this::kotisivu);
+        rightArrow.setOnClickListener(this::erikoistilanteetSivu);
 
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
@@ -1260,7 +1249,7 @@ public class MainActivity extends AppCompatActivity {
         setLayout("layoutImageText");
 
         leftArrow.setOnClickListener(this::napanuoraSivu3);
-        rightArrow.setOnClickListener(this::kotisivu);
+        rightArrow.setOnClickListener(this::erikoistilanteetSivu);
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("napanuoraSivu4.txt"));

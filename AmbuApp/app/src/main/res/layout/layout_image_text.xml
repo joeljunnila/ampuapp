@@ -46,6 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:textSize="15sp"
+            android:textColor="@color/textColor"
             app:layout_constraintHeight_percent="0.95"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
