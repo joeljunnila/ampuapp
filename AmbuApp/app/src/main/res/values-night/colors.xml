@@ -23,3 +23,4 @@
     <!-- Btn texts -->
     <color name="buttonTextColor">#ffffff</color>
 </resources>
+    <color name="textColor">#FFFFFF</color>

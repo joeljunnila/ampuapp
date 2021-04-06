@@ -11,5 +11,5 @@
     <color name="backgroundColor">#ffffff</color>
     <color name="primaryColor">#AF0505</color>
     <color name="secondaryColor">#FFD4E3</color>
-    <color name="buttonTextColor">#000000</color>
+    <color name="textColor">#000000</color>
 </resources>
