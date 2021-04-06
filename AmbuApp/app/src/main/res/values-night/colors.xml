@@ -8,7 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primaryColor">#AF0505</color>
-    <color name="secondaryColor">#FFD4E3</color>
-    <color name="textColor">#FFFFFF</color>
+    <color name="primaryColor">#C1C1C1</color>
+    <color name="secondaryColor">#700010</color>
+    <color name="textColor">#C1C1C1</color>
+    <color name="buttonTextColor">#C1C1C1</color>
+    <color name="updateButtonColor">#700010</color>
+    <color name="updateButtonTextColor">#C1C1C1</color>
+    <color name="backGroundColor">#121212</color>
+    <color name="arrowsBackgroundColor">#700010</color>
 </resources>

@@ -12,5 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
         <!-- Customize your theme here. -->
+        <item name="homeIcon">@drawable/ic_baseline_home_24</item>
+        <item name="naviconIcon">@drawable/ic_baseline_menu_24</item>
+        <item name="leftArrow">@drawable/ic_baseline_keyboard_arrow_left_24</item>
+        <item name="rightArrow">@drawable/ic_baseline_keyboard_arrow_right_24</item>
     </style>
 </resources>
