@@ -112,9 +112,6 @@ public class ImageTextActivity extends AppCompatActivity {
             case "Aikana6":
                 aikanaPage6();
                 break;
-            case "Aikana7":
-                aikanaPage7();
-                break;
             case "Tarkistus1":
                 tarkistusPage1();
                 break;
@@ -168,9 +165,6 @@ public class ImageTextActivity extends AppCompatActivity {
                 break;
             case "Napanuora3":
                 napanuoraPage3();
-                break;
-            case "Napanuora4":
-                napanuoraPage4();
                 break;
             case "tietoaSovelluksesta":
                 aboutPage();
@@ -459,31 +453,15 @@ public class ImageTextActivity extends AppCompatActivity {
 
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { aikanaPage7(); }
-        });
-    }
-
-    private void aikanaPage7() {
-        title.setText("Synnytyksen aikana");
-        imageView.setImageBitmap(updateImage("ohje.jpg"));
-        TextToChange.setText(textViewContent("synnytyksenAikana7.txt"));
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { aikanaPage6(); }
-        });
-
-        rightArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 activityName ="Home";
-                menuActivity(v);
-            }
+                menuActivity(v); }
         });
     }
 
+
     private void tarkistusPage1() {
-        title.setText("Synnytyksen Jälkeen 1");
+        title.setText("Lapsen synnyttyä");
         hideImage();
         TextToChange.setText(textViewContent("synnytyksenJalkeen1.txt"));
 
@@ -507,7 +485,7 @@ public class ImageTextActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage2() {
-        title.setText("Synnytyksen Jälkeen 2");
+        title.setText("Napanuoran leikkaus");
         hideImage();
         TextToChange.setText(textViewContent("synnytyksenJalkeen2.txt"));
 
@@ -530,7 +508,7 @@ public class ImageTextActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage3() {
-        title.setText("Synnytyksen Jälkeen 3");
+        title.setText("Jälkeisvaihe");
         hideImage();
         TextToChange.setText(textViewContent("synnytyksenJalkeen3.txt"));
 
@@ -554,7 +532,7 @@ public class ImageTextActivity extends AppCompatActivity {
 
     //Synnytyksen jalkeen kuva sivu
     private void tarkistusPage4() {
-        title.setText("Synnytyksen Jalkeen 4");
+        title.setText("Toimi näin");
         TextToChange.setText(textViewContent("synnytyksenJalkeen4.txt"));
         imageView.setImageBitmap(updateImage("ohje.jpg"));
 
@@ -576,7 +554,7 @@ public class ImageTextActivity extends AppCompatActivity {
     }
 
     private void tarkistusPage5() {
-        title.setText("Synnytyksen Jälkeen 5");
+        title.setText("Tarkkailu");
         hideImage();
         TextToChange.setText(textViewContent("synnytyksenJalkeen5.txt"));
 
@@ -807,7 +785,7 @@ public class ImageTextActivity extends AppCompatActivity {
         hideImage();
         TextToChange.setText(textViewContent("napanuora1.txt"));
 
-        stepView.getState().stepsNumber(4).commit();
+        stepView.getState().stepsNumber(3).commit();
         stepView.go(0, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -829,7 +807,7 @@ public class ImageTextActivity extends AppCompatActivity {
         hideImage();
         TextToChange.setText(textViewContent("napanuora2.txt"));
 
-        stepView.getState().stepsNumber(4).commit();
+        stepView.getState().stepsNumber(3).commit();
         stepView.go(1, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -852,7 +830,7 @@ public class ImageTextActivity extends AppCompatActivity {
         imageView.setImageBitmap(updateImage("ohje.jpg"));
         TextToChange.setText(textViewContent("napanuora3.txt"));
 
-        stepView.getState().stepsNumber(4).commit();
+        stepView.getState().stepsNumber(3).commit();
         stepView.go(2, false);
 
         leftArrow.setOnClickListener(new View.OnClickListener() {
@@ -865,35 +843,12 @@ public class ImageTextActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                napanuoraPage4();
-            }
-        });
-    }
-
-    private void napanuoraPage4() {
-        title.setText("Napanuoran esiinluiskahdus");
-        hideImage();
-        TextToChange.setText(textViewContent("napanuora4.txt"));
-
-        stepView.getState().stepsNumber(4).commit();
-        stepView.go(3, false);
-
-        leftArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //siirrytään 3 sivulla jossa on kuva
-                napanuoraPage3();
-            }
-        });
-
-        rightArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 activityName = "Erikoistilanteet";
                 menuActivity(v);
             }
         });
     }
+
 
     public String textViewContent(String fileName) {
         //file directory

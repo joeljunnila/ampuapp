@@ -518,11 +518,11 @@ public class MenuActivity extends AppCompatActivity {
         button5.setVisibility(View.VISIBLE);
         button6.setVisibility(View.INVISIBLE);
 
-        button1.setText("Synnytyksen jälkeen 1");
-        button2.setText("Synnytyksen jälkeen 2");
-        button3.setText("Synnytyksen jälkeen 3");
-        button4.setText("Synnytyksen jälkeen 4");
-        button5.setText("Synnytyksen jälkeen 5");
+        button1.setText("Lapsen synnyttyä");
+        button2.setText("Napanuoran leikkaus");
+        button3.setText("Jälkeisvaihe");
+        button4.setText("Toimi näin");
+        button5.setText("Tarkkailu");
 
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.INVISIBLE);
@@ -774,13 +774,12 @@ public class MenuActivity extends AppCompatActivity {
         button2.setVisibility(View.VISIBLE);
         button3.setVisibility(View.VISIBLE);
         button4.setVisibility(View.VISIBLE);
-        button5.setVisibility(View.VISIBLE);
+        button5.setVisibility(View.INVISIBLE);
         button6.setVisibility(View.INVISIBLE);
 
         button2.setText("Napanuora vaihe1");
         button3.setText("Napanuora vaihe2");
         button4.setText("Napanuora vaihe3");
-        button5.setText("Napanuora vaihe4");
 
         leftArrow.setVisibility(View.VISIBLE);
         rightArrow.setVisibility(View.INVISIBLE);
@@ -814,13 +813,6 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activityName = "Napanuora4";
-                imageTextActivity(v);
-            }
-        });
     }
 
     //Avaimen välitys ImageTextiin

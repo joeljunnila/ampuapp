@@ -28,7 +28,7 @@
         android:layout_weight="5"
         android:padding="15dp"
         android:textAlignment="center"
-        android:textSize="26sp"/>
+        android:textSize="24sp"/>
 
     <com.shuhart.stepview.StepView
         android:id="@+id/stepView"
