@@ -21,6 +21,7 @@
     <color name="secondaryColor">#7d0202</color>
 
     <!-- Btn texts -->
-    <color name="buttonTextColor">#ffffff</color>
-</resources>
+
     <color name="textColor">#FFFFFF</color>
+
+</resources>

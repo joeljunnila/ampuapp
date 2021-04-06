@@ -9,7 +9,7 @@
         <item name="android:layout_marginRight">10dp</item>
         <item name="android:layout_marginTop">1dp</item>
         <item name="backgroundTint">@color/secondaryColor</item>
-        <item name="android:textColor">@color/buttonTextColor</item>
+        <item name="android:textColor">@color/textColor</item>
         <item name="strokeWidth">2dp</item>
         <item name="cornerRadius">10dp</item>
     </style>
@@ -27,13 +27,13 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">20dp</item>
         <item name="android:backgroundTint">@color/backgroundColor</item>
-        <item name="android:textColor">@color/buttonTextColor</item>
+        <item name="android:textColor">@color/textColor</item>
     </style>
 
     <style name="Spinner" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
         <item name="android:paddingStart">0dp</item>
         <item name="android:paddingEnd">0dp</item>
-        <item name="android:textColor">@color/buttonTextColor</item>
+        <item name="android:textColor">@color/textColor</item>
         <item name="android:backgroundTint">@color/backgroundColor</item>
     </style>
 

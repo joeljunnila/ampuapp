@@ -40,9 +40,9 @@
     <string name="synnytyksenJalkeenSivu3">3. Synnytyksen jälkeen</string>
     <string name="synnytyksenJalkeenSivu4">4. Synnytyksen jälkeen</string>
     <string name="synnytyksenJalkeenSivu5">5. Synnytyksen jälkeen</string>
-    <string name="erikoistilanteetSivu1">1. Perätila</string>
-    <string name="erikoistilanteetSivu2">2. Hartiadystokia</string>
-    <string name="erikoistilanteetSivu3">3. Napanuoran esiinluiskahdus</string>
+    <string name="erikoistilanteetSivu1">Perätila</string>
+    <string name="erikoistilanteetSivu2">Hartiadystokia</string>
+    <string name="erikoistilanteetSivu3">Napanuoran esiinluiskahdus</string>
     <string name="peratilaSivu1">1. Perätila</string>
     <string name="peratilaSivu2">2. Perätila</string>
     <string name="peratilaSivu3">3. Perätila</string>
