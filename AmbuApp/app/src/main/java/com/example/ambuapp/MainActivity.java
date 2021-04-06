@@ -199,11 +199,9 @@ public class MainActivity extends AppCompatActivity {
         darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             updateConfigFile("ThemeChanged", "true");
             if(isChecked) {
-                Log.d("test", "swtich 1");
                 updateConfigFile("DarkMode", "true");
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
-                Log.d("test", "swtich 2");
                 updateConfigFile("DarkMode", "false");
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
