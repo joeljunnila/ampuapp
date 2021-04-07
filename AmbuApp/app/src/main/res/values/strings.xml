@@ -1,63 +1,61 @@
 <resources>
     <string name="app_name">AmbuApp</string>
-    <string name="homeText1">Valmistautuminen</string>
-    <string name="homeText2">Synnytyksen aikana</string>
-    <string name="homeText3">Synnytyksen jälkeen</string>
-    <string name="homeText4">Erikoistilanteet</string>
+    <string name="homeButton">Home</string>
+    <string name="navicon">Menu</string>
+    <string name="leftArrow">Left arrow</string>
+    <string name="rightArrow">Right arrow</string>
 
-    <string name="valmistautuminenText1">Valmistautuminen</string>
-    <string name="valmistautuminenText2">Kohteessa vai matkaan?</string>
-    <string name="valmistautuminenText3">Miten toimitaan?</string>
-
-    <string name="valmText1">Synnytystehtävän (791 A-D) tulessa huomioi seuraavat asiat:
-
-\n\nKirjaa ylös synnyttäjän perustiedot (sairaudet, allergiat, monesko raskaus ja synnytys jne.)
-
-Raskausviikot, selvitä miten raskaus on edennyt ja onko sikiö perä- vai raivotarjonnassa?
-
-\n\nKohteeseen päästyäsi tarkista mikä on synnytyksen tilanne:
-Onko lapsivesi mennyt? Koska se on mennyt?
-
-\n\nLapsiveden väri? Kirkas vai vihreä/kellertävää? Hajuton/pahanhajuista?
-
-Onko supistuksia? Milloin ne ovat alkaneet? Kuinka tiheään supistuksia tulee? Onko synnytys oikeasti käynnissä?  </string>
-
-    <string name="valmText2">Hoidetaan kohteessa:
-\n\nSupistuksia on 1-2 minuutin välein säännöllisesti.
-\nSynnyttäjällä on ponnistamisen pakko.
-\nSikiön pää näkyy.
-
-\n\nMilloin matkaan:
-\nLapsivesi on mennyt, mutta ei ole supistuksia
-\nSupistukset tulevat epäsäännöllisesti
-\nSupistukset tulevat säännöllisesti 2-15 minuutin välein
-\nSynnyttäjä otetaan kyytiin ja lähdetään liikkeelle, tutkimukset yms. voi tehdä matkalla
-\n\nMUISTA ENNAKKOILMOITUS  </string>
-
-    <string name="valmText3">Miten toimitaan:
-\n\nValmistaudu ottamalla synnytyssetit esille
-\nPaarien yläosa käännettään toisin päin.
-\nSynnyttäjä asetetaan vasemmalle kyljelleen
-\n\nAvaa i.v. -yhteys
-\nSeuraa supistusten väliä
-\n\nJos synnyttäjällä tulee paineen tunne tai ponnistamisen pakko matkalla, pysäytä auto
-\nLääkkeettömiä kivunlievitys keinoja voi kokeilla kuten hierontaa tai lämpöpussia kipukohtiin </string>
-
-
-    <string name="synnytyksenJalkeenText">Miten?</string>
-
-    <string name="synnytyksenAikanaText1">Synnytyksen aikana 1</string>
-    <string name="synnytyksenAikanaText2">Synnytyksen aikana 2</string>
-    <string name="synnytyksenAikanaText3">Synnytyksen aikana 3</string>
-    <string name="synnytyksenAikanaText4">Synnytyksen aikana 4</string>
-    <string name="synnytyksenAikanaText5">Synnytyksen aikana 5</string>
-    <string name="synnytyksenAikanaText6">Synnytyksen aikana 6</string>
-
-
-
-    <string-array name="navicon">
-        <item>Asetukset</item>
-        <item>About</item>
+    <string name="popupMenuItem1">Asetukset</string>
+    <string name="popupMenuItem2">Tietoa</string>
+    <string name="updateText">Päivitä tiedot</string>
+    <string name="updateButtonText">Päivitä sovellus</string>
+    <string name="textSizeText">Tekstin koko:</string>
+    <string name="sampleText">Esimerkki teksti</string>
+    <string-array name="textSizesSpinnerValues">
+        <item>Pieni</item>
+        <item>Normaali</item>
+        <item>Iso</item>
     </string-array>
 
+    <string name="asetukset">Asetukset</string>
+    <string name="about">Tietoja</string>
+    <string name="kotisivu1">Valmistautuminen</string>
+    <string name="kotisivu2">Synnytyksen aikana</string>
+    <string name="kotisivu3">Synnytyksen jälkeen</string>
+    <string name="kotisivu4">Erikoistilanteet</string>
+    <string name="valmistautuminenSivu1">1. Valmistautuminen</string>
+    <string name="valmistautuminenSivu2">2. Kohteessa vai matkaan?</string>
+    <string name="valmistautuminenSivu3">3. Miten toimitaan</string>
+    <string name="valmistautuminenSivu4">4. Valmistautuminen</string>
+    <string name="valmistautuminenSivu5">5. Valmistautuminen</string>
+    <string name="valmistautuminenSivu6">6. Valmistautuminen</string>
+    <string name="synnytyksenAikanaSivu1">1. Synnytyksen aikana</string>
+    <string name="synnytyksenAikanaSivu2">2. Synnytyksen aikana</string>
+    <string name="synnytyksenAikanaSivu3">3. Synnytyksen aikana</string>
+    <string name="synnytyksenAikanaSivu4">4. Synnytyksen aikana</string>
+    <string name="synnytyksenAikanaSivu5">5. Synnytyksen aikana</string>
+    <string name="synnytyksenAikanaSivu6">6. Synnytyksen aikana</string>
+    <string name="synnytyksenJalkeenSivu1">1. Synnytyksen jälkeen</string>
+    <string name="synnytyksenJalkeenSivu2">2. Synnytyksen jälkeen</string>
+    <string name="synnytyksenJalkeenSivu3">3. Synnytyksen jälkeen</string>
+    <string name="synnytyksenJalkeenSivu4">4. Synnytyksen jälkeen</string>
+    <string name="synnytyksenJalkeenSivu5">5. Synnytyksen jälkeen</string>
+    <string name="erikoistilanteetSivu1">1. Perätila</string>
+    <string name="erikoistilanteetSivu2">2. Hartiadystokia</string>
+    <string name="erikoistilanteetSivu3">3. Napanuoran esiinluiskahdus</string>
+    <string name="peratilaSivu1">1. Perätila</string>
+    <string name="peratilaSivu2">2. Perätila</string>
+    <string name="peratilaSivu3">3. Perätila</string>
+    <string name="peratilaSivu4">4. Perätila</string>
+    <string name="peratilaSivu5">5. Perätila</string>
+    <string name="hartiadystokiaSivu1">1. Hartiadystokia</string>
+    <string name="hartiadystokiaSivu2">2. Hartiadystokia</string>
+    <string name="hartiadystokiaSivu3">3. Hartiadystokia</string>
+    <string name="hartiadystokiaSivu4">4. Hartiadystokia</string>
+    <string name="hartiadystokiaSivu5">5. Hartiadystokia</string>
+    <string name="napanuoraSivu1">1. Napanuora</string>
+    <string name="napanuoraSivu2">2. Napanuora</string>
+    <string name="napanuoraSivu3">3. Napanuora</string>
+    <string name="napanuoraSivu4">4. Napanuora</string>
+    <string name="darkModeSwitchText">Aktivoi tummatila</string>
 </resources>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    tools:context=".MainActivity">
+
+    <View
+        android:id="@+id/menubar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/secondaryColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/arrowsGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <ImageButton
+        android:id="@+id/homeButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:onClick="kotisivu"
+        android:background="@color/secondaryColor"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/menubar"
+        app:layout_constraintEnd_toStartOf="@+id/title"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/homeIcon"
+        android:contentDescription="@string/homeButton" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/primaryColor"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_weight="4"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintBottom_toBottomOf="@+id/menubar"
+        app:layout_constraintEnd_toStartOf="@+id/naviconButton"
+        app:layout_constraintStart_toEndOf="@+id/homeButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/naviconButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/secondaryColor"
+        android:scaleType="fitCenter"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.07"
+        app:layout_constraintBottom_toBottomOf="@+id/menubar"
+        app:layout_constraintStart_toEndOf="@id/title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/naviconIcon"
+        android:contentDescription="@string/navicon" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/stepView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menubar"
+        app:layout_constraintVertical_bias="0.0">
+
+        <include
+            android:id="@+id/layoutMenu"
+            layout="@layout/layout_menu"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/layoutImageText"
+            layout="@layout/layout_image_text"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/layoutSettings"
+            layout="@layout/layout_settings"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.shuhart.stepview.StepView
+        android:id="@+id/stepView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintBottom_toTopOf="@+id/arrowsGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:sv_stepViewStyle="@style/StepView"
+        app:sv_animationType="None"
+        app:sv_nextStepCircleEnabled="true"
+
+        app:sv_doneCircleColor="#BDBDBD"
+        app:sv_selectedCircleColor="@color/secondaryColor"
+        app:sv_nextStepCircleColor="#BDBDBD"
+
+        app:sv_doneStepMarkColor="@color/primaryColor"
+        app:sv_selectedStepNumberColor="@color/primaryColor"
+        app:sv_nextTextColor="#808080"
+
+        app:sv_doneStepLineColor="#808080"
+        app:sv_nextStepLineColor="#BDBDBD"
+
+        app:sv_doneCircleRadius="14dp"
+        app:sv_selectedCircleRadius="14dp"
+        app:sv_stepNumberTextSize="16sp"
+        app:sv_stepLineWidth="4dp"
+        app:sv_stepPadding="0dp" />
+
+    <ImageButton
+        android:id="@+id/leftArrow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/circle_background_24"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/arrowsGuideline"
+        app:layout_constraintVertical_bias="0.5"
+        app:srcCompat="?attr/leftArrow"
+        android:contentDescription="@string/leftArrow" />
+
+    <ImageButton
+        android:id="@+id/rightArrow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/circle_background_24"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.09"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/arrowsGuideline"
+        app:srcCompat="?attr/rightArrow"
+        android:contentDescription="@string/rightArrow" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
