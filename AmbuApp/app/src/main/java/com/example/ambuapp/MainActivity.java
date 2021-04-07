@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                     asetukset(v);
                     return true;
                 case R.id.popupMenuItem2:
-                    tietojaSovelluksesta(v);
+                    tietoaSovelluksesta(v);
                     return true;
                 default:
                     return false;
@@ -651,14 +651,14 @@ public class MainActivity extends AppCompatActivity {
         layoutSettings.setVisibility(View.VISIBLE);
     }
 
-    public void tietojaSovelluksesta(View v) {
+    public void tietoaSovelluksesta(View v) {
         title.setText(R.string.about);
         setLayout("x");
-        activityName = "tietojaSovelluksesta";
+        activityName = "tietoaSovelluksesta";
 
         imageArea.setVisibility(View.GONE);
         layoutImageText.setVisibility(View.VISIBLE);
-        textView.setText(getText("tietojaSovelluksesta.txt"));
+        textView.setText(getText("tietoaSovelluksesta.txt"));
     }
     //endregion
 
