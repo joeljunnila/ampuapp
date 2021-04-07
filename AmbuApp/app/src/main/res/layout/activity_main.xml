@@ -37,7 +37,7 @@
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_home_24"
+        app:srcCompat="?attr/homeIcon"
         android:contentDescription="@string/homeButton" />
 
     <TextView
@@ -68,7 +68,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/menubar"
         app:layout_constraintStart_toEndOf="@id/title"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_menu_24"
+        app:srcCompat="?attr/naviconIcon"
         android:contentDescription="@string/navicon" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -157,7 +157,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/arrowsGuideline"
         app:layout_constraintVertical_bias="0.5"
-        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24"
+        app:srcCompat="?attr/leftArrow"
         android:contentDescription="@string/leftArrow" />
 
     <ImageButton
@@ -175,7 +175,7 @@
         app:layout_constraintVertical_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/arrowsGuideline"
-        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
+        app:srcCompat="?attr/rightArrow"
         android:contentDescription="@string/rightArrow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

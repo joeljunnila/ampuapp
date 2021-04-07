@@ -4,4 +4,4 @@ Onko lapsivesi mennyt?  Koska se on mennyt?
 Lapsiveden väri? Kirkas vai vihreä/kellertävää? Hajuton/pahanhajuista? 
 
 Onko supistuksia? Milloin ne ovat alkaneet? Kuinka tiheään supistuksia tulee? 
-Onko synnytys oikeasti käynnissä? 
+Onko synnytys oikeasti käynnissä?
