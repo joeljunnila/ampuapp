@@ -1,0 +1,4 @@
+FirstLaunch = true
+ThemeChanged = false
+DarkMode = false
+TextSize = normal

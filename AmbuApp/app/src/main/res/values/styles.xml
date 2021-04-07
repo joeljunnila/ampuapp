@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="homeIcon" format="reference"/>
+    <attr name="naviconIcon" format="reference"/>
+    <attr name="leftArrow" format="reference"/>
+    <attr name="rightArrow" format="reference"/>
+
+    <style name="mySpinnerStyle" parent="Widget.AppCompat.Spinner">
+        <item name="android:textColor">@color/teal_200</item>
+        <item name="android:textSize">40sp</item>
+    </style>
+</resources>
