@@ -10,7 +10,7 @@
 
     <color name="primaryColor">#AF0505</color>
     <color name="secondaryColor">#FFD4E3</color>
-    <color name="textColor">#000000</color>
+    <color name="textColor">#808080</color>
     <color name="buttonTextColor">#000000</color>
     <color name="updateButtonColor">#AF0505</color>
     <color name="updateButtonTextColor">#ffffff</color>
