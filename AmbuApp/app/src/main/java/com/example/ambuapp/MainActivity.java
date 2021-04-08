@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -88,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
     String imageFileDir = "kuvat/";
     String textFileDir = "tekstit/";
     int fileCounter = 0;
+
+
+    //sharedprefs (darkmode) testaus
+
+
     //endregion
 
     @Override
@@ -126,6 +132,12 @@ public class MainActivity extends AppCompatActivity {
         rightArrow = findViewById(R.id.rightArrow);
         //endregion
 
+        //region sharedprefs
+
+
+
+        //endregion
+
         configFile = new File(getFilesDir(), "config.txt");
         storageRef = FirebaseStorage.getInstance().getReference();
 
@@ -136,8 +148,11 @@ public class MainActivity extends AppCompatActivity {
         //start program
         addFileNames();
         ifFirstLaunch();
-        setupAppFromConfigFile();
+       // setupAppFromConfigFile();
         setupDarkModeSwitch();
+
+
+
     }
 
     //region functions
@@ -192,21 +207,35 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setupDarkModeSwitch() {
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        final boolean darkMode = sharedPreferences.getBoolean("isDarkModeOn", false);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if (darkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             darkModeSwitch.setChecked(true);
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
         darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            updateConfigFile("ThemeChanged", "true");
             if(isChecked) {
-                updateConfigFile("DarkMode", "true");
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            } else {
-                updateConfigFile("DarkMode", "false");
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                editor.putBoolean("isDarkModeOn", true);
             }
+            else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                editor.putBoolean("isDarkModeOn", false);
+
+            }
+            editor.apply();
+
         });
+        asetukset();
     }
+
 
     public void ifFirstLaunch() {
         if(!configFile.exists()) {
@@ -217,13 +246,13 @@ public class MainActivity extends AppCompatActivity {
             spinner.setSelection(1);
             useAssetFile("", "config.txt");
 
-            int phoneTheme = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            /*int phoneTheme = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
             if (phoneTheme == Configuration.UI_MODE_NIGHT_YES) {
                 updateConfigFile("DarkMode", "true");
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            }
+            }*/
         }
     }
 
@@ -267,6 +296,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("test", "Error: setupConfigFile");
             }
         }
+    }
+
+    public void setupAppFromSharedprefs() {
+        
     }
 
     public boolean checkFromConfigFile(String section, String value) {
@@ -658,7 +691,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         layoutImageText.setVisibility(View.VISIBLE);
-        textView.setText(getText("tietojaSovelluksesta.txt"));
+        textView.setText(getText("tietoaSovelluksesta.txt"));
     }
     //endregion
 
