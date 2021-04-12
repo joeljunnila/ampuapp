@@ -11,6 +11,7 @@ import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner;
     Switch darkModeSwitch;
     Button updateButton;
-    Integer textSize;
+    ScrollView scrollView;
 
     //footer
     ImageButton leftArrow;
@@ -123,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
         darkModeSwitch = findViewById(R.id.darkModeSwitch);
         updateButton = findViewById(R.id.updateButton);
         //scrollable
-        textView.setMovementMethod(new ScrollingMovementMethod());
+        scrollView = findViewById(R.id.textArea);
+        //textView.setMovementMethod(new ScrollingMovementMethod());
         //footer
         leftArrow = findViewById(R.id.leftArrow);
         rightArrow = findViewById(R.id.rightArrow);
@@ -134,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
         naviconButton.setOnClickListener(this::setupPopupMenu);
         setupSpinner();
-        textView.setTextSize(20);
+        //textView.setTextSize(20);
         updateButton.setOnClickListener(v -> update());
 
         //start program
@@ -181,14 +184,14 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0) {
                     updateConfigFile("TextSize", "small");
-                    textSizeTextView.setTextSize(10);
-                    textView.setTextSize(10);
-                    darkModeSwitch.setTextSize(10);
+                    textSizeTextView.setTextSize(14);
+                    textView.setTextSize(14);
+                    darkModeSwitch.setTextSize(14);
                 } else if (position == 1) {
                     updateConfigFile("TextSize", "normal");
-                    textSizeTextView.setTextSize(20);
-                    textView.setTextSize(20);
-                    darkModeSwitch.setTextSize(20);
+                    textSizeTextView.setTextSize(22);
+                    textView.setTextSize(22);
+                    darkModeSwitch.setTextSize(22);
                 } else if (position == 2) {
                     updateConfigFile("TextSize", "big");
                     textSizeTextView.setTextSize(30);
@@ -199,7 +202,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                //Toast.makeText(this, "impossible", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -261,10 +263,13 @@ public class MainActivity extends AppCompatActivity {
                     } else if(line.contains("TextSize")) {
                         if(line.endsWith("small")) {
                             spinner.setSelection(0);
+                            textView.setTextSize(14);
                         } else if (line.endsWith("normal")) {
                             spinner.setSelection(1);
+                            textView.setTextSize(22);
                         } else if(line.endsWith("big")) {
                             spinner.setSelection(2);
+                            textView.setTextSize(30);
                         }
                     }
                     stringBuilder.append(line).append('\n');
