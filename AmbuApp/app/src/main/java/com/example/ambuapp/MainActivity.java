@@ -517,6 +517,7 @@ public class MainActivity extends AppCompatActivity {
                 leftArrow.setOnClickListener(this::kotisivu);
                 break;
             case "layoutImageText":
+                scrollView.scrollTo(0, 0);
                 layoutMenu.setVisibility(View.GONE);
                 layoutImageText.setVisibility(View.VISIBLE);
                 layoutSettings.setVisibility(View.GONE);
