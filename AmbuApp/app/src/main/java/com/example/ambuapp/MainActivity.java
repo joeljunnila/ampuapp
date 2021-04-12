@@ -14,6 +14,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         updateButton = findViewById(R.id.updateButton);
         //scrollable
         scrollView = findViewById(R.id.textArea);
+
         //textView.setMovementMethod(new ScrollingMovementMethod());
         //footer
         leftArrow = findViewById(R.id.leftArrow);
