@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -132,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
         rightArrow = findViewById(R.id.rightArrow);
         //endregion
 
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);;
+
         configFile = new File(getFilesDir(), "config.txt");
         storageRef = FirebaseStorage.getInstance().getReference();
 
@@ -142,13 +145,13 @@ public class MainActivity extends AppCompatActivity {
 
         //start program
         addFileNames();
-        ifFirstLaunch();
-        setupAppFromConfigFile();
-        setupDarkModeSwitch();
-
         // to use asset files
 //        for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
 //        for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
+        ifFirstLaunch(sharedPreferences);
+       // setupAppFromConfigFile();
+        setupAppFromSharedprefs(sharedPreferences);
+        setupDarkModeSwitch(sharedPreferences);
     }
 
     //region functions
@@ -173,32 +176,37 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void setupSpinner() {
+    public void setupSpinner(SharedPreferences sharedPrefs) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.textSizesSpinnerValues, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+
         //spinner.setOnItemSelectedListener(this);
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0) {
-                    updateConfigFile("TextSize", "small");
-                    textSizeTextView.setTextSize(14);
+                    editor.apply();
                     textView.setTextSize(14);
+                    textSizeTextView.setTextSize(14);
                     darkModeSwitch.setTextSize(14);
+                    editor.putString("textSize", "small");
                 } else if (position == 1) {
-                    updateConfigFile("TextSize", "normal");
-                    textSizeTextView.setTextSize(22);
+                    editor.apply();
                     textView.setTextSize(22);
+                    textSizeTextView.setTextSize(22);
                     darkModeSwitch.setTextSize(22);
+                    editor.putString("textSize", "normal");
                 } else if (position == 2) {
-                    updateConfigFile("TextSize", "big");
+                    editor.putString("textSize", "big");
                     textSizeTextView.setTextSize(30);
-                    textView.setTextSize(30);
                     darkModeSwitch.setTextSize(30);
+                    editor.apply();
                 }
+
             }
 
             @Override
@@ -207,25 +215,56 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void setupDarkModeSwitch() {
-        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+    public void setupDarkModeSwitch(SharedPreferences sharedPrefs) {
+
+        final boolean darkMode = sharedPrefs.getBoolean("isDarkModeOn", false);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+
+        if (darkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             darkModeSwitch.setChecked(true);
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
         darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            updateConfigFile("ThemeChanged", "true");
             if(isChecked) {
-                updateConfigFile("DarkMode", "true");
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            } else {
-                updateConfigFile("DarkMode", "false");
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                editor.putBoolean("isDarkModeOn", true);
+
             }
+            else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                editor.putBoolean("isDarkModeOn", false);
+
+            }
+            editor.putBoolean("themeChanged", true);
+            editor.apply();
         });
+
     }
 
-    public void ifFirstLaunch() {
-        if(!configFile.exists()) {
+
+    public void ifFirstLaunch(SharedPreferences sharedPrefs) {
+
+        sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        final boolean isFirstLaunch = sharedPrefs.getBoolean("isFirstLaunch", true);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+
+        if(isFirstLaunch) {
+            for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
+            for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
+            if (isNetworkAvailable()) update();
+            editor.putBoolean("isFirstLaunch", false);
+            editor.apply();
+        }
+        else {
+            Toast toast=Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT);
+            toast.setMargin(50,50);
+            toast.show();
+        }
+       /* if(!configFile.exists()) {
             for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
             for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
             if (isNetworkAvailable()) update();
@@ -233,17 +272,18 @@ public class MainActivity extends AppCompatActivity {
             spinner.setSelection(1);
             useAssetFile("", "config.txt");
 
-            int phoneTheme = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            /*int phoneTheme = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
             if (phoneTheme == Configuration.UI_MODE_NIGHT_YES) {
                 updateConfigFile("DarkMode", "true");
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            }
-        }
+            }*/
+
     }
 
-    public void setupAppFromConfigFile() {
+    //setup app from config
+    /*public void setupAppFromConfigFile() {
         if(configFile.exists()) {
             boolean skipDarkMode = false;
             StringBuilder stringBuilder = new StringBuilder();
@@ -286,9 +326,35 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("test", "Error: setupConfigFile");
             }
         }
+    }*/
+
+    //setup app from sharedprefs
+    public void setupAppFromSharedprefs(SharedPreferences sharedPrefs) {
+
+        final boolean themeChanged = sharedPrefs.getBoolean("themeChanged", false);
+        String textSize = sharedPrefs.getString("textSize", "normal");
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+
+        if(themeChanged){
+            asetukset();
+            editor.putBoolean("themeChanged", false);
+            editor.apply();
+        }
+
+        if (textSize.equals("small")) {
+            spinner.setSelection(0);
+        }
+        else if (textSize.equals("normal")){
+            spinner.setSelection(1);
+        }
+        else if (textSize.equals("big")){
+            spinner.setSelection(2);
+        }
+
     }
 
-    public boolean checkFromConfigFile(String section, String value) {
+    //region reading and updating config file
+    /*public boolean checkFromConfigFile(String section, String value) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(configFile));
             String line;
@@ -303,9 +369,9 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return false;
-    }
+    }*/
 
-    public void updateConfigFile(String section, String value) {
+    /*public void updateConfigFile(String section, String value) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(configFile));
@@ -325,7 +391,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
+    //endregion
 
     public void addFileNames() {
         imageFileNames.add("ohje.jpg");
@@ -444,7 +511,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
+    //downloadFileFromFirebase using config file
+    /*public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
         File file = new File(dir, name);
         ref.getFile(file).addOnSuccessListener(taskSnapshot -> {
             fileCounter++;
@@ -454,6 +522,30 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "Päivitetty onnistuneesti!", Toast.LENGTH_SHORT).show();
                 } else {
                     updateConfigFile("FirstLaunch", "false");
+                }
+            }
+        }).addOnFailureListener(exception -> {
+            Log.d("test", "Update failed!");
+            Toast.makeText(getApplicationContext(), "Päivitys epäonnistui!", Toast.LENGTH_SHORT).show();
+        });
+    }*/
+
+    //using sharedprefs
+    public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
+        File file = new File(dir, name);
+
+        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        final boolean isFirstLaunch = sharedPrefs.getBoolean("isFirstLaunch", true);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+
+        ref.getFile(file).addOnSuccessListener(taskSnapshot -> {
+            fileCounter++;
+            if(fileCounter == (imageFileNames.size() + textFileNames.size())) {
+                Log.d("test", "Updated succesfully!");
+                if(!isFirstLaunch) {
+                    Toast.makeText(this, "Päivitetty onnistuneesti!", Toast.LENGTH_SHORT).show();
+                } else {
+                    editor.putBoolean("isFirstLaunch", false);
                 }
             }
         }).addOnFailureListener(exception -> {
