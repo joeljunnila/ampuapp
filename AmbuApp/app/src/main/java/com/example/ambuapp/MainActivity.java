@@ -9,15 +9,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
@@ -41,7 +37,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -132,8 +127,9 @@ public class MainActivity extends AppCompatActivity {
         rightArrow = findViewById(R.id.rightArrow);
         //endregion
 
-        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);;
+        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         storageRef = FirebaseStorage.getInstance().getReference();
+        addFileNames();
 
         naviconButton.setOnClickListener(this::setupPopupMenu);
         setupSpinner(sharedPreferences);
@@ -141,11 +137,10 @@ public class MainActivity extends AppCompatActivity {
 
         //start program
         setupAppFromSharedprefs(sharedPreferences);
-        addFileNames();
         setupDarkModeSwitch(sharedPreferences);
 
 
-        // to use asset files
+        // to refresh asset files
 //        for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
 //        for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
     }
@@ -180,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences.Editor editor = sharedPrefs.edit();
 
-        //spinner.setOnItemSelectedListener(this);
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -208,25 +202,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void setupDarkModeSwitch(SharedPreferences sharedPrefs) {
-
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-
-        darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(isChecked) {
-                editor.putBoolean("isDarkModeOn", true);
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            } else {
-                editor.putBoolean("isDarkModeOn", false);
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            }
-            editor.putBoolean("themeChanged", true);
-            editor.apply();
-        });
-    }
-
     public void setupAppFromSharedprefs(SharedPreferences sharedPrefs) {
-
         boolean isFirstLaunch = sharedPrefs.getBoolean("isFirstLaunch", true);
         boolean themeChanged = sharedPrefs.getBoolean("themeChanged", false);
         boolean darkMode = sharedPrefs.getBoolean("isDarkModeOn", false);
@@ -235,7 +211,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPrefs.edit();
 
         if(isFirstLaunch) {
-            Log.d("test", "firstLaunch");
             for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
             for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
             if (isNetworkAvailable()) update();
@@ -267,6 +242,22 @@ public class MainActivity extends AppCompatActivity {
                 spinner.setSelection(2);
                 break;
         }
+    }
+
+    public void setupDarkModeSwitch(SharedPreferences sharedPrefs) {
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+
+        darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked) {
+                editor.putBoolean("isDarkModeOn", true);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                editor.putBoolean("isDarkModeOn", false);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+            editor.putBoolean("themeChanged", true);
+            editor.apply();
+        });
     }
 
     //region reading and updating config file
