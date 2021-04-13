@@ -45,8 +45,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import static java.lang.Thread.sleep;
-
 @SuppressLint("UseSwitchCompatOrMaterialCode")
 public class MainActivity extends AppCompatActivity {
 
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         darkModeSwitch = findViewById(R.id.darkModeSwitch);
         updateButton = findViewById(R.id.updateButton);
         //scrollable
-        scrollView = findViewById(R.id.textArea);
+        scrollView = findViewById(R.id.scrollView);
 
         //textView.setMovementMethod(new ScrollingMovementMethod());
         //footer
@@ -148,8 +146,9 @@ public class MainActivity extends AppCompatActivity {
         setupAppFromConfigFile();
         setupDarkModeSwitch();
 
-        for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-        for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
+        // to use asset files
+//        for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
+//        for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
     }
 
     //region functions
@@ -889,7 +888,7 @@ public class MainActivity extends AppCompatActivity {
 
     //region siirtymä sivut
     public void valmistautuminenSivu1(View v) {
-        title.setText("Huomioitavaa");
+        title.setText(R.string.valmistautuminenSivu1Title);
         activityName = "valmistautuminenSivu1";
         setLayout("layoutImageText");
 
@@ -902,7 +901,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenSivu2(View v) {
-        title.setText("Synnytyksen tilanne");
+        title.setText(R.string.valmistautuminenSivu2Title);
         activityName = "valmistautuminenSivu2";
         setLayout("layoutImageText");
 
@@ -915,7 +914,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenSivu3(View v) {
-        title.setText("Hoidetaan kohteessa");
+        title.setText(R.string.valmistautuminenSivu3Title);
         activityName = "valmistautuminenSivu3";
         setLayout("layoutImageText");
 
@@ -928,7 +927,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenSivu4(View v) {
-        title.setText("Milloin matkaan");
+        title.setText(R.string.valmistautuminenSivu4Title);
         activityName = "valmistautuminenSivu4";
         setLayout("layoutImageText");
 
@@ -941,7 +940,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenSivu5(View v) {
-        title.setText("Miten toimitaan");
+        title.setText(R.string.valmistautuminenSivu5Title);
         activityName = "valmistautuminenSivu5";
         setLayout("layoutImageText");
 
@@ -954,7 +953,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenSivu6(View v) {
-        title.setText("Hyvä tietää");
+        title.setText(R.string.valmistautuminenSivu6Title);
         activityName = "valmistautuminenSivu6";
         setLayout("layoutImageText");
 
@@ -967,7 +966,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu1(View v) {
-        title.setText("Synnytys vaihe 1");
+        title.setText(R.string.synnytyksenAikanaSivu1Title);
         activityName = "synnytyksenAikanaSivu1";
         setLayout("layoutImageText");
 
@@ -981,7 +980,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu2(View v) {
-        title.setText("Synnytys vaihe 2");
+        title.setText(R.string.synnytyksenAikanaSivu2Title);
         activityName = "synnytyksenAikanaSivu2";
         setLayout("layoutImageText");
 
@@ -995,7 +994,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu3(View v) {
-        title.setText("Synnytys vaihe 3");
+        title.setText(R.string.synnytyksenAikanaSivu3Title);
         activityName = "synnytyksenAikanaSivu3";
         setLayout("layoutImageText");
 
@@ -1009,7 +1008,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu4(View v) {
-        title.setText("Synnytys vaihe 4");
+        title.setText(R.string.synnytyksenAikanaSivu4Title);
         activityName = "synnytyksenAikanaSivu4";
         setLayout("layoutImageText");
 
@@ -1023,7 +1022,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu5(View v) {
-        title.setText("Synnytys vaihe 5");
+        title.setText(R.string.synnytyksenAikanaSivu5Title);
         activityName = "synnytyksenAikanaSivu5";
         setLayout("layoutImageText");
 
@@ -1037,7 +1036,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu6(View v) {
-        title.setText("Synnytys vaihe 6");
+        title.setText(R.string.synnytyksenAikanaSivu6Title);
         activityName = "synnytyksenAikanaSivu6";
         setLayout("layoutImageText");
 
@@ -1051,7 +1050,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenJalkeenSivu1(View v) {
-        title.setText("Lapsen synnyttyä");
+        title.setText(R.string.synnytyksenJalkeenSivu1Title);
         activityName = "synnytyksenJalkeenSivu1";
         setLayout("layoutImageText");
 
@@ -1064,7 +1063,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenJalkeenSivu2(View v) {
-        title.setText("Napanuoran leikkaus");
+        title.setText(R.string.synnytyksenJalkeenSivu2Title);
         activityName = "synnytyksenJalkeenSivu2";
         setLayout("layoutImageText");
 
@@ -1077,7 +1076,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenJalkeenSivu3(View v) {
-        title.setText("Jälkeisvaihe");
+        title.setText(R.string.synnytyksenJalkeenSivu3Title);
         activityName = "synnytyksenJalkeenSivu3";
         setLayout("layoutImageText");
 
@@ -1090,7 +1089,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenJalkeenSivu4(View v) {
-        title.setText("Toimi näin");
+        title.setText(R.string.synnytyksenJalkeenSivu4Title);
         activityName = "synnytyksenJalkeenSivu4";
         setLayout("layoutImageText");
 
@@ -1104,7 +1103,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenJalkeenSivu5(View v) {
-        title.setText("Tarkkailu");
+        title.setText(R.string.synnytyksenJalkeenSivu5Title);
         activityName = "synnytyksenJalkeenSivu5";
         setLayout("layoutImageText");
 
@@ -1117,7 +1116,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu1(View v) {
-        title.setText("Perätila 1");
+        title.setText(R.string.peratilaSivu1Title);
         activityName = "peratilaSivu1";
         setLayout("layoutImageText");
 
@@ -1131,7 +1130,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu2(View v) {
-        title.setText("Perätila 2");
+        title.setText(R.string.peratilaSivu2Title);
         activityName = "peratilaSivu2";
         setLayout("layoutImageText");
 
@@ -1145,7 +1144,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu3(View v) {
-        title.setText("Perätila 3");
+        title.setText(R.string.peratilaSivu3Title);
         activityName = "peratilaSivu3";
         setLayout("layoutImageText");
 
@@ -1159,7 +1158,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu4(View v) {
-        title.setText("Perätila 4");
+        title.setText(R.string.peratilaSivu4Title);
         activityName = "peratilaSivu4";
         setLayout("layoutImageText");
 
@@ -1173,7 +1172,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu5(View v) {
-        title.setText("Perätila 5");
+        title.setText(R.string.peratilaSivu5Title);
         activityName = "peratilaSivu5";
         setLayout("layoutImageText");
 
@@ -1187,7 +1186,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hartiadystokiaSivu1(View v) {
-        title.setText("Hartiadystokia 1");
+        title.setText(R.string.hartiadystokiaSivu1Title);
         activityName = "hartiadystokiaSivu1";
         setLayout("layoutImageText");
 
@@ -1201,7 +1200,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hartiadystokiaSivu2(View v) {
-        title.setText("Hartiadystokia 2");
+        title.setText(R.string.hartiadystokiaSivu2Title);
         activityName = "hartiadystokiaSivu2";
         setLayout("layoutImageText");
 
@@ -1215,7 +1214,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hartiadystokiaSivu3(View v) {
-        title.setText("Hartiadystokia 3");
+        title.setText(R.string.hartiadystokiaSivu3Title);
         activityName = "hartiadystokiaSivu3";
         setLayout("layoutImageText");
 
@@ -1229,7 +1228,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hartiadystokiaSivu4(View v) {
-        title.setText("Hartiadystokia 4");
+        title.setText(R.string.hartiadystokiaSivu4Title);
         activityName = "hartiadystokiaSivu4";
         setLayout("layoutImageText");
 
@@ -1243,7 +1242,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hartiadystokiaSivu5(View v) {
-        title.setText("Hartiadystokia 5");
+        title.setText(R.string.hartiadystokiaSivu5Title);
         activityName = "hartiadystokiaSivu5";
         setLayout("layoutImageText");
 
@@ -1257,7 +1256,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void napanuoraSivu1(View v) {
-        title.setText("Napanuora 1");
+        title.setText(R.string.napanuoraSivu1Title);
         activityName = "napanuoraSivu1";
         setLayout("layoutImageText");
 
@@ -1270,7 +1269,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void napanuoraSivu2(View v) {
-        title.setText("Napanuora 2");
+        title.setText(R.string.napanuoraSivu2Title);
         activityName = "napanuoraSivu2";
         setLayout("layoutImageText");
 
@@ -1283,7 +1282,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void napanuoraSivu3(View v) {
-        title.setText("Napanuora 3");
+        title.setText(R.string.napanuoraSivu3Title);
         activityName = "napanuoraSivu3";
         setLayout("layoutImageText");
 
