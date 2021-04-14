@@ -196,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
                     darkModeSwitch.setTextSize(22);
                 } else if (position == 2) {
                     editor.putString("textSize", "big");
+                    textView.setTextSize(30);
                     textSizeTextView.setTextSize(30);
                     darkModeSwitch.setTextSize(30);
                 }
