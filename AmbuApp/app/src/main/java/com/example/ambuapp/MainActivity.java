@@ -139,10 +139,15 @@ public class MainActivity extends AppCompatActivity {
         setupAppFromSharedprefs(sharedPreferences);
         setupDarkModeSwitch(sharedPreferences);
 
-
         // to refresh asset files
 //        for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
 //        for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
+
+        // nämä StepView arvot pitäisi muuttua puhelimen näytön koon mukaan
+//        stepView.doneCircleRadius = 40;
+//        stepView.selectedCircleRadius = 40;
+//        stepView.stepNumberTextSize = 40;
+//        stepView.stepLineWidth = 8;
     }
 
     //region functions

@@ -114,7 +114,7 @@
         android:id="@+id/stepView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintWidth_percent="0.8"
         app:layout_constraintHeight_percent="0.05"
         app:layout_constraintBottom_toTopOf="@+id/arrowsGuideline"
@@ -129,8 +129,8 @@
         app:sv_selectedCircleColor="@color/secondaryColor"
         app:sv_nextStepCircleColor="#BDBDBD"
 
-        app:sv_doneStepMarkColor="@color/primaryColor"
-        app:sv_selectedStepNumberColor="@color/primaryColor"
+        app:sv_doneStepMarkColor="@color/sv_doneStepMarkColor"
+        app:sv_selectedStepNumberColor="@color/sv_selectedStepNumberColor"
         app:sv_nextTextColor="#808080"
 
         app:sv_doneStepLineColor="#808080"
