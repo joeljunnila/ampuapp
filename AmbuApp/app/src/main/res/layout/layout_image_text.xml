@@ -41,19 +41,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageArea">
 
-        <TextView
-            android:id="@+id/textView"
+        <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:textSize="15sp"
-            android:textColor="@color/textColor"
+            android:fadeScrollbars="false"
+            android:fillViewport="true"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="vertical"
+            app:layout_constraintWidth_percent="0.9"
             app:layout_constraintHeight_percent="0.95"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.9"
-            tools:text="@tools:sample/lorem/random" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/lorem/random" />
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

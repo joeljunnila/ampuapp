@@ -129,8 +129,8 @@
         app:sv_selectedCircleColor="@color/secondaryColor"
         app:sv_nextStepCircleColor="#BDBDBD"
 
-        app:sv_doneStepMarkColor="@color/primaryColor"
-        app:sv_selectedStepNumberColor="@color/primaryColor"
+        app:sv_doneStepMarkColor="@color/sv_doneStepMarkColor"
+        app:sv_selectedStepNumberColor="@color/sv_selectedStepNumberColor"
         app:sv_nextTextColor="#808080"
 
         app:sv_doneStepLineColor="#808080"
