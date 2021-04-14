@@ -114,7 +114,7 @@
         android:id="@+id/stepView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintWidth_percent="0.8"
         app:layout_constraintHeight_percent="0.05"
         app:layout_constraintBottom_toTopOf="@+id/arrowsGuideline"

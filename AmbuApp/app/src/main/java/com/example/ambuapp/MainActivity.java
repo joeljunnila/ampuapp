@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
 //        for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
 
         // nämä StepView arvot pitäisi muuttua puhelimen näytön koon mukaan
+        // stepview näytti skaalautuvan ihan hyvin, joten tää ei oo välttämättä tarpeellinen
 //        stepView.doneCircleRadius = 40;
 //        stepView.selectedCircleRadius = 40;
 //        stepView.stepNumberTextSize = 40;
