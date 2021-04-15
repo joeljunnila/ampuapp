@@ -1,3 +1,4 @@
+/* #region index */
 * {
     margin: 0;
     padding: 0;
@@ -7,6 +8,7 @@ body {
     background-color: black;
 }
 
+/* phone area in html page */
 .phone {
     width: 400px;
     height: 800px;
@@ -19,13 +21,15 @@ body {
     background-color: white;
 }
 
+/* menubar */
 .menubar {
     overflow: hidden;
     height: 8%;
     background-color: #FFD4E3;
 }
 
-.menubarIcon {
+/* menubar icons */
+.menubar button {
     float: left;
     width: 20%;
     height: 100%;
@@ -34,25 +38,29 @@ body {
     outline: none;
 }
 
-.menubarTitle {
+/* menubar title */
+.menubar h2 {
     float: left;
     width: 60%;
     font-size: 30px;
+    font-family: Arial, sans-serif;
     color: #AF0505;
     text-align: center;
     margin-top: 15px;
 }
 
+/* content area */
 #content {
     height: 77%;
 }
 
+/* arrow area */
 .arrowArea {
     height: 15%;
 }
 
-.leftArrow {
-    float: left;
+/* arrow icons */
+.arrowArea button {
     width: 20%;
     height: 60%;
     border: none;
@@ -60,22 +68,16 @@ body {
     margin: 25px;
     display: block;
 }
+/* #endregion index */
 
-.rightArrow {
-    float: right;
-    width: 20%;
-    height: 60%;
-    border: none;
-    outline: none;
-    margin: 25px;
-    display: block;
-}
-
+/* #region Layout */
+/* menuLayout area in content */
 .menuLayout {
     margin: 0px 40px;
     left: 50%;
 }
 
+/* menuLayout buttons */
 .menuLayout button {
     width: 100%;
     margin-top: 28px;
@@ -84,3 +86,27 @@ body {
     font-size: 25px;
     border-radius: 12px;
 }
+
+/* imageTextLayout area in content */
+.imageTextLayout {
+    width: 100%;
+    height: 100%;
+}
+
+/* imageTextLayout image */
+.imageTextLayout img {
+    width: auto;
+    height: 30%;
+    background-color: #FFD4E3;
+    border: none;
+    outline: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* imageTextLayout text */
+.imageTextLayout p {
+    margin: 10px 20px;
+}
+/* #endregion Layout */

@@ -5,7 +5,7 @@ window.onload = function loadFirst() {
             document.getElementById("content").innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "menuLayout.html", true);
+    xhttp.open("GET", "imageTextLayout.html", true);
     xhttp.send();
 }
 
