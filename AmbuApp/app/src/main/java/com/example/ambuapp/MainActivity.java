@@ -682,9 +682,9 @@ public class MainActivity extends AppCompatActivity {
 
         leftArrow.setVisibility(View.INVISIBLE);
 
-        button2.setOnClickListener(this::valmistautuminenSivu);
-        button3.setOnClickListener(this::synnytyksenAikanaSivu);
-        button4.setOnClickListener(this::synnytyksenJalkeenSivu);
+        button2.setOnClickListener(this::valmistautuminenSivu1);
+        button3.setOnClickListener(this::synnytyksenAikanaSivu1);
+        button4.setOnClickListener(this::synnytyksenJalkeenSivu1);
         button5.setOnClickListener(this::erikoistilanteetSivu);
     }
 
@@ -785,9 +785,9 @@ public class MainActivity extends AppCompatActivity {
         button3.setText(R.string.erikoistilanteetSivu2);
         button4.setText(R.string.erikoistilanteetSivu3);
 
-        button2.setOnClickListener(this::peratilaSivu);
-        button3.setOnClickListener(this::hartiadystokiaSivu);
-        button4.setOnClickListener(this::napanuoraSivu);
+        button2.setOnClickListener(this::peratilaSivu1);
+        button3.setOnClickListener(this::hartiadystokiaSivu1);
+        button4.setOnClickListener(this::napanuoraSivu1);
     }
 
     public void peratilaSivu(View v) {
@@ -864,7 +864,6 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(this::napanuoraSivu2);
         button4.setOnClickListener(this::napanuoraSivu3);
 
-
         stepView.getState().stepsNumber(3).commit();
     }
     //endregion
@@ -880,6 +879,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu1.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(0, false);
     }
 
@@ -959,6 +959,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu1.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(0, false);
     }
 
@@ -1042,6 +1043,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu1.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(0, false);
     }
 
@@ -1109,6 +1111,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("peratilaSivu1.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(0, false);
     }
 
@@ -1179,6 +1182,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu1.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(0, false);
     }
 
@@ -1248,6 +1252,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("napanuoraSivu1.txt"));
+        stepView.getState().stepsNumber(3).commit();
         stepView.go(0, false);
     }
 

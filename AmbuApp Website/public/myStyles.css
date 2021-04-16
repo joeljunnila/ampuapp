@@ -5,57 +5,63 @@
 }
 
 body {
-    background-color: black;
+    background-color: rgb(19, 5, 5);
 }
 
 /* phone area in html page */
 .phone {
-    width: 400px;
-    height: 800px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    width: calc(1080px/3);
+    height: calc(2220px/3);
+    box-sizing: border-box;
+    display: block;
+    margin: 50px auto;
 
-    border: solid 5px;
+    border: solid 0px;
+    border-color: black;
     background-color: white;
 }
 
 /* menubar */
 .menubar {
-    overflow: hidden;
+    width: 100%;
     height: 8%;
     background-color: #FFD4E3;
+    overflow: hidden;
+    margin: auto;
+    display: block;
 }
 
 /* menubar icons */
 .menubar button {
-    float: left;
     width: 20%;
     height: 100%;
     background-color: #FFD4E3;
     border: none;
     outline: none;
+    float: left;
 }
 
 /* menubar title */
 .menubar h2 {
-    float: left;
     width: 60%;
-    font-size: 30px;
+    height: 100%;
+    font-size: 32px;
     font-family: Arial, sans-serif;
     color: #AF0505;
     text-align: center;
-    margin-top: 15px;
+    float: left;
+    margin-top: 10px;
 }
 
 /* content area */
 #content {
+    width: 100%;
     height: 77%;
 }
 
 /* arrow area */
 .arrowArea {
+    width: 100%;
     height: 15%;
 }
 
@@ -65,25 +71,25 @@ body {
     height: 60%;
     border: none;
     outline: none;
-    margin: 25px;
-    display: block;
+    margin: 7%;
 }
 /* #endregion index */
 
 /* #region Layout */
 /* menuLayout area in content */
 .menuLayout {
-    margin: 0px 40px;
-    left: 50%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
 }
 
 /* menuLayout buttons */
 .menuLayout button {
-    width: 100%;
-    margin-top: 28px;
-    padding: 6%;
+    width: 80%;
+    height: 11%;
+    margin-top: 8%;
     background-color: #FFD4E3;
-    font-size: 25px;
+    font-size: 26px;
     border-radius: 12px;
 }
 
@@ -91,6 +97,7 @@ body {
 .imageTextLayout {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 /* imageTextLayout image */
@@ -107,6 +114,9 @@ body {
 
 /* imageTextLayout text */
 .imageTextLayout p {
-    margin: 10px 20px;
+    width: 90%;
+    height: 95%;
+    margin: 2.5% 5%;
+    font-size: 24px;
 }
 /* #endregion Layout */
