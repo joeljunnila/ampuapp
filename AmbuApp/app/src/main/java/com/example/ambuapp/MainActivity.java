@@ -41,6 +41,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import static java.lang.Thread.sleep;
+
 @SuppressLint("UseSwitchCompatOrMaterialCode")
 public class MainActivity extends AppCompatActivity {
 
@@ -182,11 +184,10 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                SharedPreferences.Editor editor = sharedPrefs.edit();
                 if(position == 0) {
                     editor.putString("textSize", "small");
                     textView.setTextSize(14);
@@ -487,8 +488,8 @@ public class MainActivity extends AppCompatActivity {
         switch (content) {
             case "layoutMenu":
                 layoutMenu.setVisibility(View.VISIBLE);
-                layoutImageText.setVisibility(View.GONE);
-                layoutSettings.setVisibility(View.GONE);
+                layoutImageText.setVisibility(View.INVISIBLE);
+                layoutSettings.setVisibility(View.INVISIBLE);
                 stepView.setVisibility(View.GONE);
 
                 button1.setVisibility(View.INVISIBLE);
@@ -505,18 +506,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "layoutImageText":
                 scrollView.scrollTo(0, 0);
-                layoutMenu.setVisibility(View.GONE);
+                layoutMenu.setVisibility(View.INVISIBLE);
                 layoutImageText.setVisibility(View.VISIBLE);
-                layoutSettings.setVisibility(View.GONE);
+                layoutSettings.setVisibility(View.INVISIBLE);
                 stepView.setVisibility(View.VISIBLE);
 
                 leftArrow.setVisibility(View.VISIBLE);
                 rightArrow.setVisibility(View.VISIBLE);
                 break;
             default:
-                layoutMenu.setVisibility(View.GONE);
-                layoutImageText.setVisibility(View.GONE);
-                layoutSettings.setVisibility(View.GONE);
+                layoutMenu.setVisibility(View.INVISIBLE);
+                layoutImageText.setVisibility(View.INVISIBLE);
+                layoutSettings.setVisibility(View.INVISIBLE);
                 stepView.setVisibility(View.GONE);
 
                 leftArrow.setVisibility(View.VISIBLE);
@@ -932,9 +933,9 @@ public class MainActivity extends AppCompatActivity {
 
         leftArrow.setVisibility(View.INVISIBLE);
 
-        button2.setOnClickListener(this::valmistautuminenSivu);
-        button3.setOnClickListener(this::synnytyksenAikanaSivu);
-        button4.setOnClickListener(this::synnytyksenJalkeenSivu);
+        button2.setOnClickListener(this::valmistautuminenSivu1);
+        button3.setOnClickListener(this::synnytyksenAikanaSivu1);
+        button4.setOnClickListener(this::synnytyksenJalkeenSivu1);
         button5.setOnClickListener(this::erikoistilanteetSivu);
     }
 
@@ -1062,9 +1063,9 @@ public class MainActivity extends AppCompatActivity {
         button3.setText(R.string.erikoistilanteetSivu2);
         button4.setText(R.string.erikoistilanteetSivu3);
 
-        button2.setOnClickListener(this::peratilaSivu);
-        button3.setOnClickListener(this::hartiadystokiaSivu);
-        button4.setOnClickListener(this::napanuoraSivu);
+        button2.setOnClickListener(this::peratilaSivu1);
+        button3.setOnClickListener(this::hartiadystokiaSivu1);
+        button4.setOnClickListener(this::napanuoraSivu1);
     }
 
     public void peratilaSivu(View v) {
@@ -1159,7 +1160,6 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(this::napanuoraSivu2);
         button4.setOnClickListener(this::napanuoraSivu3);
 
-
         stepView.getState().stepsNumber(3).commit();
     }
     //endregion
@@ -1176,11 +1176,12 @@ public class MainActivity extends AppCompatActivity {
         activityName = "valmistautuminenSivu1";
         setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::valmistautuminenSivu);
+        leftArrow.setOnClickListener(this::kotisivu);
         rightArrow.setOnClickListener(this::valmistautuminenSivu2);
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu1.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(0, false);
     }
 
@@ -1290,12 +1291,13 @@ public class MainActivity extends AppCompatActivity {
         activityName = "synnytyksenAikanaSivu1";
         setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu);
+        leftArrow.setOnClickListener(this::kotisivu);
         rightArrow.setOnClickListener(this::synnytyksenAikanaSivu2);
 
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu1.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(0, false);
     }
 
@@ -1410,11 +1412,12 @@ public class MainActivity extends AppCompatActivity {
         activityName = "synnytyksenJalkeenSivu1";
         setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu);
+        leftArrow.setOnClickListener(this::kotisivu);
         rightArrow.setOnClickListener(this::synnytyksenJalkeenSivu2);
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu1.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(0, false);
     }
 
@@ -1506,12 +1509,13 @@ public class MainActivity extends AppCompatActivity {
         activityName = "peratilaSivu1";
         setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::peratilaSivu);
+        leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         rightArrow.setOnClickListener(this::peratilaSivu2);
 
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("peratilaSivu1.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(0, false);
     }
 
@@ -1606,12 +1610,13 @@ public class MainActivity extends AppCompatActivity {
         activityName = "hartiadystokiaSivu1";
         setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::hartiadystokiaSivu);
+        leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         rightArrow.setOnClickListener(this::hartiadystokiaSivu2);
 
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu1.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(0, false);
     }
 
@@ -1706,11 +1711,12 @@ public class MainActivity extends AppCompatActivity {
         activityName = "napanuoraSivu1";
         setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::napanuoraSivu);
+        leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         rightArrow.setOnClickListener(this::napanuoraSivu2);
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("napanuoraSivu1.txt"));
+        stepView.getState().stepsNumber(3).commit();
         stepView.go(0, false);
     }
 

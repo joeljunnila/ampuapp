@@ -1,0 +1,126 @@
+/* #region index */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(19, 5, 5);
+}
+
+/* phone area in html page */
+.phone {
+    width: calc(1080px/3);
+    height: calc(2220px/3);
+    box-sizing: border-box;
+    display: block;
+    margin: 50px auto;
+
+    border: solid 0px;
+    border-color: black;
+    background-color: white;
+}
+
+/* menubar */
+header {
+    width: 100%;
+    height: 8%;
+    background-color: #FFD4E3;
+    overflow: hidden;
+    margin: auto;
+    display: block;
+}
+
+/* menubar icons */
+header button {
+    width: 20%;
+    height: 100%;
+    background-color: #FFD4E3;
+    border: none;
+    outline: none;
+    float: left;
+}
+
+/* menubar title */
+header h2 {
+    width: 60%;
+    height: 100%;
+    font-size: 32px;
+    font-family: Arial, sans-serif;
+    color: #AF0505;
+    text-align: center;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* content area */
+main {
+    width: 100%;
+    height: 77%;
+}
+
+/* arrow area */
+.arrowArea {
+    width: 100%;
+    height: 15%;
+}
+
+/* arrow icons */
+.arrowArea button {
+    width: 20%;
+    height: 60%;
+    border: none;
+    outline: none;
+    margin: 7%;
+    display: none;
+}
+/* #endregion index */
+
+/* #region Layout */
+/* menuLayout area in content */
+#menuLayout {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+/* menuLayout buttons */
+#menuLayout button {
+    width: 80%;
+    padding: 18px;
+    margin-top: 20px;
+    background-color: #FFD4E3;
+    font-size: 26px;
+    border-radius: 12px;
+    outline: none;
+}
+
+/* imageTextLayout area in content */
+#imageTextLayout {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* imageTextLayout image */
+#imageTextLayout img {
+    width: auto;
+    height: 30%;
+    background-color: #FFD4E3;
+    border: none;
+    outline: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* imageTextLayout text */
+#imageTextLayout p {
+    width: 90%;
+    height: 95%;
+    margin: 2.5% 5%;
+    font-size: 24px;
+}
+/* #endregion Layout */

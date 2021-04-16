@@ -20,14 +20,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.8"
-        app:strokeWidth="2dp" />
+        app:strokeColor="@color/menuButtonBorderColor"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/Button2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/secondaryColor"
-        android:onClick="valmistautuminenSivu"
+        android:onClick="valmistautuminenSivu1"
         android:text="@string/kotisivu1"
         android:textAllCaps="false"
         android:textColor="@color/buttonTextColor"
@@ -39,14 +40,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Button1"
         app:layout_constraintWidth_percent="0.8"
-        app:strokeWidth="2dp" />
+        app:strokeColor="@color/menuButtonBorderColor"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/Button3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/secondaryColor"
-        android:onClick="synnytyksenAikanaSivu"
+        android:onClick="synnytyksenAikanaSivu1"
         android:text="@string/kotisivu2"
         android:textAllCaps="false"
         android:textColor="@color/buttonTextColor"
@@ -58,14 +60,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Button2"
         app:layout_constraintWidth_percent="0.8"
-        app:strokeWidth="2dp" />
+        app:strokeColor="@color/menuButtonBorderColor"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/Button4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:backgroundTint="@color/secondaryColor"
-        android:onClick="synnytyksenJalkeenSivu"
+        android:onClick="synnytyksenJalkeenSivu1"
         android:text="@string/kotisivu3"
         android:textAllCaps="false"
         android:textColor="@color/buttonTextColor"
@@ -77,7 +80,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Button3"
         app:layout_constraintWidth_percent="0.8"
-        app:strokeWidth="2dp" />
+        app:strokeColor="@color/menuButtonBorderColor"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/Button5"
@@ -96,7 +100,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Button4"
         app:layout_constraintWidth_percent="0.8"
-        app:strokeWidth="2dp" />
+        app:strokeColor="@color/menuButtonBorderColor"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/Button6"
@@ -114,6 +119,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Button5"
         app:layout_constraintWidth_percent="0.8"
-        app:strokeWidth="2dp" />
+        app:strokeColor="@color/menuButtonBorderColor"
+        app:strokeWidth="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
