@@ -874,7 +874,7 @@ public class MainActivity extends AppCompatActivity {
         activityName = "valmistautuminenSivu1";
         setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::valmistautuminenSivu);
+        leftArrow.setOnClickListener(this::kotisivu);
         rightArrow.setOnClickListener(this::valmistautuminenSivu2);
 
         imageArea.setVisibility(View.GONE);
@@ -953,7 +953,7 @@ public class MainActivity extends AppCompatActivity {
         activityName = "synnytyksenAikanaSivu1";
         setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu);
+        leftArrow.setOnClickListener(this::kotisivu);
         rightArrow.setOnClickListener(this::synnytyksenAikanaSivu2);
 
         imageArea.setVisibility(View.VISIBLE);
@@ -1038,7 +1038,7 @@ public class MainActivity extends AppCompatActivity {
         activityName = "synnytyksenJalkeenSivu1";
         setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu);
+        leftArrow.setOnClickListener(this::kotisivu);
         rightArrow.setOnClickListener(this::synnytyksenJalkeenSivu2);
 
         imageArea.setVisibility(View.GONE);
@@ -1105,7 +1105,7 @@ public class MainActivity extends AppCompatActivity {
         activityName = "peratilaSivu1";
         setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::peratilaSivu);
+        leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         rightArrow.setOnClickListener(this::peratilaSivu2);
 
         imageArea.setVisibility(View.VISIBLE);
@@ -1176,7 +1176,7 @@ public class MainActivity extends AppCompatActivity {
         activityName = "hartiadystokiaSivu1";
         setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::hartiadystokiaSivu);
+        leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         rightArrow.setOnClickListener(this::hartiadystokiaSivu2);
 
         imageArea.setVisibility(View.VISIBLE);
@@ -1247,7 +1247,7 @@ public class MainActivity extends AppCompatActivity {
         activityName = "napanuoraSivu1";
         setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::napanuoraSivu);
+        leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         rightArrow.setOnClickListener(this::napanuoraSivu2);
 
         imageArea.setVisibility(View.GONE);

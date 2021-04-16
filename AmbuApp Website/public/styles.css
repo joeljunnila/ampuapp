@@ -50,7 +50,9 @@ body {
     color: #AF0505;
     text-align: center;
     float: left;
-    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* content area */
@@ -81,13 +83,15 @@ body {
     width: 100%;
     height: 100%;
     text-align: center;
+    display: flex;
+    align-items: center;
 }
 
 /* menuLayout buttons */
 .menuLayout button {
     width: 80%;
-    height: 11%;
-    margin-top: 8%;
+    padding: 18px;
+    margin-top: 20px;
     background-color: #FFD4E3;
     font-size: 26px;
     border-radius: 12px;
