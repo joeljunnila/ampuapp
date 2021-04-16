@@ -241,12 +241,21 @@ public class MainActivity extends AppCompatActivity {
         switch (textSize) {
             case "small":
                 spinner.setSelection(0);
+                textView.setTextSize(14);
+                textSizeTextView.setTextSize(14);
+                darkModeSwitch.setTextSize(14);
                 break;
             case "normal":
                 spinner.setSelection(1);
+                textView.setTextSize(22);
+                textSizeTextView.setTextSize(22);
+                darkModeSwitch.setTextSize(22);
                 break;
             case "big":
                 spinner.setSelection(2);
+                textView.setTextSize(30);
+                textSizeTextView.setTextSize(30);
+                darkModeSwitch.setTextSize(30);
                 break;
         }
     }
