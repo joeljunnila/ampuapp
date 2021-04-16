@@ -131,13 +131,15 @@ public class MainActivity extends AppCompatActivity {
 
         naviconButton.setOnClickListener(this::setupPopupMenu);
         setupSpinner();
-        updateButton.setOnClickListener(v -> update());
+        updateButton.setOnClickListener(v -> checkForUpdate());
 
         //start program
         addFileNames();
         ifFirstLaunch();
         setupAppFromConfigFile();
         setupDarkModeSwitch();
+        //checkForUpdate();
+
     }
 
     //region functions
@@ -239,7 +241,9 @@ public class MainActivity extends AppCompatActivity {
                         line = "ThemeChanged = false";
                         skipDarkMode = true;
                         asetukset();
-                    } else if(line.contains("DarkMode") && AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES && !skipDarkMode) {
+                    }
+                    else if(line.contains("DarkMode") && AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES && !skipDarkMode) {
+
                         if(line.endsWith("true")) {
                             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                         } else {
@@ -427,6 +431,35 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i< textRefs.size(); i++) {
             downloadFileFromFirebase(textRefs.get(i), getFilesDir(), textFileNames.get(i));
         }
+    }
+
+    public void checkForUpdate() {
+
+        StringBuilder sb = new StringBuilder();
+
+        //stringi pysyy tällasena eli ei toimi näin(immutable)
+
+        String appVersionNumber = "2";
+       if(checkFromConfigFile("versionNumber",appVersionNumber)); //tsekkaa funktiolla configista versionumeron
+
+       else {
+           update();
+           try {
+               BufferedReader reader = new BufferedReader(new FileReader(configFile));
+               String line;
+               while ((line = reader.readLine()) != null) {
+                   if(line.contains("versionNumber") ) {
+                       sb.append(line);
+                       reader.close();
+                   }
+               }
+               reader.close();
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+       }
+    sb.delete(0,16);
+    appVersionNumber = sb.toString();
     }
 
     public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
