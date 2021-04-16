@@ -28,7 +28,7 @@
     <string name="valmistautuminenSivu3">Hoidetaan kohteessa</string>
     <string name="valmistautuminenSivu4">Milloin matkaan</string>
     <string name="valmistautuminenSivu5">Miten toimitaan</string>
-    <string name="valmistautuminenSivu6">Hyvä tietää</string>
+    <string name="valmistautuminenSivu6">Lääkeohjeet</string>
     <string name="synnytyksenAikanaSivu1">Synnytys vaihe 1</string>
     <string name="synnytyksenAikanaSivu2">Synnytys vaihe 2</string>
     <string name="synnytyksenAikanaSivu3">Synnytys vaihe 3</string>
@@ -57,4 +57,35 @@
     <string name="napanuoraSivu2">Napanuora 2</string>
     <string name="napanuoraSivu3">Napanuora 3</string>
     <string name="darkModeSwitchText">Aktivoi tummatila</string>
+
+    <string name="valmistautuminenSivu1Title">Huomioitavaa</string>
+    <string name="valmistautuminenSivu2Title">Synnytyksen tilanne</string>
+    <string name="valmistautuminenSivu3Title">Hoidetaan kohteessa</string>
+    <string name="valmistautuminenSivu4Title">Milloin matkaan</string>
+    <string name="valmistautuminenSivu5Title">Miten toimitaan</string>
+    <string name="valmistautuminenSivu6Title">Lääkeohjeet</string>
+    <string name="synnytyksenAikanaSivu1Title">Synnytys vaihe 1</string>
+    <string name="synnytyksenAikanaSivu2Title">Synnytys vaihe 2</string>
+    <string name="synnytyksenAikanaSivu3Title">Synnytys vaihe 3</string>
+    <string name="synnytyksenAikanaSivu4Title">Synnytys vaihe 4</string>
+    <string name="synnytyksenAikanaSivu5Title">Synnytys vaihe 5</string>
+    <string name="synnytyksenAikanaSivu6Title">Synnytys vaihe 6</string>
+    <string name="synnytyksenJalkeenSivu1Title">Lapsen synnyttyä</string>
+    <string name="synnytyksenJalkeenSivu2Title">Napanuoran leikkaus</string>
+    <string name="synnytyksenJalkeenSivu3Title">Jälkeisvaihe</string>
+    <string name="synnytyksenJalkeenSivu4Title">Toimi näin</string>
+    <string name="synnytyksenJalkeenSivu5Title">Tarkkailu</string>
+    <string name="peratilaSivu1Title">Perätila 1</string>
+    <string name="peratilaSivu2Title">Perätila 2</string>
+    <string name="peratilaSivu3Title">Perätila 3</string>
+    <string name="peratilaSivu4Title">Perätila 4</string>
+    <string name="peratilaSivu5Title">Perätila 5</string>
+    <string name="hartiadystokiaSivu1Title">Hartiadystokia 1</string>
+    <string name="hartiadystokiaSivu2Title">Hartiadystokia 2</string>
+    <string name="hartiadystokiaSivu3Title">Hartiadystokia 3</string>
+    <string name="hartiadystokiaSivu4Title">Hartiadystokia 4</string>
+    <string name="hartiadystokiaSivu5Title">Hartiadystokia 5</string>
+    <string name="napanuoraSivu1Title">Napanuora 1</string>
+    <string name="napanuoraSivu2Title">Napanuora 2</string>
+    <string name="napanuoraSivu3Title">Napanuora 3</string>
 </resources>

@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.AmbuApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/secondaryColor</item>
+        <item name="colorPrimaryVariant">@color/secondaryColor</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -16,11 +16,5 @@
         <item name="naviconIcon">@drawable/ic_baseline_menu_24</item>
         <item name="leftArrow">@drawable/ic_baseline_keyboard_arrow_left_24</item>
         <item name="rightArrow">@drawable/ic_baseline_keyboard_arrow_right_24</item>
-    </style>
-
-    <!-- This will set the fade in animation on all your activities by default -->
-    <style name="WindowAnimationTransition">
-        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 </resources>

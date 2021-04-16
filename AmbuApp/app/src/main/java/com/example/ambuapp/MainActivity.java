@@ -9,13 +9,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
@@ -25,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -38,12 +37,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-
-import static java.lang.Thread.sleep;
 
 @SuppressLint("UseSwitchCompatOrMaterialCode")
 public class MainActivity extends AppCompatActivity {
@@ -73,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner;
     Switch darkModeSwitch;
     Button updateButton;
-    Integer textSize;
+    ScrollView scrollView;
 
     //footer
     ImageButton leftArrow;
@@ -86,19 +82,12 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<StorageReference> imageRefs = new ArrayList<>();
     ArrayList<StorageReference> textRefs = new ArrayList<>();
 
-
-    File configFile;
     String activityName = "kotisivu";
     String imageFileDir = "kuvat/";
     String textFileDir = "tekstit/";
     String activityToReturn;
 
     int fileCounter = 0;
-
-
-    //sharedprefs (darkmode) testaus
-
-
     //endregion
 
     @Override
@@ -132,35 +121,37 @@ public class MainActivity extends AppCompatActivity {
         darkModeSwitch = findViewById(R.id.darkModeSwitch);
         updateButton = findViewById(R.id.updateButton);
         //scrollable
-        textView.setMovementMethod(new ScrollingMovementMethod());
+        scrollView = findViewById(R.id.scrollView);
+
+        //textView.setMovementMethod(new ScrollingMovementMethod());
         //footer
         leftArrow = findViewById(R.id.leftArrow);
         rightArrow = findViewById(R.id.rightArrow);
         //endregion
 
-        //region sharedprefs
-
         SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-
-
-        //endregion
-
-        configFile = new File(getFilesDir(), "config.txt");
         storageRef = FirebaseStorage.getInstance().getReference();
+        addFileNames();
 
         naviconButton.setOnClickListener(this::setupPopupMenu);
-        textView.setTextSize(20);
+        setupSpinner(sharedPreferences);
         updateButton.setOnClickListener(v -> update());
 
 
         //start program
-        addFileNames();
-        for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-        for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-        ifFirstLaunch(sharedPreferences);
-       // setupAppFromConfigFile();
         setupAppFromSharedprefs(sharedPreferences);
         setupDarkModeSwitch(sharedPreferences);
+
+        // to refresh asset files
+            for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
+            for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
+
+        // nämä StepView arvot pitäisi muuttua puhelimen näytön koon mukaan
+        // stepview näytti skaalautuvan ihan hyvin, joten tää ei oo välttämättä tarpeellinen
+//        stepView.doneCircleRadius = 40;
+//        stepView.selectedCircleRadius = 40;
+//        stepView.stepNumberTextSize = 40;
+//        stepView.stepLineWidth = 8;
     }
 
     //region functions
@@ -177,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     asetukset(v);
                     return true;
                 case R.id.popupMenuItem2:
-                    tietojaSovelluksesta(v);
+                    tietoaSovelluksesta(v);
                     return true;
                 default:
                     return false;
@@ -191,74 +182,42 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-
         SharedPreferences.Editor editor = sharedPrefs.edit();
 
-        //spinner.setOnItemSelectedListener(this);
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0) {
                     editor.putString("textSize", "small");
-                    textSizeTextView.setTextSize(10);
-                    darkModeSwitch.setTextSize(10);
-                    editor.apply();
+                    textView.setTextSize(14);
+                    textSizeTextView.setTextSize(14);
+                    darkModeSwitch.setTextSize(14);
                 } else if (position == 1) {
                     editor.putString("textSize", "normal");
-                    textSizeTextView.setTextSize(20);
-                    darkModeSwitch.setTextSize(20);
-                    editor.apply();
+                    textView.setTextSize(22);
+                    textSizeTextView.setTextSize(22);
+                    darkModeSwitch.setTextSize(22);
                 } else if (position == 2) {
                     editor.putString("textSize", "big");
+                    textView.setTextSize(30);
                     textSizeTextView.setTextSize(30);
                     darkModeSwitch.setTextSize(30);
-                    editor.apply();
                 }
-
+                editor.apply();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                //Toast.makeText(this, "impossible", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void setupDarkModeSwitch(SharedPreferences sharedPrefs) {
+    public void setupAppFromSharedprefs(SharedPreferences sharedPrefs) {
+        boolean isFirstLaunch = sharedPrefs.getBoolean("isFirstLaunch", true);
+        boolean themeChanged = sharedPrefs.getBoolean("themeChanged", false);
+        boolean darkMode = sharedPrefs.getBoolean("isDarkModeOn", false);
+        String textSize = sharedPrefs.getString("textSize", "normal");
 
-        final boolean darkMode = sharedPrefs.getBoolean("isDarkModeOn", false);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-
-        if (darkMode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            darkModeSwitch.setChecked(true);
-        }
-        else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
-
-        darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                editor.putBoolean("isDarkModeOn", true);
-
-            }
-            else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                editor.putBoolean("isDarkModeOn", false);
-
-            }
-            editor.putBoolean("themeChanged", true);
-            editor.apply();
-        });
-
-    }
-
-
-    public void ifFirstLaunch(SharedPreferences sharedPrefs) {
-
-        sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        final boolean isFirstLaunch = sharedPrefs.getBoolean("isFirstLaunch", true);
         SharedPreferences.Editor editor = sharedPrefs.edit();
 
         if(isFirstLaunch) {
@@ -268,79 +227,6 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("isFirstLaunch", false);
             editor.apply();
         }
-        else {
-            // OTA TÄMÄ POIS!
-            Toast toast=Toast.makeText(getApplicationContext(),"Hello Javatpoint",Toast.LENGTH_SHORT);
-            toast.setMargin(50,50);
-            toast.show();
-        }
-       /* if(!configFile.exists()) {
-            for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-            for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-            if (isNetworkAvailable()) update();
-
-            spinner.setSelection(1);
-            useAssetFile("", "config.txt");
-
-            /*int phoneTheme = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-            if (phoneTheme == Configuration.UI_MODE_NIGHT_YES) {
-                updateConfigFile("DarkMode", "true");
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            }*/
-
-    }
-
-    //setup app from config
-    /*public void setupAppFromConfigFile() {
-        if(configFile.exists()) {
-            boolean skipDarkMode = false;
-            StringBuilder stringBuilder = new StringBuilder();
-            try {
-                BufferedReader reader = new BufferedReader(new FileReader(configFile));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if(line.contains("ThemeChanged") && line.endsWith("true")) {
-                        line = "ThemeChanged = false";
-                        skipDarkMode = true;
-                        asetukset();
-                    } else if(line.contains("DarkMode") && AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES && !skipDarkMode) {
-                        if(line.endsWith("true")) {
-                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                        } else {
-                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                        }
-                    } else if(line.contains("TextSize")) {
-                        if(line.endsWith("small")) {
-                            spinner.setSelection(0);
-                        } else if (line.endsWith("normal")) {
-                            spinner.setSelection(1);
-                        } else if(line.endsWith("big")) {
-                            spinner.setSelection(2);
-                        }
-                    }
-                    stringBuilder.append(line).append('\n');
-                }
-                FileWriter writer = new FileWriter(configFile);
-                writer.write(String.valueOf(stringBuilder));
-
-                reader.close();
-                writer.close();
-
-//                Log.d("test", "config: \n" + stringBuilder);
-            } catch (IOException e) {
-                Log.d("test", "Error: setupConfigFile");
-            }
-        }
-    }*/
-
-    //setup app from sharedprefs
-    public void setupAppFromSharedprefs(SharedPreferences sharedPrefs) {
-
-        final boolean themeChanged = sharedPrefs.getBoolean("themeChanged", false);
-        String textSize = sharedPrefs.getString("textSize", "normal");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
 
         if(themeChanged){
             asetukset();
@@ -348,16 +234,40 @@ public class MainActivity extends AppCompatActivity {
             editor.apply();
         }
 
-        if (textSize.equals("small")) {
-            spinner.setSelection(0);
-        }
-        else if (textSize.equals("normal")){
-            spinner.setSelection(1);
-        }
-        else if (textSize.equals("big")){
-            spinner.setSelection(2);
+        if (darkMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            darkModeSwitch.setChecked(true);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
+        switch (textSize) {
+            case "small":
+                spinner.setSelection(0);
+                break;
+            case "normal":
+                spinner.setSelection(1);
+                break;
+            case "big":
+                spinner.setSelection(2);
+                break;
+        }
+    }
+
+    public void setupDarkModeSwitch(SharedPreferences sharedPrefs) {
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+
+        darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked) {
+                editor.putBoolean("isDarkModeOn", true);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                editor.putBoolean("isDarkModeOn", false);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+            editor.putBoolean("themeChanged", true);
+            editor.apply();
+        });
     }
 
     //region reading and updating config file
@@ -518,32 +428,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //downloadFileFromFirebase using config file
-    /*public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
-        File file = new File(dir, name);
-        ref.getFile(file).addOnSuccessListener(taskSnapshot -> {
-            fileCounter++;
-            if(fileCounter == (imageFileNames.size() + textFileNames.size())) {
-                Log.d("test", "Updated succesfully!");
-                if(checkFromConfigFile("FirstLaunch", "false")) {
-                    Toast.makeText(this, "Päivitetty onnistuneesti!", Toast.LENGTH_SHORT).show();
-                } else {
-                    updateConfigFile("FirstLaunch", "false");
-                }
-            }
-        }).addOnFailureListener(exception -> {
-            Log.d("test", "Update failed!");
-            Toast.makeText(getApplicationContext(), "Päivitys epäonnistui!", Toast.LENGTH_SHORT).show();
-        });
-    }*/
-
-    //using sharedprefs
     public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
         File file = new File(dir, name);
 
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        final boolean isFirstLaunch = sharedPrefs.getBoolean("isFirstLaunch", true);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        boolean isFirstLaunch = sharedPrefs.getBoolean("isFirstLaunch", true);
 
         ref.getFile(file).addOnSuccessListener(taskSnapshot -> {
             fileCounter++;
@@ -551,8 +440,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("test", "Updated succesfully!");
                 if(!isFirstLaunch) {
                     Toast.makeText(this, "Päivitetty onnistuneesti!", Toast.LENGTH_SHORT).show();
-                } else {
-                    editor.putBoolean("isFirstLaunch", false);
                 }
             }
         }).addOnFailureListener(exception -> {
@@ -617,6 +504,7 @@ public class MainActivity extends AppCompatActivity {
                 leftArrow.setOnClickListener(this::kotisivu);
                 break;
             case "layoutImageText":
+                scrollView.scrollTo(0, 0);
                 layoutMenu.setVisibility(View.GONE);
                 layoutImageText.setVisibility(View.VISIBLE);
                 layoutSettings.setVisibility(View.GONE);
@@ -1011,10 +899,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void tietojaSovelluksesta(View v) {
+    public void tietoaSovelluksesta(View v) {
         title.setText(R.string.about);
         setLayout("x");
-        activityName = "tietojaSovelluksesta";
+        activityName = "tietoaSovelluksesta";
 
         imageArea.setVisibility(View.GONE);
         layoutImageText.setVisibility(View.VISIBLE);
@@ -1284,7 +1172,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "valmistautuminenSivu1");
         editor.apply();
 
-        title.setText("Huomioitavaa");
+        title.setText(R.string.valmistautuminenSivu1Title);
         activityName = "valmistautuminenSivu1";
         setLayout("layoutImageText");
 
@@ -1303,7 +1191,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "valmistautuminenSivu2");
         editor.apply();
 
-        title.setText("Synnytyksen tilanne");
+        title.setText(R.string.valmistautuminenSivu2Title);
         activityName = "valmistautuminenSivu2";
         setLayout("layoutImageText");
 
@@ -1322,7 +1210,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "valmistautuminenSivu3");
         editor.apply();
 
-        title.setText("Hoidetaan kohteessa");
+        title.setText(R.string.valmistautuminenSivu3Title);
         activityName = "valmistautuminenSivu3";
         setLayout("layoutImageText");
 
@@ -1341,7 +1229,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "valmistautuminenSivu4");
         editor.apply();
 
-        title.setText("Milloin matkaan");
+        title.setText(R.string.valmistautuminenSivu4Title);
         activityName = "valmistautuminenSivu4";
         setLayout("layoutImageText");
 
@@ -1360,7 +1248,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "valmistautuminenSivu5");
         editor.apply();
 
-        title.setText("Miten toimitaan");
+        title.setText(R.string.valmistautuminenSivu5Title);
         activityName = "valmistautuminenSivu5";
         setLayout("layoutImageText");
 
@@ -1379,7 +1267,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "valmistautuminenSivu6");
         editor.apply();
 
-        title.setText("Hyvä tietää");
+        title.setText(R.string.valmistautuminenSivu6Title);
         activityName = "valmistautuminenSivu6";
         setLayout("layoutImageText");
 
@@ -1398,7 +1286,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "synnytyksenAikanaSivu1");
         editor.apply();
 
-        title.setText("Synnytys vaihe 1");
+        title.setText(R.string.synnytyksenAikanaSivu1Title);
         activityName = "synnytyksenAikanaSivu1";
         setLayout("layoutImageText");
 
@@ -1418,7 +1306,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "synnytyksenAikanaSivu2");
         editor.apply();
 
-        title.setText("Synnytys vaihe 2");
+        title.setText(R.string.synnytyksenAikanaSivu2Title);
         activityName = "synnytyksenAikanaSivu2";
         setLayout("layoutImageText");
 
@@ -1438,7 +1326,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "synnytyksenAikanaSivu3");
         editor.apply();
 
-        title.setText("Synnytys vaihe 3");
+        title.setText(R.string.synnytyksenAikanaSivu3Title);
         activityName = "synnytyksenAikanaSivu3";
         setLayout("layoutImageText");
 
@@ -1458,7 +1346,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "synnytyksenAikanaSivu4");
         editor.apply();
 
-        title.setText("Synnytys vaihe 4");
+        title.setText(R.string.synnytyksenAikanaSivu4Title);
         activityName = "synnytyksenAikanaSivu4";
         setLayout("layoutImageText");
 
@@ -1478,7 +1366,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "synnytyksenAikanaSivu5");
         editor.apply();
 
-        title.setText("Synnytys vaihe 5");
+        title.setText(R.string.synnytyksenAikanaSivu5Title);
         activityName = "synnytyksenAikanaSivu5";
         setLayout("layoutImageText");
 
@@ -1498,7 +1386,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "synnytyksenAikanaSivu6");
         editor.apply();
 
-        title.setText("Synnytys vaihe 6");
+        title.setText(R.string.synnytyksenAikanaSivu6Title);
         activityName = "synnytyksenAikanaSivu6";
         setLayout("layoutImageText");
 
@@ -1518,7 +1406,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "synnytyksenJalkeenSivu1");
         editor.apply();
 
-        title.setText("Lapsen synnyttyä");
+        title.setText(R.string.synnytyksenJalkeenSivu1Title);
         activityName = "synnytyksenJalkeenSivu1";
         setLayout("layoutImageText");
 
@@ -1537,7 +1425,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "synnytyksenJalkeenSivu2");
         editor.apply();
 
-        title.setText("Napanuoran leikkaus");
+        title.setText(R.string.synnytyksenJalkeenSivu2Title);
         activityName = "synnytyksenJalkeenSivu2";
         setLayout("layoutImageText");
 
@@ -1556,7 +1444,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "synnytyksenJalkeenSivu3");
         editor.apply();
 
-        title.setText("Jälkeisvaihe");
+        title.setText(R.string.synnytyksenJalkeenSivu3Title);
         activityName = "synnytyksenJalkeenSivu3";
         setLayout("layoutImageText");
 
@@ -1575,7 +1463,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "synnytyksenJalkeenSivu4");
         editor.apply();
 
-        title.setText("Toimi näin");
+        title.setText(R.string.synnytyksenJalkeenSivu4Title);
         activityName = "synnytyksenJalkeenSivu4";
         setLayout("layoutImageText");
 
@@ -1595,7 +1483,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "synnytyksenJalkeenSivu5");
         editor.apply();
 
-        title.setText("Tarkkailu");
+        title.setText(R.string.synnytyksenJalkeenSivu5Title);
         activityName = "synnytyksenJalkeenSivu5";
         setLayout("layoutImageText");
 
@@ -1614,7 +1502,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "peratilaSivu1");
         editor.apply();
 
-        title.setText("Perätila 1");
+        title.setText(R.string.peratilaSivu1Title);
         activityName = "peratilaSivu1";
         setLayout("layoutImageText");
 
@@ -1634,7 +1522,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "peratilaSivu2");
         editor.apply();
 
-        title.setText("Perätila 2");
+        title.setText(R.string.peratilaSivu2Title);
         activityName = "peratilaSivu2";
         setLayout("layoutImageText");
 
@@ -1654,7 +1542,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "peratilaSivu3");
         editor.apply();
 
-        title.setText("Perätila 3");
+        title.setText(R.string.peratilaSivu3Title);
         activityName = "peratilaSivu3";
         setLayout("layoutImageText");
 
@@ -1674,7 +1562,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "peratilaSivu4");
         editor.apply();
 
-        title.setText("Perätila 4");
+        title.setText(R.string.peratilaSivu4Title);
         activityName = "peratilaSivu4";
         setLayout("layoutImageText");
 
@@ -1694,7 +1582,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "peratilaSivu5");
         editor.apply();
 
-        title.setText("Perätila 5");
+        title.setText(R.string.peratilaSivu5Title);
         activityName = "peratilaSivu5";
         setLayout("layoutImageText");
 
@@ -1714,7 +1602,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "hartiadystokiaSivu1");
         editor.apply();
 
-        title.setText("Hartiadystokia 1");
+        title.setText(R.string.hartiadystokiaSivu1Title);
         activityName = "hartiadystokiaSivu1";
         setLayout("layoutImageText");
 
@@ -1734,7 +1622,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "hartiadystokiaSivu2");
         editor.apply();
 
-        title.setText("Hartiadystokia 2");
+        title.setText(R.string.hartiadystokiaSivu2Title);
         activityName = "hartiadystokiaSivu2";
         setLayout("layoutImageText");
 
@@ -1754,7 +1642,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "hartiadystokiaSivu3");
         editor.apply();
 
-        title.setText("Hartiadystokia 3");
+        title.setText(R.string.hartiadystokiaSivu3Title);
         activityName = "hartiadystokiaSivu3";
         setLayout("layoutImageText");
 
@@ -1774,7 +1662,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "hartiadystokiaSivu4");
         editor.apply();
 
-        title.setText("Hartiadystokia 4");
+        title.setText(R.string.hartiadystokiaSivu4Title);
         activityName = "hartiadystokiaSivu4";
         setLayout("layoutImageText");
 
@@ -1794,7 +1682,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "hartiadystokiaSivu5");
         editor.apply();
 
-        title.setText("Hartiadystokia 5");
+        title.setText(R.string.hartiadystokiaSivu5Title);
         activityName = "hartiadystokiaSivu5";
         setLayout("layoutImageText");
 
@@ -1814,7 +1702,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "napanuoraSivu1");
         editor.apply();
 
-        title.setText("Napanuora 1");
+        title.setText(R.string.napanuoraSivu1Title);
         activityName = "napanuoraSivu1";
         setLayout("layoutImageText");
 
@@ -1833,7 +1721,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "napanuoraSivu2");
         editor.apply();
 
-        title.setText("Napanuora 2");
+        title.setText(R.string.napanuoraSivu2Title);
         activityName = "napanuoraSivu2";
         setLayout("layoutImageText");
 
@@ -1852,7 +1740,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("activityToReturn", "napanuoraSivu3");
         editor.apply();
 
-        title.setText("Napanuora 3");
+        title.setText(R.string.napanuoraSivu3Title);
         activityName = "napanuoraSivu3";
         setLayout("layoutImageText");
 
