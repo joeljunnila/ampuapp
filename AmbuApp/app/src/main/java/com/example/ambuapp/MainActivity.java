@@ -41,6 +41,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import static java.lang.Thread.sleep;
+
 @SuppressLint("UseSwitchCompatOrMaterialCode")
 public class MainActivity extends AppCompatActivity {
 
@@ -179,11 +181,10 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                SharedPreferences.Editor editor = sharedPrefs.edit();
                 if(position == 0) {
                     editor.putString("textSize", "small");
                     textView.setTextSize(14);
@@ -484,8 +485,8 @@ public class MainActivity extends AppCompatActivity {
         switch (content) {
             case "layoutMenu":
                 layoutMenu.setVisibility(View.VISIBLE);
-                layoutImageText.setVisibility(View.GONE);
-                layoutSettings.setVisibility(View.GONE);
+                layoutImageText.setVisibility(View.INVISIBLE);
+                layoutSettings.setVisibility(View.INVISIBLE);
                 stepView.setVisibility(View.GONE);
 
                 button1.setVisibility(View.INVISIBLE);
@@ -502,18 +503,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "layoutImageText":
                 scrollView.scrollTo(0, 0);
-                layoutMenu.setVisibility(View.GONE);
+                layoutMenu.setVisibility(View.INVISIBLE);
                 layoutImageText.setVisibility(View.VISIBLE);
-                layoutSettings.setVisibility(View.GONE);
+                layoutSettings.setVisibility(View.INVISIBLE);
                 stepView.setVisibility(View.VISIBLE);
 
                 leftArrow.setVisibility(View.VISIBLE);
                 rightArrow.setVisibility(View.VISIBLE);
                 break;
             default:
-                layoutMenu.setVisibility(View.GONE);
-                layoutImageText.setVisibility(View.GONE);
-                layoutSettings.setVisibility(View.GONE);
+                layoutMenu.setVisibility(View.INVISIBLE);
+                layoutImageText.setVisibility(View.INVISIBLE);
+                layoutSettings.setVisibility(View.INVISIBLE);
                 stepView.setVisibility(View.GONE);
 
                 leftArrow.setVisibility(View.VISIBLE);
