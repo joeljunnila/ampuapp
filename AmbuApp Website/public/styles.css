@@ -79,16 +79,14 @@ header h2 {
 
 /* #region Layout */
 /* menuLayout area in content */
-.menuLayout {
+#menuLayout {
     width: 100%;
     height: 100%;
     text-align: center;
-    display: flex;
-    align-items: center;
 }
 
 /* menuLayout buttons */
-.menuLayout button {
+#menuLayout button {
     width: 80%;
     padding: 18px;
     margin-top: 20px;
@@ -98,14 +96,14 @@ header h2 {
 }
 
 /* imageTextLayout area in content */
-.imageTextLayout {
+#imageTextLayout {
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
 
 /* imageTextLayout image */
-.imageTextLayout img {
+#imageTextLayout img {
     width: auto;
     height: 30%;
     background-color: #FFD4E3;
@@ -117,7 +115,7 @@ header h2 {
 }
 
 /* imageTextLayout text */
-.imageTextLayout p {
+#imageTextLayout p {
     width: 90%;
     height: 95%;
     margin: 2.5% 5%;
