@@ -28,7 +28,7 @@
     <string name="valmistautuminenSivu3">Hoidetaan kohteessa</string>
     <string name="valmistautuminenSivu4">Milloin matkaan</string>
     <string name="valmistautuminenSivu5">Miten toimitaan</string>
-    <string name="valmistautuminenSivu6">Hyvä tietää</string>
+    <string name="valmistautuminenSivu6">Lääkeohjeet</string>
     <string name="synnytyksenAikanaSivu1">Synnytys vaihe 1</string>
     <string name="synnytyksenAikanaSivu2">Synnytys vaihe 2</string>
     <string name="synnytyksenAikanaSivu3">Synnytys vaihe 3</string>
@@ -63,7 +63,7 @@
     <string name="valmistautuminenSivu3Title">Hoidetaan kohteessa</string>
     <string name="valmistautuminenSivu4Title">Milloin matkaan</string>
     <string name="valmistautuminenSivu5Title">Miten toimitaan</string>
-    <string name="valmistautuminenSivu6Title">Hyvä tietää</string>
+    <string name="valmistautuminenSivu6Title">Lääkeohjeet</string>
     <string name="synnytyksenAikanaSivu1Title">Synnytys vaihe 1</string>
     <string name="synnytyksenAikanaSivu2Title">Synnytys vaihe 2</string>
     <string name="synnytyksenAikanaSivu3Title">Synnytys vaihe 3</string>

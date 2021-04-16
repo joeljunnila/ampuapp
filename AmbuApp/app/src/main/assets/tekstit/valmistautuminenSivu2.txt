@@ -1,7 +1,5 @@
-Kohteeseen päästyäsi tarkista mikä on synnytyksen tilanne: 
+Sikiön asento (perä, viisto vai raivo) 
 
-Onko lapsivesi mennyt?  Koska se on mennyt? 
-Lapsiveden väri? Kirkas vai vihreä/kellertävää? Hajuton/pahanhajuista? 
+Onko lapsivesi mennyt (koska mennyt, väri, haju, koostumus) 
 
-Onko supistuksia? Milloin ne ovat alkaneet? Kuinka tiheään supistuksia tulee? 
-Onko synnytys oikeasti käynnissä?
+Onko supistuksia (milloin alkaneet, onko säännöllisiä, kuinka tiheästi) 

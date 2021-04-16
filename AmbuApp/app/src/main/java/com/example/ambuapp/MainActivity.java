@@ -143,8 +143,8 @@ public class MainActivity extends AppCompatActivity {
         setupDarkModeSwitch(sharedPreferences);
 
         // to refresh asset files
-//        for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-//        for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
+            for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
+            for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
 
         // nämä StepView arvot pitäisi muuttua puhelimen näytön koon mukaan
         // stepview näytti skaalautuvan ihan hyvin, joten tää ei oo välttämättä tarpeellinen
@@ -243,12 +243,21 @@ public class MainActivity extends AppCompatActivity {
         switch (textSize) {
             case "small":
                 spinner.setSelection(0);
+                textView.setTextSize(14);
+                textSizeTextView.setTextSize(14);
+                darkModeSwitch.setTextSize(14);
                 break;
             case "normal":
                 spinner.setSelection(1);
+                textView.setTextSize(22);
+                textSizeTextView.setTextSize(22);
+                darkModeSwitch.setTextSize(22);
                 break;
             case "big":
                 spinner.setSelection(2);
+                textView.setTextSize(30);
+                textSizeTextView.setTextSize(30);
+                darkModeSwitch.setTextSize(30);
                 break;
         }
     }
