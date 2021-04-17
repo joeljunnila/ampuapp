@@ -82,10 +82,11 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<StorageReference> imageRefs = new ArrayList<>();
     ArrayList<StorageReference> textRefs = new ArrayList<>();
 
+    SharedPreferences sharedPreferences;
+
     String activityName = "kotisivu";
     String imageFileDir = "kuvat/";
     String textFileDir = "tekstit/";
-    String activityToReturn;
 
     int fileCounter = 0;
     //endregion
@@ -129,18 +130,18 @@ public class MainActivity extends AppCompatActivity {
         rightArrow = findViewById(R.id.rightArrow);
         //endregion
 
-        SharedPreferences sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         storageRef = FirebaseStorage.getInstance().getReference();
         addFileNames();
 
         naviconButton.setOnClickListener(this::setupPopupMenu);
-        setupSpinner(sharedPreferences);
+        setupSpinner();
         updateButton.setOnClickListener(v -> update());
 
 
         //start program
-        setupAppFromSharedprefs(sharedPreferences);
-        setupDarkModeSwitch(sharedPreferences);
+        setupAppFromSharedprefs();
+        setupDarkModeSwitch();
 
         // to refresh asset files
             for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
@@ -176,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void setupSpinner(SharedPreferences sharedPrefs) {
+    public void setupSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.textSizesSpinnerValues, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -185,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SharedPreferences.Editor editor = sharedPrefs.edit();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
                 if(position == 0) {
                     editor.putString("textSize", "small");
                     textView.setTextSize(14);
@@ -211,13 +212,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void setupAppFromSharedprefs(SharedPreferences sharedPrefs) {
-        boolean isFirstLaunch = sharedPrefs.getBoolean("isFirstLaunch", true);
-        boolean themeChanged = sharedPrefs.getBoolean("themeChanged", false);
-        boolean darkMode = sharedPrefs.getBoolean("isDarkModeOn", false);
-        String textSize = sharedPrefs.getString("textSize", "normal");
+    public void setupAppFromSharedprefs() {
+        boolean isFirstLaunch = sharedPreferences.getBoolean("isFirstLaunch", true);
+        boolean themeChanged = sharedPreferences.getBoolean("themeChanged", false);
+        boolean darkMode = sharedPreferences.getBoolean("isDarkModeOn", false);
+        String textSize = sharedPreferences.getString("textSize", "normal");
 
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         if(isFirstLaunch) {
             for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
@@ -228,7 +229,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(themeChanged){
+            activityName = sharedPreferences.getString("activityToReturn", "kotisivu");
             asetukset();
+            Log.d("test", activityName);
             editor.putBoolean("themeChanged", false);
             editor.apply();
         }
@@ -262,8 +265,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setupDarkModeSwitch(SharedPreferences sharedPrefs) {
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+    public void setupDarkModeSwitch() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         darkModeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked) {
@@ -274,6 +277,7 @@ public class MainActivity extends AppCompatActivity {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
             editor.putBoolean("themeChanged", true);
+            editor.putString("activityToReturn", activityName);
             editor.apply();
         });
     }
@@ -532,112 +536,114 @@ public class MainActivity extends AppCompatActivity {
                 leftArrow.setVisibility(View.VISIBLE);
                 rightArrow.setVisibility(View.INVISIBLE);
 
-                switch (activityName) {
-                    case "kotisivu":
-                        leftArrow.setOnClickListener(this::kotisivu);
-                        break;
-                    case "valmistautuminenSivu":
-                        leftArrow.setOnClickListener(this::valmistautuminenSivu);
-                        break;
-                    case "synnytyksenAikanaSivu":
-                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu);
-                        break;
-                    case "synnytyksenJalkeenSivu":
-                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu);
-                        break;
-                    case "erikoistilanteetSivu":
-                        leftArrow.setOnClickListener(this::erikoistilanteetSivu);
-                        break;
-                    case "peratilaSivu":
-                        leftArrow.setOnClickListener(this::peratilaSivu);
-                        break;
-                    case "hartiadystokiaSivu":
-                        leftArrow.setOnClickListener(this::hartiadystokiaSivu);
-                        break;
-                    case "napanuoraSivu":
-                        leftArrow.setOnClickListener(this::napanuoraSivu);
-                        break;
-                    case "valmistautuminenSivu1":
-                        leftArrow.setOnClickListener(this::valmistautuminenSivu1);
-                        break;
-                    case "valmistautuminenSivu2":
-                        leftArrow.setOnClickListener(this::valmistautuminenSivu2);
-                        break;
-                    case "valmistautuminenSivu3":
-                        leftArrow.setOnClickListener(this::valmistautuminenSivu3);
-                        break;
-                    case "valmistautuminenSivu4":
-                        leftArrow.setOnClickListener(this::valmistautuminenSivu4);
-                        break;
-                    case "valmistautuminenSivu5":
-                        leftArrow.setOnClickListener(this::valmistautuminenSivu5);
-                        break;
-                    case "synnytyksenAikanaSivu1":
-                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu1);
-                        break;
-                    case "synnytyksenAikanaSivu2":
-                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu2);
-                        break;
-                    case "synnytyksenAikanaSivu3":
-                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu3);
-                        break;
-                    case "synnytyksenAikanaSivu4":
-                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu4);
-                        break;
-                    case "synnytyksenAikanaSivu5":
-                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu5);
-                        break;
-                    case "synnytyksenAikanaSivu6":
-                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu6);
-                        break;
-                    case "synnytyksenJalkeenSivu1":
-                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu1);
-                        break;
-                    case "synnytyksenJalkeenSivu2":
-                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu2);
-                        break;
-                    case "synnytyksenJalkeenSivu3":
-                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
-                        break;
-                    case "synnytyksenJalkeenSivu4":
-                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
-                        break;
-                    case "peratilaSivu1":
-                        leftArrow.setOnClickListener(this::peratilaSivu1);
-                        break;
-                    case "peratilaSivu2":
-                        leftArrow.setOnClickListener(this::peratilaSivu2);
-                        break;
-                    case "peratilaSivu3":
-                        leftArrow.setOnClickListener(this::peratilaSivu3);
-                        break;
-                    case "peratilaSivu4":
-                        leftArrow.setOnClickListener(this::peratilaSivu4);
-                        break;
-                    case "peratilaSivu5":
-                        leftArrow.setOnClickListener(this::peratilaSivu4);
-                        break;
-                    case "hartiadystokiaSivu1":
-                        leftArrow.setOnClickListener(this::hartiadystokiaSivu1);
-                        break;
-                    case "hartiadystokiaSivu2":
-                        leftArrow.setOnClickListener(this::hartiadystokiaSivu2);
-                        break;
-                    case "hartiadystokiaSivu3":
-                        leftArrow.setOnClickListener(this::hartiadystokiaSivu3);
-                        break;
-                    case "napanuoraSivu1":
-                        leftArrow.setOnClickListener(this::napanuoraSivu1);
-                        break;
-                    case "napanuoraSivu2":
-                        leftArrow.setOnClickListener(this::napanuoraSivu2);
-                        break;
-                    case "napanuoraSivu3":
-                        leftArrow.setOnClickListener(this::napanuoraSivu3);
-                        break;
-                    case "lääkeohjeetSivu":
-                        leftArrow.setOnClickListener(this::lääkeohjeetSivu);
-                }
+            switch (activityName) {
+                case "kotisivu":
+                    leftArrow.setOnClickListener(this::kotisivu);
+                    break;
+                case "valmistautuminenSivu":
+                    leftArrow.setOnClickListener(this::valmistautuminenSivu);
+                    break;
+                case "synnytyksenAikanaSivu":
+                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu);
+                    break;
+                case "synnytyksenJalkeenSivu":
+                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu);
+                    break;
+                case "erikoistilanteetSivu":
+                    leftArrow.setOnClickListener(this::erikoistilanteetSivu);
+                    break;
+                case "peratilaSivu":
+                    leftArrow.setOnClickListener(this::peratilaSivu);
+                    break;
+                case "hartiadystokiaSivu":
+                    leftArrow.setOnClickListener(this::hartiadystokiaSivu);
+                    break;
+                case "napanuoraSivu":
+                    leftArrow.setOnClickListener(this::napanuoraSivu);
+                    break;
+                case "valmistautuminenSivu1":
+                    leftArrow.setOnClickListener(this::valmistautuminenSivu1);
+                    break;
+                case "valmistautuminenSivu2":
+                    leftArrow.setOnClickListener(this::valmistautuminenSivu2);
+                    break;
+                case "valmistautuminenSivu3":
+                    leftArrow.setOnClickListener(this::valmistautuminenSivu3);
+                    break;
+                case "valmistautuminenSivu4":
+                    leftArrow.setOnClickListener(this::valmistautuminenSivu4);
+                    break;
+                case "valmistautuminenSivu5":
+                    leftArrow.setOnClickListener(this::valmistautuminenSivu5);
+                    break;
+                case "synnytyksenAikanaSivu1":
+                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu1);
+                    break;
+                case "synnytyksenAikanaSivu2":
+                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu2);
+                    break;
+                case "synnytyksenAikanaSivu3":
+                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu3);
+                    break;
+                case "synnytyksenAikanaSivu4":
+                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu4);
+                    break;
+                case "synnytyksenAikanaSivu5":
+                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu5);
+                    break;
+                case "synnytyksenAikanaSivu6":
+                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu6);
+                    break;
+                case "synnytyksenJalkeenSivu1":
+                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu1);
+                    break;
+                case "synnytyksenJalkeenSivu2":
+                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu2);
+                    break;
+                case "synnytyksenJalkeenSivu3":
+                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
+                    break;
+                case "synnytyksenJalkeenSivu4":
+                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
+                    break;
+                case "peratilaSivu1":
+                    leftArrow.setOnClickListener(this::peratilaSivu1);
+                    break;
+                case "peratilaSivu2":
+                    leftArrow.setOnClickListener(this::peratilaSivu2);
+                    break;
+                case "peratilaSivu3":
+                    leftArrow.setOnClickListener(this::peratilaSivu3);
+                    break;
+                case "peratilaSivu4":
+                    leftArrow.setOnClickListener(this::peratilaSivu4);
+                    break;
+                case "peratilaSivu5":
+                    leftArrow.setOnClickListener(this::peratilaSivu4);
+                    break;
+                case "hartiadystokiaSivu1":
+                    leftArrow.setOnClickListener(this::hartiadystokiaSivu1);
+                    break;
+                case "hartiadystokiaSivu2":
+                    leftArrow.setOnClickListener(this::hartiadystokiaSivu2);
+                    break;
+                case "hartiadystokiaSivu3":
+                    leftArrow.setOnClickListener(this::hartiadystokiaSivu3);
+                    break;
+                case "napanuoraSivu1":
+                    leftArrow.setOnClickListener(this::napanuoraSivu1);
+                    break;
+                case "napanuoraSivu2":
+                    leftArrow.setOnClickListener(this::napanuoraSivu2);
+                    break;
+                case "napanuoraSivu3":
+                    leftArrow.setOnClickListener(this::napanuoraSivu3);
+                    break;
+                case "lääkeohjeetSivu":
+                    leftArrow.setOnClickListener(this::laakeohjeetSivu);
+                default:
+                    leftArrow.setOnClickListener(this::kotisivu);
+            }
         }
     }
     //endregion
@@ -646,264 +652,18 @@ public class MainActivity extends AppCompatActivity {
     public void asetukset() {
         title.setText(R.string.asetukset);
         setLayout("x");
-        activityName = "asetukset";
-
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        activityToReturn = sharedPrefs.getString("activityToReturn", "kotisivu");
-
-        Log.d("test", activityToReturn);
         layoutSettings.setVisibility(View.VISIBLE);
-        switch (activityToReturn) {
-            case "kotisivu":
-                leftArrow.setOnClickListener(this::kotisivu);
-                break;
-            case "valmistautuminenSivu":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu);
-                break;
-            case "synnytyksenAikanaSivu":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu);
-                break;
-            case "synnytyksenJalkeenSivu":
-                leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu);
-                break;
-            case "erikoistilanteetSivu":
-                leftArrow.setOnClickListener(this::erikoistilanteetSivu);
-                break;
-            case "peratilaSivu":
-                leftArrow.setOnClickListener(this::peratilaSivu);
-                break;
-            case "hartiadystokiaSivu":
-                leftArrow.setOnClickListener(this::hartiadystokiaSivu);
-                break;
-            case "napanuoraSivu":
-                leftArrow.setOnClickListener(this::napanuoraSivu);
-                break;
-            case "valmistautuminenSivu1":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu1);
-                break;
-            case "valmistautuminenSivu2":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu2);
-                break;
-            case "valmistautuminenSivu3":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu3);
-                break;
-            case "valmistautuminenSivu4":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu4);
-                break;
-            case "valmistautuminenSivu5":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu5);
-                break;
-            case "valmistautuminenSivu6":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu6);
-                break;
-            case "synnytyksenAikanaSivu1":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu1);
-                break;
-            case "synnytyksenAikanaSivu2":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu2);
-                break;
-            case "synnytyksenAikanaSivu3":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu3);
-                break;
-            case "synnytyksenAikanaSivu4":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu4);
-                break;
-            case "synnytyksenAikanaSivu5":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu5);
-                break;
-            case "synnytyksenAikanaSivu6":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu6);
-                break;
-            case "synnytyksenJalkeenSivu1":
-                leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu1);
-                break;
-            case "synnytyksenJalkeenSivu2":
-                leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu2);
-                break;
-            case "synnytyksenJalkeenSivu3":
-                leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
-                break;
-            case "synnytyksenJalkeenSivu4":
-                leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu4);
-                break;
-            case "synnytyksenJalkeenSivu5":
-                leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu5);
-                break;
-            case "peratilaSivu1":
-                leftArrow.setOnClickListener(this::peratilaSivu1);
-                break;
-            case "peratilaSivu2":
-                leftArrow.setOnClickListener(this::peratilaSivu2);
-                break;
-            case "peratilaSivu3":
-                leftArrow.setOnClickListener(this::peratilaSivu3);
-                break;
-            case "peratilaSivu4":
-                leftArrow.setOnClickListener(this::peratilaSivu4);
-                break;
-            case "peratilaSivu5":
-                leftArrow.setOnClickListener(this::peratilaSivu5);
-                break;
-            case "hartiadystokiaSivu1":
-                leftArrow.setOnClickListener(this::hartiadystokiaSivu1);
-                break;
-            case "hartiadystokiaSivu2":
-                leftArrow.setOnClickListener(this::hartiadystokiaSivu2);
-                break;
-            case "hartiadystokiaSivu3":
-                leftArrow.setOnClickListener(this::hartiadystokiaSivu3);
-                break;
-            case "hartiadystokiaSivu4":
-                leftArrow.setOnClickListener(this::hartiadystokiaSivu4);
-                break;
-            case "hartiadystokiaSivu5":
-                leftArrow.setOnClickListener(this::hartiadystokiaSivu5);
-                break;
-            case "napanuoraSivu1":
-                leftArrow.setOnClickListener(this::napanuoraSivu1);
-                break;
-            case "napanuoraSivu2":
-                leftArrow.setOnClickListener(this::napanuoraSivu2);
-                break;
-            case "napanuoraSivu3":
-                leftArrow.setOnClickListener(this::napanuoraSivu3);
-                break;
-        }
     }
 
     public void asetukset(View v) {
         title.setText(R.string.asetukset);
         setLayout("x");
-        activityName = "asetukset";
-
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        activityToReturn = sharedPrefs.getString("activityToReturn", "kotisivu");
-
-        Log.d("test", activityToReturn);
         layoutSettings.setVisibility(View.VISIBLE);
-        switch (activityToReturn) {
-            case "kotisivu":
-                leftArrow.setOnClickListener(this::kotisivu);
-                break;
-            case "valmistautuminenSivu":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu);
-                break;
-            case "synnytyksenAikanaSivu":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu);
-                break;
-            case "synnytyksenJalkeenSivu":
-                leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu);
-                break;
-            case "erikoistilanteetSivu":
-                leftArrow.setOnClickListener(this::erikoistilanteetSivu);
-                break;
-            case "peratilaSivu":
-                leftArrow.setOnClickListener(this::peratilaSivu);
-                break;
-            case "hartiadystokiaSivu":
-                leftArrow.setOnClickListener(this::hartiadystokiaSivu);
-                break;
-            case "napanuoraSivu":
-                leftArrow.setOnClickListener(this::napanuoraSivu);
-                break;
-            case "valmistautuminenSivu1":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu1);
-                break;
-            case "valmistautuminenSivu2":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu2);
-                break;
-            case "valmistautuminenSivu3":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu3);
-                break;
-            case "valmistautuminenSivu4":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu4);
-                break;
-            case "valmistautuminenSivu5":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu5);
-                break;
-            case "valmistautuminenSivu6":
-                leftArrow.setOnClickListener(this::valmistautuminenSivu6);
-                break;
-            case "synnytyksenAikanaSivu1":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu1);
-                break;
-            case "synnytyksenAikanaSivu2":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu2);
-                break;
-            case "synnytyksenAikanaSivu3":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu3);
-                break;
-            case "synnytyksenAikanaSivu4":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu4);
-                break;
-            case "synnytyksenAikanaSivu5":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu5);
-                break;
-            case "synnytyksenAikanaSivu6":
-                leftArrow.setOnClickListener(this::synnytyksenAikanaSivu6);
-                break;
-            case "synnytyksenJalkeenSivu1":
-                leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu1);
-                break;
-            case "synnytyksenJalkeenSivu2":
-                leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu2);
-                break;
-            case "synnytyksenJalkeenSivu3":
-                leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
-                break;
-            case "synnytyksenJalkeenSivu4":
-                leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu4);
-                break;
-            case "synnytyksenJalkeenSivu5":
-                leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu5);
-                break;
-            case "peratilaSivu1":
-                leftArrow.setOnClickListener(this::peratilaSivu1);
-                break;
-            case "peratilaSivu2":
-                leftArrow.setOnClickListener(this::peratilaSivu2);
-                break;
-            case "peratilaSivu3":
-                leftArrow.setOnClickListener(this::peratilaSivu3);
-                break;
-            case "peratilaSivu4":
-                leftArrow.setOnClickListener(this::peratilaSivu4);
-                break;
-            case "peratilaSivu5":
-                leftArrow.setOnClickListener(this::peratilaSivu5);
-                break;
-            case "hartiadystokiaSivu1":
-                leftArrow.setOnClickListener(this::hartiadystokiaSivu1);
-                break;
-            case "hartiadystokiaSivu2":
-                leftArrow.setOnClickListener(this::hartiadystokiaSivu2);
-                break;
-            case "hartiadystokiaSivu3":
-                leftArrow.setOnClickListener(this::hartiadystokiaSivu3);
-                break;
-            case "hartiadystokiaSivu4":
-                leftArrow.setOnClickListener(this::hartiadystokiaSivu4);
-                break;
-            case "hartiadystokiaSivu5":
-                leftArrow.setOnClickListener(this::hartiadystokiaSivu5);
-                break;
-            case "napanuoraSivu1":
-                leftArrow.setOnClickListener(this::napanuoraSivu1);
-                break;
-            case "napanuoraSivu2":
-                leftArrow.setOnClickListener(this::napanuoraSivu2);
-                break;
-            case "napanuoraSivu3":
-                leftArrow.setOnClickListener(this::napanuoraSivu3);
-                break;
-        }
     }
 
     public void tietoaSovelluksesta(View v) {
         title.setText(R.string.about);
         setLayout("x");
-        activityName = "tietoaSovelluksesta";
-
         imageArea.setVisibility(View.GONE);
         layoutImageText.setVisibility(View.VISIBLE);
         textView.setText(getText("tietoaSovelluksesta.txt"));
@@ -912,10 +672,7 @@ public class MainActivity extends AppCompatActivity {
 
     //region menu sivut
     public void kotisivu(View v) {
-
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "kotisivu");
         editor.apply();
 
@@ -938,19 +695,14 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(this::synnytyksenAikanaSivu1);
         button4.setOnClickListener(this::synnytyksenJalkeenSivu1);
         button5.setOnClickListener(this::erikoistilanteetSivu);
-        button6.setOnClickListener(this::lääkeohjeetSivu);
+        button6.setOnClickListener(this::laakeohjeetSivu);
     }
 
     public void valmistautuminenSivu(View v) {
-
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "valmistautuminenSivu");
         editor.apply();
 
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        Log.d("test", activity);
         activityName = "valmistautuminenSivu";
         title.setText(R.string.kotisivu1);
         setLayout("layoutMenu");
@@ -979,9 +731,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "synnytyksenAikanaSivu");
         editor.apply();
 
@@ -1014,9 +764,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenJalkeenSivu(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "synnytyksenJalkeenSivu");
         editor.apply();
 
@@ -1045,9 +793,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void erikoistilanteetSivu(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "erikoistilanteetSivu");
         editor.apply();
 
@@ -1070,9 +816,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "peratilaSivu");
         editor.apply();
 
@@ -1103,9 +847,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hartiadystokiaSivu(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "hartiadystokiaSivu");
         editor.apply();
 
@@ -1134,9 +876,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void napanuoraSivu(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "napanuoraSivu");
         editor.apply();
 
@@ -1164,9 +904,7 @@ public class MainActivity extends AppCompatActivity {
 
     //region siirtymä sivut
     public void valmistautuminenSivu1(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "valmistautuminenSivu1");
         editor.apply();
 
@@ -1184,9 +922,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenSivu2(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "valmistautuminenSivu2");
         editor.apply();
 
@@ -1199,14 +935,12 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu2.txt"));
-        stepView.getState().stepsNumber(6).commit();
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(1, false);
     }
 
     public void valmistautuminenSivu3(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "valmistautuminenSivu3");
         editor.apply();
 
@@ -1219,14 +953,12 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu3.txt"));
-        stepView.getState().stepsNumber(6).commit();
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(2, false);
     }
 
     public void valmistautuminenSivu4(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "valmistautuminenSivu4");
         editor.apply();
 
@@ -1239,14 +971,12 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu4.txt"));
-        stepView.getState().stepsNumber(6).commit();
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(3, false);
     }
 
     public void valmistautuminenSivu5(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "valmistautuminenSivu5");
         editor.apply();
 
@@ -1259,15 +989,13 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu5.txt"));
-        stepView.getState().stepsNumber(6).commit();
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(4, false);
     }
 
 
     public void synnytyksenAikanaSivu1(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "synnytyksenAikanaSivu1");
         editor.apply();
 
@@ -1286,9 +1014,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu2(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "synnytyksenAikanaSivu2");
         editor.apply();
 
@@ -1307,9 +1033,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu3(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "synnytyksenAikanaSivu3");
         editor.apply();
 
@@ -1328,9 +1052,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu4(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "synnytyksenAikanaSivu4");
         editor.apply();
 
@@ -1349,9 +1071,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu5(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "synnytyksenAikanaSivu5");
         editor.apply();
 
@@ -1370,9 +1090,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu6(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "synnytyksenAikanaSivu6");
         editor.apply();
 
@@ -1390,10 +1108,9 @@ public class MainActivity extends AppCompatActivity {
         stepView.go(5, false);
     }
 
+
     public void synnytyksenJalkeenSivu1(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "synnytyksenJalkeenSivu1");
         editor.apply();
 
@@ -1411,9 +1128,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenJalkeenSivu2(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "synnytyksenJalkeenSivu2");
         editor.apply();
 
@@ -1426,14 +1141,12 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu2.txt"));
-        stepView.getState().stepsNumber(5).commit();
+        stepView.getState().stepsNumber(4).commit();
         stepView.go(1, false);
     }
 
     public void synnytyksenJalkeenSivu3(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "synnytyksenJalkeenSivu3");
         editor.apply();
 
@@ -1446,14 +1159,12 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu3.txt"));
-        stepView.getState().stepsNumber(5).commit();
+        stepView.getState().stepsNumber(4).commit();
         stepView.go(2, false);
     }
 
     public void synnytyksenJalkeenSivu4(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "synnytyksenJalkeenSivu4");
         editor.apply();
 
@@ -1466,16 +1177,13 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu4.txt"));
-        stepView.getState().stepsNumber(5).commit();
+        stepView.getState().stepsNumber(4).commit();
         stepView.go(3, false);
     }
 
 
-
     public void peratilaSivu1(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "peratilaSivu1");
         editor.apply();
 
@@ -1494,9 +1202,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu2(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "peratilaSivu2");
         editor.apply();
 
@@ -1515,9 +1221,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu3(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "peratilaSivu3");
         editor.apply();
 
@@ -1536,9 +1240,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu4(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "peratilaSivu4");
         editor.apply();
 
@@ -1557,9 +1259,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu5(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "peratilaSivu5");
         editor.apply();
 
@@ -1579,9 +1279,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void hartiadystokiaSivu1(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "hartiadystokiaSivu1");
         editor.apply();
 
@@ -1600,9 +1298,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hartiadystokiaSivu2(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "hartiadystokiaSivu2");
         editor.apply();
 
@@ -1616,14 +1312,12 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu2.txt"));
-        stepView.getState().stepsNumber(5).commit();
+        stepView.getState().stepsNumber(3).commit();
         stepView.go(1, false);
     }
 
     public void hartiadystokiaSivu3(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "hartiadystokiaSivu3");
         editor.apply();
 
@@ -1637,14 +1331,13 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu3.txt"));
-        stepView.getState().stepsNumber(5).commit();
+        stepView.getState().stepsNumber(3).commit();
         stepView.go(2, false);
     }
 
+
     public void napanuoraSivu1(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "napanuoraSivu1");
         editor.apply();
 
@@ -1663,9 +1356,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void napanuoraSivu2(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "napanuoraSivu2");
         editor.apply();
 
@@ -1684,9 +1375,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void napanuoraSivu3(View v) {
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("activityToReturn", "napanuoraSivu3");
         editor.apply();
 
@@ -1704,7 +1393,12 @@ public class MainActivity extends AppCompatActivity {
         stepView.go(2, false);
     }
 
-    public void lääkeohjeetSivu(View v) {
+
+    public void laakeohjeetSivu(View v) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("activityToReturn", "laakeohjeetSivu");
+        editor.apply();
+
         title.setText(R.string.lääkeohjeetSivuTitle);
         activityName = "lääkeohjeetSivu";
         setLayout("layoutImageText");
