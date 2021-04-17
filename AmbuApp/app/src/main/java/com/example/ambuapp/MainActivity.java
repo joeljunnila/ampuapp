@@ -231,7 +231,6 @@ public class MainActivity extends AppCompatActivity {
         if(themeChanged){
             activityName = sharedPreferences.getString("activityToReturn", "kotisivu");
             asetukset();
-            Log.d("test", activityName);
             editor.putBoolean("themeChanged", false);
             editor.apply();
         }
@@ -672,10 +671,6 @@ public class MainActivity extends AppCompatActivity {
 
     //region menu sivut
     public void kotisivu(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "kotisivu");
-        editor.apply();
-
         activityName = "kotisivu";
         title.setText(R.string.app_name);
         setLayout("layoutMenu");
@@ -699,10 +694,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenSivu(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "valmistautuminenSivu");
-        editor.apply();
-
         activityName = "valmistautuminenSivu";
         title.setText(R.string.kotisivu1);
         setLayout("layoutMenu");
@@ -713,13 +704,11 @@ public class MainActivity extends AppCompatActivity {
         button4.setVisibility(View.VISIBLE);
         button5.setVisibility(View.VISIBLE);
 
-
         button1.setText(R.string.valmistautuminenSivu1);
         button2.setText(R.string.valmistautuminenSivu2);
         button3.setText(R.string.valmistautuminenSivu3);
         button4.setText(R.string.valmistautuminenSivu4);
         button5.setText(R.string.valmistautuminenSivu5);
-
 
         button1.setOnClickListener(this::valmistautuminenSivu1);
         button2.setOnClickListener(this::valmistautuminenSivu2);
@@ -731,10 +720,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "synnytyksenAikanaSivu");
-        editor.apply();
-
         activityName = "synnytyksenAikanaSivu";
         title.setText(R.string.kotisivu2);
         setLayout("layoutMenu");
@@ -764,26 +749,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenJalkeenSivu(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "synnytyksenJalkeenSivu");
-        editor.apply();
-
         activityName = "synnytyksenJalkeenSivu";
         title.setText(R.string.kotisivu3);
         setLayout("layoutMenu");
-
 
         button2.setVisibility(View.VISIBLE);
         button3.setVisibility(View.VISIBLE);
         button4.setVisibility(View.VISIBLE);
 
-
-
         button2.setText(R.string.synnytyksenJalkeenSivu2);
         button3.setText(R.string.synnytyksenJalkeenSivu3);
         button4.setText(R.string.synnytyksenJalkeenSivu4);
-
-
 
         button2.setOnClickListener(this::synnytyksenJalkeenSivu1);
         button3.setOnClickListener(this::synnytyksenJalkeenSivu2);
@@ -793,10 +769,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void erikoistilanteetSivu(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "erikoistilanteetSivu");
-        editor.apply();
-
         activityName = "erikoistilanteetSivu";
         title.setText(R.string.kotisivu4);
         setLayout("layoutMenu");
@@ -816,10 +788,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "peratilaSivu");
-        editor.apply();
-
         activityName = "peratilaSivu";
         title.setText(R.string.erikoistilanteetSivu1);
         setLayout("layoutMenu");
@@ -835,22 +803,16 @@ public class MainActivity extends AppCompatActivity {
         button3.setText(R.string.peratilaSivu3);
         button4.setText(R.string.peratilaSivu4);
 
-
         leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         button1.setOnClickListener(this::peratilaSivu1);
         button2.setOnClickListener(this::peratilaSivu2);
         button3.setOnClickListener(this::peratilaSivu3);
         button4.setOnClickListener(this::peratilaSivu4);
 
-
         stepView.getState().stepsNumber(5).commit();
     }
 
     public void hartiadystokiaSivu(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "hartiadystokiaSivu");
-        editor.apply();
-
         activityName = "hartiadystokiaSivu";
         title.setText(R.string.erikoistilanteetSivu2);
         setLayout("layoutMenu");
@@ -865,21 +827,15 @@ public class MainActivity extends AppCompatActivity {
         button2.setText(R.string.hartiadystokiaSivu2);
         button3.setText(R.string.hartiadystokiaSivu3);
 
-
         leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         button1.setOnClickListener(this::hartiadystokiaSivu1);
         button2.setOnClickListener(this::hartiadystokiaSivu2);
         button3.setOnClickListener(this::hartiadystokiaSivu3);
 
-
         stepView.getState().stepsNumber(3).commit();
     }
 
     public void napanuoraSivu(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "napanuoraSivu");
-        editor.apply();
-
         activityName = "napanuoraSivu";
         title.setText(R.string.erikoistilanteetSivu3);
         setLayout("layoutMenu");
@@ -888,11 +844,8 @@ public class MainActivity extends AppCompatActivity {
         button3.setVisibility(View.VISIBLE);
         button4.setVisibility(View.VISIBLE);
 
-
         button2.setText(R.string.napanuoraSivu1);
         button3.setText(R.string.napanuoraSivu2);
-
-
 
         leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         button2.setOnClickListener(this::napanuoraSivu1);
@@ -904,10 +857,6 @@ public class MainActivity extends AppCompatActivity {
 
     //region siirtymä sivut
     public void valmistautuminenSivu1(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "valmistautuminenSivu1");
-        editor.apply();
-
         title.setText(R.string.valmistautuminenSivu1Title);
         activityName = "valmistautuminenSivu1";
         setLayout("layoutImageText");
@@ -922,10 +871,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenSivu2(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "valmistautuminenSivu2");
-        editor.apply();
-
         title.setText(R.string.valmistautuminenSivu2Title);
         activityName = "valmistautuminenSivu2";
         setLayout("layoutImageText");
@@ -940,10 +885,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenSivu3(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "valmistautuminenSivu3");
-        editor.apply();
-
         title.setText(R.string.valmistautuminenSivu3Title);
         activityName = "valmistautuminenSivu3";
         setLayout("layoutImageText");
@@ -958,10 +899,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenSivu4(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "valmistautuminenSivu4");
-        editor.apply();
-
         title.setText(R.string.valmistautuminenSivu4Title);
         activityName = "valmistautuminenSivu4";
         setLayout("layoutImageText");
@@ -976,10 +913,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void valmistautuminenSivu5(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "valmistautuminenSivu5");
-        editor.apply();
-
         title.setText(R.string.valmistautuminenSivu5Title);
         activityName = "valmistautuminenSivu5";
         setLayout("layoutImageText");
@@ -995,10 +928,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void synnytyksenAikanaSivu1(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "synnytyksenAikanaSivu1");
-        editor.apply();
-
         title.setText(R.string.synnytyksenAikanaSivu1Title);
         activityName = "synnytyksenAikanaSivu1";
         setLayout("layoutImageText");
@@ -1014,10 +943,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu2(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "synnytyksenAikanaSivu2");
-        editor.apply();
-
         title.setText(R.string.synnytyksenAikanaSivu2Title);
         activityName = "synnytyksenAikanaSivu2";
         setLayout("layoutImageText");
@@ -1033,10 +958,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu3(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "synnytyksenAikanaSivu3");
-        editor.apply();
-
         title.setText(R.string.synnytyksenAikanaSivu3Title);
         activityName = "synnytyksenAikanaSivu3";
         setLayout("layoutImageText");
@@ -1052,10 +973,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu4(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "synnytyksenAikanaSivu4");
-        editor.apply();
-
         title.setText(R.string.synnytyksenAikanaSivu4Title);
         activityName = "synnytyksenAikanaSivu4";
         setLayout("layoutImageText");
@@ -1071,10 +988,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu5(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "synnytyksenAikanaSivu5");
-        editor.apply();
-
         title.setText(R.string.synnytyksenAikanaSivu5Title);
         activityName = "synnytyksenAikanaSivu5";
         setLayout("layoutImageText");
@@ -1090,10 +1003,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenAikanaSivu6(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "synnytyksenAikanaSivu6");
-        editor.apply();
-
         title.setText(R.string.synnytyksenAikanaSivu6Title);
         activityName = "synnytyksenAikanaSivu6";
         setLayout("layoutImageText");
@@ -1110,10 +1019,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void synnytyksenJalkeenSivu1(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "synnytyksenJalkeenSivu1");
-        editor.apply();
-
         title.setText(R.string.synnytyksenJalkeenSivu1Title);
         activityName = "synnytyksenJalkeenSivu1";
         setLayout("layoutImageText");
@@ -1128,10 +1033,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenJalkeenSivu2(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "synnytyksenJalkeenSivu2");
-        editor.apply();
-
         title.setText(R.string.synnytyksenJalkeenSivu2Title);
         activityName = "synnytyksenJalkeenSivu2";
         setLayout("layoutImageText");
@@ -1146,10 +1047,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenJalkeenSivu3(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "synnytyksenJalkeenSivu3");
-        editor.apply();
-
         title.setText(R.string.synnytyksenJalkeenSivu3Title);
         activityName = "synnytyksenJalkeenSivu3";
         setLayout("layoutImageText");
@@ -1164,10 +1061,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void synnytyksenJalkeenSivu4(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "synnytyksenJalkeenSivu4");
-        editor.apply();
-
         title.setText(R.string.synnytyksenJalkeenSivu4Title);
         activityName = "synnytyksenJalkeenSivu4";
         setLayout("layoutImageText");
@@ -1183,10 +1076,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void peratilaSivu1(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "peratilaSivu1");
-        editor.apply();
-
         title.setText(R.string.peratilaSivu1Title);
         activityName = "peratilaSivu1";
         setLayout("layoutImageText");
@@ -1202,10 +1091,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu2(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "peratilaSivu2");
-        editor.apply();
-
         title.setText(R.string.peratilaSivu2Title);
         activityName = "peratilaSivu2";
         setLayout("layoutImageText");
@@ -1221,10 +1106,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu3(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "peratilaSivu3");
-        editor.apply();
-
         title.setText(R.string.peratilaSivu3Title);
         activityName = "peratilaSivu3";
         setLayout("layoutImageText");
@@ -1240,10 +1121,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu4(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "peratilaSivu4");
-        editor.apply();
-
         title.setText(R.string.peratilaSivu4Title);
         activityName = "peratilaSivu4";
         setLayout("layoutImageText");
@@ -1259,10 +1136,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu5(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "peratilaSivu5");
-        editor.apply();
-
         title.setText(R.string.peratilaSivu5Title);
         activityName = "peratilaSivu5";
         setLayout("layoutImageText");
@@ -1279,10 +1152,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void hartiadystokiaSivu1(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "hartiadystokiaSivu1");
-        editor.apply();
-
         title.setText(R.string.hartiadystokiaSivu1Title);
         activityName = "hartiadystokiaSivu1";
         setLayout("layoutImageText");
@@ -1298,10 +1167,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hartiadystokiaSivu2(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "hartiadystokiaSivu2");
-        editor.apply();
-
         title.setText(R.string.hartiadystokiaSivu2Title);
         activityName = "hartiadystokiaSivu2";
         setLayout("layoutImageText");
@@ -1317,10 +1182,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void hartiadystokiaSivu3(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "hartiadystokiaSivu3");
-        editor.apply();
-
         title.setText(R.string.hartiadystokiaSivu3Title);
         activityName = "hartiadystokiaSivu3";
         setLayout("layoutImageText");
@@ -1337,10 +1198,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void napanuoraSivu1(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "napanuoraSivu1");
-        editor.apply();
-
         title.setText(R.string.napanuoraSivu1Title);
         activityName = "napanuoraSivu1";
         setLayout("layoutImageText");
@@ -1356,10 +1213,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void napanuoraSivu2(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "napanuoraSivu2");
-        editor.apply();
-
         title.setText(R.string.napanuoraSivu2Title);
         activityName = "napanuoraSivu2";
         setLayout("layoutImageText");
@@ -1375,10 +1228,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void napanuoraSivu3(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "napanuoraSivu3");
-        editor.apply();
-
         title.setText(R.string.napanuoraSivu3Title);
         activityName = "napanuoraSivu3";
         setLayout("layoutImageText");
@@ -1395,10 +1244,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void laakeohjeetSivu(View v) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("activityToReturn", "laakeohjeetSivu");
-        editor.apply();
-
         title.setText(R.string.lääkeohjeetSivuTitle);
         activityName = "lääkeohjeetSivu";
         setLayout("layoutImageText");
@@ -1410,6 +1255,5 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(getText("lääkeohjeetSivu.txt"));
         stepView.setVisibility(View.GONE);
     }
-
     //endregion
 }
