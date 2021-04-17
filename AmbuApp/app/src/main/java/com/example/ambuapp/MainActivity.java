@@ -1210,6 +1210,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu2.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(1, false);
     }
 
@@ -1229,6 +1230,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu3.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(2, false);
     }
 
@@ -1248,6 +1250,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu4.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(3, false);
     }
 
@@ -1267,6 +1270,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu5.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(4, false);
     }
 
@@ -1286,6 +1290,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu6.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(5, false);
     }
 
@@ -1327,6 +1332,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje3.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu2.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(1, false);
     }
 
@@ -1347,6 +1353,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu3.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(2, false);
     }
 
@@ -1367,6 +1374,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu4.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(3, false);
     }
 
@@ -1387,6 +1395,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu5.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(4, false);
     }
 
@@ -1407,6 +1416,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu6.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(5, false);
     }
 
@@ -1446,6 +1456,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu2.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(1, false);
     }
 
@@ -1465,6 +1476,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu3.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(2, false);
     }
 
@@ -1485,6 +1497,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenJalkeenSivu4.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(3, false);
     }
 
@@ -1504,6 +1517,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu5.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(4, false);
     }
 
@@ -1545,6 +1559,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("peratilaSivu2.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(1, false);
     }
 
@@ -1565,6 +1580,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("peratilaSivu3.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(2, false);
     }
 
@@ -1585,6 +1601,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("peratilaSivu4.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(3, false);
     }
 
@@ -1605,6 +1622,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("peratilaSivu5.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(4, false);
     }
 
@@ -1646,6 +1664,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu2.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(1, false);
     }
 
@@ -1666,6 +1685,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu3.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(2, false);
     }
 
@@ -1686,6 +1706,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu4.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(3, false);
     }
 
@@ -1706,6 +1727,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu5.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(4, false);
     }
 
@@ -1745,6 +1767,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("napanuoraSivu2.txt"));
+        stepView.getState().stepsNumber(3).commit();
         stepView.go(1, false);
     }
 
@@ -1765,6 +1788,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("napanuoraSivu3.txt"));
+        stepView.getState().stepsNumber(3).commit();
         stepView.go(2, false);
     }
     //endregion
