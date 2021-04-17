@@ -1208,6 +1208,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu2.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(1, false);
     }
 
@@ -1227,6 +1228,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu3.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(2, false);
     }
 
@@ -1246,17 +1248,18 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu4.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(3, false);
     }
 
     public void valmistautuminenSivu5(View v) {
-        title.setText(R.string.valmistautuminenSivu5Title);
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("activityToReturn", "valmistautuminenSivu5");
         editor.apply();
 
+        title.setText(R.string.valmistautuminenSivu5Title);
         activityName = "valmistautuminenSivu5";
         setLayout("layoutImageText");
 
@@ -1265,17 +1268,18 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu5.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(4, false);
     }
 
     public void valmistautuminenSivu6(View v) {
-        title.setText(R.string.valmistautuminenSivu6Title);
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("activityToReturn", "valmistautuminenSivu6");
         editor.apply();
 
+        title.setText(R.string.valmistautuminenSivu6Title);
         activityName = "valmistautuminenSivu6";
         setLayout("layoutImageText");
 
@@ -1284,6 +1288,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu6.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(5, false);
     }
 
@@ -1325,6 +1330,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje3.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu2.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(1, false);
     }
 
@@ -1345,6 +1351,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu3.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(2, false);
     }
 
@@ -1365,17 +1372,18 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu4.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(3, false);
     }
 
     public void synnytyksenAikanaSivu5(View v) {
-        title.setText(R.string.synnytyksenAikanaSivu5Title);
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("activityToReturn", "synnytyksenAikanaSivu5");
         editor.apply();
 
+        title.setText(R.string.synnytyksenAikanaSivu5Title);
         activityName = "synnytyksenAikanaSivu5";
         setLayout("layoutImageText");
 
@@ -1385,6 +1393,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu5.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(4, false);
     }
 
@@ -1405,6 +1414,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu6.txt"));
+        stepView.getState().stepsNumber(6).commit();
         stepView.go(5, false);
     }
 
@@ -1444,6 +1454,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu2.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(1, false);
     }
 
@@ -1463,6 +1474,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu3.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(2, false);
     }
 
@@ -1483,17 +1495,18 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenJalkeenSivu4.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(3, false);
     }
 
     public void synnytyksenJalkeenSivu5(View v) {
-        title.setText(R.string.synnytyksenJalkeenSivu5Title);
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("activityToReturn", "synnytyksenJalkeenSivu5");
         editor.apply();
 
+        title.setText(R.string.synnytyksenJalkeenSivu5Title);
         activityName = "synnytyksenJalkeenSivu5";
         setLayout("layoutImageText");
 
@@ -1502,17 +1515,18 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu5.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(4, false);
     }
 
     public void peratilaSivu1(View v) {
-        title.setText(R.string.peratilaSivu1Title);
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("activityToReturn", "peratilaSivu1");
         editor.apply();
 
+        title.setText(R.string.peratilaSivu1Title);
         activityName = "peratilaSivu1";
         setLayout("layoutImageText");
 
@@ -1527,13 +1541,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void peratilaSivu2(View v) {
-        title.setText(R.string.peratilaSivu2Title);
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("activityToReturn", "peratilaSivu2");
         editor.apply();
 
+        title.setText(R.string.peratilaSivu2Title);
         activityName = "peratilaSivu2";
         setLayout("layoutImageText");
 
@@ -1543,17 +1557,18 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("peratilaSivu2.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(1, false);
     }
 
     public void peratilaSivu3(View v) {
-        title.setText(R.string.peratilaSivu3Title);
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("activityToReturn", "peratilaSivu3");
         editor.apply();
 
+        title.setText(R.string.peratilaSivu3Title);
         activityName = "peratilaSivu3";
         setLayout("layoutImageText");
 
@@ -1563,17 +1578,18 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("peratilaSivu3.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(2, false);
     }
 
     public void peratilaSivu4(View v) {
-        title.setText(R.string.peratilaSivu4Title);
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("activityToReturn", "peratilaSivu4");
         editor.apply();
 
+        title.setText(R.string.peratilaSivu4Title);
         activityName = "peratilaSivu4";
         setLayout("layoutImageText");
 
@@ -1583,17 +1599,18 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("peratilaSivu4.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(3, false);
     }
 
     public void peratilaSivu5(View v) {
-        title.setText(R.string.peratilaSivu5Title);
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("activityToReturn", "peratilaSivu5");
         editor.apply();
 
+        title.setText(R.string.peratilaSivu5Title);
         activityName = "peratilaSivu5";
         setLayout("layoutImageText");
 
@@ -1603,17 +1620,18 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("peratilaSivu5.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(4, false);
     }
 
     public void hartiadystokiaSivu1(View v) {
-        title.setText(R.string.hartiadystokiaSivu1Title);
         SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         String  activity = sharedPrefs.getString("activityToReturn", "kotisivu");
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putString("activityToReturn", "hartiadystokiaSivu1");
         editor.apply();
 
+        title.setText(R.string.hartiadystokiaSivu1Title);
         activityName = "hartiadystokiaSivu1";
         setLayout("layoutImageText");
 
@@ -1644,6 +1662,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu2.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(1, false);
     }
 
@@ -1664,6 +1683,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu3.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(2, false);
     }
 
@@ -1684,6 +1704,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu4.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(3, false);
     }
 
@@ -1704,6 +1725,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu5.txt"));
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(4, false);
     }
 
@@ -1743,6 +1765,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("napanuoraSivu2.txt"));
+        stepView.getState().stepsNumber(3).commit();
         stepView.go(1, false);
     }
 
@@ -1763,6 +1786,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("napanuoraSivu3.txt"));
+        stepView.getState().stepsNumber(3).commit();
         stepView.go(2, false);
     }
     //endregion
