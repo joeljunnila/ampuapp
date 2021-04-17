@@ -248,9 +248,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "normal":
                 spinner.setSelection(1);
-                textView.setTextSize(22);
-                textSizeTextView.setTextSize(22);
-                darkModeSwitch.setTextSize(22);
+                textView.setTextSize(20);
+                textSizeTextView.setTextSize(20);
+                darkModeSwitch.setTextSize(20);
                 break;
             case "big":
                 spinner.setSelection(2);
@@ -356,6 +356,7 @@ public class MainActivity extends AppCompatActivity {
         textFileNames.add("valmistautuminenSivu4.txt");
         textFileNames.add("valmistautuminenSivu5.txt");
         textFileNames.add("valmistautuminenSivu6.txt");
+        textFileNames.add("lääkeohjeetSivu.txt");
 
         imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
@@ -394,6 +395,7 @@ public class MainActivity extends AppCompatActivity {
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu4.txt"));
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu5.txt"));
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu6.txt"));
+        textRefs.add(storageRef.child("tekstit/lääkeohjeetSivu.txt"));
     }
 
     public boolean isNetworkAvailable() {
@@ -569,9 +571,6 @@ public class MainActivity extends AppCompatActivity {
                     case "valmistautuminenSivu5":
                         leftArrow.setOnClickListener(this::valmistautuminenSivu5);
                         break;
-                    case "valmistautuminenSivu6":
-                        leftArrow.setOnClickListener(this::valmistautuminenSivu6);
-                        break;
                     case "synnytyksenAikanaSivu1":
                         leftArrow.setOnClickListener(this::synnytyksenAikanaSivu1);
                         break;
@@ -600,10 +599,7 @@ public class MainActivity extends AppCompatActivity {
                         leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
                         break;
                     case "synnytyksenJalkeenSivu4":
-                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu4);
-                        break;
-                    case "synnytyksenJalkeenSivu5":
-                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu5);
+                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
                         break;
                     case "peratilaSivu1":
                         leftArrow.setOnClickListener(this::peratilaSivu1);
@@ -618,7 +614,7 @@ public class MainActivity extends AppCompatActivity {
                         leftArrow.setOnClickListener(this::peratilaSivu4);
                         break;
                     case "peratilaSivu5":
-                        leftArrow.setOnClickListener(this::peratilaSivu5);
+                        leftArrow.setOnClickListener(this::peratilaSivu4);
                         break;
                     case "hartiadystokiaSivu1":
                         leftArrow.setOnClickListener(this::hartiadystokiaSivu1);
@@ -629,12 +625,6 @@ public class MainActivity extends AppCompatActivity {
                     case "hartiadystokiaSivu3":
                         leftArrow.setOnClickListener(this::hartiadystokiaSivu3);
                         break;
-                    case "hartiadystokiaSivu4":
-                        leftArrow.setOnClickListener(this::hartiadystokiaSivu4);
-                        break;
-                    case "hartiadystokiaSivu5":
-                        leftArrow.setOnClickListener(this::hartiadystokiaSivu5);
-                        break;
                     case "napanuoraSivu1":
                         leftArrow.setOnClickListener(this::napanuoraSivu1);
                         break;
@@ -644,6 +634,8 @@ public class MainActivity extends AppCompatActivity {
                     case "napanuoraSivu3":
                         leftArrow.setOnClickListener(this::napanuoraSivu3);
                         break;
+                    case "lääkeohjeetSivu":
+                        leftArrow.setOnClickListener(this::lääkeohjeetSivu);
                 }
         }
     }
@@ -683,12 +675,14 @@ public class MainActivity extends AppCompatActivity {
         title.setText(R.string.app_name);
         setLayout("layoutMenu");
 
+        button6.setVisibility(View.VISIBLE);
         button5.setVisibility(View.VISIBLE);
 
         button2.setText(R.string.kotisivu1);
         button3.setText(R.string.kotisivu2);
         button4.setText(R.string.kotisivu3);
         button5.setText(R.string.kotisivu4);
+        button6.setText(R.string.kotisivu5);
 
         leftArrow.setVisibility(View.INVISIBLE);
 
@@ -696,6 +690,7 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(this::synnytyksenAikanaSivu1);
         button4.setOnClickListener(this::synnytyksenJalkeenSivu1);
         button5.setOnClickListener(this::erikoistilanteetSivu);
+        button6.setOnClickListener(this::lääkeohjeetSivu);
     }
 
     public void valmistautuminenSivu(View v) {
@@ -708,23 +703,22 @@ public class MainActivity extends AppCompatActivity {
         button3.setVisibility(View.VISIBLE);
         button4.setVisibility(View.VISIBLE);
         button5.setVisibility(View.VISIBLE);
-        button6.setVisibility(View.VISIBLE);
+
 
         button1.setText(R.string.valmistautuminenSivu1);
         button2.setText(R.string.valmistautuminenSivu2);
         button3.setText(R.string.valmistautuminenSivu3);
         button4.setText(R.string.valmistautuminenSivu4);
         button5.setText(R.string.valmistautuminenSivu5);
-        button6.setText(R.string.valmistautuminenSivu6);
+
 
         button1.setOnClickListener(this::valmistautuminenSivu1);
         button2.setOnClickListener(this::valmistautuminenSivu2);
         button3.setOnClickListener(this::valmistautuminenSivu3);
         button4.setOnClickListener(this::valmistautuminenSivu4);
         button5.setOnClickListener(this::valmistautuminenSivu5);
-        button6.setOnClickListener(this::valmistautuminenSivu6);
 
-        stepView.getState().stepsNumber(6).commit();
+        stepView.getState().stepsNumber(5).commit();
     }
 
     public void synnytyksenAikanaSivu(View v) {
@@ -761,25 +755,24 @@ public class MainActivity extends AppCompatActivity {
         title.setText(R.string.kotisivu3);
         setLayout("layoutMenu");
 
-        button1.setVisibility(View.VISIBLE);
+
         button2.setVisibility(View.VISIBLE);
         button3.setVisibility(View.VISIBLE);
         button4.setVisibility(View.VISIBLE);
-        button5.setVisibility(View.VISIBLE);
 
-        button1.setText(R.string.synnytyksenJalkeenSivu1);
+
+
         button2.setText(R.string.synnytyksenJalkeenSivu2);
         button3.setText(R.string.synnytyksenJalkeenSivu3);
         button4.setText(R.string.synnytyksenJalkeenSivu4);
-        button5.setText(R.string.synnytyksenJalkeenSivu5);
 
-        button1.setOnClickListener(this::synnytyksenJalkeenSivu1);
-        button2.setOnClickListener(this::synnytyksenJalkeenSivu2);
+
+
+        button2.setOnClickListener(this::synnytyksenJalkeenSivu1);
+        button3.setOnClickListener(this::synnytyksenJalkeenSivu2);
         button3.setOnClickListener(this::synnytyksenJalkeenSivu3);
-        button4.setOnClickListener(this::synnytyksenJalkeenSivu4);
-        button5.setOnClickListener(this::synnytyksenJalkeenSivu5);
 
-        stepView.getState().stepsNumber(5).commit();
+        stepView.getState().stepsNumber(4).commit();
     }
 
     public void erikoistilanteetSivu(View v) {
@@ -790,6 +783,7 @@ public class MainActivity extends AppCompatActivity {
         button2.setVisibility(View.VISIBLE);
         button3.setVisibility(View.VISIBLE);
         button4.setVisibility(View.VISIBLE);
+        button6.setVisibility(View.INVISIBLE);
 
         button2.setText(R.string.erikoistilanteetSivu1);
         button3.setText(R.string.erikoistilanteetSivu2);
@@ -815,14 +809,14 @@ public class MainActivity extends AppCompatActivity {
         button2.setText(R.string.peratilaSivu2);
         button3.setText(R.string.peratilaSivu3);
         button4.setText(R.string.peratilaSivu4);
-        button5.setText(R.string.peratilaSivu5);
+
 
         leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         button1.setOnClickListener(this::peratilaSivu1);
         button2.setOnClickListener(this::peratilaSivu2);
         button3.setOnClickListener(this::peratilaSivu3);
         button4.setOnClickListener(this::peratilaSivu4);
-        button5.setOnClickListener(this::peratilaSivu5);
+
 
         stepView.getState().stepsNumber(5).commit();
     }
@@ -841,17 +835,15 @@ public class MainActivity extends AppCompatActivity {
         button1.setText(R.string.hartiadystokiaSivu1);
         button2.setText(R.string.hartiadystokiaSivu2);
         button3.setText(R.string.hartiadystokiaSivu3);
-        button4.setText(R.string.hartiadystokiaSivu4);
-        button5.setText(R.string.hartiadystokiaSivu5);
+
 
         leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         button1.setOnClickListener(this::hartiadystokiaSivu1);
         button2.setOnClickListener(this::hartiadystokiaSivu2);
         button3.setOnClickListener(this::hartiadystokiaSivu3);
-        button4.setOnClickListener(this::hartiadystokiaSivu4);
-        button5.setOnClickListener(this::hartiadystokiaSivu5);
 
-        stepView.getState().stepsNumber(5).commit();
+
+        stepView.getState().stepsNumber(3).commit();
     }
 
     public void napanuoraSivu(View v) {
@@ -866,15 +858,14 @@ public class MainActivity extends AppCompatActivity {
 
         button2.setText(R.string.napanuoraSivu1);
         button3.setText(R.string.napanuoraSivu2);
-        button4.setText(R.string.napanuoraSivu3);
+
 
 
         leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         button2.setOnClickListener(this::napanuoraSivu1);
         button3.setOnClickListener(this::napanuoraSivu2);
-        button4.setOnClickListener(this::napanuoraSivu3);
 
-        stepView.getState().stepsNumber(3).commit();
+        stepView.getState().stepsNumber(2).commit();
     }
     //endregion
 
@@ -889,7 +880,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu1.txt"));
-        stepView.getState().stepsNumber(6).commit();
+        stepView.getState().stepsNumber(5).commit();
         stepView.go(0, false);
     }
 
@@ -938,25 +929,13 @@ public class MainActivity extends AppCompatActivity {
         setLayout("layoutImageText");
 
         leftArrow.setOnClickListener(this::valmistautuminenSivu4);
-        rightArrow.setOnClickListener(this::valmistautuminenSivu6);
+        rightArrow.setOnClickListener(this::kotisivu);
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("valmistautuminenSivu5.txt"));
         stepView.go(4, false);
     }
 
-    public void valmistautuminenSivu6(View v) {
-        title.setText(R.string.valmistautuminenSivu6Title);
-        activityName = "valmistautuminenSivu6";
-        setLayout("layoutImageText");
-
-        leftArrow.setOnClickListener(this::valmistautuminenSivu5);
-        rightArrow.setOnClickListener(this::kotisivu);
-
-        imageArea.setVisibility(View.GONE);
-        textView.setText(getText("valmistautuminenSivu6.txt"));
-        stepView.go(5, false);
-    }
 
     public void synnytyksenAikanaSivu1(View v) {
         title.setText(R.string.synnytyksenAikanaSivu1Title);
@@ -1053,7 +1032,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu1.txt"));
-        stepView.getState().stepsNumber(5).commit();
+        stepView.getState().stepsNumber(4).commit();
         stepView.go(0, false);
     }
 
@@ -1089,26 +1068,14 @@ public class MainActivity extends AppCompatActivity {
         setLayout("layoutImageText");
 
         leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
-        rightArrow.setOnClickListener(this::synnytyksenJalkeenSivu5);
+        rightArrow.setOnClickListener(this::kotisivu);
 
-        imageArea.setVisibility(View.VISIBLE);
-        imageView.setImageBitmap(getImage("ohje.jpg"));
+        imageArea.setVisibility(View.GONE);
         textView.setText(getText("synnytyksenJalkeenSivu4.txt"));
         stepView.go(3, false);
     }
 
-    public void synnytyksenJalkeenSivu5(View v) {
-        title.setText(R.string.synnytyksenJalkeenSivu5Title);
-        activityName = "synnytyksenJalkeenSivu5";
-        setLayout("layoutImageText");
 
-        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu4);
-        rightArrow.setOnClickListener(this::kotisivu);
-
-        imageArea.setVisibility(View.GONE);
-        textView.setText(getText("synnytyksenJalkeenSivu5.txt"));
-        stepView.go(4, false);
-    }
 
     public void peratilaSivu1(View v) {
         title.setText(R.string.peratilaSivu1Title);
@@ -1181,6 +1148,7 @@ public class MainActivity extends AppCompatActivity {
         stepView.go(4, false);
     }
 
+
     public void hartiadystokiaSivu1(View v) {
         title.setText(R.string.hartiadystokiaSivu1Title);
         activityName = "hartiadystokiaSivu1";
@@ -1192,7 +1160,7 @@ public class MainActivity extends AppCompatActivity {
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu1.txt"));
-        stepView.getState().stepsNumber(5).commit();
+        stepView.getState().stepsNumber(3).commit();
         stepView.go(0, false);
     }
 
@@ -1216,40 +1184,12 @@ public class MainActivity extends AppCompatActivity {
         setLayout("layoutImageText");
 
         leftArrow.setOnClickListener(this::hartiadystokiaSivu2);
-        rightArrow.setOnClickListener(this::hartiadystokiaSivu4);
+        rightArrow.setOnClickListener(this::erikoistilanteetSivu);
 
         imageArea.setVisibility(View.VISIBLE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("hartiadystokiaSivu3.txt"));
         stepView.go(2, false);
-    }
-
-    public void hartiadystokiaSivu4(View v) {
-        title.setText(R.string.hartiadystokiaSivu4Title);
-        activityName = "hartiadystokiaSivu4";
-        setLayout("layoutImageText");
-
-        leftArrow.setOnClickListener(this::hartiadystokiaSivu3);
-        rightArrow.setOnClickListener(this::hartiadystokiaSivu5);
-
-        imageArea.setVisibility(View.VISIBLE);
-        imageView.setImageBitmap(getImage("ohje.jpg"));
-        textView.setText(getText("hartiadystokiaSivu4.txt"));
-        stepView.go(3, false);
-    }
-
-    public void hartiadystokiaSivu5(View v) {
-        title.setText(R.string.hartiadystokiaSivu5Title);
-        activityName = "hartiadystokiaSivu5";
-        setLayout("layoutImageText");
-
-        leftArrow.setOnClickListener(this::hartiadystokiaSivu4);
-        rightArrow.setOnClickListener(this::erikoistilanteetSivu);
-
-        imageArea.setVisibility(View.VISIBLE);
-        imageView.setImageBitmap(getImage("ohje.jpg"));
-        textView.setText(getText("hartiadystokiaSivu5.txt"));
-        stepView.go(4, false);
     }
 
     public void napanuoraSivu1(View v) {
@@ -1260,7 +1200,8 @@ public class MainActivity extends AppCompatActivity {
         leftArrow.setOnClickListener(this::erikoistilanteetSivu);
         rightArrow.setOnClickListener(this::napanuoraSivu2);
 
-        imageArea.setVisibility(View.GONE);
+        imageArea.setVisibility(View.VISIBLE);
+        imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("napanuoraSivu1.txt"));
         stepView.getState().stepsNumber(3).commit();
         stepView.go(0, false);
@@ -1274,7 +1215,8 @@ public class MainActivity extends AppCompatActivity {
         leftArrow.setOnClickListener(this::napanuoraSivu1);
         rightArrow.setOnClickListener(this::napanuoraSivu3);
 
-        imageArea.setVisibility(View.GONE);
+        imageArea.setVisibility(View.VISIBLE);
+        imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("napanuoraSivu2.txt"));
         stepView.go(1, false);
     }
@@ -1292,5 +1234,19 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(getText("napanuoraSivu3.txt"));
         stepView.go(2, false);
     }
+
+    public void lääkeohjeetSivu(View v) {
+        title.setText(R.string.lääkeohjeetSivuTitle);
+        activityName = "lääkeohjeetSivu";
+        setLayout("layoutImageText");
+
+        leftArrow.setOnClickListener(this::kotisivu);
+        rightArrow.setVisibility(View.INVISIBLE);
+
+        imageArea.setVisibility(View.GONE);
+        textView.setText(getText("lääkeohjeetSivu.txt"));
+        stepView.setVisibility(View.GONE);
+    }
+
     //endregion
 }
