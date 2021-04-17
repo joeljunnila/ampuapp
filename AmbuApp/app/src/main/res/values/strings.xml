@@ -21,14 +21,14 @@
     <string name="about">Tietoja sovelluksesta</string>
     <string name="kotisivu1">Valmistautuminen</string>
     <string name="kotisivu2">Synnytysvaiheet</string>
-    <string name="kotisivu3">Synnytyksen jälkeen</string>
+    <string name="kotisivu3">Jälkeisvaiheet</string>
     <string name="kotisivu4">Erikoistilanteet</string>
+    <string name="kotisivu5">Lääkeohjeet</string>
     <string name="valmistautuminenSivu1">Huomioitavaa</string>
     <string name="valmistautuminenSivu2">Synnytyksen tilanne</string>
     <string name="valmistautuminenSivu3">Hoidetaan kohteessa</string>
     <string name="valmistautuminenSivu4">Milloin matkaan</string>
     <string name="valmistautuminenSivu5">Miten toimitaan</string>
-    <string name="valmistautuminenSivu6">Lääkeohjeet</string>
     <string name="synnytyksenAikanaSivu1">Synnytys vaihe 1</string>
     <string name="synnytyksenAikanaSivu2">Synnytys vaihe 2</string>
     <string name="synnytyksenAikanaSivu3">Synnytys vaihe 3</string>
@@ -36,10 +36,9 @@
     <string name="synnytyksenAikanaSivu5">Synnytys vaihe 5</string>
     <string name="synnytyksenAikanaSivu6">Synnytys vaihe 6</string>
     <string name="synnytyksenJalkeenSivu1">Lapsen synnyttyä</string>
-    <string name="synnytyksenJalkeenSivu2">Napanuoran leikkaus</string>
-    <string name="synnytyksenJalkeenSivu3">Jälkeisvaihe</string>
-    <string name="synnytyksenJalkeenSivu4">Toimi näin</string>
-    <string name="synnytyksenJalkeenSivu5">Tarkkailu</string>
+    <string name="synnytyksenJalkeenSivu2">Jälkeiset</string>
+    <string name="synnytyksenJalkeenSivu3">Toimi näin</string>
+    <string name="synnytyksenJalkeenSivu4">Tarkkailu</string>
     <string name="erikoistilanteetSivu1">Perätila</string>
     <string name="erikoistilanteetSivu2">Hartiadystokia</string>
     <string name="erikoistilanteetSivu3">Napanuoran esiinluiskahdus</string>
@@ -51,11 +50,10 @@
     <string name="hartiadystokiaSivu1">Hartiadystokia 1</string>
     <string name="hartiadystokiaSivu2">Hartiadystokia 2</string>
     <string name="hartiadystokiaSivu3">Hartiadystokia 3</string>
-    <string name="hartiadystokiaSivu4">Hartiadystokia 4</string>
-    <string name="hartiadystokiaSivu5">Hartiadystokia 5</string>
     <string name="napanuoraSivu1">Napanuora 1</string>
     <string name="napanuoraSivu2">Napanuora 2</string>
     <string name="napanuoraSivu3">Napanuora 3</string>
+    <string name="lääkeohjeetSivu">Lääkeohjeet</string>
     <string name="darkModeSwitchText">Aktivoi tummatila</string>
 
     <string name="valmistautuminenSivu1Title">Huomioitavaa</string>
@@ -63,7 +61,6 @@
     <string name="valmistautuminenSivu3Title">Hoidetaan kohteessa</string>
     <string name="valmistautuminenSivu4Title">Milloin matkaan</string>
     <string name="valmistautuminenSivu5Title">Miten toimitaan</string>
-    <string name="valmistautuminenSivu6Title">Lääkeohjeet</string>
     <string name="synnytyksenAikanaSivu1Title">Synnytys vaihe 1</string>
     <string name="synnytyksenAikanaSivu2Title">Synnytys vaihe 2</string>
     <string name="synnytyksenAikanaSivu3Title">Synnytys vaihe 3</string>
@@ -71,10 +68,9 @@
     <string name="synnytyksenAikanaSivu5Title">Synnytys vaihe 5</string>
     <string name="synnytyksenAikanaSivu6Title">Synnytys vaihe 6</string>
     <string name="synnytyksenJalkeenSivu1Title">Lapsen synnyttyä</string>
-    <string name="synnytyksenJalkeenSivu2Title">Napanuoran leikkaus</string>
-    <string name="synnytyksenJalkeenSivu3Title">Jälkeisvaihe</string>
-    <string name="synnytyksenJalkeenSivu4Title">Toimi näin</string>
-    <string name="synnytyksenJalkeenSivu5Title">Tarkkailu</string>
+    <string name="synnytyksenJalkeenSivu2Title">Jälkeiset</string>
+    <string name="synnytyksenJalkeenSivu3Title">Toimi näin</string>
+    <string name="synnytyksenJalkeenSivu4Title">Tarkkailu</string>
     <string name="peratilaSivu1Title">Perätila 1</string>
     <string name="peratilaSivu2Title">Perätila 2</string>
     <string name="peratilaSivu3Title">Perätila 3</string>
@@ -83,9 +79,8 @@
     <string name="hartiadystokiaSivu1Title">Hartiadystokia 1</string>
     <string name="hartiadystokiaSivu2Title">Hartiadystokia 2</string>
     <string name="hartiadystokiaSivu3Title">Hartiadystokia 3</string>
-    <string name="hartiadystokiaSivu4Title">Hartiadystokia 4</string>
-    <string name="hartiadystokiaSivu5Title">Hartiadystokia 5</string>
     <string name="napanuoraSivu1Title">Napanuora 1</string>
     <string name="napanuoraSivu2Title">Napanuora 2</string>
     <string name="napanuoraSivu3Title">Napanuora 3</string>
+    <string name="lääkeohjeetSivuTitle">Lääkeohjeet</string>
 </resources>
