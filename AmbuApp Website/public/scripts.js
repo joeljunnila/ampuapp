@@ -94,7 +94,6 @@ window.onload = function leadFirst() {
     firebase.initializeApp(firebaseConfig);
 
     for (var key in savedImage) getImage(key);
-
     for (var key in savedText) getText(key);
 }
 
@@ -103,7 +102,6 @@ function getImage(key) {
     ref.getDownloadURL()
         .then((url) => {
             savedImage[key] = url;
-            console.log(savedImage.ohje3);
         })
         .catch((error) => {
             switch (error.code) {
