@@ -360,7 +360,7 @@ public class MainActivity extends AppCompatActivity {
         textFileNames.add("valmistautuminenSivu4.txt");
         textFileNames.add("valmistautuminenSivu5.txt");
         textFileNames.add("valmistautuminenSivu6.txt");
-        textFileNames.add("lääkeohjeetSivu.txt");
+        textFileNames.add("laakeohjeetSivu.txt");
 
         imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
@@ -399,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu4.txt"));
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu5.txt"));
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu6.txt"));
-        textRefs.add(storageRef.child("tekstit/lääkeohjeetSivu.txt"));
+        textRefs.add(storageRef.child("tekstit/laakeohjeetSivu.txt"));
     }
 
     public boolean isNetworkAvailable() {
@@ -638,7 +638,7 @@ public class MainActivity extends AppCompatActivity {
                 case "napanuoraSivu3":
                     leftArrow.setOnClickListener(this::napanuoraSivu3);
                     break;
-                case "lääkeohjeetSivu":
+                case "laakeohjeetSivu":
                     leftArrow.setOnClickListener(this::laakeohjeetSivu);
                 default:
                     leftArrow.setOnClickListener(this::kotisivu);
@@ -1244,15 +1244,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void laakeohjeetSivu(View v) {
-        title.setText(R.string.lääkeohjeetSivuTitle);
-        activityName = "lääkeohjeetSivu";
+        title.setText(R.string.laakeohjeetSivuTitle);
+        activityName = "laakeohjeetSivu";
         setLayout("layoutImageText");
 
         leftArrow.setOnClickListener(this::kotisivu);
         rightArrow.setVisibility(View.INVISIBLE);
 
         imageArea.setVisibility(View.GONE);
-        textView.setText(getText("lääkeohjeetSivu.txt"));
+        textView.setText(getText("laakeohjeetSivu.txt"));
         stepView.setVisibility(View.GONE);
     }
     //endregion
