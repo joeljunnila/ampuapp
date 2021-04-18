@@ -12,6 +12,11 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
 </head>
 <body>
+    <div class="layouts">
+    <div class="login"> <!-- Login alue -->
+        Login
+    </div>
+
     <div class="phone"> <!-- phone area in html page -->
         <header> <!-- menubar area in phone -->
             <button onclick="changeContent('kotisivu')"> <!-- menubar home icon -->
@@ -59,9 +64,10 @@
         </div>
     </div>
 
-    <div class="update"> <!-- Päivitys buttonit -->
+    <div class="updateView"> <!-- Päivitys buttonit -->
         <input id=newImage type="file" accept="image/jpg">Muokkaa kuvaa</input>
         <button id=saveButton onclick="putImage('uusiKuva')">Tallenna</button>
     </div>
+</div>
 </body>
 </html>
