@@ -57,16 +57,43 @@ function changeContent(page) {
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("valmistautuminenSivu2"); }
 
-            var storageRef = firebase.storage().ref("kuvat/" + "ohje.jpg");
-            var storageRef2 = firebase.storage().ref("tekstit/" + "valmistautuminenSivu1.txt");
+            var imageRef = firebase.storage().ref("kuvat/" + "ohje.jpg");
+            var textRef = firebase.storage().ref("tekstit/" + "valmistautuminenSivu1.txt");
 
-            storageRef.getDownloadURL()
+            imageRef.getDownloadURL()
+                .then((url) => {
+                    document.getElementById("image").src = url;
+                })
+                .catch((error) => {
+                    switch (error.code) {
+                        case 'storage/object-not-found':
+                            console.log("File doesn't exist")
+                            break;
+                        case 'storage/unauthorized':
+                            console.log("User doesn't have permission to access the object")
+                            break;
+                        case 'storage/canceled':
+                            console.log("User canceled the upload")
+                            break;
+                        case 'storage/unknown':
+                            console.log("Unknown error occurred, inspect the server response")
+                            break;
+                    }
+                });
+
+                textRef.getDownloadURL()
                 .then((url) => {
                     //document.getElementById("image").src = url;
 
-                    url = "https://cors-anywhere.herokuapp.com/" + url;
+                    console.log(url);
 
-                    var request = new XMLHttpRequest();
+                    fetch(url).then(function (response) {
+                        response.text().then(function (text) {
+                            document.getElementById("text").textContent = text;
+                        });
+                    });
+
+                    /*var request = new XMLHttpRequest();
                     request.open('GET', url, true);
                     request.send(null);
                     request.onreadystatechange = function () {
@@ -76,7 +103,7 @@ function changeContent(page) {
                                 document.getElementById("text").textContent = request.responseText;
                             }
                         }
-                    }
+                    }*/
                 })
                 .catch((error) => {
                     switch (error.code) {
