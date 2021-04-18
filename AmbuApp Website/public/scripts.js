@@ -166,14 +166,11 @@ function putText(key, newText) {
 
 function putImage(key) {
     var newImage = document.getElementById("newImage").files[0];
-
     var ref = firebase.storage().ref("kuvat/" + key + ".png");
-
     var uploadTask = ref.put(newImage);
     uploadTask.on("state_changed", function progress(snapshot) {
-        var percent = (snapshot.bytesTranferred / snapshot.totalBytes) * 100;
-        //progressbar.value = percent;
-        console.log("progress: " + percent);
+        //var percent = (snapshot.bytesTranferred / snapshot.totalBytes) * 100;
+        //document.getElementById("progressbar").value = percent;
     }, function error(err) {
         console.log("upload image error");
     }, function complete() {
