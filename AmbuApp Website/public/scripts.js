@@ -99,9 +99,6 @@ window.onload = function leadFirst() {
 
     for (var key in savedImage) getImage(key);
     for (var key in savedText) getText(key);
-
-    var newText = "asdsadasdasd";
-    putText("test", newText);
 }
 
 function getImage(key) {
@@ -157,8 +154,7 @@ function getText(key) {
 }
 
 function putText(key, newText) {
-    //var ref = firebase.storage().ref("tekstit/" + key + ".txt");
-    var ref = firebase.storage().ref(key + ".txt");
+    var ref = firebase.storage().ref("tekstit/" + key + ".txt");
     ref.putString(newText).then((snapshot) => {
         console.log(key + ' text updated');
       });
