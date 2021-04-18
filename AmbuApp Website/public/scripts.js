@@ -1,40 +1,44 @@
-let imageRef = [
-    "kuvat/ohje.jpg",
-    "kuvat/ohje3.jpg",
-    "kuvat/ohje4.jpg",
-    "kuvat/ohje5.jpg",
-    "kuvat/ohje7.jpg"
-];
+/*var firebaseRef = {
+    ohje: "kuvat/ohje.jpg",
+    ohje3: "kuvat/ohje3.jpg",
+    ohje4: "kuvat/ohje3.jpg",
+    ohje5: "kuvat/ohje5.jpg",
+    ohje7: "kuvat/ohje7.jpg",
 
-let textRef = [
-    "tekstit/valmistautuminenSivu1.txt",
-    "tekstit/valmistautuminenSivu2.txt",
-    "tekstit/valmistautuminenSivu3.txt",
-    "tekstit/valmistautuminenSivu4.txt",
-    "tekstit/valmistautuminenSivu5.txt",
-    "tekstit/synnytyksenAikanaSivu1.txt",
-    "tekstit/synnytyksenAikanaSivu2.txt",
-    "tekstit/synnytyksenAikanaSivu3.txt",
-    "tekstit/synnytyksenAikanaSivu4.txt",
-    "tekstit/synnytyksenAikanaSivu5.txt",
-    "tekstit/synnytyksenAikanaSivu6.txt",
-    "tekstit/synnytyksenJalkeenSivu1.txt",
-    "tekstit/synnytyksenJalkeenSivu2.txt",
-    "tekstit/synnytyksenJalkeenSivu3.txt",
-    "tekstit/synnytyksenJalkeenSivu4.txt",
-    "tekstit/peratilaSivu1.txt",
-    "tekstit/peratilaSivu2.txt",
-    "tekstit/peratilaSivu3.txt",
-    "tekstit/peratilaSivu4.txt",
-    "tekstit/peratilaSivu5.txt",
-    "tekstit/hartiadystokiaSivu1.txt",
-    "tekstit/hartiadystokiaSivu2.txt",
-    "tekstit/hartiadystokiaSivu3.txt",
-    "tekstit/napanuoraSivu1.txt",
-    "tekstit/napanuoraSivu2.txt",
-    "tekstit/napanuoraSivu3.txt",
-    "tekstit/laakeohjeetSivu.txt",
-];
+    valmistautuminenSivu1: "tekstit/valmistautuminenSivu1.txt",
+    valmistautuminenSivu2: "tekstit/valmistautuminenSivu2.txt",
+    valmistautuminenSivu3: "tekstit/valmistautuminenSivu3.txt",
+    valmistautuminenSivu4: "tekstit/valmistautuminenSivu4.txt",
+    valmistautuminenSivu5: "tekstit/valmistautuminenSivu5.txt",
+
+    synnytyksenAikanaSivu1: "tekstit/synnytyksenAikanaSivu1.txt",
+    synnytyksenAikanaSivu2: "tekstit/synnytyksenAikanaSivu2.txt",
+    synnytyksenAikanaSivu3: "tekstit/synnytyksenAikanaSivu3.txt",
+    synnytyksenAikanaSivu4: "tekstit/synnytyksenAikanaSivu4.txt",
+    synnytyksenAikanaSivu5: "tekstit/synnytyksenAikanaSivu5.txt",
+    synnytyksenAikanaSivu6: "tekstit/synnytyksenAikanaSivu6.txt",
+
+    synnytyksenJalkeenSivu1: "tekstit/synnytyksenJalkeenSivu1.txt",
+    synnytyksenJalkeenSivu2: "tekstit/synnytyksenJalkeenSivu2.txt",
+    synnytyksenJalkeenSivu3: "tekstit/synnytyksenJalkeenSivu3.txt",
+    synnytyksenJalkeenSivu4: "tekstit/synnytyksenJalkeenSivu4.txt",
+
+    peratilaSivu1: "tekstit/peratilaSivu1.txt",
+    peratilaSivu2: "tekstit/peratilaSivu2.txt",
+    peratilaSivu3: "tekstit/peratilaSivu3.txt",
+    peratilaSivu4: "tekstit/peratilaSivu4.txt",
+    peratilaSivu5: "tekstit/peratilaSivu5.txt",
+
+    hartiadystokiaSivu1: "tekstit/hartiadystokiaSivu1.txt",
+    hartiadystokiaSivu2: "tekstit/hartiadystokiaSivu2.txt",
+    hartiadystokiaSivu3: "tekstit/hartiadystokiaSivu3.txt",
+
+    napanuoraSivu1: "tekstit/napanuoraSivu1.txt",
+    napanuoraSivu2: "tekstit/napanuoraSivu2.txt",
+    napanuoraSivu3: "tekstit/napanuoraSivu3.txt",
+
+    laakeohjeetSivu: "tekstit/laakeohjeetSivu.txt"
+}*/
 
 var savedImage = {
     ohje: "ohje",
@@ -95,6 +99,9 @@ window.onload = function leadFirst() {
 
     for (var key in savedImage) getImage(key);
     for (var key in savedText) getText(key);
+
+    var newText = "asdsadasdasd";
+    putText("test", newText);
 }
 
 function getImage(key) {
@@ -147,6 +154,18 @@ function getText(key) {
                     break;
             }
         });
+}
+
+function putText(key, newText) {
+    //var ref = firebase.storage().ref("tekstit/" + key + ".txt");
+    var ref = firebase.storage().ref(key + ".txt");
+    ref.putString(newText).then((snapshot) => {
+        console.log(key + ' text updated');
+      });
+
+    // käyttäminen:
+    // var newText = "this is new text!"
+    // putText(savedText.valmistautuminenSivu1, newText);
 }
 
 function changeContent(page) {
