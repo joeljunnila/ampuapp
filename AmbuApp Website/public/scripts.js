@@ -156,12 +156,35 @@ function getText(key) {
 function putText(key, newText) {
     var ref = firebase.storage().ref("tekstit/" + key + ".txt");
     ref.putString(newText).then((snapshot) => {
-        console.log(key + ' text updated');
-      });
+        savedText.key = newText;
+    });
 
     // käyttäminen:
     // var newText = "this is new text!"
-    // putText(savedText.valmistautuminenSivu1, newText);
+    // putText("valmistautuminenSivu1", newText);
+}
+
+function putImage(key) {
+    var newImage = document.getElementById("newImage").files[0];
+
+    var ref = firebase.storage().ref("kuvat/" + key + ".png");
+
+    var uploadTask = ref.put(newImage);
+    uploadTask.on("state_changed", function progress(snapshot) {
+        var percent = (snapshot.bytesTranferred / snapshot.totalBytes) * 100;
+        //progressbar.value = percent;
+        console.log("progress: " + percent);
+    }, function error(err) {
+        console.log("upload image error");
+    }, function complete() {
+        uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
+            savedImage.key = url;
+            document.getElementById("image").src = url;
+        })
+    });
+
+    // käyttäminen:
+    // document.getElementById("buttonSave").onclick = function () { putImage("synnytyksenAikanaSivu1"); }
 }
 
 function changeContent(page) {
