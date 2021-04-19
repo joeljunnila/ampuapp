@@ -194,9 +194,9 @@ public class MainActivity extends AppCompatActivity {
                     darkModeSwitch.setTextSize(14);
                 } else if (position == 1) {
                     editor.putString("textSize", "normal");
-                    textView.setTextSize(22);
-                    textSizeTextView.setTextSize(22);
-                    darkModeSwitch.setTextSize(22);
+                    textView.setTextSize(20);
+                    textSizeTextView.setTextSize(20);
+                    darkModeSwitch.setTextSize(20);
                 } else if (position == 2) {
                     editor.putString("textSize", "big");
                     textView.setTextSize(30);
@@ -935,7 +935,7 @@ public class MainActivity extends AppCompatActivity {
         leftArrow.setOnClickListener(this::kotisivu);
         rightArrow.setOnClickListener(this::synnytyksenAikanaSivu2);
 
-        imageArea.setVisibility(View.VISIBLE);
+        imageArea.setVisibility(View.GONE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu1.txt"));
         stepView.getState().stepsNumber(6).commit();
@@ -951,7 +951,7 @@ public class MainActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(this::synnytyksenAikanaSivu3);
 
         imageArea.setVisibility(View.VISIBLE);
-        imageView.setImageBitmap(getImage("ohje3.jpg"));
+        imageView.setImageBitmap(getImage("ohje5.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu2.txt"));
         stepView.getState().stepsNumber(6).commit();
         stepView.go(1, false);
@@ -966,7 +966,7 @@ public class MainActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(this::synnytyksenAikanaSivu4);
 
         imageArea.setVisibility(View.VISIBLE);
-        imageView.setImageBitmap(getImage("ohje.jpg"));
+        imageView.setImageBitmap(getImage("ohje3.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu3.txt"));
         stepView.getState().stepsNumber(6).commit();
         stepView.go(2, false);
@@ -981,7 +981,7 @@ public class MainActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(this::synnytyksenAikanaSivu5);
 
         imageArea.setVisibility(View.VISIBLE);
-        imageView.setImageBitmap(getImage("ohje.jpg"));
+        imageView.setImageBitmap(getImage("ohje3.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu4.txt"));
         stepView.getState().stepsNumber(6).commit();
         stepView.go(3, false);
@@ -995,7 +995,7 @@ public class MainActivity extends AppCompatActivity {
         leftArrow.setOnClickListener(this::synnytyksenAikanaSivu4);
         rightArrow.setOnClickListener(this::synnytyksenAikanaSivu6);
 
-        imageArea.setVisibility(View.VISIBLE);
+        imageArea.setVisibility(View.GONE);
         imageView.setImageBitmap(getImage("ohje.jpg"));
         textView.setText(getText("synnytyksenAikanaSivu5.txt"));
         stepView.getState().stepsNumber(6).commit();
@@ -1206,7 +1206,7 @@ public class MainActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(this::napanuoraSivu2);
 
         imageArea.setVisibility(View.VISIBLE);
-        imageView.setImageBitmap(getImage("ohje.jpg"));
+        imageView.setImageBitmap(getImage("ohje7.jpg"));
         textView.setText(getText("napanuoraSivu1.txt"));
         stepView.getState().stepsNumber(3).commit();
         stepView.go(0, false);
@@ -1221,7 +1221,7 @@ public class MainActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(this::napanuoraSivu3);
 
         imageArea.setVisibility(View.VISIBLE);
-        imageView.setImageBitmap(getImage("ohje.jpg"));
+        imageView.setImageBitmap(getImage("ohje7.jpg"));
         textView.setText(getText("napanuoraSivu2.txt"));
         stepView.getState().stepsNumber(3).commit();
         stepView.go(1, false);
@@ -1236,7 +1236,7 @@ public class MainActivity extends AppCompatActivity {
         rightArrow.setOnClickListener(this::erikoistilanteetSivu);
 
         imageArea.setVisibility(View.VISIBLE);
-        imageView.setImageBitmap(getImage("ohje.jpg"));
+        imageView.setImageBitmap(getImage("ohje4.jpg"));
         textView.setText(getText("napanuoraSivu3.txt"));
         stepView.getState().stepsNumber(3).commit();
         stepView.go(2, false);
