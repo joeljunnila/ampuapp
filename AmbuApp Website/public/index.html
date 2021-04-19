@@ -19,7 +19,7 @@
 
         <div class="phone"> <!-- phone area in html page -->
             <header> <!-- menubar area in phone -->
-                <button onclick="changeContent('kotisivu')"> <!-- menubar home icon -->
+                <button id="homeIcon" onclick="changeContent('kotisivu')"> <!-- menubar home icon -->
                     <img src="icons/home.png" height="100%"/>
                 </button>
 
@@ -32,13 +32,11 @@
 
             <main> <!-- content area in phone -->
                 <div id="menuLayout"> <!-- menuLayout -->
-                    <ul>
-                        <button id="button1" onclick="changeContent('valmistautuminenSivu1')" style="margin-top: 80px;">Valmistautuminen</button>
-                        <button id="button2" onclick="changeContent('synnytysvaiheetSivu1')">Synnytysvaiheet</button>
-                        <button id="button3" onclick="changeContent('synnytyksenJalkeenSivu1')">Synnytyksen jälkeen</button>
-                        <button id="button4" onclick="changeContent('erikoistilanteetSivu')">Erikoistilanteet</button>
-                        <button id="button5" onclick="changeContent('laakeohjeetSivu')">Lääkeohjeet</button>
-                    </ul>
+                    <button id="button1" onclick="changeContent('valmistautuminenSivu1')" style="margin-top: 80px;">Valmistautuminen</button>
+                    <button id="button2" onclick="changeContent('synnytysvaiheetSivu1')">Synnytysvaiheet</button>
+                    <button id="button3" onclick="changeContent('synnytyksenJalkeenSivu1')">Synnytyksen jälkeen</button>
+                    <button id="button4" onclick="changeContent('erikoistilanteetSivu')">Erikoistilanteet</button>
+                    <button id="button5" onclick="changeContent('laakeohjeetSivu')">Lääkeohjeet</button>
                 </div>
 
                 <div id="imageTextLayout" style="display: none"> <!-- imageTextLayout -->
@@ -65,14 +63,18 @@
         </div>
 
         <div class="updateView"> <!-- Päivitys buttonit -->
-            <ul>
+            <div id="updateViewMenu">
+                <button style="visibility: hidden;">Feikki button xD</button>
                 <button id=changeImage>Muokkaa kuvaa</button>
-                <input id=newImage type="file" accept="image/jpg" onchange="onNewImageSelected()"></input>
-                <button id=saveImage onclick="putImage('uusiKuva')">Tallenna kuva</button>
-                
                 <button id=changeText>Muokkaa tekstiä</button>
-                <button id=saveText>Tallenna teksti</button>
-            </ul>
+            </div>
+
+            <div id="updateViewButtons" hidden="hidden">
+                <input id=newImage type="file" accept="image/jpg" hidden="hidden" onchange="onNewImageSelected()"></input>
+                <button id="newImageCustomButton">Vaihda kuva</button>
+                <button id=saveButton>Tallenna</button>
+                <button id=cancelButton>Peruuta</button>
+            </div>
         </div>
     </div>
 </body>
