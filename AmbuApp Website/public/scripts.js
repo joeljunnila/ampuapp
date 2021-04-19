@@ -84,6 +84,29 @@ var savedText = {
     laakeohjeetSivu: "laakeohjeetSivu",
 };
 
+var usedImage = {
+    synnytyksenAikanaSivu1: "ohje",
+    synnytyksenAikanaSivu2: "ohje3",
+    synnytyksenAikanaSivu3: "ohje4",
+    synnytyksenAikanaSivu4: "ohje5",
+    synnytyksenAikanaSivu5: "ohje7",
+    synnytyksenAikanaSivu6: "ohje",
+
+    peratilaSivu1: "ohje",
+    peratilaSivu2: "ohje3",
+    peratilaSivu3: "ohje4",
+    peratilaSivu4: "ohje5",
+    peratilaSivu5: "ohje7",
+
+    hartiadystokiaSivu1: "ohje",
+    hartiadystokiaSivu2: "ohje3",
+    hartiadystokiaSivu3: "ohje4",
+
+    napanuoraSivu1: "ohje",
+    napanuoraSivu2: "ohje5",
+    napanuoraSivu3: "ohje7",
+};
+
 var activityName = "kotisivu";
 
 window.onload = function loadFirst() {
@@ -104,40 +127,44 @@ window.onload = function loadFirst() {
 
     document.getElementById("newImageCustomButton").onclick = function () { document.getElementById("newImage").click(); }
 
-    document.getElementById("changeImage").onclick = function () { 
-        document.getElementById("homeIcon").onclick = function () {}
-        document.getElementById("leftArrow").onclick = function () {}
-        document.getElementById("rightArrow").onclick = function () {}
+    document.getElementById("changeImage").onclick = function () {
+        document.getElementById("homeIcon").onclick = function () { }
+        document.getElementById("leftArrow").onclick = function () { }
+        document.getElementById("rightArrow").onclick = function () { }
+        document.getElementById("saveButton").onclick = function () { }
+        document.getElementById("saveButton").style.display = "none";
+        document.getElementById("newImage").value = "";
 
-        document.getElementById("updateViewMenu").style.display = "none"; 
-        document.getElementById("updateViewButtons").style.display = "block"; 
-        document.getElementById("newImageCustomButton").style.visibility = "visible"; 
+        document.getElementById("updateViewMenu").style.display = "none";
+        document.getElementById("updateViewButtons").style.display = "block";
+        document.getElementById("newImageCustomButton").style.display = "block";
 
-        document.getElementById("saveButton").onclick = function () { 
+        document.getElementById("saveButton").onclick = function () {
             putImage(activityName);
             document.getElementById("cancelButton").click();
         }
     }
 
-    document.getElementById("changeText").onclick = function () { 
-        document.getElementById("homeIcon").onclick = function () {}
-        document.getElementById("leftArrow").onclick = function () {}
-        document.getElementById("rightArrow").onclick = function () {}
+    document.getElementById("changeText").onclick = function () {
+        document.getElementById("homeIcon").onclick = function () { }
+        document.getElementById("leftArrow").onclick = function () { }
+        document.getElementById("rightArrow").onclick = function () { }
 
-        document.getElementById("updateViewMenu").style.display = "none"; 
-        document.getElementById("updateViewButtons").style.display = "block"; 
-        document.getElementById("newImageCustomButton").style.visibility = "hidden"; 
+        document.getElementById("updateViewMenu").style.display = "none";
+        document.getElementById("updateViewButtons").style.display = "block";
+        document.getElementById("newImageCustomButton").style.display = "none";
+        document.getElementById("saveButton").style.display = "block";
 
         document.getElementById("text").contentEditable = "true";
-        document.getElementById("saveButton").onclick = function () { 
+        document.getElementById("saveButton").onclick = function () {
             putText(activityName);
             document.getElementById("cancelButton").click();
         }
     }
 
-    document.getElementById("cancelButton").onclick = function () { 
-        document.getElementById("updateViewMenu").style.display = "block"; 
-        document.getElementById("updateViewButtons").style.display = "none"; 
+    document.getElementById("cancelButton").onclick = function () {
+        document.getElementById("updateViewMenu").style.display = "block";
+        document.getElementById("updateViewButtons").style.display = "none";
         document.getElementById("homeIcon").onclick = function () { changeContent("kotisivu"); }
         document.getElementById("text").contentEditable = "false";
         changeContent(activityName);
@@ -207,7 +234,7 @@ function putText(key) {
 
 function putImage(key) {
     var newImage = document.getElementById("newImage").files[0];
-    var ref = firebase.storage().ref("kuvat/" + key + ".jpg");
+    var ref = firebase.storage().ref("kuvat/" + usedImage[key] + ".jpg");
     var uploadTask = ref.put(newImage);
     uploadTask.on("state_changed", function progress(snapshot) {
         //var percent = (snapshot.bytesTranferred / snapshot.totalBytes) * 100;
@@ -216,7 +243,8 @@ function putImage(key) {
         console.log("upload image error");
     }, function complete() {
         uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
-            savedImage[key] = url;
+            savedImage[usedImage[key]] = url;
+            document.getElementById("image").src = url;
         })
     });
 }
@@ -224,6 +252,7 @@ function putImage(key) {
 function onNewImageSelected() {
     var newImage = document.getElementById("newImage").files[0];
     document.getElementById("image").src = window.URL.createObjectURL(newImage);
+    document.getElementById("saveButton").style.display = "block";
 }
 
 function changeContent(page) {
@@ -248,9 +277,9 @@ function changeContent(page) {
             document.getElementById("button3").onclick = function () { changeContent("synnytyksenJalkeenSivu1"); }
             document.getElementById("button4").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("button5").onclick = function () { changeContent("laakeohjeetSivu"); }
-            
-            document.getElementById("changeImage").style.visibility = "hidden"; 
-            document.getElementById("changeText").style.visibility = "hidden"; 
+
+            document.getElementById("changeImage").style.visibility = "hidden";
+            document.getElementById("changeText").style.visibility = "hidden";
             break;
         case "erikoistilanteetSivu":
             activityName = "erikoistilanteetSivu";
@@ -270,9 +299,9 @@ function changeContent(page) {
             document.getElementById("button3").onclick = function () { changeContent("napanuoraSivu1"); }
 
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
-            
-            document.getElementById("changeImage").style.visibility = "hidden"; 
-            document.getElementById("changeText").style.visibility = "hidden"; 
+
+            document.getElementById("changeImage").style.visibility = "hidden";
+            document.getElementById("changeText").style.visibility = "hidden";
             break;
         case "valmistautuminenSivu1":
             activityName = "valmistautuminenSivu1";
@@ -283,33 +312,33 @@ function changeContent(page) {
             document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("valmistautuminenSivu2"); }
-            document.getElementById("text").textContent = savedText.valmistautuminenSivu1;
-            document.getElementById("changeImage").style.visibility = "hidden"; 
-            document.getElementById("changeText").style.visibility = "visible"; 
+            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("changeImage").style.visibility = "hidden";
+            document.getElementById("changeText").style.visibility = "visible";
             break;
         case "valmistautuminenSivu2":
             activityName = "valmistautuminenSivu2";
             document.getElementById("leftArrow").onclick = function () { changeContent("valmistautuminenSivu1"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("valmistautuminenSivu3"); }
-            document.getElementById("text").textContent = savedText.valmistautuminenSivu2;
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "valmistautuminenSivu3":
             activityName = "valmistautuminenSivu3";
             document.getElementById("leftArrow").onclick = function () { changeContent("valmistautuminenSivu2"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("valmistautuminenSivu4"); }
-            document.getElementById("text").textContent = savedText.valmistautuminenSivu3;
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "valmistautuminenSivu4":
             activityName = "valmistautuminenSivu4";
             document.getElementById("leftArrow").onclick = function () { changeContent("valmistautuminenSivu3"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("valmistautuminenSivu5"); }
-            document.getElementById("text").textContent = savedText.valmistautuminenSivu4;
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "valmistautuminenSivu5":
             activityName = "valmistautuminenSivu5";
             document.getElementById("leftArrow").onclick = function () { changeContent("valmistautuminenSivu4"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("kotisivu"); }
-            document.getElementById("text").textContent = savedText.valmistautuminenSivu5;
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "synnytyksenAikanaSivu1":
             activityName = "synnytyksenAikanaSivu1";
@@ -320,45 +349,45 @@ function changeContent(page) {
             document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenAikanaSivu2"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.synnytyksenAikanaSivu1;
-            document.getElementById("changeImage").style.visibility = "visible"; 
-            document.getElementById("changeText").style.visibility = "visible"; 
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("changeImage").style.visibility = "visible";
+            document.getElementById("changeText").style.visibility = "visible";
             break;
         case "synnytyksenAikanaSivu2":
             activityName = "synnytyksenAikanaSivu2";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenAikanaSivu1"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenAikanaSivu3"); }
-            document.getElementById("image").src = savedImage.ohje3;
-            document.getElementById("text").textContent = savedText.synnytyksenAikanaSivu2;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "synnytyksenAikanaSivu3":
             activityName = "synnytyksenAikanaSivu3";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenAikanaSivu2"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenAikanaSivu4"); }
-            document.getElementById("image").src = savedImage.ohje4;
-            document.getElementById("text").textContent = savedText.synnytyksenAikanaSivu3;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "synnytyksenAikanaSivu4":
             activityName = "synnytyksenAikanaSivu4";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenAikanaSivu3"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenAikanaSivu5"); }
-            document.getElementById("image").src = savedImage.ohje5;
-            document.getElementById("text").textContent = savedText.synnytyksenAikanaSivu4;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "synnytyksenAikanaSivu5":
             activityName = "synnytyksenAikanaSivu5";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenAikanaSivu4"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenAikanaSivu6"); }
-            document.getElementById("image").src = savedImage.ohje7;
-            document.getElementById("text").textContent = savedText.synnytyksenAikanaSivu5;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "synnytyksenAikanaSivu6":
             activityName = "synnytyksenAikanaSivu6";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenAikanaSivu5"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("kotisivu"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.synnytyksenAikanaSivu6;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "synnytyksenJalkeenSivu1":
             activityName = "synnytyksenJalkeenSivu1";
@@ -370,26 +399,26 @@ function changeContent(page) {
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu2"); }
             document.getElementById("text").textContent = savedText.synnytyksenJalkeenSivu1;
-            document.getElementById("changeImage").style.visibility = "hidden"; 
-            document.getElementById("changeText").style.visibility = "visible"; 
+            document.getElementById("changeImage").style.visibility = "hidden";
+            document.getElementById("changeText").style.visibility = "visible";
             break;
         case "synnytyksenJalkeenSivu2":
             activityName = "synnytyksenJalkeenSivu2";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu1"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu3"); }
-            document.getElementById("text").textContent = savedText.synnytyksenJalkeenSivu2;
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "synnytyksenJalkeenSivu3":
             activityName = "synnytyksenJalkeenSivu3";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu2"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu4"); }
-            document.getElementById("text").textContent = savedText.synnytyksenJalkeenSivu3;
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "synnytyksenJalkeenSivu4":
             activityName = "synnytyksenJalkeenSivu4";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu3"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("kotisivu"); }
-            document.getElementById("text").textContent = savedText.synnytyksenJalkeenSivu4;
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "peratilaSivu1":
             activityName = "peratilaSivu1";
@@ -400,38 +429,38 @@ function changeContent(page) {
             document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("peratilaSivu2"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.peratilaSivu1;
-            document.getElementById("changeImage").style.visibility = "visible"; 
-            document.getElementById("changeText").style.visibility = "visible"; 
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("changeImage").style.visibility = "visible";
+            document.getElementById("changeText").style.visibility = "visible";
             break;
         case "peratilaSivu2":
             activityName = "peratilaSivu2";
             document.getElementById("leftArrow").onclick = function () { changeContent("peratilaSivu1"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("peratilaSivu3"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.peratilaSivu2;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "peratilaSivu3":
             activityName = "peratilaSivu3";
             document.getElementById("leftArrow").onclick = function () { changeContent("peratilaSivu2"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("peratilaSivu4"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.peratilaSivu3;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "peratilaSivu4":
             activityName = "peratilaSivu4";
             document.getElementById("leftArrow").onclick = function () { changeContent("peratilaSivu3"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("peratilaSivu5"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.peratilaSivu4;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "peratilaSivu5":
             activityName = "peratilaSivu5";
             document.getElementById("leftArrow").onclick = function () { changeContent("peratilaSivu4"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.peratilaSivu5;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "hartiadystokiaSivu1":
             activityName = "hartiadystokiaSivu1";
@@ -442,24 +471,24 @@ function changeContent(page) {
             document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("hartiadystokiaSivu2"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.hartiadystokiaSivu1;
-            document.getElementById("changeImage").style.visibility = "visible"; 
-            document.getElementById("changeText").style.visibility = "visible"; 
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("changeImage").style.visibility = "visible";
+            document.getElementById("changeText").style.visibility = "visible";
             break;
         case "hartiadystokiaSivu2":
             activityName = "hartiadystokiaSivu2";
             document.getElementById("leftArrow").onclick = function () { changeContent("hartiadystokiaSivu1"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("hartiadystokiaSivu3"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.hartiadystokiaSivu2;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "hartiadystokiaSivu3":
             activityName = "hartiadystokiaSivu3";
             document.getElementById("leftArrow").onclick = function () { changeContent("hartiadystokiaSivu2"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.hartiadystokiaSivu3;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "napanuoraSivu1":
             activityName = "napanuoraSivu1";
@@ -470,24 +499,24 @@ function changeContent(page) {
             document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("napanuoraSivu2"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.napanuoraSivu1;
-            document.getElementById("changeImage").style.visibility = "visible"; 
-            document.getElementById("changeText").style.visibility = "visible"; 
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("changeImage").style.visibility = "visible";
+            document.getElementById("changeText").style.visibility = "visible";
             break;
         case "napanuoraSivu2":
             activityName = "napanuoraSivu2";
             document.getElementById("leftArrow").onclick = function () { changeContent("napanuoraSivu1"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("napanuoraSivu3"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.napanuoraSivu2;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "napanuoraSivu3":
             activityName = "napanuoraSivu3";
             document.getElementById("leftArrow").onclick = function () { changeContent("napanuoraSivu2"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
-            document.getElementById("image").src = savedImage.ohje;
-            document.getElementById("text").textContent = savedText.napanuoraSivu3;
+            document.getElementById("image").src = savedImage[usedImage[activityName]];
+            document.getElementById("text").textContent = savedText[activityName];
             break;
         case "laakeohjeetSivu":
             activityName = "laakeohjeetSivu";
@@ -496,9 +525,9 @@ function changeContent(page) {
             document.getElementById("image").style.display = "none";
             document.getElementById("leftArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
-            document.getElementById("text").textContent = savedText.laakeohjeetSivu;
-            document.getElementById("changeImage").style.visibility = "hidden"; 
-            document.getElementById("changeText").style.visibility = "visible"; 
+            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("changeImage").style.visibility = "hidden";
+            document.getElementById("changeText").style.visibility = "visible";
             break;
     }
 }
