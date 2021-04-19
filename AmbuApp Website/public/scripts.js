@@ -109,19 +109,46 @@ var usedImage = {
 
 var activityName = "kotisivu";
 
+
+
+var firebaseConfig = {
+    apiKey: "AIzaSyDUbaZX8mHLAKMiX5Kd1i6xuViu0kDEGEg",
+    authDomain: "ambuapp-2691e.firebaseapp.com",
+    projectId: "ambuapp-2691e",
+    storageBucket: "ambuapp-2691e.appspot.com",
+    messagingSenderId: "812625720469",
+    appId: "1:812625720469:web:851a28a3eefbac8374d79c"
+};
+
+
+
+
+
+
+function GoogleLogin(){
+    
+    var provider = new firebase.auth.GoogleAuthProvider();
+    console.log("login");
+    firebase.auth().signInWithPopup(provider).then(res=>{
+        console.log(res);
+    }).catch(e=>{
+        console.log(e);
+    })
+}
+
+function logout(){
+    console.log("logout");
+    firebase.auth().signOut().then(()=>{
+
+    }).catch(e=>{
+        console.log(e);
+    })
+}
 window.onload = function loadFirst() {
     changeContent("kotisivu");
 
-    var firebaseConfig = {
-        apiKey: "AIzaSyDUbaZX8mHLAKMiX5Kd1i6xuViu0kDEGEg",
-        authDomain: "ambuapp-2691e.firebaseapp.com",
-        projectId: "ambuapp-2691e",
-        storageBucket: "ambuapp-2691e.appspot.com",
-        messagingSenderId: "812625720469",
-        appId: "1:812625720469:web:851a28a3eefbac8374d79c"
-    };
+    
     firebase.initializeApp(firebaseConfig);
-
     for (var key in savedImage) getImage(key);
     for (var key in savedText) getText(key);
 
