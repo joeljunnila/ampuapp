@@ -86,7 +86,7 @@ var savedText = {
 
 var activityName = "kotisivu";
 
-window.onload = function leadFirst() {
+window.onload = function loadFirst() {
     changeContent("kotisivu");
 
     var firebaseConfig = {
@@ -111,11 +111,11 @@ window.onload = function leadFirst() {
 
         document.getElementById("updateViewMenu").style.display = "none"; 
         document.getElementById("updateViewButtons").style.display = "block"; 
+        document.getElementById("newImageCustomButton").style.visibility = "visible"; 
 
         document.getElementById("saveButton").onclick = function () { 
             putImage(activityName);
-            document.getElementById("updateViewMenu").style.display = "block"; 
-            document.getElementById("updateViewButtons").style.display = "none"; 
+            document.getElementById("cancelButton").click();
         }
     }
 
@@ -127,14 +127,19 @@ window.onload = function leadFirst() {
         document.getElementById("updateViewMenu").style.display = "none"; 
         document.getElementById("updateViewButtons").style.display = "block"; 
         document.getElementById("newImageCustomButton").style.visibility = "hidden"; 
+
+        document.getElementById("text").contentEditable = "true";
+        document.getElementById("saveButton").onclick = function () { 
+            putText(activityName);
+            document.getElementById("cancelButton").click();
+        }
     }
 
     document.getElementById("cancelButton").onclick = function () { 
         document.getElementById("updateViewMenu").style.display = "block"; 
         document.getElementById("updateViewButtons").style.display = "none"; 
-        document.getElementById("newImageCustomButton").style.visibility = "visible"; 
-
         document.getElementById("homeIcon").onclick = function () { changeContent("kotisivu"); }
+        document.getElementById("text").contentEditable = "false";
         changeContent(activityName);
     }
 }
@@ -191,20 +196,18 @@ function getText(key) {
         });
 }
 
-function putText(key, newText) {
+function putText(key) {
+    var newText = document.getElementById("text").textContent;
+    document.getElementById("text").textContent = newText;
     var ref = firebase.storage().ref("tekstit/" + key + ".txt");
     ref.putString(newText).then((snapshot) => {
-        savedText.key = newText;
+        savedText[key] = newText;
     });
-
-    // käyttäminen:
-    // var newText = "this is new text!"
-    // putText("valmistautuminenSivu1", newText);
 }
 
 function putImage(key) {
     var newImage = document.getElementById("newImage").files[0];
-    var ref = firebase.storage().ref("kuvat/" + "key" + ".jpg");
+    var ref = firebase.storage().ref("kuvat/" + key + ".jpg");
     var uploadTask = ref.put(newImage);
     uploadTask.on("state_changed", function progress(snapshot) {
         //var percent = (snapshot.bytesTranferred / snapshot.totalBytes) * 100;
@@ -213,12 +216,9 @@ function putImage(key) {
         console.log("upload image error");
     }, function complete() {
         uploadTask.snapshot.ref.getDownloadURL().then(function (url) {
-            savedImage.key = url;
+            savedImage[key] = url;
         })
     });
-
-    // käyttäminen:
-    // document.getElementById("buttonSave").onclick = function () { putImage("synnytyksenAikanaSivu1"); }
 }
 
 function onNewImageSelected() {
@@ -234,8 +234,8 @@ function changeContent(page) {
             document.getElementById("imageTextLayout").style.display = "none";
             document.getElementById("button4").style.visibility = "visible";
             document.getElementById("button5").style.visibility = "visible";
-            document.getElementById("leftArrow").style.display = "none";
-            document.getElementById("rightArrow").style.display = "none";
+            document.getElementById("leftArrow").style.visibility = "hidden";
+            document.getElementById("rightArrow").style.visibility = "hidden";
 
             document.getElementById("button1").textContent = "Valmistautuminen";
             document.getElementById("button2").textContent = "Synnytysvaiheet";
@@ -258,8 +258,8 @@ function changeContent(page) {
             document.getElementById("imageTextLayout").style.display = "none";
             document.getElementById("button4").style.visibility = "hidden";
             document.getElementById("button5").style.visibility = "hidden";
-            document.getElementById("leftArrow").style.display = "block";
-            document.getElementById("rightArrow").style.display = "hidden";
+            document.getElementById("leftArrow").style.visibility = "visible";
+            document.getElementById("rightArrow").style.visibility = "hidden";
 
             document.getElementById("button1").textContent = "Perätila";
             document.getElementById("button2").textContent = "Hartiadystokia";
@@ -279,8 +279,8 @@ function changeContent(page) {
             document.getElementById("menuLayout").style.display = "none";
             document.getElementById("imageTextLayout").style.display = "block";
             document.getElementById("image").style.display = "none";
-            document.getElementById("leftArrow").style.display = "block";
-            document.getElementById("rightArrow").style.display = "block";
+            document.getElementById("leftArrow").style.visibility = "visible";
+            document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("valmistautuminenSivu2"); }
             document.getElementById("text").textContent = savedText.valmistautuminenSivu1;
@@ -316,8 +316,8 @@ function changeContent(page) {
             document.getElementById("menuLayout").style.display = "none";
             document.getElementById("imageTextLayout").style.display = "block";
             document.getElementById("image").style.display = "block";
-            document.getElementById("leftArrow").style.display = "block";
-            document.getElementById("rightArrow").style.display = "block";
+            document.getElementById("leftArrow").style.visibility = "visible";
+            document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenAikanaSivu2"); }
             document.getElementById("image").src = savedImage.ohje;
@@ -365,8 +365,8 @@ function changeContent(page) {
             document.getElementById("menuLayout").style.display = "none";
             document.getElementById("imageTextLayout").style.display = "block";
             document.getElementById("image").style.display = "none";
-            document.getElementById("leftArrow").style.display = "block";
-            document.getElementById("rightArrow").style.display = "block";
+            document.getElementById("leftArrow").style.visibility = "visible";
+            document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu2"); }
             document.getElementById("text").textContent = savedText.synnytyksenJalkeenSivu1;
@@ -396,8 +396,8 @@ function changeContent(page) {
             document.getElementById("menuLayout").style.display = "none";
             document.getElementById("imageTextLayout").style.display = "block";
             document.getElementById("image").style.display = "block";
-            document.getElementById("leftArrow").style.display = "block";
-            document.getElementById("rightArrow").style.display = "block";
+            document.getElementById("leftArrow").style.visibility = "visible";
+            document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("peratilaSivu2"); }
             document.getElementById("image").src = savedImage.ohje;
@@ -438,8 +438,8 @@ function changeContent(page) {
             document.getElementById("menuLayout").style.display = "none";
             document.getElementById("imageTextLayout").style.display = "block";
             document.getElementById("image").style.display = "block";
-            document.getElementById("leftArrow").style.display = "block";
-            document.getElementById("rightArrow").style.display = "block";
+            document.getElementById("leftArrow").style.visibility = "visible";
+            document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("hartiadystokiaSivu2"); }
             document.getElementById("image").src = savedImage.ohje;
@@ -466,8 +466,8 @@ function changeContent(page) {
             document.getElementById("menuLayout").style.display = "none";
             document.getElementById("imageTextLayout").style.display = "block";
             document.getElementById("image").style.display = "block";
-            document.getElementById("leftArrow").style.display = "block";
-            document.getElementById("rightArrow").style.display = "block";
+            document.getElementById("leftArrow").style.visibility = "visible";
+            document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("napanuoraSivu2"); }
             document.getElementById("image").src = savedImage.ohje;
@@ -494,7 +494,7 @@ function changeContent(page) {
             document.getElementById("menuLayout").style.display = "none";
             document.getElementById("imageTextLayout").style.display = "block";
             document.getElementById("image").style.display = "none";
-            document.getElementById("leftArrow").style.display = "block";
+            document.getElementById("leftArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
             document.getElementById("text").textContent = savedText.laakeohjeetSivu;
             document.getElementById("changeImage").style.visibility = "hidden"; 

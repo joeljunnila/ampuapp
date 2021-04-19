@@ -83,7 +83,6 @@ main {
     border: none;
     outline: none;
     margin: 7%;
-    display: none;
     background-color: white;
 }
 
@@ -130,7 +129,8 @@ main {
     width: 90%;
     height: 95%;
     margin: 2.5% 5%;
-    font-size: 24px;
+    font-size: 23px;
+    white-space: pre-line;
 }
 /* #endregion content */
 /* #endregion phone */
