@@ -184,6 +184,11 @@ function putImage(key) {
     // document.getElementById("buttonSave").onclick = function () { putImage("synnytyksenAikanaSivu1"); }
 }
 
+function onNewImageSelected() {
+    var newImage = document.getElementById("newImage").files[0];
+    document.getElementById("image").src = window.URL.createObjectURL(newImage);
+}
+
 function changeContent(page) {
     switch (page) {
         case "kotisivu":

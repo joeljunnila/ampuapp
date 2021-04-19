@@ -13,61 +13,67 @@
 </head>
 <body>
     <div class="layouts">
-    <div class="login"> <!-- Login alue -->
-        Login
-    </div>
+        <div class="login"> <!-- Login alue -->
+            Login
+        </div>
 
-    <div class="phone"> <!-- phone area in html page -->
-        <header> <!-- menubar area in phone -->
-            <button onclick="changeContent('kotisivu')"> <!-- menubar home icon -->
-                <img src="icons/home.png" height="100%"/>
-            </button>
+        <div class="phone"> <!-- phone area in html page -->
+            <header> <!-- menubar area in phone -->
+                <button onclick="changeContent('kotisivu')"> <!-- menubar home icon -->
+                    <img src="icons/home.png" height="100%"/>
+                </button>
 
-            <H2>AmbuApp</H2> <!-- menubar title -->
+                <H2>AmbuApp</H2> <!-- menubar title -->
 
-            <button> <!-- menubar navicon icon -->
-                <img src="icons/navicon.png" height="100%"/>
-            </button>
-        </header>
+                <button> <!-- menubar navicon icon -->
+                    <img src="icons/navicon.png" height="100%"/>
+                </button>
+            </header>
 
-        <main> <!-- content area in phone -->
-            <div id="menuLayout"> <!-- menuLayout -->
-                <ul>
-                    <button id="button1" onclick="changeContent('valmistautuminenSivu1')" style="margin-top: 80px;">Valmistautuminen</button>
-                    <button id="button2" onclick="changeContent('synnytysvaiheetSivu1')">Synnytysvaiheet</button>
-                    <button id="button3" onclick="changeContent('synnytyksenJalkeenSivu1')">Synnytyksen jälkeen</button>
-                    <button id="button4" onclick="changeContent('erikoistilanteetSivu')">Erikoistilanteet</button>
-                    <button id="button5" onclick="changeContent('laakeohjeetSivu')">Lääkeohjeet</button>
-                </ul>
+            <main> <!-- content area in phone -->
+                <div id="menuLayout"> <!-- menuLayout -->
+                    <ul>
+                        <button id="button1" onclick="changeContent('valmistautuminenSivu1')" style="margin-top: 80px;">Valmistautuminen</button>
+                        <button id="button2" onclick="changeContent('synnytysvaiheetSivu1')">Synnytysvaiheet</button>
+                        <button id="button3" onclick="changeContent('synnytyksenJalkeenSivu1')">Synnytyksen jälkeen</button>
+                        <button id="button4" onclick="changeContent('erikoistilanteetSivu')">Erikoistilanteet</button>
+                        <button id="button5" onclick="changeContent('laakeohjeetSivu')">Lääkeohjeet</button>
+                    </ul>
+                </div>
+
+                <div id="imageTextLayout" style="display: none"> <!-- imageTextLayout -->
+                    <img id="image" src="icons/home.png" /> <!-- imageTextLayout image -->
+            
+                    <p id="text"> <!-- imageTextLayout text -->
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere
+                        similique quisquam voluptatem quis eum minus, autem praesentium
+                        eveniet debitis repellendus dolore tempora quaerat porro ipsum,
+                        aliquid blanditiis perferendis velit cupiditate?
+                    </p>
+                </div>
+            </main>
+
+            <div class="arrowArea"> <!-- arrows area in phone -->
+                <button id="leftArrow" style="float: left;"> <!-- left arrow -->
+                    <img src="icons/leftArrow.png" height="100%"/>
+                </button>
+
+                <button id="rightArrow" style="float: right;"> <!-- right arrow -->
+                    <img src="icons/rightArrow.png" height="100%"/>
+                </button>
             </div>
+        </div>
 
-            <div id="imageTextLayout" style="display: none"> <!-- imageTextLayout -->
-                <img id="image" src="icons/home.png" /> <!-- imageTextLayout image -->
-        
-                <p id="text"> <!-- imageTextLayout text -->
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere
-                    similique quisquam voluptatem quis eum minus, autem praesentium
-                    eveniet debitis repellendus dolore tempora quaerat porro ipsum,
-                    aliquid blanditiis perferendis velit cupiditate?
-                </p>
-            </div>
-        </main>
-
-        <div class="arrowArea"> <!-- arrows area in phone -->
-            <button id="leftArrow" style="float: left;"> <!-- left arrow -->
-                <img src="icons/leftArrow.png" height="100%"/>
-            </button>
-
-            <button id="rightArrow" style="float: right;"> <!-- right arrow -->
-                <img src="icons/rightArrow.png" height="100%"/>
-            </button>
+        <div class="updateView"> <!-- Päivitys buttonit -->
+            <ul>
+                <button id=changeImage>Muokkaa kuvaa</button>
+                <input id=newImage type="file" accept="image/jpg" onchange="onNewImageSelected()"></input>
+                <button id=saveImage onclick="putImage('uusiKuva')">Tallenna kuva</button>
+                
+                <button id=changeText>Muokkaa tekstiä</button>
+                <button id=saveText>Tallenna teksti</button>
+            </ul>
         </div>
     </div>
-
-    <div class="updateView"> <!-- Päivitys buttonit -->
-        <input id=newImage type="file" accept="image/jpg">Muokkaa kuvaa</input>
-        <button id=saveButton onclick="putImage('uusiKuva')">Tallenna</button>
-    </div>
-</div>
 </body>
 </html>
