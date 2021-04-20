@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuInflater;
@@ -138,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         ifFirstLaunch();
         setupAppFromConfigFile();
         setupDarkModeSwitch();
-        //checkForUpdate();
+
 
     }
 
@@ -290,6 +291,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+
     public void updateConfigFile(String section, String value) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
@@ -435,31 +437,44 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkForUpdate() {
 
-        StringBuilder sb = new StringBuilder();
+        String TAG = "checkUpdate";
+        StringBuilder versionFromConfig = new StringBuilder();
+        StringBuffer appVersionNumber = new StringBuffer();
 
-        //stringi pysyy tällasena eli ei toimi näin(immutable)
+        appVersionNumber.append("3");
 
-        String appVersionNumber = "2";
-       if(checkFromConfigFile("versionNumber",appVersionNumber)); //tsekkaa funktiolla configista versionumeron
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(configFile));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if(line.contains("versionNumber") ) {
+                    versionFromConfig.append(line);
+                    reader.close();
+                }
 
-       else {
-           update();
-           try {
-               BufferedReader reader = new BufferedReader(new FileReader(configFile));
-               String line;
-               while ((line = reader.readLine()) != null) {
-                   if(line.contains("versionNumber") ) {
-                       sb.append(line);
-                       reader.close();
-                   }
-               }
-               reader.close();
-           } catch (IOException e) {
-               e.printStackTrace();
-           }
-       }
-    sb.delete(0,16);
-    appVersionNumber = sb.toString();
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //versionFromConfig.delete(0,15);
+
+
+        String one = versionFromConfig.toString();
+        String two = appVersionNumber.toString();
+        Log.d(TAG, one +" "+ two);
+
+
+        if (one != two ) {
+            update();
+            appVersionNumber.deleteCharAt(0);
+            appVersionNumber.append(versionFromConfig);
+            Toast.makeText(this, "Päivitetty onnistuneesti!", Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this, "Sovellus on ajan tasalla", Toast.LENGTH_SHORT).show();
+
     }
 
     public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
@@ -469,7 +484,7 @@ public class MainActivity extends AppCompatActivity {
             if(fileCounter == (imageFileNames.size() + textFileNames.size())) {
                 Log.d("test", "Updated succesfully!");
                 if(checkFromConfigFile("FirstLaunch", "false")) {
-                    Toast.makeText(this, "Päivitetty onnistuneesti!", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "Päivitetty onnistuneesti!", Toast.LENGTH_SHORT).show();
                 } else {
                     updateConfigFile("FirstLaunch", "false");
                 }
