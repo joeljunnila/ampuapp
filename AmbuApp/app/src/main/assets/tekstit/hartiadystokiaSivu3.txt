@@ -1,5 +1,1 @@
-Avustaja voi painaa häpyliitoksen yläpuolelta hartiaa alas voimakkaasti, ja näin pyritään
-saamaan ulos etummainen hartia
-
-Ellei tämä toimenpide onnistu, käännetään etummainen hartia viistomittaan painamalla sormin
-sikiön hartian takaa
+Tarvittaessa voi hartioiden kiertoa tehostaa kääntämällä alimmaista hartiaa etupuolelta vastakkaiseen suuntaan

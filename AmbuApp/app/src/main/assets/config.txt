@@ -1,5 +1,0 @@
-versionNumber = 3
-FirstLaunch = true
-ThemeChanged = false
-DarkMode = false
-TextSize = normal
