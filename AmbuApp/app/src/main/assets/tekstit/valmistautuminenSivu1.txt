@@ -3,15 +3,14 @@ Synnytyksen hoito sairaalan ulkopuolella (791 A-D)
 
 Perustiedot:
 
--Perussairaudet
+- Perussairaudet
 
--Lääkitys
+- Lääkitys
 
--Allergiat
+- Allergiat
 
--Monesko raskaus ja synnytys
+- Monesko raskaus ja synnytys
 
--Miten on raskaus mennyt
+- Miten on raskaus mennyt
 
--Raskausviikot
-
+- Raskausviikot
