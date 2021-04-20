@@ -448,10 +448,8 @@ public class MainActivity extends AppCompatActivity {
         StringBuilder versionFromConfig = new StringBuilder();
         StringBuffer appVersionNumber = new StringBuffer();
 
-        appVersionNumber.append("3");
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(configFile));
+        /*try {
+            BufferedReader reader = new BufferedReader(new FileReader());
             String line;
             while ((line = reader.readLine()) != null) {
                 if(line.contains("versionNumber") ) {
@@ -480,7 +478,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Päivitetty onnistuneesti!", Toast.LENGTH_SHORT).show();
         }
         else
-            Toast.makeText(this, "Sovellus on ajan tasalla", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Sovellus on ajan tasalla", Toast.LENGTH_SHORT).show();*/
 
     }
 
