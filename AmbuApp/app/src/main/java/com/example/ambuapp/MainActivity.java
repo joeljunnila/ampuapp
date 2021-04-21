@@ -6,6 +6,7 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
@@ -178,6 +179,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void disclaimerPopup() {
+        final Dialog disclaimerDialog = new Dialog(this);
+        disclaimerDialog.setContentView(R.layout.pop_window);
+        disclaimerDialog.setTitle("Disclaimer");
+
+        TextView disclaimerText = (TextView) disclaimerDialog.findViewById(R.id.disclaimerText);
+
+        Button disclaimerButton = (Button) disclaimerDialog.findViewById(R.id.disclaimerButton);
+        disclaimerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                disclaimerDialog.dismiss();
+            }
+        });
+
+        disclaimerDialog.show();
+    }
+
     public void setupSpinner() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.textSizesSpinnerValues, android.R.layout.simple_spinner_dropdown_item);
@@ -227,6 +246,7 @@ public class MainActivity extends AppCompatActivity {
             if (isNetworkAvailable()) update();
         editor.putBoolean("isFirstLaunch", false);
             editor.apply();
+            disclaimerPopup();
         }
 
         if(themeChanged){
