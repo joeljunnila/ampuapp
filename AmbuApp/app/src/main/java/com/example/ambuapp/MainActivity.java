@@ -15,6 +15,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @SuppressLint("UseSwitchCompatOrMaterialCode")
 public class MainActivity extends AppCompatActivity {
@@ -451,10 +453,11 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         String TAG = "checkUpdate";
-        String path
 
 
-        Log.d(TAG,path);
+
+       // Log.d(TAG,names.get(0));
+
         /*try {
             BufferedReader reader = new BufferedReader(new FileReader());
             String line;
