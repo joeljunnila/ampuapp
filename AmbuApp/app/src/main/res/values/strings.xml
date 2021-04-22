@@ -16,6 +16,11 @@
         <item>Normaali</item>
         <item>Iso</item>
     </string-array>
+    <string name="Vastuuvapauslauseke">Sovelluksen tekijät eivät ole vastuussa mistään vahingoista
+    joita ilmenee sovelluksen käytöstä tai kyvyttymyydestä käyttää sovellusta ja materiaaleja joita
+    se sisältää, eivätkä mistään toimenpiteestä tai päätöksestä jotka on tehty sovelluksen käytön
+    seurauksena.\n\nSovelluksen tekijät eivät ole vastuussa sovelluksen materiaalin sisällöstä
+    eivätkä sen tarkkuudesta.\n\nJatkamalla hyväksyt käyttämään tietoa omalla vastuulla.</string>
 
     <string name="asetukset">Asetukset</string>
     <string name="about">Tietoja sovelluksesta</string>

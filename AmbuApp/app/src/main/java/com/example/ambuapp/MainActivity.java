@@ -6,6 +6,7 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -180,21 +181,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void disclaimerPopup() {
-        final Dialog disclaimerDialog = new Dialog(this);
-        disclaimerDialog.setContentView(R.layout.pop_window);
-        disclaimerDialog.setTitle("Disclaimer");
-
-        TextView disclaimerText = (TextView) disclaimerDialog.findViewById(R.id.disclaimerText);
-
-        Button disclaimerButton = (Button) disclaimerDialog.findViewById(R.id.disclaimerButton);
-        disclaimerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                disclaimerDialog.dismiss();
-            }
-        });
-
-        disclaimerDialog.show();
+        AlertDialog.Builder disclaimer = new AlertDialog.Builder(this);
+        disclaimer.setTitle("Vastuuvapauslauseke")
+                .setMessage(R.string.Vastuuvapauslauseke)
+                .setPositiveButton("Hyväksyn",(dialog, which) -> {});
+        disclaimer.show();
     }
 
     public void setupSpinner() {
