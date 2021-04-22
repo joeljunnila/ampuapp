@@ -19,9 +19,11 @@ body {
     margin: 50px auto;
     background-color: rgb(43, 103, 131);
     text-align: center;
-    font-size: 80px;
+    font-size: 25px;
 }
-
+.labels {
+    font-size: 20px;
+}
 /* #region phone */
 /* phone area in html page */
 .phone {

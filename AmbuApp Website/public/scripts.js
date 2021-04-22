@@ -153,8 +153,8 @@ window.onload = function loadFirst() {
 
     
     firebase.initializeApp(firebaseConfig);
-    for (var key in savedImage) getImage(key);
-    for (var key in savedText) getText(key);
+    //for (var key in savedImage) getImage(key);
+    //for (var key in savedText) getText(key);
 
     document.getElementById("newImageCustomButton").onclick = function () { document.getElementById("newImage").click(); }
 
