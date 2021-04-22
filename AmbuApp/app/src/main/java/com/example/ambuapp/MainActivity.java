@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -79,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton rightArrow;
 
     //firebase
-    FirebaseUser user;
     FirebaseAuth mAuth;
     StorageReference storageRef;
     ArrayList<String> imageFileNames = new ArrayList<>();
@@ -88,11 +88,9 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<StorageReference> textRefs = new ArrayList<>();
 
     SharedPreferences sharedPreferences;
-
     String activityName = "kotisivu";
     String imageFileDir = "kuvat/";
     String textFileDir = "tekstit/";
-
     int fileCounter = 0;
     //endregion
 
@@ -207,12 +205,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         if(isFirstLaunch) {
-            for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-            for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-            if (isNetworkAvailable()) {
-                authenticate();
-                update();
-            }
+            int phoneTheme = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+            if (phoneTheme == Configuration.UI_MODE_NIGHT_YES) darkMode = true;
 
             AlertDialog.Builder disclaimer = new AlertDialog.Builder(this);
             disclaimer.setTitle("Vastuuvapauslauseke")
@@ -224,6 +218,13 @@ public class MainActivity extends AppCompatActivity {
                             "eivätkä sen tarkuudesta. Jatkamalla hyväksyt käyttämään tietoa omalla vastuulla.")
                     .setPositiveButton("ok", (dialog, which) -> {});
             disclaimer.show();
+
+            for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
+            for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
+            if (isNetworkAvailable()) {
+                authenticate();
+                update();
+            }
 
             editor.putBoolean("isFirstLaunch", false);
             editor.apply();
@@ -237,8 +238,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (darkMode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            editor.putBoolean("isDarkModeOn", true);
+            editor.apply();
             darkModeSwitch.setChecked(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
@@ -425,16 +428,15 @@ public class MainActivity extends AppCompatActivity {
     public void authenticate(){
         mAuth.signInAnonymously().addOnCompleteListener(this, task -> {
             if (task.isSuccessful()){
-                user = mAuth.getCurrentUser();
+                FirebaseUser user = mAuth.getCurrentUser();
                 Log.d("test", String.valueOf(user));
             }
         });
     }
 
     public void update() {
-        fileCounter = 0;
-
         authenticate();
+        fileCounter = 0;
         
         for(int i=0; i<imageRefs.size(); i++) {
             downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
