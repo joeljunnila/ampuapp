@@ -221,9 +221,12 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
+
         if(isFirstLaunch) {
             for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
             for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
+            editor.putString("versionNumber", "2");
+
             if (isNetworkAvailable()) update();
         editor.putBoolean("isFirstLaunch", false);
             editor.apply();
@@ -444,10 +447,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkForUpdate() {
 
-        String TAG = "checkUpdate";
-        StringBuilder versionFromConfig = new StringBuilder();
-        StringBuffer appVersionNumber = new StringBuffer();
 
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        String TAG = "checkUpdate";
+        String path
+
+
+        Log.d(TAG,path);
         /*try {
             BufferedReader reader = new BufferedReader(new FileReader());
             String line;
@@ -475,6 +482,7 @@ public class MainActivity extends AppCompatActivity {
             update();
             appVersionNumber.deleteCharAt(0);
             appVersionNumber.append(versionFromConfig);
+            editor.putString("versionNumber", path);
             Toast.makeText(this, "Päivitetty onnistuneesti!", Toast.LENGTH_SHORT).show();
         }
         else
