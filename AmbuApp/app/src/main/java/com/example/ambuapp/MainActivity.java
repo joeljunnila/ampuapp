@@ -102,17 +102,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //region id
-        //layouts
         layoutMenu = findViewById(R.id.layoutMenu);
         layoutImageText = findViewById(R.id.layoutImageText);
         layoutSettings = findViewById(R.id.layoutSettings);
         imageArea = findViewById(R.id.imageArea);
 
-        //menubar
         title = findViewById(R.id.title);
         naviconButton = findViewById(R.id.naviconButton);
-
-        //content
         button1 = findViewById(R.id.Button1);
         button2 = findViewById(R.id.Button2);
         button3 = findViewById(R.id.Button3);
@@ -126,11 +122,7 @@ public class MainActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         darkModeSwitch = findViewById(R.id.darkModeSwitch);
         updateButton = findViewById(R.id.updateButton);
-        //scrollable
         scrollView = findViewById(R.id.scrollView);
-
-        //textView.setMovementMethod(new ScrollingMovementMethod());
-        //footer
         leftArrow = findViewById(R.id.leftArrow);
         rightArrow = findViewById(R.id.rightArrow);
         //endregion
@@ -144,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
         naviconButton.setOnClickListener(this::setupPopupMenu);
         setupSpinner();
         updateButton.setOnClickListener(v -> update());
-
 
         //start program
         setupAppFromSharedprefs();
