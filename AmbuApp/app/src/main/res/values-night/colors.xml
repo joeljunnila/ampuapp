@@ -20,4 +20,6 @@
 
     <color name="sv_doneStepMarkColor">#700010</color>
     <color name="sv_selectedStepNumberColor">#C1C1C1</color>
+
+    <color name="disclaimerButtonColor">#AE021B</color>
 </resources>

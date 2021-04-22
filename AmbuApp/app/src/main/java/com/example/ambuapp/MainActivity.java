@@ -1,5 +1,6 @@
 package com.example.ambuapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.PopupMenu;
@@ -7,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -224,7 +226,16 @@ public class MainActivity extends AppCompatActivity {
             for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
             for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
             if (isNetworkAvailable()) update();
-        editor.putBoolean("isFirstLaunch", false);
+
+            AlertDialog.Builder disclaimer = new AlertDialog.Builder(this);
+            disclaimer.setTitle("Vastuuvapauslauseke")
+                    .setMessage("Tämän apin tiedot on kerätty parhaamme mukaan. \n\n" +
+                            "Emme ole vastuussa jos tiedoissa on virheitä. \n\n" +
+                            "Jatkamalla hyväksyt käyttämään tietoa omalla vastuulla.")
+                    .setPositiveButton("ok", (dialog, which) -> {});
+            disclaimer.show();
+
+            editor.putBoolean("isFirstLaunch", false);
             editor.apply();
         }
 
