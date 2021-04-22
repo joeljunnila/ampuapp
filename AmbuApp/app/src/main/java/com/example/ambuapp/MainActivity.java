@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
                             "joita ilmenee sovelluksen käytöstä tai kyvyttymyydestä käyttää " +
                             "sovellusta ja materiaaleja joita se sisältää, eivätkä mistään " +
                             "toimenpiteestä tai päätöksestä jotka on tehty sovelluksen käytön seurauksena. " +
-                            "Sovelluksen tekijät eivät ole vastuussa sovelluksen materiaalin sisällöstä " +
+                            "\n\nSovelluksen tekijät eivät ole vastuussa sovelluksen materiaalin sisällöstä " +
                             "eivätkä sen tarkuudesta. Jatkamalla hyväksyt käyttämään tietoa omalla vastuulla.")
                     .setPositiveButton("ok", (dialog, which) -> {});
             disclaimer.show();
