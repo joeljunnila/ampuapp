@@ -10,11 +10,29 @@
     <script src="scripts.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
 </head>
 <body>
     <div class="layouts">
         <div class="login"> <!-- Login alue -->
-            Login
+            <label class="labels">Sähköpostiosoite:</label>
+            <br>
+            <input id ="email" type="email">
+            <br>
+            <label class="labels">Salasana:</label>
+            <br>
+            <input id ="password" type="password">
+            <br>
+
+            <button id="loginBtn">Log in</button>
+            <button id="logoutBtn">Log out</button>
+
+
+            <script>
+                document.getElementById('loginBtn').addEventListener('click', userLogin);
+                document.getElementById('logoutBtn').addEventListener('click', logout);
+
+            </script>
         </div>
 
         <div class="phone"> <!-- phone area in html page -->

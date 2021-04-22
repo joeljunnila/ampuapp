@@ -107,19 +107,52 @@ var usedImage = {
 
 var activityName = "kotisivu";
 
+
+
+var firebaseConfig = {
+    apiKey: "AIzaSyDUbaZX8mHLAKMiX5Kd1i6xuViu0kDEGEg",
+    authDomain: "ambuapp-2691e.firebaseapp.com",
+    projectId: "ambuapp-2691e",
+    storageBucket: "ambuapp-2691e.appspot.com",
+    messagingSenderId: "812625720469",
+    appId: "1:812625720469:web:851a28a3eefbac8374d79c"
+};
+
+
+
+
+
+
+function userLogin(){
+    var email = document.getElementById("email").value;
+
+    var password = document.getElementById("password").value
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredentials)=> {
+        user = userCredentials.user;
+        console.log(user);
+        for (var key in savedText) getText(key);
+        for (var key in savedImage) getImage(key);
+    })
+    .catch(e=>{
+        console.log(e);
+    })
+}
+
+function logout(){
+    console.log("logout");
+    firebase.auth().signOut().then(()=>{
+
+    }).catch(e=>{
+        console.log(e);
+    })
+}
 window.onload = function loadFirst() {
     changeContent("kotisivu");
 
-    var firebaseConfig = {
-        apiKey: "AIzaSyDUbaZX8mHLAKMiX5Kd1i6xuViu0kDEGEg",
-        authDomain: "ambuapp-2691e.firebaseapp.com",
-        projectId: "ambuapp-2691e",
-        storageBucket: "ambuapp-2691e.appspot.com",
-        messagingSenderId: "812625720469",
-        appId: "1:812625720469:web:851a28a3eefbac8374d79c"
-    };
+    
     firebase.initializeApp(firebaseConfig);
-
     for (var key in savedImage) getImage(key);
     for (var key in savedText) getText(key);
 
