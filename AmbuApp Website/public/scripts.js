@@ -123,13 +123,19 @@ var firebaseConfig = {
 
 
 
-function GoogleLogin(){
-    
-    var provider = new firebase.auth.GoogleAuthProvider();
-    console.log("login");
-    firebase.auth().signInWithPopup(provider).then(res=>{
-        console.log(res);
-    }).catch(e=>{
+function userLogin(){
+    var email = document.getElementById("email").value;
+
+    var password = document.getElementById("password").value
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredentials)=> {
+        user = userCredentials.user;
+        console.log(user);
+        for (var key in savedText) getText(key);
+        for (var key in savedImage) getImage(key);
+    })
+    .catch(e=>{
         console.log(e);
     })
 }
