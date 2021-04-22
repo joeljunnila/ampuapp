@@ -1,7 +1,6 @@
 package com.example.ambuapp;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.PopupMenu;
@@ -9,7 +8,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -32,9 +30,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
@@ -208,8 +203,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
     }
 
@@ -224,7 +218,10 @@ public class MainActivity extends AppCompatActivity {
         if(isFirstLaunch) {
             for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
             for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-            if (isNetworkAvailable()) update();
+            if (isNetworkAvailable()) {
+                authenticate();
+                update();
+            }
 
             AlertDialog.Builder disclaimer = new AlertDialog.Builder(this);
             disclaimer.setTitle("Vastuuvapauslauseke")
@@ -371,7 +368,6 @@ public class MainActivity extends AppCompatActivity {
         textFileNames.add("valmistautuminenSivu4.txt");
         textFileNames.add("valmistautuminenSivu5.txt");
 
-
         imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje4.jpg"));
@@ -436,13 +432,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void authenticate(){
-        mAuth.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    user = mAuth.getCurrentUser();
-                    Log.d("test", String.valueOf(user));
-                }
+        mAuth.signInAnonymously().addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()){
+                user = mAuth.getCurrentUser();
+                Log.d("test", String.valueOf(user));
             }
         });
     }
