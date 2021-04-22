@@ -1,5 +1,6 @@
 package com.example.ambuapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -8,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -152,17 +154,6 @@ public class MainActivity extends AppCompatActivity {
         //start program
         setupAppFromSharedprefs();
         setupDarkModeSwitch();
-
-        // to refresh asset files
-            for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-            for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-
-        // nämä StepView arvot pitäisi muuttua puhelimen näytön koon mukaan
-        // stepview näytti skaalautuvan ihan hyvin, joten tää ei oo välttämättä tarpeellinen
-//        stepView.doneCircleRadius = 40;
-//        stepView.selectedCircleRadius = 40;
-//        stepView.stepNumberTextSize = 40;
-//        stepView.stepLineWidth = 8;
     }
 
     //region functions
@@ -234,7 +225,19 @@ public class MainActivity extends AppCompatActivity {
             for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
             for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
             if (isNetworkAvailable()) update();
-        editor.putBoolean("isFirstLaunch", false);
+
+            AlertDialog.Builder disclaimer = new AlertDialog.Builder(this);
+            disclaimer.setTitle("Vastuuvapauslauseke")
+                    .setMessage("Sovelluksen tekijät eivät ole vastuussa mistään vahingoista " +
+                            "joita ilmenee sovelluksen käytöstä tai kyvyttymyydestä käyttää " +
+                            "sovellusta ja materiaaleja joita se sisältää, eivätkä mistään " +
+                            "toimenpiteestä tai päätöksestä jotka on tehty sovelluksen käytön seurauksena. " +
+                            "\n\nSovelluksen tekijät eivät ole vastuussa sovelluksen materiaalin sisällöstä " +
+                            "eivätkä sen tarkuudesta. Jatkamalla hyväksyt käyttämään tietoa omalla vastuulla.")
+                    .setPositiveButton("ok", (dialog, which) -> {});
+            disclaimer.show();
+
+            editor.putBoolean("isFirstLaunch", false);
             editor.apply();
         }
 

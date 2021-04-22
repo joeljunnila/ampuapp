@@ -20,4 +20,6 @@
 
     <color name="sv_doneStepMarkColor">#AF0505</color>
     <color name="sv_selectedStepNumberColor">#AF0505</color>
+
+    <color name="disclaimerButtonColor">#AF0505</color>
 </resources>
