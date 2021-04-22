@@ -144,17 +144,6 @@ public class MainActivity extends AppCompatActivity {
         //start program
         setupAppFromSharedprefs();
         setupDarkModeSwitch();
-
-        // to refresh asset files
-            for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-            for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-
-        // nämä StepView arvot pitäisi muuttua puhelimen näytön koon mukaan
-        // stepview näytti skaalautuvan ihan hyvin, joten tää ei oo välttämättä tarpeellinen
-//        stepView.doneCircleRadius = 40;
-//        stepView.selectedCircleRadius = 40;
-//        stepView.stepNumberTextSize = 40;
-//        stepView.stepLineWidth = 8;
     }
 
     //region functions
@@ -229,9 +218,12 @@ public class MainActivity extends AppCompatActivity {
 
             AlertDialog.Builder disclaimer = new AlertDialog.Builder(this);
             disclaimer.setTitle("Vastuuvapauslauseke")
-                    .setMessage("Tämän apin tiedot on kerätty parhaamme mukaan. \n\n" +
-                            "Emme ole vastuussa jos tiedoissa on virheitä. \n\n" +
-                            "Jatkamalla hyväksyt käyttämään tietoa omalla vastuulla.")
+                    .setMessage("Sovelluksen tekijät eivät ole vastuussa mistään vahingoista " +
+                            "joita ilmenee sovelluksen käytöstä tai kyvyttymyydestä käyttää " +
+                            "sovellusta ja materiaaleja joita se sisältää, eivätkä mistään " +
+                            "toimenpiteestä tai päätöksestä jotka on tehty sovelluksen käytön seurauksena. " +
+                            "Sovelluksen tekijät eivät ole vastuussa sovelluksen materiaalin sisällöstä " +
+                            "eivätkä sen tarkuudesta. Jatkamalla hyväksyt käyttämään tietoa omalla vastuulla.")
                     .setPositiveButton("ok", (dialog, which) -> {});
             disclaimer.show();
 
