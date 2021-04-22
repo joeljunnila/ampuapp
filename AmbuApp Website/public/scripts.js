@@ -85,45 +85,76 @@ var savedText = {
 };
 
 var usedImage = {
-    synnytyksenAikanaSivu1: "ohje",
-    synnytyksenAikanaSivu2: "ohje3",
-    synnytyksenAikanaSivu3: "ohje4",
-    synnytyksenAikanaSivu4: "ohje5",
-    synnytyksenAikanaSivu5: "ohje7",
+    synnytyksenAikanaSivu2: "ohje5",
+    synnytyksenAikanaSivu3: "ohje3",
+    synnytyksenAikanaSivu4: "ohje3",
     synnytyksenAikanaSivu6: "ohje",
 
     peratilaSivu1: "ohje",
-    peratilaSivu2: "ohje3",
-    peratilaSivu3: "ohje4",
-    peratilaSivu4: "ohje5",
-    peratilaSivu5: "ohje7",
+    peratilaSivu2: "ohje",
+    peratilaSivu3: "ohje",
+    peratilaSivu4: "ohje",
+    peratilaSivu5: "ohje",
 
     hartiadystokiaSivu1: "ohje",
-    hartiadystokiaSivu2: "ohje3",
-    hartiadystokiaSivu3: "ohje4",
+    hartiadystokiaSivu2: "ohje",
+    hartiadystokiaSivu3: "ohje",
 
-    napanuoraSivu1: "ohje",
-    napanuoraSivu2: "ohje5",
-    napanuoraSivu3: "ohje7",
+    napanuoraSivu1: "ohje7",
+    napanuoraSivu2: "ohje7",
+    napanuoraSivu3: "ohje4",
 };
 
 var activityName = "kotisivu";
 
+
+
+var firebaseConfig = {
+    apiKey: "AIzaSyDUbaZX8mHLAKMiX5Kd1i6xuViu0kDEGEg",
+    authDomain: "ambuapp-2691e.firebaseapp.com",
+    projectId: "ambuapp-2691e",
+    storageBucket: "ambuapp-2691e.appspot.com",
+    messagingSenderId: "812625720469",
+    appId: "1:812625720469:web:851a28a3eefbac8374d79c"
+};
+
+
+
+
+
+
+function userLogin(){
+    var email = document.getElementById("email").value;
+
+    var password = document.getElementById("password").value
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((userCredentials)=> {
+        user = userCredentials.user;
+        console.log(user);
+        for (var key in savedText) getText(key);
+        for (var key in savedImage) getImage(key);
+    })
+    .catch(e=>{
+        console.log(e);
+    })
+}
+
+function logout(){
+    console.log("logout");
+    firebase.auth().signOut().then(()=>{
+
+    }).catch(e=>{
+        console.log(e);
+    })
+}
 window.onload = function loadFirst() {
     changeContent("kotisivu");
 
-    var firebaseConfig = {
-        apiKey: "AIzaSyDUbaZX8mHLAKMiX5Kd1i6xuViu0kDEGEg",
-        authDomain: "ambuapp-2691e.firebaseapp.com",
-        projectId: "ambuapp-2691e",
-        storageBucket: "ambuapp-2691e.appspot.com",
-        messagingSenderId: "812625720469",
-        appId: "1:812625720469:web:851a28a3eefbac8374d79c"
-    };
+    
     firebase.initializeApp(firebaseConfig);
-
-    for (var key in savedImage) getImage(key);
-    for (var key in savedText) getText(key);
+    //for (var key in savedImage) getImage(key);
+    //for (var key in savedText) getText(key);
 
     document.getElementById("newImageCustomButton").onclick = function () { document.getElementById("newImage").click(); }
 
@@ -154,11 +185,14 @@ window.onload = function loadFirst() {
         document.getElementById("updateViewButtons").style.display = "block";
         document.getElementById("newImageCustomButton").style.display = "none";
         document.getElementById("saveButton").style.display = "block";
+        document.getElementById("text").disabled = false;
+        document.getElementById("text").focus();
 
-        document.getElementById("text").contentEditable = "true";
         document.getElementById("saveButton").onclick = function () {
+            var newText = document.getElementById("text").value;
             putText(activityName);
             document.getElementById("cancelButton").click();
+            document.getElementById("text").value = newText;
         }
     }
 
@@ -166,7 +200,7 @@ window.onload = function loadFirst() {
         document.getElementById("updateViewMenu").style.display = "block";
         document.getElementById("updateViewButtons").style.display = "none";
         document.getElementById("homeIcon").onclick = function () { changeContent("kotisivu"); }
-        document.getElementById("text").contentEditable = "false";
+        document.getElementById("text").disabled = true;
         changeContent(activityName);
     }
 }
@@ -224,8 +258,7 @@ function getText(key) {
 }
 
 function putText(key) {
-    var newText = document.getElementById("text").textContent;
-    document.getElementById("text").textContent = newText;
+    var newText = document.getElementById("text").value;
     var ref = firebase.storage().ref("tekstit/" + key + ".txt");
     ref.putString(newText).then((snapshot) => {
         savedText[key] = newText;
@@ -265,6 +298,7 @@ function changeContent(page) {
             document.getElementById("button5").style.visibility = "visible";
             document.getElementById("leftArrow").style.visibility = "hidden";
             document.getElementById("rightArrow").style.visibility = "hidden";
+            document.getElementById("stepView").style.display = "none";
 
             document.getElementById("button1").textContent = "Valmistautuminen";
             document.getElementById("button2").textContent = "Synnytysvaiheet";
@@ -289,6 +323,7 @@ function changeContent(page) {
             document.getElementById("button5").style.visibility = "hidden";
             document.getElementById("leftArrow").style.visibility = "visible";
             document.getElementById("rightArrow").style.visibility = "hidden";
+            document.getElementById("stepView").style.display = "none";
 
             document.getElementById("button1").textContent = "Perätila";
             document.getElementById("button2").textContent = "Hartiadystokia";
@@ -312,82 +347,183 @@ function changeContent(page) {
             document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("valmistautuminenSivu2"); }
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
             document.getElementById("changeImage").style.visibility = "hidden";
             document.getElementById("changeText").style.visibility = "visible";
+
+            document.getElementById("stepView").style.display = "block";
+            document.getElementById("stepView4").style.display = "inline-block";
+            document.getElementById("stepView5").style.display = "inline-block";
+            document.getElementById("stepView6").style.display = "none";
+
+            document.getElementById("stepView1").style.color = "#AF0505";
+            document.getElementById("stepView1").style.background = "#FFD4E3";
+            document.getElementById("stepView2").style.color = "#808080";
+            document.getElementById("stepView2").style.background = "#BDBDBD";
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
+            document.getElementById("stepView4").style.color = "#808080";
+            document.getElementById("stepView4").style.background = "#BDBDBD";
+            document.getElementById("stepView5").style.color = "#808080";
+            document.getElementById("stepView5").style.background = "#BDBDBD";
             break;
         case "valmistautuminenSivu2":
             activityName = "valmistautuminenSivu2";
             document.getElementById("leftArrow").onclick = function () { changeContent("valmistautuminenSivu1"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("valmistautuminenSivu3"); }
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView1").style.color = "#808080";
+            document.getElementById("stepView1").style.background = "#BDBDBD";
+            document.getElementById("stepView2").style.color = "#AF0505";
+            document.getElementById("stepView2").style.background = "#FFD4E3";
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
             break;
         case "valmistautuminenSivu3":
             activityName = "valmistautuminenSivu3";
             document.getElementById("leftArrow").onclick = function () { changeContent("valmistautuminenSivu2"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("valmistautuminenSivu4"); }
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView2").style.color = "#808080";
+            document.getElementById("stepView2").style.background = "#BDBDBD";
+            document.getElementById("stepView3").style.color = "#AF0505";
+            document.getElementById("stepView3").style.background = "#FFD4E3";
+            document.getElementById("stepView4").style.color = "#808080";
+            document.getElementById("stepView4").style.background = "#BDBDBD";
             break;
         case "valmistautuminenSivu4":
             activityName = "valmistautuminenSivu4";
             document.getElementById("leftArrow").onclick = function () { changeContent("valmistautuminenSivu3"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("valmistautuminenSivu5"); }
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
+            document.getElementById("stepView4").style.color = "#AF0505";
+            document.getElementById("stepView4").style.background = "#FFD4E3";
+            document.getElementById("stepView5").style.color = "#808080";
+            document.getElementById("stepView5").style.background = "#BDBDBD";
             break;
         case "valmistautuminenSivu5":
             activityName = "valmistautuminenSivu5";
             document.getElementById("leftArrow").onclick = function () { changeContent("valmistautuminenSivu4"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("kotisivu"); }
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView4").style.color = "#808080";
+            document.getElementById("stepView4").style.background = "#BDBDBD";
+            document.getElementById("stepView5").style.color = "#AF0505";
+            document.getElementById("stepView5").style.background = "#FFD4E3";
             break;
         case "synnytyksenAikanaSivu1":
             activityName = "synnytyksenAikanaSivu1";
             document.getElementById("menuLayout").style.display = "none";
             document.getElementById("imageTextLayout").style.display = "block";
-            document.getElementById("image").style.display = "block";
+            document.getElementById("image").style.display = "none";
             document.getElementById("leftArrow").style.visibility = "visible";
             document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenAikanaSivu2"); }
-            document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
-            document.getElementById("changeImage").style.visibility = "visible";
+            document.getElementById("text").value = savedText[activityName];
+            document.getElementById("changeImage").style.visibility = "hidden";
             document.getElementById("changeText").style.visibility = "visible";
+
+            document.getElementById("stepView").style.display = "block";
+            document.getElementById("stepView4").style.display = "inline-block";
+            document.getElementById("stepView5").style.display = "inline-block";
+            document.getElementById("stepView6").style.display = "inline-block";
+
+            document.getElementById("stepView1").style.color = "#AF0505";
+            document.getElementById("stepView1").style.background = "#FFD4E3";
+            document.getElementById("stepView2").style.color = "#808080";
+            document.getElementById("stepView2").style.background = "#BDBDBD";
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
+            document.getElementById("stepView4").style.color = "#808080";
+            document.getElementById("stepView4").style.background = "#BDBDBD";
+            document.getElementById("stepView5").style.color = "#808080";
+            document.getElementById("stepView5").style.background = "#BDBDBD";
+            document.getElementById("stepView6").style.color = "#808080";
+            document.getElementById("stepView6").style.background = "#BDBDBD";
             break;
         case "synnytyksenAikanaSivu2":
             activityName = "synnytyksenAikanaSivu2";
+            document.getElementById("image").style.display = "block";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenAikanaSivu1"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenAikanaSivu3"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+            document.getElementById("changeImage").style.visibility = "visible";
+
+            document.getElementById("stepView1").style.color = "#808080";
+            document.getElementById("stepView1").style.background = "#BDBDBD";
+            document.getElementById("stepView2").style.color = "#AF0505";
+            document.getElementById("stepView2").style.background = "#FFD4E3";
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
             break;
         case "synnytyksenAikanaSivu3":
             activityName = "synnytyksenAikanaSivu3";
+            document.getElementById("image").style.display = "block";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenAikanaSivu2"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenAikanaSivu4"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+            document.getElementById("changeImage").style.visibility = "visible";
+
+            document.getElementById("stepView2").style.color = "#808080";
+            document.getElementById("stepView2").style.background = "#BDBDBD";
+            document.getElementById("stepView3").style.color = "#AF0505";
+            document.getElementById("stepView3").style.background = "#FFD4E3";
+            document.getElementById("stepView4").style.color = "#808080";
+            document.getElementById("stepView4").style.background = "#BDBDBD";
             break;
         case "synnytyksenAikanaSivu4":
             activityName = "synnytyksenAikanaSivu4";
+            document.getElementById("image").style.display = "block";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenAikanaSivu3"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenAikanaSivu5"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+            document.getElementById("changeImage").style.visibility = "visible";
+
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
+            document.getElementById("stepView4").style.color = "#AF0505";
+            document.getElementById("stepView4").style.background = "#FFD4E3";
+            document.getElementById("stepView5").style.color = "#808080";
+            document.getElementById("stepView5").style.background = "#BDBDBD";
             break;
         case "synnytyksenAikanaSivu5":
             activityName = "synnytyksenAikanaSivu5";
+            document.getElementById("image").style.display = "none";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenAikanaSivu4"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenAikanaSivu6"); }
-            document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+            document.getElementById("changeImage").style.visibility = "hidden";
+
+            document.getElementById("stepView4").style.color = "#808080";
+            document.getElementById("stepView4").style.background = "#BDBDBD";
+            document.getElementById("stepView5").style.color = "#AF0505";
+            document.getElementById("stepView5").style.background = "#FFD4E3";
+            document.getElementById("stepView6").style.color = "#808080";
+            document.getElementById("stepView6").style.background = "#BDBDBD";
             break;
         case "synnytyksenAikanaSivu6":
             activityName = "synnytyksenAikanaSivu6";
+            document.getElementById("image").style.display = "block";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenAikanaSivu5"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("kotisivu"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+            document.getElementById("changeImage").style.visibility = "visible";
+
+            document.getElementById("stepView5").style.color = "#808080";
+            document.getElementById("stepView5").style.background = "#BDBDBD";
+            document.getElementById("stepView6").style.color = "#AF0505";
+            document.getElementById("stepView6").style.background = "#FFD4E3";
             break;
         case "synnytyksenJalkeenSivu1":
             activityName = "synnytyksenJalkeenSivu1";
@@ -398,27 +534,60 @@ function changeContent(page) {
             document.getElementById("rightArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu2"); }
-            document.getElementById("text").textContent = savedText.synnytyksenJalkeenSivu1;
+            document.getElementById("text").value = savedText.synnytyksenJalkeenSivu1;
             document.getElementById("changeImage").style.visibility = "hidden";
             document.getElementById("changeText").style.visibility = "visible";
+
+            document.getElementById("stepView").style.display = "block";
+            document.getElementById("stepView4").style.display = "inline-block";
+            document.getElementById("stepView5").style.display = "none";
+            document.getElementById("stepView6").style.display = "none";
+
+            document.getElementById("stepView1").style.color = "#AF0505";
+            document.getElementById("stepView1").style.background = "#FFD4E3";
+            document.getElementById("stepView2").style.color = "#808080";
+            document.getElementById("stepView2").style.background = "#BDBDBD";
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
+            document.getElementById("stepView4").style.color = "#808080";
+            document.getElementById("stepView4").style.background = "#BDBDBD";
             break;
         case "synnytyksenJalkeenSivu2":
             activityName = "synnytyksenJalkeenSivu2";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu1"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu3"); }
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView1").style.color = "#808080";
+            document.getElementById("stepView1").style.background = "#BDBDBD";
+            document.getElementById("stepView2").style.color = "#AF0505";
+            document.getElementById("stepView2").style.background = "#FFD4E3";
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
             break;
         case "synnytyksenJalkeenSivu3":
             activityName = "synnytyksenJalkeenSivu3";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu2"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu4"); }
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView2").style.color = "#808080";
+            document.getElementById("stepView2").style.background = "#BDBDBD";
+            document.getElementById("stepView3").style.color = "#AF0505";
+            document.getElementById("stepView3").style.background = "#FFD4E3";
+            document.getElementById("stepView4").style.color = "#808080";
+            document.getElementById("stepView4").style.background = "#BDBDBD";
             break;
         case "synnytyksenJalkeenSivu4":
             activityName = "synnytyksenJalkeenSivu4";
             document.getElementById("leftArrow").onclick = function () { changeContent("synnytyksenJalkeenSivu3"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("kotisivu"); }
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
+            document.getElementById("stepView4").style.color = "#AF0505";
+            document.getElementById("stepView4").style.background = "#FFD4E3";
             break;
         case "peratilaSivu1":
             activityName = "peratilaSivu1";
@@ -430,37 +599,79 @@ function changeContent(page) {
             document.getElementById("leftArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("peratilaSivu2"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
             document.getElementById("changeImage").style.visibility = "visible";
             document.getElementById("changeText").style.visibility = "visible";
+
+            document.getElementById("stepView").style.display = "block";
+            document.getElementById("stepView4").style.display = "inline-block";
+            document.getElementById("stepView5").style.display = "inline-block";
+            document.getElementById("stepView6").style.display = "none";
+
+            document.getElementById("stepView1").style.color = "#AF0505";
+            document.getElementById("stepView1").style.background = "#FFD4E3";
+            document.getElementById("stepView2").style.color = "#808080";
+            document.getElementById("stepView2").style.background = "#BDBDBD";
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
+            document.getElementById("stepView4").style.color = "#808080";
+            document.getElementById("stepView4").style.background = "#BDBDBD";
+            document.getElementById("stepView5").style.color = "#808080";
+            document.getElementById("stepView5").style.background = "#BDBDBD";
             break;
         case "peratilaSivu2":
             activityName = "peratilaSivu2";
             document.getElementById("leftArrow").onclick = function () { changeContent("peratilaSivu1"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("peratilaSivu3"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView1").style.color = "#808080";
+            document.getElementById("stepView1").style.background = "#BDBDBD";
+            document.getElementById("stepView2").style.color = "#AF0505";
+            document.getElementById("stepView2").style.background = "#FFD4E3";
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
             break;
         case "peratilaSivu3":
             activityName = "peratilaSivu3";
             document.getElementById("leftArrow").onclick = function () { changeContent("peratilaSivu2"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("peratilaSivu4"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView2").style.color = "#808080";
+            document.getElementById("stepView2").style.background = "#BDBDBD";
+            document.getElementById("stepView3").style.color = "#AF0505";
+            document.getElementById("stepView3").style.background = "#FFD4E3";
+            document.getElementById("stepView4").style.color = "#808080";
+            document.getElementById("stepView4").style.background = "#BDBDBD";
             break;
         case "peratilaSivu4":
             activityName = "peratilaSivu4";
             document.getElementById("leftArrow").onclick = function () { changeContent("peratilaSivu3"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("peratilaSivu5"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
+            document.getElementById("stepView4").style.color = "#AF0505";
+            document.getElementById("stepView4").style.background = "#FFD4E3";
+            document.getElementById("stepView5").style.color = "#808080";
+            document.getElementById("stepView5").style.background = "#BDBDBD";
             break;
         case "peratilaSivu5":
             activityName = "peratilaSivu5";
             document.getElementById("leftArrow").onclick = function () { changeContent("peratilaSivu4"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView4").style.color = "#808080";
+            document.getElementById("stepView4").style.background = "#BDBDBD";
+            document.getElementById("stepView5").style.color = "#AF0505";
+            document.getElementById("stepView5").style.background = "#FFD4E3";
             break;
         case "hartiadystokiaSivu1":
             activityName = "hartiadystokiaSivu1";
@@ -472,23 +683,47 @@ function changeContent(page) {
             document.getElementById("leftArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("hartiadystokiaSivu2"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
             document.getElementById("changeImage").style.visibility = "visible";
             document.getElementById("changeText").style.visibility = "visible";
+
+            document.getElementById("stepView").style.display = "block";
+            document.getElementById("stepView4").style.display = "none";
+            document.getElementById("stepView5").style.display = "none";
+            document.getElementById("stepView6").style.display = "none";
+
+            document.getElementById("stepView1").style.color = "#AF0505";
+            document.getElementById("stepView1").style.background = "#FFD4E3";
+            document.getElementById("stepView2").style.color = "#808080";
+            document.getElementById("stepView2").style.background = "#BDBDBD";
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
             break;
         case "hartiadystokiaSivu2":
             activityName = "hartiadystokiaSivu2";
             document.getElementById("leftArrow").onclick = function () { changeContent("hartiadystokiaSivu1"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("hartiadystokiaSivu3"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView1").style.color = "#808080";
+            document.getElementById("stepView1").style.background = "#BDBDBD";
+            document.getElementById("stepView2").style.color = "#AF0505";
+            document.getElementById("stepView2").style.background = "#FFD4E3";
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
             break;
         case "hartiadystokiaSivu3":
             activityName = "hartiadystokiaSivu3";
             document.getElementById("leftArrow").onclick = function () { changeContent("hartiadystokiaSivu2"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView2").style.color = "#808080";
+            document.getElementById("stepView2").style.background = "#BDBDBD";
+            document.getElementById("stepView3").style.color = "#AF0505";
+            document.getElementById("stepView3").style.background = "#FFD4E3";
             break;
         case "napanuoraSivu1":
             activityName = "napanuoraSivu1";
@@ -500,23 +735,47 @@ function changeContent(page) {
             document.getElementById("leftArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("napanuoraSivu2"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
             document.getElementById("changeImage").style.visibility = "visible";
             document.getElementById("changeText").style.visibility = "visible";
+
+            document.getElementById("stepView").style.display = "block";
+            document.getElementById("stepView4").style.display = "none";
+            document.getElementById("stepView5").style.display = "none";
+            document.getElementById("stepView6").style.display = "none";
+
+            document.getElementById("stepView1").style.color = "#AF0505";
+            document.getElementById("stepView1").style.background = "#FFD4E3";
+            document.getElementById("stepView2").style.color = "#808080";
+            document.getElementById("stepView2").style.background = "#BDBDBD";
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
             break;
         case "napanuoraSivu2":
             activityName = "napanuoraSivu2";
             document.getElementById("leftArrow").onclick = function () { changeContent("napanuoraSivu1"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("napanuoraSivu3"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView1").style.color = "#808080";
+            document.getElementById("stepView1").style.background = "#BDBDBD";
+            document.getElementById("stepView2").style.color = "#AF0505";
+            document.getElementById("stepView2").style.background = "#FFD4E3";
+            document.getElementById("stepView3").style.color = "#808080";
+            document.getElementById("stepView3").style.background = "#BDBDBD";
             break;
         case "napanuoraSivu3":
             activityName = "napanuoraSivu3";
             document.getElementById("leftArrow").onclick = function () { changeContent("napanuoraSivu2"); }
             document.getElementById("rightArrow").onclick = function () { changeContent("erikoistilanteetSivu"); }
             document.getElementById("image").src = savedImage[usedImage[activityName]];
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
+
+            document.getElementById("stepView2").style.color = "#808080";
+            document.getElementById("stepView2").style.background = "#BDBDBD";
+            document.getElementById("stepView3").style.color = "#AF0505";
+            document.getElementById("stepView3").style.background = "#FFD4E3";
             break;
         case "laakeohjeetSivu":
             activityName = "laakeohjeetSivu";
@@ -525,7 +784,7 @@ function changeContent(page) {
             document.getElementById("image").style.display = "none";
             document.getElementById("leftArrow").style.visibility = "visible";
             document.getElementById("leftArrow").onclick = function () { changeContent("kotisivu"); }
-            document.getElementById("text").textContent = savedText[activityName];
+            document.getElementById("text").value = savedText[activityName];
             document.getElementById("changeImage").style.visibility = "hidden";
             document.getElementById("changeText").style.visibility = "visible";
             break;

@@ -1,5 +1,6 @@
 package com.example.ambuapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.PopupMenu;
@@ -29,6 +30,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.shuhart.stepview.StepView;
@@ -76,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
     ImageButton rightArrow;
 
     //firebase
+    FirebaseUser user;
+    FirebaseAuth mAuth;
     StorageReference storageRef;
     ArrayList<String> imageFileNames = new ArrayList<>();
     ArrayList<String> textFileNames = new ArrayList<>();
@@ -132,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         storageRef = FirebaseStorage.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+
         addFileNames();
 
         naviconButton.setOnClickListener(this::setupPopupMenu);
@@ -142,17 +149,6 @@ public class MainActivity extends AppCompatActivity {
         //start program
         setupAppFromSharedprefs();
         setupDarkModeSwitch();
-
-        // to refresh asset files
-            for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-            for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-
-        // nämä StepView arvot pitäisi muuttua puhelimen näytön koon mukaan
-        // stepview näytti skaalautuvan ihan hyvin, joten tää ei oo välttämättä tarpeellinen
-//        stepView.doneCircleRadius = 40;
-//        stepView.selectedCircleRadius = 40;
-//        stepView.stepNumberTextSize = 40;
-//        stepView.stepLineWidth = 8;
     }
 
     //region functions
@@ -207,8 +203,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
     }
 
@@ -223,8 +218,23 @@ public class MainActivity extends AppCompatActivity {
         if(isFirstLaunch) {
             for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
             for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-            if (isNetworkAvailable()) update();
-        editor.putBoolean("isFirstLaunch", false);
+            if (isNetworkAvailable()) {
+                authenticate();
+                update();
+            }
+
+            AlertDialog.Builder disclaimer = new AlertDialog.Builder(this);
+            disclaimer.setTitle("Vastuuvapauslauseke")
+                    .setMessage("Sovelluksen tekijät eivät ole vastuussa mistään vahingoista " +
+                            "joita ilmenee sovelluksen käytöstä tai kyvyttymyydestä käyttää " +
+                            "sovellusta ja materiaaleja joita se sisältää, eivätkä mistään " +
+                            "toimenpiteestä tai päätöksestä jotka on tehty sovelluksen käytön seurauksena. " +
+                            "\n\nSovelluksen tekijät eivät ole vastuussa sovelluksen materiaalin sisällöstä " +
+                            "eivätkä sen tarkuudesta. Jatkamalla hyväksyt käyttämään tietoa omalla vastuulla.")
+                    .setPositiveButton("ok", (dialog, which) -> {});
+            disclaimer.show();
+
+            editor.putBoolean("isFirstLaunch", false);
             editor.apply();
         }
 
@@ -332,8 +342,7 @@ public class MainActivity extends AppCompatActivity {
         textFileNames.add("hartiadystokiaSivu1.txt");
         textFileNames.add("hartiadystokiaSivu2.txt");
         textFileNames.add("hartiadystokiaSivu3.txt");
-        textFileNames.add("hartiadystokiaSivu4.txt");
-        textFileNames.add("hartiadystokiaSivu5.txt");
+        textFileNames.add("laakeohjeetSivu.txt");
         textFileNames.add("napanuoraSivu1.txt");
         textFileNames.add("napanuoraSivu2.txt");
         textFileNames.add("napanuoraSivu3.txt");
@@ -352,15 +361,12 @@ public class MainActivity extends AppCompatActivity {
         textFileNames.add("synnytyksenJalkeenSivu2.txt");
         textFileNames.add("synnytyksenJalkeenSivu3.txt");
         textFileNames.add("synnytyksenJalkeenSivu4.txt");
-        textFileNames.add("synnytyksenJalkeenSivu5.txt");
         textFileNames.add("tietoaSovelluksesta.txt");
         textFileNames.add("valmistautuminenSivu1.txt");
         textFileNames.add("valmistautuminenSivu2.txt");
         textFileNames.add("valmistautuminenSivu3.txt");
         textFileNames.add("valmistautuminenSivu4.txt");
         textFileNames.add("valmistautuminenSivu5.txt");
-        textFileNames.add("valmistautuminenSivu6.txt");
-        textFileNames.add("laakeohjeetSivu.txt");
 
         imageRefs.add(storageRef.child("kuvat/ohje.jpg"));
         imageRefs.add(storageRef.child("kuvat/ohje3.jpg"));
@@ -371,8 +377,7 @@ public class MainActivity extends AppCompatActivity {
         textRefs.add(storageRef.child("tekstit/hartiadystokiaSivu1.txt"));
         textRefs.add(storageRef.child("tekstit/hartiadystokiaSivu2.txt"));
         textRefs.add(storageRef.child("tekstit/hartiadystokiaSivu3.txt"));
-        textRefs.add(storageRef.child("tekstit/hartiadystokiaSivu4.txt"));
-        textRefs.add(storageRef.child("tekstit/hartiadystokiaSivu5.txt"));
+        textRefs.add(storageRef.child("tekstit/laakeohjeetSivu.txt"));
         textRefs.add(storageRef.child("tekstit/napanuoraSivu1.txt"));
         textRefs.add(storageRef.child("tekstit/napanuoraSivu2.txt"));
         textRefs.add(storageRef.child("tekstit/napanuoraSivu3.txt"));
@@ -391,15 +396,12 @@ public class MainActivity extends AppCompatActivity {
         textRefs.add(storageRef.child("tekstit/synnytyksenJalkeenSivu2.txt"));
         textRefs.add(storageRef.child("tekstit/synnytyksenJalkeenSivu3.txt"));
         textRefs.add(storageRef.child("tekstit/synnytyksenJalkeenSivu4.txt"));
-        textRefs.add(storageRef.child("tekstit/synnytyksenJalkeenSivu5.txt"));
         textRefs.add(storageRef.child("tekstit/tietoaSovelluksesta.txt"));
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu1.txt"));
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu2.txt"));
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu3.txt"));
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu4.txt"));
         textRefs.add(storageRef.child("tekstit/valmistautuminenSivu5.txt"));
-        textRefs.add(storageRef.child("tekstit/valmistautuminenSivu6.txt"));
-        textRefs.add(storageRef.child("tekstit/laakeohjeetSivu.txt"));
     }
 
     public boolean isNetworkAvailable() {
@@ -429,9 +431,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void authenticate(){
+        mAuth.signInAnonymously().addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()){
+                user = mAuth.getCurrentUser();
+                Log.d("test", String.valueOf(user));
+            }
+        });
+    }
+
     public void update() {
         fileCounter = 0;
 
+        authenticate();
+        
         for(int i=0; i<imageRefs.size(); i++) {
             downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
         }

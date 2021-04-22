@@ -5,16 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AmbuApp</title>
-    
+    <link rel="icon" href="icons/ohje.jpg">
     <link rel="stylesheet" href="styles.css">
     <script src="scripts.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
 </head>
 <body>
     <div class="layouts">
         <div class="login"> <!-- Login alue -->
-            Login
+            <label class="labels">Sähköpostiosoite:</label>
+            <br>
+            <input id ="email" type="email">
+            <br>
+            <label class="labels">Salasana:</label>
+            <br>
+            <input id ="password" type="password">
+            <br>
+
+            <button id="loginBtn">Log in</button>
+            <button id="logoutBtn">Log out</button>
+
+
+            <script>
+                document.getElementById('loginBtn').addEventListener('click', userLogin);
+                document.getElementById('logoutBtn').addEventListener('click', logout);
+
+            </script>
         </div>
 
         <div class="phone"> <!-- phone area in html page -->
@@ -42,12 +60,23 @@
                 <div id="imageTextLayout" style="display: none"> <!-- imageTextLayout -->
                     <img id="image" src="icons/home.png" /> <!-- imageTextLayout image -->
             
-                    <p id="text"> <!-- imageTextLayout text -->
+                    <textarea id="text" disabled="disabled"> <!-- imageTextLayout text -->
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere
                         similique quisquam voluptatem quis eum minus, autem praesentium
                         eveniet debitis repellendus dolore tempora quaerat porro ipsum,
                         aliquid blanditiis perferendis velit cupiditate?
-                    </p>
+                    </textarea>
+                </div>
+
+                <div id="stepView" style="display: none;">
+                    <ul>
+                        <li id=stepView1><p>1</p></li>
+                        <li id=stepView2><p>2</p></li>
+                        <li id=stepView3><p>3</p></li>
+                        <li id=stepView4><p>4</p></li>
+                        <li id=stepView5><p>5</p></li>
+                        <li id=stepView6><p>6</p></li>
+                    </ul>
                 </div>
             </main>
 
