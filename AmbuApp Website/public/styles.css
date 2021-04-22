@@ -125,12 +125,13 @@ main {
 }
 
 /* imageTextLayout text */
-#imageTextLayout p {
+#imageTextLayout textarea {
     width: 90%;
     height: 95%;
     margin: 2.5% 5%;
-    font-size: 23px;
-    white-space: pre-line;
+    font-size: 21px;
+    border: none;
+    color: black;
 }
 /* #endregion content */
 /* #endregion phone */
