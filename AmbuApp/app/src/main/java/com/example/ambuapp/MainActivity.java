@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
                 authenticate();
                 update();
             }
-
+            Log.d("test", "firstlaunch");
             AlertDialog.Builder disclaimer = new AlertDialog.Builder(this);
             disclaimer.setTitle("Vastuuvapauslauseke")
                     .setMessage("Sovelluksen tekijät eivät ole vastuussa mistään vahingoista " +
@@ -439,7 +439,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     public void update() {
         fileCounter = 0;
 
