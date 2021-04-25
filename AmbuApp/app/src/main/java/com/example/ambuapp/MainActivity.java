@@ -462,8 +462,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }).addOnFailureListener(exception -> {
-            Log.d("test", "Update failed!");
-            Toast.makeText(getApplicationContext(), "Päivitys epäonnistui!", Toast.LENGTH_SHORT).show();
+            fileCounter++;
+            if(fileCounter == (imageFileNames.size() + textFileNames.size())) {
+                Log.d("test", "Update failed!");
+                Toast.makeText(getApplicationContext(), "Päivitys epäonnistui!", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
