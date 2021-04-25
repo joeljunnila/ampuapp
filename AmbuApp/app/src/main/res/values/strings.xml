@@ -56,31 +56,11 @@
     <string name="laakeohjeetSivu">Lääkeohjeet</string>
     <string name="darkModeSwitchText">Aktivoi tummatila</string>
 
-    <string name="valmistautuminenSivu1Title">Perustiedot</string>
-    <string name="valmistautuminenSivu2Title">Synnytyksen tilanne</string>
-    <string name="valmistautuminenSivu3Title">Hoidetaan kohteessa</string>
-    <string name="valmistautuminenSivu4Title">Milloin matkaan</string>
-    <string name="valmistautuminenSivu5Title">Miten toimitaan</string>
-    <string name="synnytyksenAikanaSivu1Title">Synnytysvaiheet</string>
-    <string name="synnytyksenAikanaSivu2Title">Synnytysvaiheet</string>
-    <string name="synnytyksenAikanaSivu3Title">Synnytysvaiheet</string>
-    <string name="synnytyksenAikanaSivu4Title">Synnytysvaiheet</string>
-    <string name="synnytyksenAikanaSivu5Title">Synnytysvaiheet</string>
-    <string name="synnytyksenAikanaSivu6Title">Synnytysvaiheet</string>
-    <string name="synnytyksenJalkeenSivu1Title">Lapsen synnyttyä</string>
-    <string name="synnytyksenJalkeenSivu2Title">Jälkeiset</string>
-    <string name="synnytyksenJalkeenSivu3Title">Toimi näin</string>
-    <string name="synnytyksenJalkeenSivu4Title">Tarkkailu</string>
-    <string name="peratilaSivu1Title">Perätila</string>
-    <string name="peratilaSivu2Title">Perätila</string>
-    <string name="peratilaSivu3Title">Perätila</string>
-    <string name="peratilaSivu4Title">Perätila</string>
-    <string name="peratilaSivu5Title">Perätila</string>
-    <string name="hartiadystokiaSivu1Title">Hartiadystokia</string>
-    <string name="hartiadystokiaSivu2Title">Hartiadystokia</string>
-    <string name="hartiadystokiaSivu3Title">Hartiadystokia</string>
-    <string name="napanuoraSivu1Title">Napanuora</string>
-    <string name="napanuoraSivu2Title">Napanuora</string>
-    <string name="napanuoraSivu3Title">Napanuora</string>
+    <string name="valmistautuminenSivuTitle">Valmistautuminen</string>
+    <string name="synnytyksenAikanaSivuTitle">Synnytysvaiheet</string>
+    <string name="synnytyksenJalkeenSivuTitle">Jälkeisvaiheet</string>
+    <string name="peratilaSivuTitle">Perätila</string>
+    <string name="hartiadystokiaSivuTitle">Hartiadystokia</string>
+    <string name="napanuoraSivuTitle">Napanuoran esiinluiskahdus</string>
     <string name="laakeohjeetSivuTitle">Lääkeohjeet</string>
 </resources>
