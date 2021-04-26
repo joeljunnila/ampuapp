@@ -1,0 +1,11 @@
+Vaihda cors.json koodi tähän:
+[
+    {
+      "origin": ["https://ambuapp-2691e.web.app/"],
+      "method": ["GET"],
+      "maxAgeSeconds": 3600
+    }
+]
+
+aja komentokehotteella tämä, jotta muutokset  tulevat voimaan:
+gsutil cors set cors.json gs://ambuapp-2691e.appspot.com/

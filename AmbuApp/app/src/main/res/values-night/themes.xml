@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.AmbuApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/secondaryColor</item>
+        <item name="colorPrimaryVariant">@color/secondaryColor</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -16,5 +16,7 @@
         <item name="naviconIcon">@drawable/ic_baseline_menu_24_dark</item>
         <item name="leftArrow">@drawable/ic_baseline_keyboard_arrow_left_24_dark</item>
         <item name="rightArrow">@drawable/ic_baseline_keyboard_arrow_right_24_dark</item>
+
+        <item name="alertDialogTheme">@style/disclaimerTheme</item>
     </style>
 </resources>
