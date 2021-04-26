@@ -208,12 +208,6 @@ public class MainActivity extends AppCompatActivity {
             int phoneTheme = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
             if (phoneTheme == Configuration.UI_MODE_NIGHT_YES) darkMode = true;
 
-            for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-            for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-            if (isNetworkAvailable()) {
-                authenticate();
-                update();
-            }
             Log.d("test", "firstlaunch");
             AlertDialog.Builder disclaimer = new AlertDialog.Builder(this);
             disclaimer.setTitle("Vastuuvapauslauseke")
@@ -229,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
             //for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
            // for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
             if (isNetworkAvailable()) {
-                authenticate();
+                //authenticate();
                 update();
             }
 

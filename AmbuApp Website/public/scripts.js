@@ -118,7 +118,7 @@ var firebaseConfig = {
     appId: "1:812625720469:web:851a28a3eefbac8374d79c"
 };
 
-
+var user = null;
 
 
 
@@ -134,22 +134,38 @@ function userLogin(){
         console.log(user);
         for (var key in savedText) getText(key);
         for (var key in savedImage) getImage(key);
+        document.getElementById("phone").style.display = "block";
+        document.getElementById("login").style.display = "none";
+        document.getElementById("email").value = "";
+        document.getElementById("password").value ="";
     })
     .catch(e=>{
         console.log(e);
     })
 }
+/*dev*/
+function fakeLogin(){
+    document.getElementById("phone").style.display = "block";
+    document.getElementById("login").style.display = "none";
+}
 
 function logout(){
     console.log("logout");
     firebase.auth().signOut().then(()=>{
-
+        document.getElementById("phone").style.display = "none";
+        document.getElementById("login").style.display = "block";
     }).catch(e=>{
         console.log(e);
     })
+    user = null;
+    console.log(user);
 }
 window.onload = function loadFirst() {
+    
+    document.getElementById("phone").style.display = "none";
     changeContent("kotisivu");
+    
+    
 
     
     firebase.initializeApp(firebaseConfig);
