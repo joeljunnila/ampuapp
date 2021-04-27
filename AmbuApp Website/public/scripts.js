@@ -63,10 +63,6 @@ var usedImage = {
     napanuoraSivu3: "ohje4",
 };
 
-var activityName = "kotisivu";
-
-
-
 var firebaseConfig = {
     apiKey: "AIzaSyDUbaZX8mHLAKMiX5Kd1i6xuViu0kDEGEg",
     authDomain: "ambuapp-2691e.firebaseapp.com",
@@ -76,7 +72,9 @@ var firebaseConfig = {
     appId: "1:812625720469:web:851a28a3eefbac8374d79c"
 };
 
+var activityName = "kotisivu";
 var user = null;
+
 window.onload = function loadFirst() {
     document.getElementById("phone").style.display = "none";
     changeContent("kotisivu");
