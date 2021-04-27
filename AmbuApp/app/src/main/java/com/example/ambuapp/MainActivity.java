@@ -219,12 +219,9 @@ public class MainActivity extends AppCompatActivity {
                     .setPositiveButton("ok", (dialog, which) -> {});
             disclaimer.show();
 
-            //for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
-           // for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
-            if (isNetworkAvailable()) {
-                authenticate();
-                update();
-            }
+            for (String imageFileName : imageFileNames) useAssetFile(imageFileDir, imageFileName);
+            for (String textFileName : textFileNames) useAssetFile(textFileDir, textFileName);
+            if (isNetworkAvailable()) update();
 
             editor.putBoolean("isFirstLaunch", false);
             editor.apply();
@@ -392,7 +389,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     public void update() {
         authenticate();
         fileCounter = 0;
@@ -421,8 +417,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }).addOnFailureListener(exception -> {
-            Log.d("test", "Update failed!");
-            Toast.makeText(getApplicationContext(), "Päivitys epäonnistui!", Toast.LENGTH_SHORT).show();
+            fileCounter++;
+            if(fileCounter == (imageFileNames.size() + textFileNames.size())) {
+                Log.d("test", "Update failed!");
+                Toast.makeText(getApplicationContext(), "Päivitys epäonnistui!", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 

@@ -17,9 +17,10 @@ body {
     width: calc(1080px/3);
     height: calc(2220px/3);
     margin: 50px auto;
-    background-color: rgb(43, 103, 131);
+    background-color: #FFD4E3; 
     text-align: center;
     font-size: 25px;
+    margin-left: 750px;
 }
 .labels {
     font-size: 20px;
@@ -32,6 +33,7 @@ body {
     margin: 50px auto;
     background-color: #eeeeee;
     z-index: 1;
+    margin-left: 750px;
 }
 
 /* menubar */
