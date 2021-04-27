@@ -13,7 +13,7 @@ body {
 }
 
 /* login area in html page */
-.login {
+#login {
     width: calc(1080px/3);
     height: calc(2220px/3);
     margin: 50px auto;
@@ -27,7 +27,7 @@ body {
 }
 /* #region phone */
 /* phone area in html page */
-.phone {
+#phone {
     width: calc(1080px/3);
     height: calc(2220px/3);
     margin: 50px auto;

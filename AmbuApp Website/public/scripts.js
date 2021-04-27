@@ -1,45 +1,3 @@
-/*var firebaseRef = {
-    ohje: "kuvat/ohje.jpg",
-    ohje3: "kuvat/ohje3.jpg",
-    ohje4: "kuvat/ohje3.jpg",
-    ohje5: "kuvat/ohje5.jpg",
-    ohje7: "kuvat/ohje7.jpg",
-
-    valmistautuminenSivu1: "tekstit/valmistautuminenSivu1.txt",
-    valmistautuminenSivu2: "tekstit/valmistautuminenSivu2.txt",
-    valmistautuminenSivu3: "tekstit/valmistautuminenSivu3.txt",
-    valmistautuminenSivu4: "tekstit/valmistautuminenSivu4.txt",
-    valmistautuminenSivu5: "tekstit/valmistautuminenSivu5.txt",
-
-    synnytyksenAikanaSivu1: "tekstit/synnytyksenAikanaSivu1.txt",
-    synnytyksenAikanaSivu2: "tekstit/synnytyksenAikanaSivu2.txt",
-    synnytyksenAikanaSivu3: "tekstit/synnytyksenAikanaSivu3.txt",
-    synnytyksenAikanaSivu4: "tekstit/synnytyksenAikanaSivu4.txt",
-    synnytyksenAikanaSivu5: "tekstit/synnytyksenAikanaSivu5.txt",
-    synnytyksenAikanaSivu6: "tekstit/synnytyksenAikanaSivu6.txt",
-
-    synnytyksenJalkeenSivu1: "tekstit/synnytyksenJalkeenSivu1.txt",
-    synnytyksenJalkeenSivu2: "tekstit/synnytyksenJalkeenSivu2.txt",
-    synnytyksenJalkeenSivu3: "tekstit/synnytyksenJalkeenSivu3.txt",
-    synnytyksenJalkeenSivu4: "tekstit/synnytyksenJalkeenSivu4.txt",
-
-    peratilaSivu1: "tekstit/peratilaSivu1.txt",
-    peratilaSivu2: "tekstit/peratilaSivu2.txt",
-    peratilaSivu3: "tekstit/peratilaSivu3.txt",
-    peratilaSivu4: "tekstit/peratilaSivu4.txt",
-    peratilaSivu5: "tekstit/peratilaSivu5.txt",
-
-    hartiadystokiaSivu1: "tekstit/hartiadystokiaSivu1.txt",
-    hartiadystokiaSivu2: "tekstit/hartiadystokiaSivu2.txt",
-    hartiadystokiaSivu3: "tekstit/hartiadystokiaSivu3.txt",
-
-    napanuoraSivu1: "tekstit/napanuoraSivu1.txt",
-    napanuoraSivu2: "tekstit/napanuoraSivu2.txt",
-    napanuoraSivu3: "tekstit/napanuoraSivu3.txt",
-
-    laakeohjeetSivu: "tekstit/laakeohjeetSivu.txt"
-}*/
-
 var savedImage = {
     ohje: "ohje",
     ohje3: "ohje3",
@@ -119,55 +77,10 @@ var firebaseConfig = {
 };
 
 var user = null;
-
-
-
-
-function userLogin(){
-    var email = document.getElementById("email").value;
-
-    var password = document.getElementById("password").value
-
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredentials)=> {
-        user = userCredentials.user;
-        console.log(user);
-        for (var key in savedText) getText(key);
-        for (var key in savedImage) getImage(key);
-        document.getElementById("phone").style.display = "block";
-        document.getElementById("login").style.display = "none";
-        document.getElementById("email").value = "";
-        document.getElementById("password").value ="";
-    })
-    .catch(e=>{
-        console.log(e);
-    })
-}
-/*dev*/
-function fakeLogin(){
-    document.getElementById("phone").style.display = "block";
-    document.getElementById("login").style.display = "none";
-}
-
-function logout(){
-    console.log("logout");
-    firebase.auth().signOut().then(()=>{
-        document.getElementById("phone").style.display = "none";
-        document.getElementById("login").style.display = "block";
-    }).catch(e=>{
-        console.log(e);
-    })
-    user = null;
-    console.log(user);
-}
 window.onload = function loadFirst() {
-    
     document.getElementById("phone").style.display = "none";
     changeContent("kotisivu");
-    
-    
 
-    
     firebase.initializeApp(firebaseConfig);
     //for (var key in savedImage) getImage(key);
     //for (var key in savedText) getText(key);
@@ -219,6 +132,43 @@ window.onload = function loadFirst() {
         document.getElementById("text").disabled = true;
         changeContent(activityName);
     }
+}
+
+function userLogin() {
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredentials) => {
+            user = userCredentials.user;
+            console.log(user);
+            for (var key in savedText) getText(key);
+            for (var key in savedImage) getImage(key);
+            document.getElementById("phone").style.display = "block";
+            document.getElementById("login").style.display = "none";
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
+        })
+        .catch(e => {
+            console.log(e);
+        })
+}
+/*dev*/
+function fakeLogin() {
+    document.getElementById("phone").style.display = "block";
+    document.getElementById("login").style.display = "none";
+}
+
+function logout() {
+    console.log("logout");
+    firebase.auth().signOut().then(() => {
+        document.getElementById("phone").style.display = "none";
+        document.getElementById("login").style.display = "block";
+    }).catch(e => {
+        console.log(e);
+    })
+    user = null;
+    console.log(user);
 }
 
 function getImage(key) {
