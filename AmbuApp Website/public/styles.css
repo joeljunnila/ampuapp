@@ -62,7 +62,7 @@ H1 {
     font-size: 20px;
 }
 #virheilmoitus {
-    background-color: red;
+    color :red;
     padding: 2px;
     border-radius: 8px;
     display: none;
