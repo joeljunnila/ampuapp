@@ -7,9 +7,36 @@
 body {
     background-color: rgb(19, 5, 5);
 }
-.userEmail {
-    color: blue;
+H1 {
+    background-color: #db2b2b;
+    text-align: center;
 }
+
+#mainheader {
+    vertical-align: middle;
+    margin-right: 90px;
+    text-align: center;
+    
+}
+#userEmail {
+    display: none;
+    position: absolute;
+    right: 75px;
+    top: 10px;
+    width: 300px;
+
+    font-size: 20px;
+}
+
+#logoutBtn {
+    display: none;
+    position: absolute;
+    right: 25px;
+    top: 10px;
+}
+
+
+
 
 .layouts {
     display: flex;
@@ -25,8 +52,20 @@ body {
     font-size: 25px;
     margin-left: 750px;
 }
+#tervetuloa{
+    font-size: 30px;
+}
+#ohje {
+    font-size: 15px;
+}
 .labels {
     font-size: 20px;
+}
+#virheilmoitus {
+    background-color: red;
+    padding: 2px;
+    border-radius: 8px;
+    display: none;
 }
 /* #region phone */
 /* phone area in html page */

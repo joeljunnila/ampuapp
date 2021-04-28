@@ -144,17 +144,17 @@ function userLogin() {
             for (var key in savedImage) getImage(key);
             document.getElementById("phone").style.display = "block";
             document.getElementById("login").style.display = "none";
+            document.getElementById("virheilmoitus").style.display = "none"
             document.getElementById("email").value = "";
             document.getElementById("password").value = "";
+            document.getElementById("userEmail").textContent = String(email);
+            document.getElementById("userEmail").style.display = "block";
+            document.getElementById("logoutBtn").style.display = "block";
         })
         .catch(e => {
             console.log(e);
+            document.getElementById("virheilmoitus").style.display = "block"
         })
-}
-/*dev*/
-function fakeLogin() {
-    document.getElementById("phone").style.display = "block";
-    document.getElementById("login").style.display = "none";
 }
 
 function logout() {
@@ -162,6 +162,10 @@ function logout() {
     firebase.auth().signOut().then(() => {
         document.getElementById("phone").style.display = "none";
         document.getElementById("login").style.display = "block";
+        document.getElementById("logoutBtn").style.display = "none";
+        document.getElementById("userEmail").textContent = "";
+        document.getElementById("userEmail").style.display = "none";
+
     }).catch(e => {
         console.log(e);
     })
