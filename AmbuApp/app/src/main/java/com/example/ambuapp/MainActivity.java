@@ -389,6 +389,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    
     public void update() {
         authenticate();
         fileCounter = 0;
