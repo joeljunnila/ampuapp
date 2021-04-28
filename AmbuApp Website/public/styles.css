@@ -7,17 +7,16 @@
 body {
     background-color: rgb(19, 5, 5);
 }
-H1 {
+
+.topBar {
     background-color: #4d0303;
-    text-align: center;
-    font-size: 44px;
 }
 
-#mainheader {
-    vertical-align: middle;
-    margin-right: 90px;
+H1 {
     text-align: center;
-    color: rgb(226, 226, 226);
+    font-size: 44px;
+    margin-right: 45px;
+    color: rgb(223, 223, 223);
 }
 
 #userEmail {
@@ -37,7 +36,7 @@ H1 {
     position: absolute;
     right: 25px;
     top: 5px;
-    padding: 10px;
+    padding: 8px;
     color: white;
     font-weight: bold;
     font-size: 20px;
@@ -53,7 +52,7 @@ H1 {
     width: calc(1080px/3);
     height: calc(2220px/3);
     margin: 50px auto;
-    background-color: #FFD4E3; 
+    background-color: #f1cee7; 
     text-align: center;
     font-size: 25px;
     margin-left: 750px;
@@ -81,13 +80,15 @@ H1 {
 }
 
 #email {
-    font-size: 22px;
+    font-size: 16px;
     width: 220px;
+    padding: 4px 0px;
 }
 
 #password {
-    font-size: 22px;
+    font-size: 16px;
     width: 220px;
+    padding: 4px 0px;
 }
 
 #virheilmoitus {
@@ -102,7 +103,7 @@ H1 {
     width: calc(1080px/3);
     height: calc(2220px/3);
     margin: 50px auto;
-    background-color: #eeeeee;
+    background-color: #f1f0f0;
     z-index: 1;
     margin-left: 750px;
 }
