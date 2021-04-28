@@ -20,25 +20,21 @@
     </h1>
 
     <div class="layouts">
-        <div class="login" id="login"> <!-- Login alue -->
+        <div id="login"> <!-- Login alue -->
             <div class="inputArea">
-            <label class="labels">Sähköpostiosoite:</label>
-            <br>
-            <input id ="email" type="email">
-            <br>
-            <label class="labels">Salasana:</label>
-            <br>
-            <input id ="password" type="password">
-            <br>
-
-            <button id="loginBtn" onclick="userLogin()">Log in</button>
-            
+                <label class="labels">Sähköpostiosoite:</label>
+                <br>
+                <input id ="email" type="email">
+                <br>
+                <label class="labels">Salasana:</label>
+                <br>
+                <input id ="password" type="password">
+                <br>
+                <button id="loginBtn" onclick="userLogin()">Log in</button>
+            </div>
         </div>
 
-
-        </div>
-
-        <div class="phone" id="phone"> <!-- phone area in html page -->
+        <div id="phone"> <!-- phone area in html page -->
             <header> <!-- menubar area in phone -->
                 <button id="homeIcon" onclick="changeContent('kotisivu')"> <!-- menubar home icon -->
                     <img src="icons/home.png" height="100%"/>
@@ -98,7 +94,9 @@
             <div id="updateViewMenu">
                 <!-- dev -->
                 <button id="loginBtn" onclick="fakeLogin()">Log in</button>
-                
+                <button id="logoutBtn" onclick="logout()">Log out</button>
+                <!-- end of dev -->
+
                 <button id=changeImage>Muokkaa kuvaa</button>
                 <button id=changeText>Muokkaa tekstiä</button>
             </div>
