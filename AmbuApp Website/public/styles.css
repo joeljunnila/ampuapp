@@ -8,35 +8,41 @@ body {
     background-color: rgb(19, 5, 5);
 }
 H1 {
-    background-color: #db2b2b;
+    background-color: #4d0303;
     text-align: center;
+    font-size: 44px;
 }
 
 #mainheader {
     vertical-align: middle;
     margin-right: 90px;
     text-align: center;
-    
+    color: rgb(226, 226, 226);
 }
+
 #userEmail {
     display: none;
     position: absolute;
-    right: 75px;
+    margin-top: 9px;
+    right: 130px;
     top: 10px;
     width: 300px;
-
+    color: rgb(226, 226, 226);
     font-size: 20px;
+    justify-content: center;
 }
 
 #logoutBtn {
     display: none;
     position: absolute;
     right: 25px;
-    top: 10px;
+    top: 5px;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: rgb(1, 92, 92);
 }
-
-
-
 
 .layouts {
     display: flex;
@@ -52,21 +58,44 @@ H1 {
     font-size: 25px;
     margin-left: 750px;
 }
-#tervetuloa{
+
+#loginBtn {
+    margin-top: 30px;
+    padding: 20px 40px;
+    background-color: #AF0505;
+    color: rgb(226, 226, 226);
     font-size: 30px;
+    border-radius: 20px;
 }
+
+#tervetuloa{
+    font-size: 42px;
+}
+
 #ohje {
-    font-size: 15px;
+    font-size: 22px;
 }
+
 .labels {
-    font-size: 20px;
+    font-size: 28px;
 }
+
+#email {
+    font-size: 22px;
+    width: 220px;
+}
+
+#password {
+    font-size: 22px;
+    width: 220px;
+}
+
 #virheilmoitus {
-    background-color: red;
-    padding: 2px;
-    border-radius: 8px;
+    color: red;
     display: none;
+    font-size: 22px;
 }
+
 /* #region phone */
 /* phone area in html page */
 #phone {
