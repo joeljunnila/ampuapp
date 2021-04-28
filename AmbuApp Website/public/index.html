@@ -13,6 +13,12 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
 </head>
 <body>
+    <h1>
+        <label id="userEmail">täällä</label>
+        <button id="logoutBtn" onclick="logout()">Log out</button>
+
+    </h1>
+
     <div class="layouts">
         <div class="login" id="login"> <!-- Login alue -->
             <div class="inputArea">
@@ -92,7 +98,7 @@
             <div id="updateViewMenu">
                 <!-- dev -->
                 <button id="loginBtn" onclick="fakeLogin()">Log in</button>
-                <button id="logoutBtn" onclick="logout()">Log out</button>
+                
                 <button id=changeImage>Muokkaa kuvaa</button>
                 <button id=changeText>Muokkaa tekstiä</button>
             </div>
