@@ -223,7 +223,7 @@ main {
 #stepView ul li {
     width: 20px;
     height: 20px;
-    margin-left: 20px;
+    margin-left: 8px;
     display: inline-block;
     color: #808080;
     background: #BDBDBD;
@@ -269,7 +269,7 @@ main {
     width: 80%;
     padding: 40px 0px;
     margin-top: 20px;
-    background-color: #001486;
+    background-color: #4d0303;
     font-size: 36px;
     border: 3px solid;
     border-radius: 12px;
