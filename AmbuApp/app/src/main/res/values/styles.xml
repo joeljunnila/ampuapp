@@ -9,4 +9,12 @@
         <item name="android:textColor">@color/teal_200</item>
         <item name="android:textSize">40sp</item>
     </style>
+
+    <style name="disclaimerTheme" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/disclaimerButtonColor</item>
+    </style>
 </resources>

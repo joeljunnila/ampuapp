@@ -1,4 +1,3 @@
-Välilihan repeäminen estetään tukemalla sitä toisen kämmenellä,
-peukalo ja etusormi kurovat välilihaan joustoa.
+Kontrolloi pään syntyminen
 
-Samalla toisella kädellä kontrolloidaan pään syntymistä.
+Pään syntyessä, se tekee käännöksen niin, että kasvot näyttävät sivulle

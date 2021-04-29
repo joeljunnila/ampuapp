@@ -16,5 +16,7 @@
         <item name="naviconIcon">@drawable/ic_baseline_menu_24_dark</item>
         <item name="leftArrow">@drawable/ic_baseline_keyboard_arrow_left_24_dark</item>
         <item name="rightArrow">@drawable/ic_baseline_keyboard_arrow_right_24_dark</item>
+
+        <item name="alertDialogTheme">@style/disclaimerTheme</item>
     </style>
 </resources>
