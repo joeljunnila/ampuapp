@@ -391,15 +391,19 @@ public class MainActivity extends AppCompatActivity {
     }
     
     public void update() {
-        authenticate();
-        fileCounter = 0;
+        if (isNetworkAvailable()) {
+            authenticate();
+            fileCounter = 0;
 
-        for(int i=0; i<imageRefs.size(); i++) {
-            downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
-        }
+            for(int i=0; i<imageRefs.size(); i++) {
+                downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
+            }
 
-        for(int i = 0; i< textRefs.size(); i++) {
-            downloadFileFromFirebase(textRefs.get(i), getFilesDir(), textFileNames.get(i));
+            for(int i = 0; i< textRefs.size(); i++) {
+                downloadFileFromFirebase(textRefs.get(i), getFilesDir(), textFileNames.get(i));
+            }
+        } else {
+            Toast.makeText(this, "Tarkista internet-yhteys", Toast.LENGTH_SHORT).show();
         }
     }
 
