@@ -381,18 +381,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void authenticate(){
-        mAuth.signInAnonymously().addOnCompleteListener(this, task -> {
-            if (task.isSuccessful()){
-                FirebaseUser user = mAuth.getCurrentUser();
-                Log.d("test", String.valueOf(user));
-            }
-        });
-    }
-    
     public void update() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        Log.d("myTest", "test: " + user);
+        if (user == null) {
+            mAuth.signInAnonymously().addOnCompleteListener(this, task -> {
+                if (task.isSuccessful()){
+                    updateFunction();
+                }
+            });
+        } else {
+            updateFunction();
+        }
+    }
+
+    public void updateFunction() {
         if (isNetworkAvailable()) {
-            authenticate();
             fileCounter = 0;
 
             for(int i=0; i<imageRefs.size(); i++) {
@@ -425,7 +429,9 @@ public class MainActivity extends AppCompatActivity {
             fileCounter++;
             if(fileCounter == (imageFileNames.size() + textFileNames.size())) {
                 Log.d("test", "Update failed!");
-                Toast.makeText(getApplicationContext(), "Päivitys epäonnistui!", Toast.LENGTH_SHORT).show();
+                if(!isFirstLaunch) {
+                    Toast.makeText(getApplicationContext(), "Päivitys epäonnistui!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
