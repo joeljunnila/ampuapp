@@ -161,6 +161,7 @@ function logout() {
     console.log("logout");
     firebase.auth().signOut().then(() => {
         document.getElementById("phone").style.display = "none";
+        changeContent("kotisivu");
         document.getElementById("login").style.display = "block";
         document.getElementById("logoutBtn").style.display = "none";
         document.getElementById("userEmail").textContent = "";
