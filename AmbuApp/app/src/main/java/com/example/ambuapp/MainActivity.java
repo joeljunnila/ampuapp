@@ -480,9 +480,6 @@ public class MainActivity extends AppCompatActivity {
                 stepView.setVisibility(View.GONE);
 
                 button1.setVisibility(View.INVISIBLE);
-                //button2.setVisibility(View.INVISIBLE);
-                //button3.setVisibility(View.INVISIBLE);
-                //button4.setVisibility(View.INVISIBLE);
                 button5.setVisibility(View.INVISIBLE);
                 button6.setVisibility(View.INVISIBLE);
 
