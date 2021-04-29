@@ -270,7 +270,7 @@ function changeContent(page) {
 
             document.getElementById("button1").textContent = "Valmistautuminen";
             document.getElementById("button2").textContent = "Synnytysvaiheet";
-            document.getElementById("button3").textContent = "Synnytyksen jälkeen";
+            document.getElementById("button3").textContent = "Jälkeisvaiheet";
             document.getElementById("button4").textContent = "Erikoistilanteet";
             document.getElementById("button5").textContent = "Lääkeohjeet";
 

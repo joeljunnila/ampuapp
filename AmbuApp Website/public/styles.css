@@ -223,13 +223,17 @@ main {
 #stepView ul li {
     width: 20px;
     height: 20px;
-    margin-left: 8px;
+    margin-left: 24px;
     display: inline-block;
     color: #808080;
     background: #BDBDBD;
     border-radius: 100%;
     padding: 3px;
     position: relative;
+}
+
+#stepView ul li:first-child {
+    margin-left: 8px;
 }
 
 #stepView ul li p{
