@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton rightArrow;
 
     //firebase
-    FirebaseAuth mAuth;
     StorageReference storageRef;
     ArrayList<String> imageFileNames = new ArrayList<>();
     ArrayList<String> textFileNames = new ArrayList<>();
@@ -127,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         storageRef = FirebaseStorage.getInstance().getReference();
-        mAuth = FirebaseAuth.getInstance();
 
         addFileNames();
 
@@ -382,40 +380,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void update() {
-        FirebaseUser user = mAuth.getCurrentUser();
-        Log.d("myTest", "test: " + user);
-        if (user == null) {
-            mAuth.signInAnonymously().addOnCompleteListener(this, task -> {
-                if (task.isSuccessful()){
-                    updateFunction();
-                }
-            });
-        } else {
-            updateFunction();
-        }
-    }
-
-    public void updateFunction() {
         if (isNetworkAvailable()) {
             fileCounter = 0;
 
+            SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+            boolean isFirstLaunch = sharedPrefs.getBoolean("isFirstLaunch", true);
+
             for(int i=0; i<imageRefs.size(); i++) {
-                downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
+                downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i), isFirstLaunch);
             }
 
             for(int i = 0; i< textRefs.size(); i++) {
-                downloadFileFromFirebase(textRefs.get(i), getFilesDir(), textFileNames.get(i));
+                downloadFileFromFirebase(textRefs.get(i), getFilesDir(), textFileNames.get(i), isFirstLaunch);
             }
         } else {
             Toast.makeText(this, "Tarkista internet-yhteys", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
+    public void downloadFileFromFirebase(StorageReference ref, File dir, String name, boolean isFirstLaunch) {
         File file = new File(dir, name);
-
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        boolean isFirstLaunch = sharedPrefs.getBoolean("isFirstLaunch", true);
 
         ref.getFile(file).addOnSuccessListener(taskSnapshot -> {
             fileCounter++;
