@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton rightArrow;
 
     //firebase
-    FirebaseAuth mAuth;
     StorageReference storageRef;
     ArrayList<String> imageFileNames = new ArrayList<>();
     ArrayList<String> textFileNames = new ArrayList<>();
@@ -127,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         storageRef = FirebaseStorage.getInstance().getReference();
-        mAuth = FirebaseAuth.getInstance();
 
         addFileNames();
 
@@ -382,20 +380,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void update() {
-        FirebaseUser user = mAuth.getCurrentUser();
-        Log.d("myTest", "test: " + user);
-        if (user == null) {
-            mAuth.signInAnonymously().addOnCompleteListener(this, task -> {
-                if (task.isSuccessful()){
-                    updateFunction();
-                }
-            });
-        } else {
-            updateFunction();
-        }
-    }
-
-    public void updateFunction() {
         if (isNetworkAvailable()) {
             fileCounter = 0;
 
