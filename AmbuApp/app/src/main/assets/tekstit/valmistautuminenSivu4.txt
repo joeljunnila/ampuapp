@@ -1,9 +1,11 @@
 Milloin matkaan: 
 
-Lapsivesi on mennyt, mutta ei ole supistuksia
+- Lapsivesi on mennyt, mutta ei ole supistuksia
 
-Supistukset tulevat epäsäännöllisesti
-Supistukset tulevat säännöllisesti 2- minuutin välein
+- Supistukset tulevat epäsäännöllisesti
+
+- Supistukset tulevat säännöllisesti 2- minuutin välein
+
 
 Synnyttäjä otetaan kyytiin ja lähdetään liikkeelle, tutkimukset yms. voi tehdä matkalla
 
