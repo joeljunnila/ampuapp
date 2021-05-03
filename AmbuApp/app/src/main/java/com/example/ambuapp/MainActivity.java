@@ -489,95 +489,95 @@ public class MainActivity extends AppCompatActivity {
                 leftArrow.setVisibility(View.VISIBLE);
                 rightArrow.setVisibility(View.INVISIBLE);
 
-            switch (activityName) {
-                case "kotisivu":
-                    leftArrow.setOnClickListener(this::kotisivu);
-                    break;
-                case "erikoistilanteetSivu":
-                    leftArrow.setOnClickListener(this::erikoistilanteetSivu);
-                    break;
-                case "valmistautuminenSivu1":
-                    leftArrow.setOnClickListener(this::valmistautuminenSivu1);
-                    break;
-                case "valmistautuminenSivu2":
-                    leftArrow.setOnClickListener(this::valmistautuminenSivu2);
-                    break;
-                case "valmistautuminenSivu3":
-                    leftArrow.setOnClickListener(this::valmistautuminenSivu3);
-                    break;
-                case "valmistautuminenSivu4":
-                    leftArrow.setOnClickListener(this::valmistautuminenSivu4);
-                    break;
-                case "valmistautuminenSivu5":
-                    leftArrow.setOnClickListener(this::valmistautuminenSivu5);
-                    break;
-                case "synnytyksenAikanaSivu1":
-                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu1);
-                    break;
-                case "synnytyksenAikanaSivu2":
-                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu2);
-                    break;
-                case "synnytyksenAikanaSivu3":
-                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu3);
-                    break;
-                case "synnytyksenAikanaSivu4":
-                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu4);
-                    break;
-                case "synnytyksenAikanaSivu5":
-                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu5);
-                    break;
-                case "synnytyksenAikanaSivu6":
-                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu6);
-                    break;
-                case "synnytyksenJalkeenSivu1":
-                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu1);
-                    break;
-                case "synnytyksenJalkeenSivu2":
-                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu2);
-                    break;
-                case "synnytyksenJalkeenSivu3":
-                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
-                    break;
-                case "synnytyksenJalkeenSivu4":
-                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
-                    break;
-                case "peratilaSivu1":
-                    leftArrow.setOnClickListener(this::peratilaSivu1);
-                    break;
-                case "peratilaSivu2":
-                    leftArrow.setOnClickListener(this::peratilaSivu2);
-                    break;
-                case "peratilaSivu3":
-                    leftArrow.setOnClickListener(this::peratilaSivu3);
-                    break;
-                case "peratilaSivu4":
-                    leftArrow.setOnClickListener(this::peratilaSivu4);
-                    break;
-                case "peratilaSivu5":
-                    leftArrow.setOnClickListener(this::peratilaSivu4);
-                    break;
-                case "hartiadystokiaSivu1":
-                    leftArrow.setOnClickListener(this::hartiadystokiaSivu1);
-                    break;
-                case "hartiadystokiaSivu2":
-                    leftArrow.setOnClickListener(this::hartiadystokiaSivu2);
-                    break;
-                case "hartiadystokiaSivu3":
-                    leftArrow.setOnClickListener(this::hartiadystokiaSivu3);
-                    break;
-                case "napanuoraSivu1":
-                    leftArrow.setOnClickListener(this::napanuoraSivu1);
-                    break;
-                case "napanuoraSivu2":
-                    leftArrow.setOnClickListener(this::napanuoraSivu2);
-                    break;
-                case "napanuoraSivu3":
-                    leftArrow.setOnClickListener(this::napanuoraSivu3);
-                    break;
-                case "laakeohjeetSivu":
-                    leftArrow.setOnClickListener(this::laakeohjeetSivu);
-                default:
-                    leftArrow.setOnClickListener(this::kotisivu);
+                switch (activityName) {
+                    case "kotisivu":
+                        leftArrow.setOnClickListener(this::kotisivu);
+                        break;
+                    case "erikoistilanteetSivu":
+                        leftArrow.setOnClickListener(this::erikoistilanteetSivu);
+                        break;
+                    case "valmistautuminenSivu1":
+                        leftArrow.setOnClickListener(this::valmistautuminenSivu1);
+                        break;
+                    case "valmistautuminenSivu2":
+                        leftArrow.setOnClickListener(this::valmistautuminenSivu2);
+                        break;
+                    case "valmistautuminenSivu3":
+                        leftArrow.setOnClickListener(this::valmistautuminenSivu3);
+                        break;
+                    case "valmistautuminenSivu4":
+                        leftArrow.setOnClickListener(this::valmistautuminenSivu4);
+                        break;
+                    case "valmistautuminenSivu5":
+                        leftArrow.setOnClickListener(this::valmistautuminenSivu5);
+                        break;
+                    case "synnytyksenAikanaSivu1":
+                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu1);
+                        break;
+                    case "synnytyksenAikanaSivu2":
+                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu2);
+                        break;
+                    case "synnytyksenAikanaSivu3":
+                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu3);
+                        break;
+                    case "synnytyksenAikanaSivu4":
+                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu4);
+                        break;
+                    case "synnytyksenAikanaSivu5":
+                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu5);
+                        break;
+                    case "synnytyksenAikanaSivu6":
+                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu6);
+                        break;
+                    case "synnytyksenJalkeenSivu1":
+                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu1);
+                        break;
+                    case "synnytyksenJalkeenSivu2":
+                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu2);
+                        break;
+                    case "synnytyksenJalkeenSivu3":
+                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
+                        break;
+                    case "synnytyksenJalkeenSivu4":
+                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
+                        break;
+                    case "peratilaSivu1":
+                        leftArrow.setOnClickListener(this::peratilaSivu1);
+                        break;
+                    case "peratilaSivu2":
+                        leftArrow.setOnClickListener(this::peratilaSivu2);
+                        break;
+                    case "peratilaSivu3":
+                        leftArrow.setOnClickListener(this::peratilaSivu3);
+                        break;
+                    case "peratilaSivu4":
+                        leftArrow.setOnClickListener(this::peratilaSivu4);
+                        break;
+                    case "peratilaSivu5":
+                        leftArrow.setOnClickListener(this::peratilaSivu4);
+                        break;
+                    case "hartiadystokiaSivu1":
+                        leftArrow.setOnClickListener(this::hartiadystokiaSivu1);
+                        break;
+                    case "hartiadystokiaSivu2":
+                        leftArrow.setOnClickListener(this::hartiadystokiaSivu2);
+                        break;
+                    case "hartiadystokiaSivu3":
+                        leftArrow.setOnClickListener(this::hartiadystokiaSivu3);
+                        break;
+                    case "napanuoraSivu1":
+                        leftArrow.setOnClickListener(this::napanuoraSivu1);
+                        break;
+                    case "napanuoraSivu2":
+                        leftArrow.setOnClickListener(this::napanuoraSivu2);
+                        break;
+                    case "napanuoraSivu3":
+                        leftArrow.setOnClickListener(this::napanuoraSivu3);
+                        break;
+                    case "laakeohjeetSivu":
+                        leftArrow.setOnClickListener(this::laakeohjeetSivu);
+                    default:
+                        leftArrow.setOnClickListener(this::kotisivu);
             }
         }
     }
