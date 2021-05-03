@@ -21,7 +21,7 @@ H1 {
 #userEmail {
     display: none;
     position: absolute;
-    margin-top: 9px;
+    margin-top: 8px;
     right: 130px;
     top: 10px;
     width: 300px;
@@ -40,6 +40,7 @@ H1 {
     font-weight: bold;
     font-size: 20px;
     background-color: rgb(1, 92, 92);
+    border-radius: 4px;
 }
 
 .layouts {
@@ -66,7 +67,7 @@ H1 {
     padding: 20px 40px;
     background-color: #AF0505;
     color: rgb(226, 226, 226);
-    font-size: 30px;
+    font-size: 22px;
     border-radius: 20px;
 }
 
