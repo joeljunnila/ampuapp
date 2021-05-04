@@ -80,10 +80,10 @@ window.onload = function loadFirst() {
     changeContent("kotisivu");
 
     firebase.initializeApp(firebaseConfig);
-    //for (var key in savedImage) getImage(key);
-    //for (var key in savedText) getText(key);
 
-    document.getElementById("newImageCustomButton").onclick = function () { document.getElementById("newImage").click(); }
+    document.getElementById("newImageCustomButton").onclick = function () {
+        document.getElementById("newImage").click();
+    }
 
     document.getElementById("changeImage").onclick = function () {
         document.getElementById("homeIcon").onclick = function () { }
@@ -139,7 +139,6 @@ function userLogin() {
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredentials) => {
             user = userCredentials.user;
-            console.log(user);
             for (var key in savedText) getText(key);
             for (var key in savedImage) getImage(key);
             document.getElementById("phone").style.display = "block";
@@ -161,6 +160,7 @@ function logout() {
     console.log("logout");
     firebase.auth().signOut().then(() => {
         document.getElementById("phone").style.display = "none";
+        changeContent("kotisivu");
         document.getElementById("login").style.display = "block";
         document.getElementById("logoutBtn").style.display = "none";
         document.getElementById("userEmail").textContent = "";
@@ -170,7 +170,6 @@ function logout() {
         console.log(e);
     })
     user = null;
-    console.log(user);
 }
 
 function getImage(key) {
@@ -270,7 +269,7 @@ function changeContent(page) {
 
             document.getElementById("button1").textContent = "Valmistautuminen";
             document.getElementById("button2").textContent = "Synnytysvaiheet";
-            document.getElementById("button3").textContent = "Synnytyksen jälkeen";
+            document.getElementById("button3").textContent = "Jälkeisvaiheet";
             document.getElementById("button4").textContent = "Erikoistilanteet";
             document.getElementById("button5").textContent = "Lääkeohjeet";
 
