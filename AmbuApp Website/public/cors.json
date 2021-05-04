@@ -1,7 +1,7 @@
 [
-    {
-      "origin": ["*"],
-      "method": ["GET"],
-      "maxAgeSeconds": 3600
-    }
+  {
+    "origin": ["https://ambuapp-2691e.web.app/"],
+    "method": ["GET"],
+    "maxAgeSeconds": 3600
+  }
 ]

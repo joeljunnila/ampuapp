@@ -33,8 +33,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.shuhart.stepview.StepView;
@@ -83,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton rightArrow;
 
     //firebase
-    FirebaseAuth mAuth;
     StorageReference storageRef;
     ArrayList<String> imageFileNames = new ArrayList<>();
     ArrayList<String> textFileNames = new ArrayList<>();
@@ -130,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         storageRef = FirebaseStorage.getInstance().getReference();
-        mAuth = FirebaseAuth.getInstance();
 
         addFileNames();
 
@@ -388,86 +384,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void update() {
-        FirebaseUser user = mAuth.getCurrentUser();
-        Log.d("myTest", "test: " + user);
-        if (user == null) {
-            mAuth.signInAnonymously().addOnCompleteListener(this, task -> {
-                if (task.isSuccessful()){
-                    updateFunction();
-                }
-            });
-        } else {
-            updateFunction();
-        }
-    }
-
-    public void updateFunction() {
         if (isNetworkAvailable()) {
             fileCounter = 0;
 
+            SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
+            boolean isFirstLaunch = sharedPrefs.getBoolean("isFirstLaunch", true);
+
             for(int i=0; i<imageRefs.size(); i++) {
-                downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i));
+                downloadFileFromFirebase(imageRefs.get(i), getFilesDir(), imageFileNames.get(i), isFirstLaunch);
             }
 
             for(int i = 0; i< textRefs.size(); i++) {
-                downloadFileFromFirebase(textRefs.get(i), getFilesDir(), textFileNames.get(i));
+                downloadFileFromFirebase(textRefs.get(i), getFilesDir(), textFileNames.get(i), isFirstLaunch);
             }
         } else {
             Toast.makeText(this, "Tarkista internet-yhteys", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void checkForUpdate() {
-
-
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        String TAG = "checkUpdate";
-
-
-
-       // Log.d(TAG,names.get(0));
-
-        /*try {
-            BufferedReader reader = new BufferedReader(new FileReader());
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if(line.contains("versionNumber") ) {
-                    versionFromConfig.append(line);
-                    reader.close();
-                }
-
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //versionFromConfig.delete(0,15);
-
-
-        String one = versionFromConfig.toString();
-        String two = appVersionNumber.toString();
-        Log.d(TAG, one +" "+ two);
-
-
-        if (one != two ) {
-            update();
-            appVersionNumber.deleteCharAt(0);
-            appVersionNumber.append(versionFromConfig);
-            editor.putString("versionNumber", path);
-            Toast.makeText(this, "Päivitetty onnistuneesti!", Toast.LENGTH_SHORT).show();
-        }
-        else
-            Toast.makeText(this, "Sovellus on ajan tasalla", Toast.LENGTH_SHORT).show();*/
-
-    }
-
-    public void downloadFileFromFirebase(StorageReference ref, File dir, String name) {
+    public void downloadFileFromFirebase(StorageReference ref, File dir, String name, boolean isFirstLaunch) {
         File file = new File(dir, name);
-
-        SharedPreferences sharedPrefs = getSharedPreferences("sharedPrefs", MODE_PRIVATE);
-        boolean isFirstLaunch = sharedPrefs.getBoolean("isFirstLaunch", true);
 
         ref.getFile(file).addOnSuccessListener(taskSnapshot -> {
             fileCounter++;
@@ -532,9 +468,6 @@ public class MainActivity extends AppCompatActivity {
                 stepView.setVisibility(View.GONE);
 
                 button1.setVisibility(View.INVISIBLE);
-                //button2.setVisibility(View.INVISIBLE);
-                //button3.setVisibility(View.INVISIBLE);
-                //button4.setVisibility(View.INVISIBLE);
                 button5.setVisibility(View.INVISIBLE);
                 button6.setVisibility(View.INVISIBLE);
 
@@ -562,95 +495,95 @@ public class MainActivity extends AppCompatActivity {
                 leftArrow.setVisibility(View.VISIBLE);
                 rightArrow.setVisibility(View.INVISIBLE);
 
-            switch (activityName) {
-                case "kotisivu":
-                    leftArrow.setOnClickListener(this::kotisivu);
-                    break;
-                case "erikoistilanteetSivu":
-                    leftArrow.setOnClickListener(this::erikoistilanteetSivu);
-                    break;
-                case "valmistautuminenSivu1":
-                    leftArrow.setOnClickListener(this::valmistautuminenSivu1);
-                    break;
-                case "valmistautuminenSivu2":
-                    leftArrow.setOnClickListener(this::valmistautuminenSivu2);
-                    break;
-                case "valmistautuminenSivu3":
-                    leftArrow.setOnClickListener(this::valmistautuminenSivu3);
-                    break;
-                case "valmistautuminenSivu4":
-                    leftArrow.setOnClickListener(this::valmistautuminenSivu4);
-                    break;
-                case "valmistautuminenSivu5":
-                    leftArrow.setOnClickListener(this::valmistautuminenSivu5);
-                    break;
-                case "synnytyksenAikanaSivu1":
-                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu1);
-                    break;
-                case "synnytyksenAikanaSivu2":
-                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu2);
-                    break;
-                case "synnytyksenAikanaSivu3":
-                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu3);
-                    break;
-                case "synnytyksenAikanaSivu4":
-                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu4);
-                    break;
-                case "synnytyksenAikanaSivu5":
-                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu5);
-                    break;
-                case "synnytyksenAikanaSivu6":
-                    leftArrow.setOnClickListener(this::synnytyksenAikanaSivu6);
-                    break;
-                case "synnytyksenJalkeenSivu1":
-                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu1);
-                    break;
-                case "synnytyksenJalkeenSivu2":
-                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu2);
-                    break;
-                case "synnytyksenJalkeenSivu3":
-                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
-                    break;
-                case "synnytyksenJalkeenSivu4":
-                    leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
-                    break;
-                case "peratilaSivu1":
-                    leftArrow.setOnClickListener(this::peratilaSivu1);
-                    break;
-                case "peratilaSivu2":
-                    leftArrow.setOnClickListener(this::peratilaSivu2);
-                    break;
-                case "peratilaSivu3":
-                    leftArrow.setOnClickListener(this::peratilaSivu3);
-                    break;
-                case "peratilaSivu4":
-                    leftArrow.setOnClickListener(this::peratilaSivu4);
-                    break;
-                case "peratilaSivu5":
-                    leftArrow.setOnClickListener(this::peratilaSivu4);
-                    break;
-                case "hartiadystokiaSivu1":
-                    leftArrow.setOnClickListener(this::hartiadystokiaSivu1);
-                    break;
-                case "hartiadystokiaSivu2":
-                    leftArrow.setOnClickListener(this::hartiadystokiaSivu2);
-                    break;
-                case "hartiadystokiaSivu3":
-                    leftArrow.setOnClickListener(this::hartiadystokiaSivu3);
-                    break;
-                case "napanuoraSivu1":
-                    leftArrow.setOnClickListener(this::napanuoraSivu1);
-                    break;
-                case "napanuoraSivu2":
-                    leftArrow.setOnClickListener(this::napanuoraSivu2);
-                    break;
-                case "napanuoraSivu3":
-                    leftArrow.setOnClickListener(this::napanuoraSivu3);
-                    break;
-                case "laakeohjeetSivu":
-                    leftArrow.setOnClickListener(this::laakeohjeetSivu);
-                default:
-                    leftArrow.setOnClickListener(this::kotisivu);
+                switch (activityName) {
+                    case "kotisivu":
+                        leftArrow.setOnClickListener(this::kotisivu);
+                        break;
+                    case "erikoistilanteetSivu":
+                        leftArrow.setOnClickListener(this::erikoistilanteetSivu);
+                        break;
+                    case "valmistautuminenSivu1":
+                        leftArrow.setOnClickListener(this::valmistautuminenSivu1);
+                        break;
+                    case "valmistautuminenSivu2":
+                        leftArrow.setOnClickListener(this::valmistautuminenSivu2);
+                        break;
+                    case "valmistautuminenSivu3":
+                        leftArrow.setOnClickListener(this::valmistautuminenSivu3);
+                        break;
+                    case "valmistautuminenSivu4":
+                        leftArrow.setOnClickListener(this::valmistautuminenSivu4);
+                        break;
+                    case "valmistautuminenSivu5":
+                        leftArrow.setOnClickListener(this::valmistautuminenSivu5);
+                        break;
+                    case "synnytyksenAikanaSivu1":
+                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu1);
+                        break;
+                    case "synnytyksenAikanaSivu2":
+                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu2);
+                        break;
+                    case "synnytyksenAikanaSivu3":
+                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu3);
+                        break;
+                    case "synnytyksenAikanaSivu4":
+                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu4);
+                        break;
+                    case "synnytyksenAikanaSivu5":
+                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu5);
+                        break;
+                    case "synnytyksenAikanaSivu6":
+                        leftArrow.setOnClickListener(this::synnytyksenAikanaSivu6);
+                        break;
+                    case "synnytyksenJalkeenSivu1":
+                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu1);
+                        break;
+                    case "synnytyksenJalkeenSivu2":
+                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu2);
+                        break;
+                    case "synnytyksenJalkeenSivu3":
+                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
+                        break;
+                    case "synnytyksenJalkeenSivu4":
+                        leftArrow.setOnClickListener(this::synnytyksenJalkeenSivu3);
+                        break;
+                    case "peratilaSivu1":
+                        leftArrow.setOnClickListener(this::peratilaSivu1);
+                        break;
+                    case "peratilaSivu2":
+                        leftArrow.setOnClickListener(this::peratilaSivu2);
+                        break;
+                    case "peratilaSivu3":
+                        leftArrow.setOnClickListener(this::peratilaSivu3);
+                        break;
+                    case "peratilaSivu4":
+                        leftArrow.setOnClickListener(this::peratilaSivu4);
+                        break;
+                    case "peratilaSivu5":
+                        leftArrow.setOnClickListener(this::peratilaSivu4);
+                        break;
+                    case "hartiadystokiaSivu1":
+                        leftArrow.setOnClickListener(this::hartiadystokiaSivu1);
+                        break;
+                    case "hartiadystokiaSivu2":
+                        leftArrow.setOnClickListener(this::hartiadystokiaSivu2);
+                        break;
+                    case "hartiadystokiaSivu3":
+                        leftArrow.setOnClickListener(this::hartiadystokiaSivu3);
+                        break;
+                    case "napanuoraSivu1":
+                        leftArrow.setOnClickListener(this::napanuoraSivu1);
+                        break;
+                    case "napanuoraSivu2":
+                        leftArrow.setOnClickListener(this::napanuoraSivu2);
+                        break;
+                    case "napanuoraSivu3":
+                        leftArrow.setOnClickListener(this::napanuoraSivu3);
+                        break;
+                    case "laakeohjeetSivu":
+                        leftArrow.setOnClickListener(this::laakeohjeetSivu);
+                    default:
+                        leftArrow.setOnClickListener(this::kotisivu);
             }
         }
     }
