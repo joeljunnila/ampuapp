@@ -1,7 +1,7 @@
 Hoidetaan kohteessa: 
 
-Supistuksia on 1 minuutin välein säännöllisesti
+- Supistuksia on 1 minuutin välein säännöllisesti
 
-Synnyttäjällä on ponnistamisen tarve
+- Synnyttäjällä on ponnistamisen tarve
 
-Sikiön pää näkyy
+- Sikiön pää näkyy
