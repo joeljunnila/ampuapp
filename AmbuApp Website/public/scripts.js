@@ -159,13 +159,13 @@ function userLogin() {
 function logout() {
     console.log("logout");
     firebase.auth().signOut().then(() => {
+        document.getElementById("cancelButton").click();
         document.getElementById("phone").style.display = "none";
         changeContent("kotisivu");
         document.getElementById("login").style.display = "block";
         document.getElementById("logoutBtn").style.display = "none";
         document.getElementById("userEmail").textContent = "";
         document.getElementById("userEmail").style.display = "none";
-
     }).catch(e => {
         console.log(e);
     })
