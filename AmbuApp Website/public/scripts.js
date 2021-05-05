@@ -1,9 +1,19 @@
 var savedImage = {
-    ohje: "ohje",
+    ohje1: "ohje1",
+    ohje2: "ohje2",
+    ohje2B: "ohje2b",
     ohje3: "ohje3",
     ohje4: "ohje4",
-    ohje5: "ohje5",
-    ohje7: "ohje7"
+    ohje5: "ohje5", 
+    ohje5B: "ohje5b",
+    ohje6: "ohje6",
+    ohje6B: "ohje6b",
+    ohje7: "ohje7",
+    ohje8: "ohje8",
+    ohje8B: "ohje8b",
+    ohje9: "ohje9",
+    ohje9B: "ohje9b",
+    ohje10: "ohje10"
 }
 
 var savedText = {
@@ -43,24 +53,24 @@ var savedText = {
 };
 
 var usedImage = {
-    synnytyksenAikanaSivu2: "ohje5",
-    synnytyksenAikanaSivu3: "ohje3",
-    synnytyksenAikanaSivu4: "ohje3",
-    synnytyksenAikanaSivu6: "ohje",
+    synnytyksenAikanaSivu2: "ohje1",
+    synnytyksenAikanaSivu3: "ohje2",
+    synnytyksenAikanaSivu4: "ohje2B",
+    synnytyksenAikanaSivu6: "ohje3",
 
-    peratilaSivu1: "ohje",
-    peratilaSivu2: "ohje",
-    peratilaSivu3: "ohje",
-    peratilaSivu4: "ohje",
-    peratilaSivu5: "ohje",
+    peratilaSivu1: "ohje4",
+    peratilaSivu2: "ohje5",
+    peratilaSivu3: "ohje5B",
+    peratilaSivu4: "ohje6",
+    peratilaSivu5: "ohje6B",
 
-    hartiadystokiaSivu1: "ohje",
-    hartiadystokiaSivu2: "ohje",
-    hartiadystokiaSivu3: "ohje",
+    hartiadystokiaSivu1: "ohje7",
+    hartiadystokiaSivu2: "ohje8",
+    hartiadystokiaSivu3: "ohje8B",
 
-    napanuoraSivu1: "ohje7",
-    napanuoraSivu2: "ohje7",
-    napanuoraSivu3: "ohje4",
+    napanuoraSivu1: "ohje9",
+    napanuoraSivu2: "ohje9B",
+    napanuoraSivu3: "ohje10",
 };
 
 var firebaseConfig = {
