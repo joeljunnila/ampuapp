@@ -63,14 +63,7 @@ var usedImage = {
     napanuoraSivu3: "ohje4",
 };
 
-var firebaseConfig = {
-    apiKey: "AIzaSyDUbaZX8mHLAKMiX5Kd1i6xuViu0kDEGEg",
-    authDomain: "ambuapp-2691e.firebaseapp.com",
-    projectId: "ambuapp-2691e",
-    storageBucket: "ambuapp-2691e.appspot.com",
-    messagingSenderId: "812625720469",
-    appId: "1:812625720469:web:851a28a3eefbac8374d79c"
-};
+eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('s c=["\\t\\C\\D\\6\\E\\F\\u\\G\\d\\6\\H\\v\\e\\f\\I\\J\\t\\w\\K\\i\\v\\j\\w\\x\\9\\i\\a\\L\\h\\M\\i\\h\\n\\N\\u\\y\\O\\y\\P","\\6\\f\\d\\h\\6\\7\\7\\o\\8\\a\\g\\9\\b\\k\\z\\i\\Q\\b\\d\\6\\A\\b\\6\\7\\7\\k\\l\\p\\f","\\6\\f\\d\\h\\6\\7\\7\\o\\8\\a\\g\\9\\b","\\6\\f\\d\\h\\6\\7\\7\\o\\8\\a\\g\\9\\b\\k\\6\\7\\7\\A\\7\\p\\R\\k\\l\\p\\f","\\e\\9\\8\\a\\8\\j\\m\\8\\n\\q\\a\\g","\\9\\r\\e\\9\\8\\a\\8\\j\\m\\8\\n\\q\\a\\g\\r\\S\\b\\d\\r\\e\\j\\9\\6\\8\\e\\6\\B\\b\\b\\z\\d\\6\\l\\e\\B\\m\\q\\x\\m\\g\\l"];s T={U:c[0],V:c[1],W:c[2],X:c[3],Y:c[4],Z:c[5]}',62,62,'||||||x61|x70|x32|x31|x36|x65|_0x8562|x62|x38|x6D|x39|x75|x69|x35|x2E|x63|x37|x30|x2D|x6F|x34|x3A|var|x41|x44|x58|x4B|x64|x45|x66|x73|x33|x49|x7A|x53|x79|x55|x5A|x48|x4C|x4D|x78|x56|x6B|x47|x67|x72|x74|x77|firebaseConfig|apiKey|authDomain|projectId|storageBucket|messagingSenderId|appId'.split('|'),0,{}))
 
 var activityName = "kotisivu";
 var user = null;
