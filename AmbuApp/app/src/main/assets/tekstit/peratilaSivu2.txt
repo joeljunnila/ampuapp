@@ -1,3 +1,6 @@
+Hartian vapauttaminen.
+A) Klassiset otteet. Taaemman hartian ulosautto.
+B) Etummaisen hartian vapauttaminen klassisilla otteilla.
+
 Etummainen hartia vapautuu, minkä jälkeen vartaloa kierretään 180 astetta vastakkaiseen suuntaan samalla painaen alaspäin, jolloin toinenkin hartia vapautuu
 
-Sikiön kiertämisen tulee tapahtua niin, että selkä säilyy kohti äidin häpyliitosta, jotta pää ei joudu avosuiseen tarjontaan ja sikiön leuka lukkiudu symfyysiin

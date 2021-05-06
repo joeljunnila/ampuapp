@@ -1,9 +1,19 @@
 var savedImage = {
-    ohje: "ohje",
+    ohje1: "ohje1",
+    ohje2: "ohje2",
+    ohje2B: "ohje2b",
     ohje3: "ohje3",
     ohje4: "ohje4",
-    ohje5: "ohje5",
-    ohje7: "ohje7"
+    ohje5: "ohje5", 
+    ohje5B: "ohje5b",
+    ohje6: "ohje6",
+    ohje6B: "ohje6b",
+    ohje7: "ohje7",
+    ohje8: "ohje8",
+    ohje8B: "ohje8b",
+    ohje9: "ohje9",
+    ohje9B: "ohje9b",
+    ohje10: "ohje10"
 }
 
 var savedText = {
@@ -43,24 +53,24 @@ var savedText = {
 };
 
 var usedImage = {
-    synnytyksenAikanaSivu2: "ohje5",
-    synnytyksenAikanaSivu3: "ohje3",
-    synnytyksenAikanaSivu4: "ohje3",
-    synnytyksenAikanaSivu6: "ohje",
+    synnytyksenAikanaSivu2: "ohje1",
+    synnytyksenAikanaSivu3: "ohje2",
+    synnytyksenAikanaSivu4: "ohje2B",
+    synnytyksenAikanaSivu6: "ohje3",
 
-    peratilaSivu1: "ohje",
-    peratilaSivu2: "ohje",
-    peratilaSivu3: "ohje",
-    peratilaSivu4: "ohje",
-    peratilaSivu5: "ohje",
+    peratilaSivu1: "ohje4",
+    peratilaSivu2: "ohje5",
+    peratilaSivu3: "ohje5B",
+    peratilaSivu4: "ohje6",
+    peratilaSivu5: "ohje6B",
 
-    hartiadystokiaSivu1: "ohje",
-    hartiadystokiaSivu2: "ohje",
-    hartiadystokiaSivu3: "ohje",
+    hartiadystokiaSivu1: "ohje7",
+    hartiadystokiaSivu2: "ohje8",
+    hartiadystokiaSivu3: "ohje8B",
 
-    napanuoraSivu1: "ohje7",
-    napanuoraSivu2: "ohje7",
-    napanuoraSivu3: "ohje4",
+    napanuoraSivu1: "ohje9",
+    napanuoraSivu2: "ohje9B",
+    napanuoraSivu3: "ohje10",
 };
 
 eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('s c=["\\t\\C\\D\\6\\E\\F\\u\\G\\d\\6\\H\\v\\e\\f\\I\\J\\t\\w\\K\\i\\v\\j\\w\\x\\9\\i\\a\\L\\h\\M\\i\\h\\n\\N\\u\\y\\O\\y\\P","\\6\\f\\d\\h\\6\\7\\7\\o\\8\\a\\g\\9\\b\\k\\z\\i\\Q\\b\\d\\6\\A\\b\\6\\7\\7\\k\\l\\p\\f","\\6\\f\\d\\h\\6\\7\\7\\o\\8\\a\\g\\9\\b","\\6\\f\\d\\h\\6\\7\\7\\o\\8\\a\\g\\9\\b\\k\\6\\7\\7\\A\\7\\p\\R\\k\\l\\p\\f","\\e\\9\\8\\a\\8\\j\\m\\8\\n\\q\\a\\g","\\9\\r\\e\\9\\8\\a\\8\\j\\m\\8\\n\\q\\a\\g\\r\\S\\b\\d\\r\\e\\j\\9\\6\\8\\e\\6\\B\\b\\b\\z\\d\\6\\l\\e\\B\\m\\q\\x\\m\\g\\l"];s T={U:c[0],V:c[1],W:c[2],X:c[3],Y:c[4],Z:c[5]}',62,62,'||||||x61|x70|x32|x31|x36|x65|_0x8562|x62|x38|x6D|x39|x75|x69|x35|x2E|x63|x37|x30|x2D|x6F|x34|x3A|var|x41|x44|x58|x4B|x64|x45|x66|x73|x33|x49|x7A|x53|x79|x55|x5A|x48|x4C|x4D|x78|x56|x6B|x47|x67|x72|x74|x77|firebaseConfig|apiKey|authDomain|projectId|storageBucket|messagingSenderId|appId'.split('|'),0,{}))
@@ -152,13 +162,13 @@ function userLogin() {
 function logout() {
     console.log("logout");
     firebase.auth().signOut().then(() => {
+        document.getElementById("cancelButton").click();
         document.getElementById("phone").style.display = "none";
         changeContent("kotisivu");
         document.getElementById("login").style.display = "block";
         document.getElementById("logoutBtn").style.display = "none";
         document.getElementById("userEmail").textContent = "";
         document.getElementById("userEmail").style.display = "none";
-
     }).catch(e => {
         console.log(e);
     })

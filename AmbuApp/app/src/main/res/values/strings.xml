@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AmbuApp</string>
+    <string name="app_name">LaborAID</string>
     <string name="homeButton">Home</string>
     <string name="navicon">Menu</string>
     <string name="leftArrow">Left arrow</string>
